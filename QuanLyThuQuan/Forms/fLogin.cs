@@ -22,65 +22,90 @@ namespace QuanLyThuQuan
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            //if(rbtnManager.Checked == true)
-            //{
-            //    string username = textBoxUserName.Text;
-            //    string password = textBoxPassword.Text;
-            //    DataProvider.InstanceGetPermission(username, password);
-            //    string query = "EXEC dbo.LoginAsQuanLy @userName  , @passWord ";
-            //    if (AccountDAO.Instance.Login(username, password, query))
-            //    {
-            //        //xử lý tác vụ phân quyền giao diện
-            //        Account account = AccountDAO.Instance.GetAccountManager(username, password);
+            if (rbtnManager.Checked == true)
+            {
+                //string username = textBoxUserName.Text;
+                //string password = textBoxPassword.Text;
+                //DataProvider.InstanceGetPermission(username, password);
+                //string query = "EXEC dbo.LoginAsQuanLy @userName  , @passWord ";
+                //if (AccountDAO.Instance.Login(username, password, query))
+                //{
+                //    //xử lý tác vụ phân quyền giao diện
+                //    Account account = AccountDAO.Instance.GetAccountManager(username, password);
 
 
-            //        //Giấu Form này đi thay vì Close() để có thể gọi lại
-            //        this.Hide();
+                //    //Giấu Form này đi thay vì Close() để có thể gọi lại
+                //    this.Hide();
 
-            //        //Gọi Form mới
-            //        fTableManager mainForm = new fTableManager(account);
-            //        mainForm.ShowDialog(this);
+                //    //Gọi Form mới
+                //    fTableManager mainForm = new fTableManager(account);
+                //    mainForm.ShowDialog(this);
 
-            //        //Khi tắt Form mới sẽ gọi lại form cũ
-            //        mainForm = null;
-            //        this.Show();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else if (rbtnStaff.Checked == true)
-            //{
-            //    //Get Form Info
-            //    string query = "EXEC dbo.LoginAsNhanVien @userName , @passWord ";
-            //    string username = textBoxUserName.Text;
-            //    string password = textBoxPassword.Text;
-            //    DataProvider.InstanceGetPermission(username, password);
-            //    if (AccountDAO.Instance.Login(username, password, query))
-            //    {
-            //        //xử lý tác vụ phân quyền giao diện
-            //        Account account = AccountDAO.Instance.GetAccountStaff(username, password);
-            //        //Giấu Form này đi thay vì Close() để có thể gọi lại
-            //        this.Hide();
+                //    //Khi tắt Form mới sẽ gọi lại form cũ
+                //    mainForm = null;
+                //    this.Show();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
 
-            //        //Gọi Form mới
-            //        fTableManager mainForm = new fTableManager(account);
-            //        mainForm.ShowDialog(this);
 
-            //        //Khi tắt Form mới sẽ gọi lại form cũ
-            //        mainForm = null;
-            //        this.Show();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vui lòng chọn loại tài khoản! ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+                //Giấu Form này đi thay vì Close() để có thể gọi lại
+                this.Hide();
+
+                //Gọi Form mới
+                fTableManager mainForm = new fTableManager();
+                mainForm.ShowDialog(this);
+
+                //Khi tắt Form mới sẽ gọi lại form cũ
+                mainForm = null;
+                this.Show();
+            }
+            else if (rbtnStaff.Checked == true)
+            {
+                ////Get Form Info
+                //string query = "EXEC dbo.LoginAsNhanVien @userName , @passWord ";
+                //string username = textBoxUserName.Text;
+                //string password = textBoxPassword.Text;
+                //DataProvider.InstanceGetPermission(username, password);
+                //if (AccountDAO.Instance.Login(username, password, query))
+                //{
+                //    //xử lý tác vụ phân quyền giao diện
+                //    Account account = AccountDAO.Instance.GetAccountStaff(username, password);
+                //    //Giấu Form này đi thay vì Close() để có thể gọi lại
+                //    this.Hide();
+
+                //    //Gọi Form mới
+                //    fTableManager mainForm = new fTableManager(account);
+                //    mainForm.ShowDialog(this);
+
+                //    //Khi tắt Form mới sẽ gọi lại form cũ
+                //    mainForm = null;
+                //    this.Show();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+
+
+
+                //Giấu Form này đi thay vì Close() để có thể gọi lại
+                this.Hide();
+
+                //Gọi Form mới
+                fTableManager mainForm = new fTableManager();
+                mainForm.ShowDialog(this);
+
+                //Khi tắt Form mới sẽ gọi lại form cũ
+                mainForm = null;
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn loại tài khoản! ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
