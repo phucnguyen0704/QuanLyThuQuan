@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyThuQuan", "QuanLyThuQuan\QuanLyThuQuan.csproj", "{C6C809EF-0767-4113-B0A5-AEA59FB90CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyThuQuan.Web", "QuanLyThuQuan.Web\QuanLyThuQuan.Web.csproj", "{1A10C92E-6CD6-DF19-2E94-39BA13CE2856}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{C6C809EF-0767-4113-B0A5-AEA59FB90CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6C809EF-0767-4113-B0A5-AEA59FB90CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C809EF-0767-4113-B0A5-AEA59FB90CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A10C92E-6CD6-DF19-2E94-39BA13CE2856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A10C92E-6CD6-DF19-2E94-39BA13CE2856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A10C92E-6CD6-DF19-2E94-39BA13CE2856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A10C92E-6CD6-DF19-2E94-39BA13CE2856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A42E63C-649A-4D2E-9C97-B88286DD67F5}
 	EndGlobalSection
 EndGlobal
