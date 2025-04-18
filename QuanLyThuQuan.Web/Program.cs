@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuanLyThuQuan.Web.Data;
+using QuanLyThuQuan.Web.Services.SeatService;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Cấu hình EF Core với MySQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+
+#region Dependency Injection Service
+builder.Services.AddScoped<ISeatService, SeatService>();
+#endregion
 
 var app = builder.Build();
 
