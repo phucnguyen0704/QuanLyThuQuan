@@ -205,17 +205,8 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.ReservationId, "reservation_id");
 
             entity.Property(e => e.ReservationDetailId).HasColumnName("reservation_detail_id");
-            entity.Property(e => e.BorrowTime)
-                .HasColumnType("datetime")
-                .HasColumnName("borrow_time");
             entity.Property(e => e.DeviceId).HasColumnName("device_id");
-            entity.Property(e => e.DueTime)
-                .HasColumnType("datetime")
-                .HasColumnName("due_time");
             entity.Property(e => e.ReservationId).HasColumnName("reservation_id");
-            entity.Property(e => e.ReturnTime)
-                .HasColumnType("datetime")
-                .HasColumnName("return_time");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("'1'")
                 .HasColumnName("status");

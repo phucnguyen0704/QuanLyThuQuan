@@ -9,7 +9,7 @@ public partial class Reservation
 
     public uint? MemberId { get; set; }
 
-    public uint? SeatId { get; set; }
+    public uint? SeatId { get; set; }   
 
     public sbyte? ReservationType { get; set; }
 
