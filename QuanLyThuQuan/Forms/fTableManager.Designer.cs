@@ -44,6 +44,7 @@
             this.đăngXuấtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblQLTV = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
+            this.chỗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +72,8 @@
             this.nhânViênToolStripMenuItem,
             this.độcGiảToolStripMenuItem,
             this.thẻĐộcGiảToolStripMenuItem,
-            this.sáchToolStripMenuItem});
+            this.sáchToolStripMenuItem,
+            this.chỗToolStripMenuItem});
             this.quảnLýĐộcGiảToolStripMenuItem.Name = "quảnLýĐộcGiảToolStripMenuItem";
             this.quảnLýĐộcGiảToolStripMenuItem.Size = new System.Drawing.Size(142, 24);
             this.quảnLýĐộcGiảToolStripMenuItem.Text = "Danh mục quản lý";
@@ -79,7 +81,6 @@
             // nhânViênToolStripMenuItem
             // 
             this.nhânViênToolStripMenuItem.AutoSize = false;
-            //this.nhânViênToolStripMenuItem.Image = global::QuanlyThuQuan.Properties.Resources.staffmanage;
             this.nhânViênToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
             this.nhânViênToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
@@ -89,25 +90,22 @@
             // 
             // độcGiảToolStripMenuItem
             // 
-            //this.độcGiảToolStripMenuItem.Image = global::QuanlyThuQuan.Properties.Resources.readermanage;
             this.độcGiảToolStripMenuItem.Name = "độcGiảToolStripMenuItem";
-            this.độcGiảToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.độcGiảToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.độcGiảToolStripMenuItem.Text = "Độc giả";
             this.độcGiảToolStripMenuItem.Click += new System.EventHandler(this.độcGiảToolStripMenuItem_Click);
             // 
             // thẻĐộcGiảToolStripMenuItem
             // 
-            //this.thẻĐộcGiảToolStripMenuItem.Image = global::QuanlyThuQuan.Properties.Resources.cardreadermanage;
             this.thẻĐộcGiảToolStripMenuItem.Name = "thẻĐộcGiảToolStripMenuItem";
-            this.thẻĐộcGiảToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.thẻĐộcGiảToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.thẻĐộcGiảToolStripMenuItem.Text = "Thẻ độc giả";
             this.thẻĐộcGiảToolStripMenuItem.Click += new System.EventHandler(this.thẻĐộcGiảToolStripMenuItem_Click);
             // 
             // sáchToolStripMenuItem
             // 
-            //this.sáchToolStripMenuItem.Image = global::QuanlyThuQuan.Properties.Resources.bookmanage;
             this.sáchToolStripMenuItem.Name = "sáchToolStripMenuItem";
-            this.sáchToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.sáchToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.sáchToolStripMenuItem.Text = "Sách";
             this.sáchToolStripMenuItem.Click += new System.EventHandler(this.sáchToolStripMenuItem_Click);
             // 
@@ -192,12 +190,18 @@
             this.lblWelcome.TabIndex = 3;
             this.lblWelcome.Text = "Welcome";
             // 
+            // chỗToolStripMenuItem
+            // 
+            this.chỗToolStripMenuItem.Name = "chỗToolStripMenuItem";
+            this.chỗToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.chỗToolStripMenuItem.Text = "Chỗ";
+            this.chỗToolStripMenuItem.Click += new System.EventHandler(this.chỗToolStripMenuItem_Click);
+            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            //this.BackgroundImage = global::QuanlyThuQuan.Properties.Resources.book_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(823, 562);
             this.Controls.Add(this.lblWelcome);
@@ -231,5 +235,6 @@
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
         private System.Windows.Forms.Label lblQLTV;
         private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.ToolStripMenuItem chỗToolStripMenuItem;
     }
 }

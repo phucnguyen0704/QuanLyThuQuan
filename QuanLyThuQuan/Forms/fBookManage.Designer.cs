@@ -102,6 +102,7 @@
             this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 23;
             this.label1.Text = "Tùy chỉnh";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnEdit
             // 

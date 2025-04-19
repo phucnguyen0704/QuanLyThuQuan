@@ -93,5 +93,11 @@ namespace QuanLyThuQuan
             fGuideToUse f = new fGuideToUse();
             f.ShowDialog();
         }
+
+        private void chỗToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fSeatManage f = new fSeatManage();
+            f.ShowDialog();
+        }
     }
 }

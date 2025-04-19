@@ -108,5 +108,10 @@ namespace QuanLyThuQuan
                 MessageBox.Show(ex.Message, "Thông báo!", MessageBoxButtons.OK);
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
