@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Booking Page";
+    ViewData["booking"] = "menu-open";
+    ViewData["booking-booking"] = "active";
+}
+
+@model QuanLyThuQuan.Web.Models.Member;
+@section csslinks {
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Bootstrap CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+}
+
+<form method="post" asp-controller="nhanvien" asp-action="store" >
+    <div class="container mt-4">
+        <!-- Card -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Thêm nhân viên</h3>
+                @* <div class="card-tools"> *@
+                @*     <button type="button" class="btn btn-tool text-white" data-card-widget="collapse" title="Collapse"> *@
+                @*         <i class="fas fa-minus"></i> *@
+                @*     </button> *@
+                @*     <button type="button" class="btn btn-tool text-white" data-card-widget="remove" title="Remove"> *@
+                @*         <i class="fas fa-times"></i> *@
+                @*     </button> *@
+                @* </div> *@
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+                    <!-- Phương thức mượn -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Phương thức mượn</label>
+                            <select id="borrowMethod" name="borrowMethod" class="form-select" required>
+                                <option value="1">Tại chỗ</option>
+                                <option value="2">Mang về</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Chỗ ngồi</label>
+                            <select name="seat_id" class="form-select" id="seatSelection">
+                                <option value="0">Chọn chỗ</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Thời gian mượn chỗ</label>
+                            <input type="datetime-local" class="form-control" name="reservationTime" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Thời gian trả chỗ</label>
+                            <input type="datetime-local" class="form-control" name="dueTime" required />
+                        </div>
+                    </div>
+
+                    <!-- Mã thành viên -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Mã thành viên</label>
+                            <input type="text" class="form-control" name="member_id" readonly>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="form-label">Thiết bị</label>
+                            <select name="devices" class="form-select" multiple required>
+                                <option value="1">Thiết bị 1</option>
+                                <option value="2">Thiết bị 2</option>
+                                <option value="3">Thiết bị 3</option>
+                                <option value="4">Thiết bị 4</option>
+                            </select>
+                            <small class="form-text text-muted">Giữ Ctrl để chọn nhiều thiết bị.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card footer -->
+            <div class="card-footer bg-light text-end">
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle borrow method logic -->
+    <script>
+        document.getElementById('borrowMethod').addEventListener('change', function () {
+             var seatSelect = document.getElementById('seatSelection');
+             if (this.value === '2') {
+                 seatSelect.value = '0'; // Select "Chọn chỗ"
+                 seatSelect.disabled = true; // Disable the select
+                 seatSelect.removeAttribute('required');
+             } else {
+                 seatSelect.disabled = false; // Enable the select
+                 seatSelect.setAttribute('required', '');
+             }
+         });
+    </script>
+</form>
+@section jslinks{
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+}

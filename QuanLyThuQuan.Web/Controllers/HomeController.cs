@@ -18,6 +18,13 @@ namespace QuanLyThuQuan.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("change-password")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
