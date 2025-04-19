@@ -6,7 +6,6 @@ namespace QuanLyThuQuan.Web.Services.SeatService
 {
     public class SeatService : ISeatService
     {
-        private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
         public SeatService(IConfiguration configuration)

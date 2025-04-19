@@ -1,6 +1,8 @@
 ﻿@{
     Layout = null;
 }
+@model QuanLyThuQuan.Web.Models.Member;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +47,15 @@
 
                 <form method="post" asp-controller="auth" asp-action="login">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="Username" placeholder="User Name">
+                        <input type="text" class="form-control" name="memberId" placeholder="Mã thành viên" asp-for="MemberId">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="memberId" placeholder="Mã thành viên" asp-for="MemberId">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
