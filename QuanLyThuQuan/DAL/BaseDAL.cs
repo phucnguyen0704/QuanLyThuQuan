@@ -12,7 +12,7 @@ namespace QuanLyThuQuan.DAL
     public class BaseDAL
     {
         private MySqlConnection connection;
-        private string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=Nael@159asd#;SslMode=none;";
+        private string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=root;SslMode=none;";
 
         public BaseDAL()
         {
