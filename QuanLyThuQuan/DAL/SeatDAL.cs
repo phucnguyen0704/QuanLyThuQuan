@@ -20,9 +20,9 @@ namespace QuanLyThuQuan.DAL
             try
             {
                 string sql = @"INSERT INTO seat (name) VALUES (@seatName)";
+                OpenConnection();
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 command.Parameters.AddWithValue("@seatName", seat.seatName);
-                OpenConnection();
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -53,9 +53,9 @@ namespace QuanLyThuQuan.DAL
                             UPDATE seat
                             SET name = @seatName
                             WHERE seat_id = @seatId";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
-                    OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
@@ -86,9 +86,9 @@ namespace QuanLyThuQuan.DAL
                             UPDATE seat
                             SET status = 0
                             WHERE seat_id = @seatId";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatId", seatId);
-                    OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
@@ -109,34 +109,28 @@ namespace QuanLyThuQuan.DAL
             }
         }
 
-        public List<SeatDTO> getAll() {
+        public List<SeatDTO> getAll()
+        {
             List<SeatDTO> seats = new List<SeatDTO>();
             try
             {
-                try
+                string sql = @"SELECT * FROM seat where status = 1";
+                MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                OpenConnection();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    string sql = @"SELECT * FROM seat where status = 1";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-                    OpenConnection();
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        SeatDTO seat = new SeatDTO(
-                            reader.GetInt32("seat_id"),
-                            reader.GetString("name"),
-                            reader.GetInt32("status")
-                            );
-                        seats.Add(seat);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    SeatDTO seat = new SeatDTO(
+                        reader.GetInt32("seat_id"),
+                        reader.GetString("name"),
+                        reader.GetInt32("status")
+                    );
+                    seats.Add(seat);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
             finally
             {
@@ -152,9 +146,9 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"Select * from seat where seat_id = @id";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@id", id);
-                    OpenConnection();
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
@@ -192,9 +186,9 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"Select * from seat where name=@seatName";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seatName);
-                    OpenConnection();
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {

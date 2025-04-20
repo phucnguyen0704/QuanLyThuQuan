@@ -64,5 +64,10 @@ namespace QuanLyThuQuan
                 MessageBox.Show("Them thanh cong!");
             }
         }
+
+        private void test_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
