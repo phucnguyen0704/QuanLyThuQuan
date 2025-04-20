@@ -53,9 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BaseBLL.cs" />
+    <Compile Include="BLL\RegulationBLL.cs" />
     <Compile Include="BLL\SeatBLL.cs" />
+    <Compile Include="Controls\PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DAL\BaseDAL.cs" />
+    <Compile Include="DAL\RegulationDAL.cs" />
     <Compile Include="DAL\SeatDAL.cs" />
+    <Compile Include="DTO\RegulationDTO.cs" />
     <Compile Include="DTO\SeatDTO.cs" />
     <Compile Include="Forms\fAccountProfile.cs">
       <SubType>Form</SubType>
@@ -98,6 +105,12 @@
     </Compile>
     <Compile Include="Forms\fLogin.Designer.cs">
       <DependentUpon>fLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fRegulationManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fRegulationManage.Designer.cs">
+      <DependentUpon>fRegulationManage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\fPrintBorrowTicket.cs">
       <SubType>Form</SubType>
@@ -184,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\fReaderManage.resx">
       <DependentUpon>fReaderManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fRegulationManage.resx">
+      <DependentUpon>fRegulationManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\fSearchBook.resx">
       <DependentUpon>fSearchBook.cs</DependentUpon>
