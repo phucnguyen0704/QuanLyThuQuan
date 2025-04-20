@@ -1,8 +1,10 @@
-﻿using System;
+﻿using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyThuQuan.Forms;
 
 namespace QuanLyThuQuan
 {
@@ -16,8 +18,8 @@ namespace QuanLyThuQuan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fLogin());
-            //Application.Run(new test());
+            //Application.Run(new fLogin());
+            Application.Run(new fRegulationManage());
         }
     }
 }
