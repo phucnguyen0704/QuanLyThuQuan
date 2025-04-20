@@ -109,7 +109,127 @@ namespace QuanLyThuQuan
             }
         }
 
+        private void fBookManage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtBookPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSoLuong_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookPosition_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNXBID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookLanguage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookCate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtWriterID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookPrice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSoLuong_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookPosition_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNXBID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookLanguage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookCate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblWriterID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBookID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDisBookInLib_Click(object sender, EventArgs e)
         {
 
         }
