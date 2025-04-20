@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flPnContent = new System.Windows.Forms.FlowLayoutPanel();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -39,10 +39,13 @@
             this.flpnThongTin = new System.Windows.Forms.FlowLayoutPanel();
             this.flpnID = new System.Windows.Forms.FlowLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.flpnTen = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTen = new System.Windows.Forms.Label();
+            this.txtTen = new System.Windows.Forms.TextBox();
             this.flpnTheLoai = new System.Windows.Forms.FlowLayoutPanel();
             this.lblLoai = new System.Windows.Forms.Label();
+            this.txtLoai = new System.Windows.Forms.TextBox();
             this.flpnMoTa = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMoTa = new System.Windows.Forms.Label();
             this.richTxtMoTa = new System.Windows.Forms.RichTextBox();
@@ -60,9 +63,6 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtLoai = new System.Windows.Forms.TextBox();
-            this.txtTen = new System.Windows.Forms.TextBox();
             this.flPnContent.SuspendLayout();
             this.pnHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -191,7 +191,7 @@
             // 
             this.flpnID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flpnID.Controls.Add(this.lblID);
-            this.flpnID.Controls.Add(this.textBox1);
+            this.flpnID.Controls.Add(this.txtID);
             this.flpnID.Location = new System.Drawing.Point(3, 3);
             this.flpnID.Name = "flpnID";
             this.flpnID.Size = new System.Drawing.Size(469, 50);
@@ -208,6 +208,17 @@
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID:";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtID
+            // 
+            this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtID.BackColor = System.Drawing.Color.White;
+            this.txtID.Location = new System.Drawing.Point(80, 10);
+            this.txtID.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(379, 29);
+            this.txtID.TabIndex = 3;
             // 
             // flpnTen
             // 
@@ -231,6 +242,17 @@
             this.lblTen.Text = "Tên:";
             this.lblTen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtTen
+            // 
+            this.txtTen.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtTen.BackColor = System.Drawing.Color.White;
+            this.txtTen.Location = new System.Drawing.Point(80, 10);
+            this.txtTen.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
+            this.txtTen.Name = "txtTen";
+            this.txtTen.ReadOnly = true;
+            this.txtTen.Size = new System.Drawing.Size(379, 29);
+            this.txtTen.TabIndex = 2;
+            // 
             // flpnTheLoai
             // 
             this.flpnTheLoai.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -252,6 +274,17 @@
             this.lblLoai.TabIndex = 0;
             this.lblLoai.Text = "Loại:";
             this.lblLoai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtLoai
+            // 
+            this.txtLoai.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtLoai.BackColor = System.Drawing.Color.White;
+            this.txtLoai.Location = new System.Drawing.Point(80, 10);
+            this.txtLoai.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
+            this.txtLoai.Name = "txtLoai";
+            this.txtLoai.ReadOnly = true;
+            this.txtLoai.Size = new System.Drawing.Size(379, 29);
+            this.txtLoai.TabIndex = 3;
             // 
             // flpnMoTa
             // 
@@ -450,21 +483,21 @@
             // 
             this.dataGridView.AllowUserToOrderColumns = true;
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView.Location = new System.Drawing.Point(3, 64);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.Size = new System.Drawing.Size(960, 536);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
@@ -473,39 +506,6 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(80, 10);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(379, 29);
-            this.textBox1.TabIndex = 3;
-            // 
-            // txtLoai
-            // 
-            this.txtLoai.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtLoai.BackColor = System.Drawing.Color.White;
-            this.txtLoai.Location = new System.Drawing.Point(80, 10);
-            this.txtLoai.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
-            this.txtLoai.Name = "txtLoai";
-            this.txtLoai.ReadOnly = true;
-            this.txtLoai.Size = new System.Drawing.Size(379, 29);
-            this.txtLoai.TabIndex = 3;
-            // 
-            // txtTen
-            // 
-            this.txtTen.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtTen.BackColor = System.Drawing.Color.White;
-            this.txtTen.Location = new System.Drawing.Point(80, 10);
-            this.txtTen.Margin = new System.Windows.Forms.Padding(5, 10, 5, 0);
-            this.txtTen.Name = "txtTen";
-            this.txtTen.ReadOnly = true;
-            this.txtTen.Size = new System.Drawing.Size(379, 29);
-            this.txtTen.TabIndex = 2;
             // 
             // fRegulationManage
             // 
@@ -576,7 +576,7 @@
         private System.Windows.Forms.Label lblTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtLoai;
         private System.Windows.Forms.TextBox txtTen;
     }

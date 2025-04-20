@@ -30,7 +30,7 @@ namespace QuanLyThuQuan.Forms
             initDataGridView();
             loadData(RegulationBLL.Instance.GetAll());
 
-            textBox1.Enabled = false;
+            txtID.Enabled = false;
             setInputReadOnly(true);
             setButtonState(true, true, false, false);
 
@@ -79,7 +79,7 @@ namespace QuanLyThuQuan.Forms
             var row = dataGridView.SelectedRows[0];
             if (row.Cells["RegulationID"].Value != null)
             {
-                textBox1.Text = row.Cells["RegulationID"].Value.ToString();
+                txtID.Text = row.Cells["RegulationID"].Value.ToString();
                 txtTen.Text = row.Cells["Name"].Value.ToString();
                 txtLoai.Text = row.Cells["Type"].Value.ToString();
                 richTxtMoTa.Text = row.Cells["Description"].Value.ToString();
@@ -100,7 +100,7 @@ namespace QuanLyThuQuan.Forms
 
         private void ClearForm()
         {
-            textBox1.Text = string.Empty;
+            txtID.Text = string.Empty;
             txtTen.Text = string.Empty;
             txtLoai.Text = string.Empty;
             richTxtMoTa.Text = string.Empty;
@@ -217,7 +217,7 @@ namespace QuanLyThuQuan.Forms
         private void HandleUpdateRegulation()
         {
             RegulationDTO regulation = new RegulationDTO(
-                int.Parse(textBox1.Text.Trim()),
+                int.Parse(txtID.Text.Trim()),
                 txtTen.Text.Trim(),
                 txtLoai.Text.Trim(),
                 richTxtMoTa.Text.Trim(),
