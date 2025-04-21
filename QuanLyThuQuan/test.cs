@@ -14,7 +14,7 @@ namespace QuanLyThuQuan
 {
     public partial class test : Form
     {
-        string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
+        string connectionString = "Server=localhost;port=3308;Database=LibraryDB;Uid=root;Pwd=123456;SslMode=none;";
         public test()
         {
             InitializeComponent();
