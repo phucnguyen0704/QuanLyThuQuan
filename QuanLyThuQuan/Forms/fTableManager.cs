@@ -99,5 +99,11 @@ namespace QuanLyThuQuan
             fSeatManage f = new fSeatManage();
             f.ShowDialog();
         }
+
+        private void thànhViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fMember f = new fMember();
+            f.ShowDialog();
+        }
     }
 }

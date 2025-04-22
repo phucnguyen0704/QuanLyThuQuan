@@ -17,7 +17,8 @@ namespace QuanLyThuQuan
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new fLogin());
-            //Application.Run(new test());
+            Application.Run(new test());
+            Application.Run(new QuanLyThuQuan.fMember());
         }
     }
 }
