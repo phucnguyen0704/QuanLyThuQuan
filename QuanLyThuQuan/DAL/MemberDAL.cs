@@ -8,8 +8,7 @@ namespace QuanLyThuQuan.DAL
 {
     public class MemberDAL
     {
-        private string connectionString = "server=localhost;database=qlthanhvien;uid=root;pwd=;";
-
+        string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
         public List<MemberDTO> LayDanhSachThanhVien()
         {
             List<MemberDTO> danhSach = new List<MemberDTO>();

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyThuQuan.Forms;
 
 namespace QuanLyThuQuan
 {
@@ -97,6 +98,18 @@ namespace QuanLyThuQuan
         private void chỗToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fSeatManage f = new fSeatManage();
+            f.ShowDialog();
+        }
+
+        private void thiếtBịToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceForm f = new DeviceForm();
+            f.ShowDialog();
+        }
+
+        private void quyĐịnhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fRegulationManage f = new fRegulationManage();
             f.ShowDialog();
         }
 
