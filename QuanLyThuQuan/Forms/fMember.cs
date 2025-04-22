@@ -100,6 +100,7 @@ namespace QuanLyThuQuan
                             dgvMembers.Columns["class"].HeaderText = "Lớp";
                             dgvMembers.Columns["role"].HeaderText = "Vai trò";
                             dgvMembers.Columns["status"].HeaderText = "Trạng thái";
+                            dgvMembers.Columns["sex"].HeaderText = "Giới tính";
                         }
                     }
                 }
