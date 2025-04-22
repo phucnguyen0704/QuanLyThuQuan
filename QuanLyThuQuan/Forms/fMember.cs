@@ -18,7 +18,7 @@ namespace QuanLyThuQuan
         private List<Member> members = new List<Member>();
         private const string filePath = "members.csv";
         private string connectionString = "Server=localhost;Database=LibraryDB;Uid=root;Pwd= ;";
-
+        
         public fMember()
         {
             InitializeComponent();
@@ -36,10 +36,10 @@ namespace QuanLyThuQuan
         {
             // Dữ liệu sẽ được load trong constructor
             // Thêm các giá trị vào cboKhoa
-            cboKhoa.Items.Add("Khoa Công nghệ thông tin");
-            cboKhoa.Items.Add("Khoa Điện tử - Viễn thông");
-            cboKhoa.Items.Add("Khoa Cơ khí");
-            cboKhoa.Items.Add("Khoa Kinh tế");
+            cbKhoa.Items.Add("Khoa Công nghệ thông tin");
+            cbKhoa.Items.Add("Khoa Điện tử - Viễn thông");
+            cbKhoa.Items.Add("Khoa Cơ khí");
+            cbKhoa.Items.Add("Khoa Kinh tế");
 
             // Thêm các giá trị vào cboNganh
             cboNganh.Items.Add("Ngành Phần mềm");
@@ -53,15 +53,15 @@ namespace QuanLyThuQuan
             cboLop.Items.Add("Lớp 3");
 
             // Thêm các giá trị vào cboGioiTinh
-            cboGioiTinh.Items.Add("Nam");
-            cboGioiTinh.Items.Add("Nữ");
-            cboGioiTinh.Items.Add("Khác");
+           // cboGioiTinh.Items.Add("Nam");
+          //  cboGioiTinh.Items.Add("Nữ");
+          //  cboGioiTinh.Items.Add("Khác");
 
             // Chọn giá trị mặc định cho các ComboBox
-            cboKhoa.SelectedIndex = 0;
+            cbKhoa.SelectedIndex = 0;
             cboNganh.SelectedIndex = 0;
             cboLop.SelectedIndex = 0;
-            cboGioiTinh.SelectedIndex = 0;
+           // cboGioiTinh.SelectedIndex = 0;
         }
 
         private void LoadRoles()
@@ -100,7 +100,7 @@ namespace QuanLyThuQuan
                             dgvMembers.Columns["class"].HeaderText = "Lớp";
                             dgvMembers.Columns["role"].HeaderText = "Vai trò";
                             dgvMembers.Columns["status"].HeaderText = "Trạng thái";
-                            dgvMembers.Columns["sex"].HeaderText = "Giới tính";
+                            
                         }
                     }
                 }
@@ -118,32 +118,40 @@ namespace QuanLyThuQuan
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, class, password, role, status) " +
-                                   "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status)";
+                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, [class], password, role, status) " +
+                "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status)";
+
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
+                        // Gán giá trị cho các tham số
                         command.Parameters.AddWithValue("@member_id", txtMemberId.Text);
                         command.Parameters.AddWithValue("@full_name", txtHoVaTen.Text);
                         command.Parameters.AddWithValue("@birthday", dtpBirthday.Value.ToString("yyyy-MM-dd"));
-                        command.Parameters.AddWithValue("@phone_number", txtDangNhap.Text);
+                        command.Parameters.AddWithValue("@phone_number", txtDangNhap.Text);  // Bạn cần đảm bảo trường này chứa số điện thoại
                         command.Parameters.AddWithValue("@email", txtEmail.Text);
-                        command.Parameters.AddWithValue("@department", "");
-                        command.Parameters.AddWithValue("@major", "");
-                        command.Parameters.AddWithValue("@class", "");
+                        command.Parameters.AddWithValue("@department", cbKhoa.SelectedItem?.ToString());
+                        command.Parameters.AddWithValue("@major", cboNganh.SelectedItem?.ToString());
+                        command.Parameters.AddWithValue("@class", cboLop.SelectedItem?.ToString());
                         command.Parameters.AddWithValue("@password", txtMatKhau.Text);
                         command.Parameters.AddWithValue("@role", cboVaiTro.SelectedItem?.ToString());
                         command.Parameters.AddWithValue("@status", cboTrangThai.SelectedItem?.ToString());
 
+                        // Thực thi câu lệnh
                         command.ExecuteNonQuery();
                         MessageBox.Show("Dữ liệu đã được lưu vào MySQL.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadMembersFromMySQL();
+                        LoadMembersFromMySQL();  // Cập nhật lại danh sách thành viên
                     }
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Lỗi MySQL: " + ex.Message + "\n" + ex.Number);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi lưu dữ liệu vào MySQL: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi chung: " + ex.Message);
             }
+
         }
 
         private void btnLuu_Click_1(object sender, EventArgs e)
@@ -317,26 +325,25 @@ namespace QuanLyThuQuan
             string memberId = txtMemberId.Text.Trim();
             string hoVaTen = txtHoVaTen.Text.Trim();
             DateTime ngaySinh = dtpBirthday.Value;
-            string dangNhap = txtDangNhap.Text.Trim();
+            string dangNhap = txtDangNhap.Text.Trim(); // login name?
             string matKhau = txtMatKhau.Text.Trim();
             string email = txtEmail.Text.Trim();
             DateTime ngayDangKy = dtpNgayDangKy.Value;
             string vaiTro = cboVaiTro.SelectedItem?.ToString();
-            string trangThai = cboTrangThai.SelectedItem?.ToString();
+            string trangThaiStr = cboTrangThai.SelectedItem?.ToString();
 
             // Thêm các trường mới
-            string khoa = cboKhoa.SelectedItem?.ToString();
+            string khoa = cbKhoa.SelectedItem?.ToString();
             string nganh = cboNganh.SelectedItem?.ToString();
             string lop = cboLop.SelectedItem?.ToString();
-            string gioiTinh = cboGioiTinh.SelectedItem?.ToString();
+            //string gioiTinh = cboGioiTinh.SelectedItem?.ToString(); // Mở comment nếu sử dụng
 
-            // Kiểm tra dữ liệu
             if (string.IsNullOrWhiteSpace(hoVaTen) ||
                 string.IsNullOrWhiteSpace(dangNhap) ||
                 string.IsNullOrWhiteSpace(matKhau) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrEmpty(vaiTro) ||
-                string.IsNullOrEmpty(trangThai))
+                string.IsNullOrEmpty(trangThaiStr))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -344,11 +351,15 @@ namespace QuanLyThuQuan
 
             try
             {
+                int trangThai = int.TryParse(cboTrangThai.SelectedItem?.ToString(), out int t) ? t : 0;
+                DateTime now = DateTime.Now;
+
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, class, password, role, status, gender, register_date) " +
-                                   "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status, @gender, @register_date)";
+                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, class, password, role, status, created_at) " +
+                                   "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status, @created_at)";
+
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@member_id", memberId);
@@ -361,9 +372,21 @@ namespace QuanLyThuQuan
                         command.Parameters.AddWithValue("@class", lop);
                         command.Parameters.AddWithValue("@password", matKhau);
                         command.Parameters.AddWithValue("@role", vaiTro);
-                        command.Parameters.AddWithValue("@status", trangThai);
-                        command.Parameters.AddWithValue("@gender", gioiTinh);
-                        command.Parameters.AddWithValue("@register_date", ngayDangKy.ToString("yyyy-MM-dd"));
+                        command.Parameters.AddWithValue("@status", trangThai); // Đưa xuống đây nè
+                                                                               //command.Parameters.AddWithValue("@gender", ""); // nếu đang để trống
+                                                                               // command.Parameters.AddWithValue("@register_date", ngayDangKy.ToString("yyyy-MM-dd"));
+                                                                               // Kiểm tra xem created_at có phải là null không, nếu có thì dùng thời gian hiện tại
+
+
+                        if (ngayDangKy == null)
+                        {
+                            command.Parameters.AddWithValue("@created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@created_at", ngayDangKy);
+                        }
+
 
                         command.ExecuteNonQuery();
                     }
@@ -422,6 +445,29 @@ namespace QuanLyThuQuan
             }
         }
 
+        private void cboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void dgvMembers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboVaiTro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNganh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
