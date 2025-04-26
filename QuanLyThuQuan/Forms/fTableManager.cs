@@ -112,5 +112,11 @@ namespace QuanLyThuQuan
             fRegulationManage f = new fRegulationManage();
             f.ShowDialog();
         }
+
+        private void thànhViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fMember f = new fMember();
+            f.ShowDialog();
+        }
     }
 }
