@@ -60,7 +60,7 @@ namespace QuanLyThuQuan.DAL
                     string sql = @"
                         UPDATE reservation 
                         SET member_id = @member_id, seat_id = @seat_id, reservation_type = @reservation_type, reservation_time = @reservation_time, due_time = @due_time, return_time = @return_time, status = @status, created_at = @created_at 
-                        WHERE reservation_id = @reservation_id;
+                        WHERE reservation_id = @reservation_id AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@reservation_id", reservation.ReservationID);
@@ -102,8 +102,8 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"
-                        DELETE FROM reservation 
-                        WHERE reservation_id = @reservation_id;
+                        UPDATE reservation SET status = 4
+                        WHERE reservation_id = @reservation_id AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@reservation_id", reservationID);
@@ -138,7 +138,7 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"
-                        SELECT * FROM reservation;
+                        SELECT * FROM reservation WHERE status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
 
@@ -187,7 +187,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                         SELECT * FROM reservation 
-                        WHERE reservation_id = @reservation_id;
+                        WHERE reservation_id = @reservation_id  AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@reservation_id", reservationID);

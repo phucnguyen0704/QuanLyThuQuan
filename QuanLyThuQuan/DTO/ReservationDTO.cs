@@ -6,11 +6,11 @@ namespace QuanLyThuQuan.DTO
     {
         public int ReservationID { get; set; }
         public int MemberID { get; set; }
-        public int SeatID { get; set; }
+        public int? SeatID { get; set; }
         public int ReservationType { get; set; }
         public DateTime ReservationTime { get; set; }
         public DateTime DueTime { get; set; }
-        public DateTime ReturnTime { get; set; }
+        public DateTime? ReturnTime { get; set; }
         public int Status { get; set; }
         public DateTime CreatedAt { get; set; }
 
@@ -27,13 +27,13 @@ namespace QuanLyThuQuan.DTO
             CreatedAt = DateTime.Now;
         }
 
-        public ReservationDTO(int reservationID, int memberID, int seatID, int reservationType, DateTime reservationTime, DateTime dueTime, DateTime returnTime, int status, DateTime createdAt)
+        public ReservationDTO(int reservationID, int memberID, int? seatID, int reservationType, DateTime? reservationTime, DateTime dueTime, DateTime? returnTime, int status, DateTime createdAt)
         {
             ReservationID = reservationID;
             MemberID = memberID;
             SeatID = seatID;
             ReservationType = reservationType;
-            ReservationTime = reservationTime;
+            ReservationTime = (DateTime) reservationTime; 
             DueTime = dueTime;
             ReturnTime = returnTime;
             Status = status;

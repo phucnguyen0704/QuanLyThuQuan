@@ -78,3 +78,4 @@ D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyTh.BD2212A7.Up2Date
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.exe
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.pdb
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.DeviceForm.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.ReservationForm.resources
