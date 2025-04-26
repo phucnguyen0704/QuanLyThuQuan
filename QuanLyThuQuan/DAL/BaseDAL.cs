@@ -13,15 +13,13 @@ namespace QuanLyThuQuan.DAL
     {
         private MySqlConnection connection;
         //private string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=root;SslMode=none;";
-        //--Kết nối của Bảo, mn ko cần quan tâm cứ cmt lại là được
-        string connectionString = "Server=localhost;port=3308;Database=LibraryDB;Uid=root;Pwd=123456;SslMode=none;";
+        //string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
+        string connectionString = "server=localhost;port=3308;user=root;password=123456;database=librarydb;SslMode=none;";
         public BaseDAL()
         {
-            //string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=;SslMode=none;";
-            //--Kết nối của Bảo, mn ko cần quan tâm cứ cmt lại là được
-            string connectionString = "Server=localhost;port=3308;Database=LibraryDB;Uid=root;Pwd=123456;SslMode=none;"; 
             connection = new MySqlConnection(connectionString);
         }
+
 
         public void OpenConnection()
         {
@@ -56,7 +54,7 @@ namespace QuanLyThuQuan.DAL
 
         public MySqlConnection GetConnection()
         {
-            return new MySqlConnection(connectionString);
+            return connection;
         }
     }
 }
