@@ -4,7 +4,11 @@
     ViewData["booking-history"] = "active";
 }
 
+@model List<QuanLyThuQuan.Web.DTO.ReservationDTO>
+
 @section csslinks {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css ">
     <link rel="stylesheet" href="~/Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css ">
@@ -12,6 +16,9 @@
 }
 @section jslinks {
     <script src="~/js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -21,82 +28,66 @@
     <script src="~/Admin/plugins/jszip/jszip.min.js"></script>
     <script src="~/Admin/plugins/pdfmake/pdfmake.min.js"></script>
     <script src="~/Admin/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="~/Admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="~/Admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="~/Admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script> *@
+    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.print.min.js"></script> *@
+    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> *@
 
-    <script src="~/js/configTableData.js"></script>
+    @* <script src="~/js/configTableData.js"></script> *@
 
 
     <script>
+               
         $(document).ready(function () {
-            $('select.quyen-select').change(function () {
-
-                var nvId = $(this).closest('tr').find('td:first').text();
-                var selectedValue = $(this).val();
-
-                // Gửi yêu cầu Ajax
+            // Xử lý khi nhấn nút "Xem chi tiết"
+            $('.btn-show-details').on('click', function () {
+                var reservationId = $(this).data('id');
+                console.log(reservationId);
+                // Gọi Ajax để lấy ReservationDetails
                 $.ajax({
-                    type: 'POST',
-                    url: '/nhanvien/updatequyen',
-                    data: {
-                        id: nvId,
-                        newQuyen: selectedValue
-                    },
-                    success: function (data) {
-                        alert(data);
+                    url: 'api/reservations/' + reservationId + '/details',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (details) {
+                        var tbody = $('#reservationDetailTableBody');
+                        tbody.empty(); // Xóa dữ liệu cũ
 
-                    },
-                    error: function (xhr, status, error) {
+                        if (details && details.length > 0) {
+                            details.forEach(function (detail) {
+                                var statusText = detail.status == 1 ? 'Đang mượn' :
+                                                detail.status == 2 ? 'Đã trả' :
+                                                detail.status == 3 ? 'Vi phạm' : 'Không xác định';
 
-                        console.error(error);
+                                var row = `<tr>
+                                    <td>${detail.reservationDetailId}</td>
+                                    <td>${detail.device ? detail.device.name : 'N/A'}</td>
+                                    <td>${statusText}</td>
+                                </tr>`;
+                                tbody.append(row);
+                            });
+
+                            $('#reservationDetailModal').modal('show');
+                        } else {
+                            alert('Không tìm thấy chi tiết cho phiếu mượn này.');
+                        }
+                    },
+                    error: function () {
+                        alert('Đã xảy ra lỗi khi tải chi tiết.');
                     }
                 });
             });
 
-            $('select.kichhoat-select').change(function () {
-
-                var nvId = $(this).closest('tr').find('td:first').text();
-                var selectedValue = $(this).val();
-
-                // Gửi yêu cầu Ajax
-                $.ajax({
-                    type: 'POST',
-                    url: '/nhanvien/updatekichhoat',
-                    data: {
-                        id: nvId,
-                        newkichhoat: selectedValue
-                    },
-                    success: function (data) {
-                        alert(data);
-
-                    },
-                    error: function (xhr, status, error) {
-
-                        console.error(error);
-                    }
-                });
-            });
-        })
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var selects = document.querySelectorAll("select.kichhoat-select");
-            selects.forEach(function (select) {
-                changeClass(select);
-            });
+            
         });
-        function changeClass(selectElement) {
-            var selectedOption = selectElement.value;
-            if (selectedOption === "true") {
-                selectElement.classList.remove("badge-danger");
-                selectElement.classList.add("badge-success");
-            } else if (selectedOption === "false") {
-                selectElement.classList.remove("badge-success");
-                selectElement.classList.add("badge-danger");
-            }
-            $("table").click();
-        }
+
+        $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
     </script>
 }
 
@@ -138,13 +129,63 @@
                                     <th>Thời gian dự kiến trả</th>
                                     <th>Thời gian trả ghi nhận</th>
                                     <th>Trạng thái</th>
-                                    <th width="170px">Hành động</th>
+                                   
                                     <th>Chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Reservation.ReservationId</td>
+                                        <td>@item.Reservation.MemberId</td>
+                                        <td>@(item.Reservation.Member.FullName ?? "N/A")</td>
+                                        <td>
+                                            @switch (item.Reservation.ReservationType)
+                                            {
+                                                case 1:
+                                                    @: Mượn tại chỗ
+                                                    break;
+                                                case 2:
+                                                    @: Mượn mang về
+                                                    break;
+                                                default:
+                                                    @: Không xác định
+                                                    break;
+                                            }
+                                        </td>
+                                        <td>@(item.Reservation.Seat?.Name ?? "N/A")</td>
+                                        <td>@(item.Reservation.ReservationTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                        <td>@(item.Reservation.DueTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                        <td>@(item.Reservation.ReturnTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                        <td>
+                                            @switch (item.Reservation.Status)
+                                            {
+                                                case 1:
+                                                    @:<span class="badge rounded-pill bg-primary"> Đang mượn </span>
+                                                    break;
+                                                case 2:
+                                                    @: <span class="badge rounded-pill bg-secondary"> Đã trả </span>
+                                                    break;
+                                                case 3:
+                                                    @: <span class="badge rounded-pill bg-danger"> Vi phạm </span>
+                                                    break;
+                                                default:
+                                                    @: <span class="badge rounded-pill bg-secondary"> N/A </span>
+                                                    break;
+                                            }
+                                        </td>
+                                        
+                                        <td>
 
-                               
+                                            <button class="btn btn-info btn-sm btn-show-details"
+                                                    data-id="@item.Reservation.ReservationId">
+                                                Xem chi tiết
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                             <tfoot>
                                 <tr>
                                     <th>Id</th>
@@ -156,11 +197,42 @@
                                     <th>Thời gian dự kiến trả</th>
                                     <th>Thời gian trả ghi nhận</th>
                                     <th>Trạng thái</th>
-                                    <th width="170px">Hành động</th>
+                                    
                                     <th>Chi tiết</th>
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
+
+                    <!-- Modal hiển thị chi tiết -->
+                    <div class="modal fade" id="reservationDetailModal" tabindex="-1" role="dialog" aria-labelledby="reservationDetailModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="reservationDetailModalLabel">Chi tiết mượn</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tên thiết bị</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="reservationDetailTableBody">
+                                            <!-- Dữ liệu sẽ được đổ vào đây bằng Ajax -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

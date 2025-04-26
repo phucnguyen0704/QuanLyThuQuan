@@ -4,29 +4,22 @@
     ViewData["booking-booking"] = "active";
 }
 
-@model QuanLyThuQuan.Web.Models.Member;
+@model QuanLyThuQuan.Web.DTO.ReservationDTO;
 @section csslinks {
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <!-- Bootstrap CSS and JS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 }
 
-<form method="post" asp-controller="nhanvien" asp-action="store" >
+<form method="post" asp-controller="booking" asp-action="BookingStore">
     <div class="container mt-4">
         <!-- Card -->
         <div class="card shadow-sm border-0">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h3 class="card-title mb-0">Thêm nhân viên</h3>
-                @* <div class="card-tools"> *@
-                @*     <button type="button" class="btn btn-tool text-white" data-card-widget="collapse" title="Collapse"> *@
-                @*         <i class="fas fa-minus"></i> *@
-                @*     </button> *@
-                @*     <button type="button" class="btn btn-tool text-white" data-card-widget="remove" title="Remove"> *@
-                @*         <i class="fas fa-times"></i> *@
-                @*     </button> *@
-                @* </div> *@
+                <h3 class="card-title mb-0">Lập phiếu mượn thiết bị</h3>
+               
             </div>
 
             <div class="card-body">
@@ -35,28 +28,33 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Phương thức mượn</label>
-                            <select id="borrowMethod" name="borrowMethod" class="form-select" required>
+                            <select id="borrowMethod" asp-for="Reservation.ReservationType" class="form-select" required>
                                 <option value="1">Tại chỗ</option>
                                 <option value="2">Mang về</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Chỗ ngồi</label>
-                            <select name="seat_id" class="form-select" id="seatSelection">
+                            <select asp-for="Reservation.SeatId" class="form-select" id="seatSelection">
                                 <option value="0">Chọn chỗ</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                                @foreach (var seat in ViewBag.seats)
+                                {
+								    var isSelected = seat.SeatId == ViewBag.seatId ? "selected" : null;
+                                    
+                                    <option value="@seat.SeatId" selected="@isSelected">@seat.Name</option>
+
+                                }
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Thời gian mượn chỗ</label>
-                            <input type="datetime-local" class="form-control" name="reservationTime" required />
+                            <input type="datetime-local" class="form-control" asp-for="Reservation.ReservationTime" required />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Thời gian trả chỗ</label>
-                            <input type="datetime-local" class="form-control" name="dueTime" required />
+                            <input type="datetime-local" class="form-control" asp-for="Reservation.DueTime" required />
                         </div>
                     </div>
 
@@ -64,16 +62,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Mã thành viên</label>
-                            <input type="text" class="form-control" name="member_id" readonly>
+                            <input type="number" class="form-control" value="@ViewBag.memberId" asp-for="Reservation.MemberId" readonly>
                         </div>
                     
                         <div class="form-group">
                             <label class="form-label">Thiết bị</label>
-                            <select name="devices" class="form-select" multiple required>
-                                <option value="1">Thiết bị 1</option>
-                                <option value="2">Thiết bị 2</option>
-                                <option value="3">Thiết bị 3</option>
-                                <option value="4">Thiết bị 4</option>
+                            <select name="deviceIds" class="form-select" multiple required>
+								@foreach (var device in ViewBag.devices)
+								{
+									<option value="@device.DeviceId">@device.Name</option>
+								})
+                               
                             </select>
                             <small class="form-text text-muted">Giữ Ctrl để chọn nhiều thiết bị.</small>
                         </div>

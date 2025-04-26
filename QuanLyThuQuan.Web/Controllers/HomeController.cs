@@ -13,6 +13,14 @@ namespace QuanLyThuQuan.Web.Controllers
             _logger = logger;
         }
 
+        [Route("")]
+        public IActionResult Index2()
+        {
+            return RedirectToAction("ViewSeat", "Booking");
+        }
+
+        [HttpGet]
+        [Route("profile")]
         public IActionResult Index()
         {
             return View();
