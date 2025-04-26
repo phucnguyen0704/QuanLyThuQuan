@@ -228,6 +228,7 @@
             this.Name = "fSeatManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sách";
+            this.Load += new System.EventHandler(this.fSeatManage_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);

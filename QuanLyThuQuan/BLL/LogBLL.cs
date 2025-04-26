@@ -1,0 +1,70 @@
+﻿using QuanLyThuQuan.DAL;
+using QuanLyThuQuan.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace QuanLyThuQuan.BLL
+{
+    public class LogBLL
+    {
+        private LogDAL logDAL;
+
+        public LogBLL() { 
+            logDAL = new LogDAL();
+        }
+
+        public string create(string memberId, DateTime checkin)
+        {
+            if (string.IsNullOrWhiteSpace(memberId))
+            {
+                return "Vui lòng nhập mã sinh viên! ";
+            }
+            if (!Regex.IsMatch(memberId, @"^[\p{L}0-9\s]+$"))
+            {
+                return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+            }
+            if (checkin == null)
+            {
+                return "Vui lòng chọn thời gian vào thư quán!";
+            }
+            LogDTO logDTO = new LogDTO() { memberId = memberId, checkinTime=checkin};
+            logDAL.create(logDTO);
+            return null;
+        }
+
+        public string update(int logId, string memberid, DateTime checkin)
+        {
+            LogDTO log = logDAL.getById(logId);
+
+            if (string.IsNullOrWhiteSpace(memberid))
+            {
+                return "Vui lòng nhập tên mã sinh viên! ";
+            }
+            if (!Regex.IsMatch(memberid, @"^[\p{L}0-9\s]+$"))
+            {
+                return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+            }
+            if(checkin == null)
+            {
+                return "Vui lòng chọn thời gian vào thư quán!";
+            }
+
+            log.memberId = memberid;
+            log.checkinTime = checkin;
+            logDAL.update(log);
+            return null;
+        }
+
+        public string delete(int logId)
+        {
+            LogDTO log = logDAL.getById(logId);
+
+            logDAL.delete(log.logId);
+            return null;
+        }
+    }
+}

@@ -118,5 +118,11 @@ namespace QuanLyThuQuan
             fMember f = new fMember();
             f.ShowDialog();
         }
+
+        private void NhậtKíVàoThưQuánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fLogManage f = new fLogManage();
+            f.ShowDialog();
+        }
     }
 }

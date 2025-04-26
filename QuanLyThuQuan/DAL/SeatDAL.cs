@@ -77,7 +77,8 @@ namespace QuanLyThuQuan.DAL
             }
         }
 
-        public bool delete(int seatId) {
+        public bool delete(int seatId)
+        {
             try
             {
                 try
@@ -98,8 +99,9 @@ namespace QuanLyThuQuan.DAL
                     return false;
                 }
             }
-            catch (Exception ex) { 
-                Console.WriteLine("Loi khac: "+ ex.Message);
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi khac: " + ex.Message);
                 return false;
 
             }
@@ -139,7 +141,8 @@ namespace QuanLyThuQuan.DAL
             return seats;
         }
 
-        public SeatDTO getById(int id) { 
+        public SeatDTO getById(int id)
+        {
             SeatDTO seat = null;
             try
             {
@@ -172,10 +175,11 @@ namespace QuanLyThuQuan.DAL
                 Console.WriteLine("Loi khac: " + ex.Message);
                 return null;
             }
-            finally {
-                CloseConnection() ;
+            finally
+            {
+                CloseConnection();
             }
-            
+
         }
 
         public SeatDTO getByName(string seatName)
@@ -219,8 +223,10 @@ namespace QuanLyThuQuan.DAL
 
         }
 
-        public bool checkName(string name) {
-            if (getByName(name) == null) { 
+        public bool checkName(string name)
+        {
+            if (getByName(name) == null)
+            {
                 return false;
             }
             return true;
