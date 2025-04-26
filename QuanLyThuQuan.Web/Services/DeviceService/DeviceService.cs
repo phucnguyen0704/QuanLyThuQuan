@@ -17,7 +17,7 @@ namespace QuanLyThuQuan.Web.Services.DeviceService
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var query = "SELECT * FORM device WHERE status =1";
+                var query = "SELECT * FROM device WHERE status =1";
                 using (var command = new MySqlCommand(query, connection))
                 {
                     await connection.OpenAsync();

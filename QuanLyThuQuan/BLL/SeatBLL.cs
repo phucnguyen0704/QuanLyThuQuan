@@ -26,15 +26,15 @@ namespace QuanLyThuQuan.BLL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return "Vui lòng nhập tên chỗ! ";
+                return "Vui long nhap ten cho! ";
             }
-            if (!Regex.IsMatch(name, @"^[\p{L}0-9\s]+$"))
+            if (!Regex.IsMatch(name, @"^[A-Za-z0-9]+$"))
             {
-                return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+                return "Ten cho chi gom chu cai va so, vui long nhap lai!";
             }
             if (seatDAL.checkName(name) == true)
             {
-                return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
+                return ("Ten cho da ton tai, vui long nhap lai!");
             }
             SeatDTO seat = new SeatDTO { seatName = name };
             seatDAL.create(seat);
@@ -46,17 +46,17 @@ namespace QuanLyThuQuan.BLL
 
             if (string.IsNullOrWhiteSpace(newSeatName))
             {
-                return "Vui lòng nhập tên chỗ! ";
+                return "Vui long nhap ten cho! ";
             }
-            if (!Regex.IsMatch(newSeatName, @"^[\p{L}0-9\s]+$"))
+            if (!Regex.IsMatch(newSeatName, @"^[A-Za-z0-9]+$"))
             {
-                return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+                return "Ten cho chi gom chu cai va so, vui long nhap lai!";
             }
             if (!newSeatName.Equals(seat.seatName, StringComparison.OrdinalIgnoreCase))
             {
                 if (seatDAL.checkName(newSeatName) == true)
                 {
-                    return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
+                    return ("Ten cho da ton tai, vui long nhap lai!");
                 }
             }
             

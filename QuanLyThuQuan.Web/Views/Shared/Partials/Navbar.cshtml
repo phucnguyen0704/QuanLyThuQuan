@@ -15,17 +15,20 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item">
-            <a class="nav-link"  asp-controller="auth" asp-action="login" role="button">
-               Login
-            </a>
-           
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="auth" asp-action="register" role="button">
+        @if (Context.Session.GetString("memberId") == null)
+        {
+            <li class="nav-item">
+                <a class="nav-link"  asp-controller="auth" asp-action="login" role="button">
+                    Login
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="auth" asp-action="register" role="button">
                 Register
             </a>
 
         </li>
+        }
     </ul>
 </nav>
