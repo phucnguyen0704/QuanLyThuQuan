@@ -5,7 +5,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
 {
     public interface IAuthService
     {
-         Response<string> Login(int memberid, string password);
+         Response<Member> Login(string memberid, string password);
 
         Task<Response<Member>> Register(Member member);
     }

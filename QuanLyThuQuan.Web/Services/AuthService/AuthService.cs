@@ -16,26 +16,38 @@ namespace QuanLyThuQuan.Web.Services.AuthService
             _db = appDb;
         }
 
-        public Response<string> Login(int memberid, string password)
+        public Response<Member> Login(string memberid, string password)
         {
-            Response<string> response = new();
+            Response<Member> response = new();
             try
             {
-                var member = _db.Members.SingleOrDefault(m => m.MemberId == memberid);
+                var member = _db.Members.SingleOrDefault(m => m.MemberId.ToString().Equals(memberid));
                 if (member == null)
                 {
                     response.Success = false;
                     response.Message = $"Không tồn tại ID thành viên {memberid}";
-                    response.Data = "";
+                    response.Data = null;
                     return response;
                 }
-                
+                response.Success = BCrypt.Net.BCrypt.Verify(password, member.Password);
+                if (response.Success)
+                {
+                    response.Message = "Đăng nhập thành công";
+                    response.Data = member;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Message = "Sai mật khẩu";
+                    response.Data = null;
+                }
+
             }
             catch (Exception ex)
             {
                 response.Success = false;
                 response.Message = ex.Message;
-                response.Data = "";
+                response.Data = null;
             }
             return response;
         }
@@ -53,6 +65,8 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     response.Data = member;
                     return response;
                 }
+                member.Password = BCrypt.Net.BCrypt.HashPassword(member.Password);
+                member.Role = "member"; 
                 _db.Add(member);
                 var result = await _db.SaveChangesAsync();
                 if (result > 0)
@@ -61,6 +75,12 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     response.Message = "Đăng ký thành viên thành công";
                     response.Data = member;
                 }
+            }
+            catch(MySqlException mex)
+            {
+                response.Success = false;
+                response.Message = mex.Message;
+                response.Data = null;
             }
             catch (Exception ex)
             {
