@@ -32,7 +32,7 @@
             this.lblDisReservationInLib = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dtpReturnTime = new System.Windows.Forms.DateTimePicker();
+            this.txtReturnTimeAttachment = new System.Windows.Forms.TextBox();
             this.lblReturnTime = new System.Windows.Forms.Label();
             this.dtpDueTime = new System.Windows.Forms.DateTimePicker();
             this.lblDueTime = new System.Windows.Forms.Label();
@@ -77,6 +77,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 100);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // lblDisReservationInLib
             // 
@@ -104,7 +105,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.dtpReturnTime);
+            this.panel2.Controls.Add(this.txtReturnTimeAttachment);
             this.panel2.Controls.Add(this.lblReturnTime);
             this.panel2.Controls.Add(this.dtpDueTime);
             this.panel2.Controls.Add(this.lblDueTime);
@@ -129,15 +130,13 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // dtpReturnTime
+            // txtReturnTimeAttachment
             // 
-            this.dtpReturnTime.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dtpReturnTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpReturnTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpReturnTime.Location = new System.Drawing.Point(600, 110);
-            this.dtpReturnTime.Name = "dtpReturnTime";
-            this.dtpReturnTime.Size = new System.Drawing.Size(200, 29);
-            this.dtpReturnTime.TabIndex = 17;
+            this.txtReturnTimeAttachment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReturnTimeAttachment.Location = new System.Drawing.Point(600, 110);
+            this.txtReturnTimeAttachment.Name = "txtReturnTimeAttachment";
+            this.txtReturnTimeAttachment.Size = new System.Drawing.Size(200, 29);
+            this.txtReturnTimeAttachment.TabIndex = 17;
             // 
             // lblReturnTime
             // 
@@ -454,6 +453,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1184, 301);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ReservationForm
             // 
@@ -502,7 +502,7 @@
         private System.Windows.Forms.Label lblDueTime;
         private System.Windows.Forms.DateTimePicker dtpDueTime;
         private System.Windows.Forms.Label lblReturnTime;
-        private System.Windows.Forms.DateTimePicker dtpReturnTime;
+        private System.Windows.Forms.TextBox txtReturnTimeAttachment;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;

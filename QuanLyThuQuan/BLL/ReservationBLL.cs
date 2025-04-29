@@ -1,5 +1,6 @@
 ﻿using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace QuanLyThuQuan.BLL
@@ -20,6 +21,32 @@ namespace QuanLyThuQuan.BLL
 
         public bool update(ReservationDTO reservation)
         {
+            return reservationDAL.update(reservation);
+        }
+
+        public bool updateReturnTime(ReservationDTO reservation)
+        {
+            switch (reservation.Status)
+            {
+                case 1: // đang mượn
+                    reservation.ReturnTime = null; 
+                    break;
+                default: // đã trả hoặc vi phạm
+                    reservation.ReturnTime = DateTime.Now;
+                    break;
+            }
+            return reservationDAL.update(reservation);
+        }
+
+
+        public bool updateStatus(ReservationDTO reservation, int status)
+        {
+            if (reservation.ReturnTime < reservation.DueTime)
+            {
+                reservation.Status = 3; // Vi phạm
+            } else {
+                reservation.Status = status;
+            }
             return reservationDAL.update(reservation);
         }
 

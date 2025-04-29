@@ -135,40 +135,42 @@ namespace QuanLyThuQuan.DAL
             List<ReservationDTO> reservations = new List<ReservationDTO>();
             try
             {
-                try
-                {
-                    string sql = @"
+                string sql = @"
                         SELECT * FROM reservation WHERE status <> 4;
                     ";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-
-                    OpenConnection();
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        ReservationDTO reservation = new ReservationDTO(
-                            reader.GetInt32("reservation_id"),
-                            reader.GetInt32("member_id"),
-                            reader.GetInt32("seat_id"),
-                            reader.GetInt32("reservation_type"),
-                            reader.GetDateTime("reservation_time"),
-                            reader.GetDateTime("due_time"),
-                            reader.GetDateTime("return_time"),
-                            reader.GetInt32("status"),
-                            reader.GetDateTime("created_at")
-                        );
-                        reservations.Add(reservation);
-                    }
-
-                }
-                catch (MySqlException ex)
+                using (MySqlCommand command = new MySqlCommand(sql, GetConnection()))
                 {
-                    Console.WriteLine("Lỗi lấy danh sách đặt chỗ: " + ex.Message);
+                    OpenConnection();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int? seatID = reader.IsDBNull(reader.GetOrdinal("seat_id"))
+                                ? (int?)null
+                                : reader.GetInt32(reader.GetOrdinal("seat_id"));
+                            DateTime? returnTime = reader.IsDBNull(reader.GetOrdinal("return_time"))
+                                ? (DateTime?)null
+                                : reader.GetDateTime(reader.GetOrdinal("return_time"));
+
+                            ReservationDTO reservation = new ReservationDTO(
+                                reader.GetInt32("reservation_id"),
+                                reader.GetInt32("member_id"),
+                                seatID,
+                                reader.GetInt32("reservation_type"),
+                                reader.GetDateTime("reservation_time"),
+                                reader.GetDateTime("due_time"),
+                                returnTime,
+                                reader.GetInt32("status"),
+                                reader.GetDateTime("created_at")
+                            );
+                            reservations.Add(reservation);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khác: " + ex.Message);
+                throw new Exception("Lỗi khi lấy danh sách đặt chỗ: " + ex.Message);
             }
             finally
             {
@@ -177,50 +179,49 @@ namespace QuanLyThuQuan.DAL
             return reservations;
         }
 
-        // Update the nullable reference type usage to be compatible with C# 7.3 by removing the nullable annotation.
         public ReservationDTO getByID(int reservationID)
         {
-            ReservationDTO reservation = null; // Remove the nullable reference type '?'.
             try
             {
-                try
-                {
-                    string sql = @"
+                string sql = @"
                         SELECT * FROM reservation 
-                        WHERE reservation_id = @reservation_id  AND status <> 4;
+                        WHERE reservation_id = @reservation_id AND status <> 4;
                     ";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                using (MySqlCommand command = new MySqlCommand(sql, GetConnection()))
+                {
                     command.Parameters.AddWithValue("@reservation_id", reservationID);
 
                     OpenConnection();
-                    MySqlDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        reservation = new ReservationDTO(
-                            reader.GetInt32("reservation_id"),
-                            reader.GetInt32("member_id"),
-                            reader.GetInt32("seat_id"),
-                            reader.GetInt32("reservation_type"),
-                            reader.GetDateTime("reservation_time"),
-                            reader.GetDateTime("due_time"),
-                            reader.GetDateTime("return_time"),
-                            reader.GetInt32("status"),
-                            reader.GetDateTime("created_at")
-                        );
-                    }
-                    return reservation;
+                        if (reader.Read())
+                        {
+                            int? seatID = reader.IsDBNull(reader.GetOrdinal("seat_id"))
+                                ? (int?)null
+                                : reader.GetInt32(reader.GetOrdinal("seat_id"));
+                            DateTime? returnTime = reader.IsDBNull(reader.GetOrdinal("return_time"))
+                                ? (DateTime?)null
+                                : reader.GetDateTime(reader.GetOrdinal("return_time"));
 
-                }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("Lỗi lấy đặt chỗ theo ID: " + ex.Message);
+                            return new ReservationDTO(
+                                reader.GetInt32("reservation_id"),
+                                reader.GetInt32("member_id"),
+                                seatID,
+                                reader.GetInt32("reservation_type"),
+                                reader.GetDateTime("reservation_time"),
+                                reader.GetDateTime("due_time"),
+                                returnTime,
+                                reader.GetInt32("status"),
+                                reader.GetDateTime("created_at")
+                            );
+                        }
+                    }
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khác: " + ex.Message);
-                return null;
+                throw new Exception("Lỗi khi lấy đặt chỗ theo ID: " + ex.Message);
             }
             finally
             {
