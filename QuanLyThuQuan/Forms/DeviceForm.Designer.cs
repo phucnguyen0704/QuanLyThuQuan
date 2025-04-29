@@ -171,6 +171,7 @@
             this.dtpCreatedAt.Name = "dtpCreatedAt";
             this.dtpCreatedAt.Size = new System.Drawing.Size(200, 29);
             this.dtpCreatedAt.TabIndex = 7;
+            this.dtpCreatedAt.ValueChanged += new System.EventHandler(this.dtpCreatedAt_ValueChanged);
             // 
             // cboStatus
             // 

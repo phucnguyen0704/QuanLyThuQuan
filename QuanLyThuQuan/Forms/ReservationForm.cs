@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Asn1.Cmp;
+﻿// ReservationForm.cs
+using Org.BouncyCastle.Asn1.Cmp;
 using QuanLyThuQuan.BLL;
 using QuanLyThuQuan.DTO;
 using System;
@@ -15,6 +16,7 @@ namespace QuanLyThuQuan.Forms
         private readonly ReservationBLL reservationBLL;
         private List<ReservationDTO> reservationList;
         private bool isEditing = false;
+        private ReservationDTO currentReservation; // Lưu trữ thông tin reservation hiện tại để khôi phục khi cần
 
         // Định nghĩa các hằng số để tránh "magic numbers"
         private const int STATUS_BORROWING = 1;
@@ -33,6 +35,9 @@ namespace QuanLyThuQuan.Forms
         private static readonly Color StatusReturnedColor = Color.FromArgb(40, 167, 69); // Màu xanh lá
         private static readonly Color StatusViolationColor = Color.FromArgb(220, 53, 69); // Màu đỏ
 
+        // Biến để theo dõi trạng thái trước đó
+        private string previousStatus = "";
+
         public ReservationForm()
         {
             InitializeComponent();
@@ -40,6 +45,9 @@ namespace QuanLyThuQuan.Forms
 
             // Đăng ký sự kiện CellFormatting
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+
+            // Đăng ký sự kiện SelectedIndexChanged cho combobox Status
+            cboStatus.SelectedIndexChanged += CboStatus_SelectedIndexChanged;
 
             // Khởi tạo các ComboBox trước khi tải dữ liệu
             InitializeComboBoxes();
@@ -49,55 +57,33 @@ namespace QuanLyThuQuan.Forms
 
             // Ẩn nút Lưu khi khởi động form
             btnSave.Visible = false;
-
-            // Thiết lập placeholder cho ô nhập ngày trả
-            txtReturnTimeAttachment.Text = "dd/MM/yyyy HH:mm";
-            txtReturnTimeAttachment.ForeColor = Color.Gray;
-            txtReturnTimeAttachment.Enter += TxtReturnTimeAttachment_Enter;
-            txtReturnTimeAttachment.Leave += TxtReturnTimeAttachment_Leave;
         }
 
-        private void TxtReturnTimeAttachment_Enter(object sender, EventArgs e)
+        private void CboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (txtReturnTimeAttachment.Text == "dd/MM/yyyy HH:mm")
-            {
-                txtReturnTimeAttachment.Text = "";
-                txtReturnTimeAttachment.ForeColor = Color.Black;
-            }
-        }
+            string currentStatus = cboStatus.SelectedItem.ToString();
 
-        private void TxtReturnTimeAttachment_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtReturnTimeAttachment.Text))
+            // Nếu chuyển sang trạng thái "Đã trả" và ReturnTime là null, tự động cập nhật ReturnTime
+            if (currentStatus == "Đã trả" && string.IsNullOrEmpty(lblReturnTimeValue.Text))
             {
-                txtReturnTimeAttachment.Text = "dd/MM/yyyy HH:mm";
-                txtReturnTimeAttachment.ForeColor = Color.Gray;
+                lblReturnTimeValue.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             }
-            else
+            // Nếu chuyển từ "Đã trả" sang trạng thái khác và đang chỉnh sửa, khôi phục giá trị từ database
+            else if (previousStatus == "Đã trả" && currentStatus != "Đã trả" && isEditing && currentReservation != null)
             {
-                // Kiểm tra định dạng ngày
-                if (!IsValidDateTimeFormat(txtReturnTimeAttachment.Text))
+                // Khôi phục giá trị ReturnTime từ database
+                if (currentReservation.ReturnTime.HasValue)
                 {
-                    MessageBox.Show("Vui lòng nhập đúng định dạng ngày giờ: dd/MM/yyyy HH:mm",
-                        "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtReturnTimeAttachment.Text = "dd/MM/yyyy HH:mm";
-                    txtReturnTimeAttachment.ForeColor = Color.Gray;
+                    lblReturnTimeValue.Text = currentReservation.ReturnTime.Value.ToString("dd/MM/yyyy HH:mm");
+                }
+                else
+                {
+                    lblReturnTimeValue.Text = "";
                 }
             }
-        }
 
-        private bool IsValidDateTimeFormat(string dateTimeStr)
-        {
-            return DateTime.TryParseExact(dateTimeStr, "dd/MM/yyyy HH:mm",
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None, out _);
-        }
-
-        private void InitializeComboBoxes()
-        {
-            SetupStatusComboBox();
-            SetupReservationTypeComboBox();
-            SetupSearchCategoryComboBox();
+            // Cập nhật trạng thái trước đó
+            previousStatus = currentStatus;
         }
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -135,6 +121,13 @@ namespace QuanLyThuQuan.Forms
                 e.Value = "";
                 e.FormattingApplied = true;
             }
+        }
+
+        private void InitializeComboBoxes()
+        {
+            SetupStatusComboBox();
+            SetupReservationTypeComboBox();
+            SetupSearchCategoryComboBox();
         }
 
         private void LoadReservations()
@@ -328,8 +321,14 @@ namespace QuanLyThuQuan.Forms
 
                 if (selectedReservation != null)
                 {
+                    // Lưu reservation hiện tại để có thể khôi phục khi cần
+                    currentReservation = selectedReservation;
+
                     PopulateFormFields(selectedReservation);
                     SetButtonsForViewMode();
+
+                    // Cập nhật trạng thái trước đó
+                    previousStatus = cboStatus.SelectedItem.ToString();
                 }
             }
             catch (Exception ex)
@@ -345,18 +344,20 @@ namespace QuanLyThuQuan.Forms
             txtSeatID.Text = reservation.SeatID.HasValue ? reservation.SeatID.Value.ToString() : "";
 
             cboReservationType.SelectedIndex = reservation.ReservationType - 1;
-            dtpReservationTime.Value = reservation.ReservationTime;
+
+            // Hiển thị thời gian đặt trong label
+            lblReservationTimeValue.Text = reservation.ReservationTime.ToString("dd/MM/yyyy HH:mm");
+
             dtpDueTime.Value = reservation.DueTime;
 
+            // Hiển thị thời gian trả trong label
             if (reservation.ReturnTime.HasValue)
             {
-                txtReturnTimeAttachment.Text = reservation.ReturnTime.Value.ToString("dd/MM/yyyy HH:mm");
-                txtReturnTimeAttachment.ForeColor = Color.Black;
+                lblReturnTimeValue.Text = reservation.ReturnTime.Value.ToString("dd/MM/yyyy HH:mm");
             }
             else
             {
-                txtReturnTimeAttachment.Text = "dd/MM/yyyy HH:mm";
-                txtReturnTimeAttachment.ForeColor = Color.Gray;
+                lblReturnTimeValue.Text = "";
             }
 
             cboStatus.SelectedIndex = reservation.Status - 1;
@@ -381,9 +382,13 @@ namespace QuanLyThuQuan.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ClearForm();
+            currentReservation = null; // Xóa reservation hiện tại khi thêm mới
             isEditing = false;
             SetButtonsForEditMode();
             txtMemberID.Focus();
+
+            // Cập nhật trạng thái trước đó
+            previousStatus = cboStatus.SelectedItem.ToString();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -397,6 +402,9 @@ namespace QuanLyThuQuan.Forms
             isEditing = true;
             SetButtonsForEditMode();
             txtMemberID.Focus();
+
+            // Cập nhật trạng thái trước đó
+            previousStatus = cboStatus.SelectedItem.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -470,16 +478,6 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (txtReturnTimeAttachment.Text != "dd/MM/yyyy HH:mm" &&
-                !string.IsNullOrWhiteSpace(txtReturnTimeAttachment.Text) &&
-                !IsValidDateTimeFormat(txtReturnTimeAttachment.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đúng định dạng ngày giờ trả: dd/MM/yyyy HH:mm",
-                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtReturnTimeAttachment.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -500,13 +498,32 @@ namespace QuanLyThuQuan.Forms
             int reservationType = cboReservationType.SelectedIndex + 1;
             int status = cboStatus.SelectedIndex + 1;
 
-            DateTime? returnTime = null;
-            if (txtReturnTimeAttachment.Text != "dd/MM/yyyy HH:mm" &&
-                !string.IsNullOrWhiteSpace(txtReturnTimeAttachment.Text) &&
-                IsValidDateTimeFormat(txtReturnTimeAttachment.Text))
+            // Lấy thời gian đặt
+            DateTime reservationTime;
+            if (isEditing && !string.IsNullOrEmpty(lblReservationTimeValue.Text))
             {
-                returnTime = DateTime.ParseExact(txtReturnTimeAttachment.Text, "dd/MM/yyyy HH:mm",
+                // Nếu đang chỉnh sửa, giữ nguyên thời gian đặt cũ
+                reservationTime = DateTime.ParseExact(lblReservationTimeValue.Text, "dd/MM/yyyy HH:mm",
                     System.Globalization.CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                // Nếu đang thêm mới, đặt thời gian hiện tại
+                reservationTime = DateTime.Now;
+            }
+
+            // Lấy thời gian trả
+            DateTime? returnTime = null;
+            if (!string.IsNullOrEmpty(lblReturnTimeValue.Text))
+            {
+                returnTime = DateTime.ParseExact(lblReturnTimeValue.Text, "dd/MM/yyyy HH:mm",
+                    System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            // Tự động cập nhật thời gian trả khi chọn trạng thái "Đã trả"
+            if (status == STATUS_RETURNED && returnTime == null)
+            {
+                returnTime = DateTime.Now;
             }
 
             return new ReservationDTO(
@@ -514,7 +531,7 @@ namespace QuanLyThuQuan.Forms
                 memberID,
                 seatID,
                 reservationType,
-                dtpReservationTime.Value,
+                reservationTime,
                 dtpDueTime.Value,
                 returnTime,
                 status,
@@ -560,6 +577,7 @@ namespace QuanLyThuQuan.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
+            currentReservation = null; // Xóa reservation hiện tại khi làm mới form
             SetButtonsForViewMode();
         }
 
@@ -569,12 +587,20 @@ namespace QuanLyThuQuan.Forms
             txtMemberID.Text = "";
             txtSeatID.Text = "";
             cboReservationType.SelectedIndex = 0;
-            dtpReservationTime.Value = DateTime.Now;
+
+            // Đặt thời gian đặt là thời gian hiện tại
+            lblReservationTimeValue.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
             dtpDueTime.Value = DateTime.Now.AddHours(2);
-            txtReturnTimeAttachment.Text = "dd/MM/yyyy HH:mm";
-            txtReturnTimeAttachment.ForeColor = Color.Gray;
+
+            // Xóa thời gian trả
+            lblReturnTimeValue.Text = "";
+
             cboStatus.SelectedIndex = 0;
             dtpCreatedAt.Value = DateTime.Now;
+
+            // Cập nhật trạng thái trước đó
+            previousStatus = cboStatus.SelectedItem.ToString();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

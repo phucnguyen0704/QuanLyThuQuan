@@ -546,5 +546,10 @@ namespace QuanLyThuQuan.Forms
         private void panel1_Paint(object sender, PaintEventArgs e) { }
         private void panel1_Paint_1(object sender, PaintEventArgs e) { }
         private void panel2_Paint(object sender, PaintEventArgs e) { }
+
+        private void dtpCreatedAt_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -16,36 +16,19 @@ namespace QuanLyThuQuan.BLL
 
         public bool create(ReservationDTO reservation)
         {
+
+            if (reservation.ReservationTime > reservation.DueTime || (reservation.ReservationType == 2 && reservation.SeatID == null))
+            {
+                return false;
+            }
             return reservationDAL.create(reservation);
         }
 
         public bool update(ReservationDTO reservation)
         {
-            return reservationDAL.update(reservation);
-        }
-
-        public bool updateReturnTime(ReservationDTO reservation)
-        {
-            switch (reservation.Status)
+            if (reservation.DueTime < reservation.ReturnTime)
             {
-                case 1: // đang mượn
-                    reservation.ReturnTime = null; 
-                    break;
-                default: // đã trả hoặc vi phạm
-                    reservation.ReturnTime = DateTime.Now;
-                    break;
-            }
-            return reservationDAL.update(reservation);
-        }
-
-
-        public bool updateStatus(ReservationDTO reservation, int status)
-        {
-            if (reservation.ReturnTime < reservation.DueTime)
-            {
-                reservation.Status = 3; // Vi phạm
-            } else {
-                reservation.Status = status;
+                reservation.Status = 3; // Vi phạm 
             }
             return reservationDAL.update(reservation);
         }
