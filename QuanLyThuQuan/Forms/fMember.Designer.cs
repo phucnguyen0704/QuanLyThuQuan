@@ -58,6 +58,7 @@
             this.cboLop = new System.Windows.Forms.ComboBox();
             this.cboNganh = new System.Windows.Forms.ComboBox();
             this.cbKhoa = new System.Windows.Forms.ComboBox();
+            this.btnChiTiet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -357,11 +358,23 @@
             this.cbKhoa.TabIndex = 59;
             this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
+            // btnChiTiet
+            // 
+            this.btnChiTiet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnChiTiet.Location = new System.Drawing.Point(699, 327);
+            this.btnChiTiet.Name = "btnChiTiet";
+            this.btnChiTiet.Size = new System.Drawing.Size(76, 49);
+            this.btnChiTiet.TabIndex = 60;
+            this.btnChiTiet.Text = "Chi tiết";
+            this.btnChiTiet.UseCompatibleTextRendering = true;
+            this.btnChiTiet.UseVisualStyleBackColor = true;
+            // 
             // fMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnChiTiet);
             this.Controls.Add(this.cbKhoa);
             this.Controls.Add(this.cboNganh);
             this.Controls.Add(this.cboLop);
@@ -433,5 +446,6 @@
         private System.Windows.Forms.ComboBox cboLop;
         private System.Windows.Forms.ComboBox cboNganh;
         private System.Windows.Forms.ComboBox cbKhoa;
+        private System.Windows.Forms.Button btnChiTiet;
     }
 }
