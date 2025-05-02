@@ -1,0 +1,227 @@
+﻿using MySql.Data.MySqlClient;
+using QuanLyThuQuan.DTO;
+using System;
+using System.Collections.Generic;
+
+namespace QuanLyThuQuan.DAL
+{
+    class MemberDAL : BaseDAL
+    {
+        public MemberDAL() : base() { }
+
+        public bool create(MemberDTO member)
+        {
+            try
+            {
+                try
+                {
+                    string sql = @"
+                        INSERT INTO member (full_name, birthday, phone_number, email, password, role, status, created_at) 
+                        VALUES (@full_name, @birthday, @phone_number, @email, @password, @role, @status, @created_at);
+                    ";
+                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                    command.Parameters.AddWithValue("@full_name", member.FullName);
+                    command.Parameters.AddWithValue("@birthday", member.Birthday);
+                    command.Parameters.AddWithValue("@phone_number", member.PhoneNumber ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@email", member.Email);
+                    command.Parameters.AddWithValue("@password", member.Password);
+                    command.Parameters.AddWithValue("@role", member.Role);
+                    command.Parameters.AddWithValue("@status", member.Status);
+                    command.Parameters.AddWithValue("@created_at", member.CreatedAt);
+
+                    OpenConnection();
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Lỗi thêm thành viên: " + ex.Message);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool update(MemberDTO member)
+        {
+            try
+            {
+                try
+                {
+                    string sql = @"
+                        UPDATE member 
+                        SET full_name = @full_name, birthday = @birthday, phone_number = @phone_number, 
+                            email = @email, password = @password, role = @role, status = @status, created_at = @created_at
+                        WHERE member_id = @member_id AND status <> 2;
+                    ";
+                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                    command.Parameters.AddWithValue("@member_id", member.MemberId);
+                    command.Parameters.AddWithValue("@full_name", member.FullName);
+                    command.Parameters.AddWithValue("@birthday", member.Birthday);
+                    command.Parameters.AddWithValue("@phone_number", member.PhoneNumber ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@email", member.Email);
+                    command.Parameters.AddWithValue("@password", member.Password);
+                    command.Parameters.AddWithValue("@role", member.Role);
+                    command.Parameters.AddWithValue("@status", member.Status);
+                    command.Parameters.AddWithValue("@created_at", member.CreatedAt);
+
+                    OpenConnection();
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Lỗi cập nhật thành viên: " + ex.Message);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool delete(int memberId)
+        {
+            try
+            {
+                try
+                {
+                    string sql = @"
+                        UPDATE member 
+                        SET status = 2
+                        WHERE member_id = @member_id AND status <> 2;
+                    ";
+                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                    command.Parameters.AddWithValue("@member_id", memberId);
+
+                    OpenConnection();
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Lỗi xóa thành viên: " + ex.Message);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public List<MemberDTO> getAll()
+        {
+            List<MemberDTO> members = new List<MemberDTO>();
+            try
+            {
+                try
+                {
+                    string sql = @"
+                        SELECT * FROM member WHERE status <> 2;
+                    ";
+                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                    OpenConnection();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        MemberDTO member = new MemberDTO
+                        {
+                            MemberId = reader.GetInt32("member_id"),
+                            FullName = reader.GetString("full_name"),
+                            Birthday = reader.GetDateTime("birthday"),
+                            PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
+                            Email = reader.GetString("email"),
+                            Password = reader.GetString("password"),
+                            Role = reader.GetString("role"),
+                            Status = reader.GetInt32("status"),
+                            CreatedAt = reader.GetDateTime("created_at")
+                        };
+                        members.Add(member);
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Lỗi lấy danh sách thành viên: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return members;
+        }
+
+        public MemberDTO getByID(int memberId)
+        {
+            MemberDTO member = null;
+            try
+            {
+                try
+                {
+                    string sql = @"
+                        SELECT * FROM member 
+                        WHERE member_id = @member_id AND status <> 2;
+                    ";
+                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                    command.Parameters.AddWithValue("@member_id", memberId);
+                    OpenConnection();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        member = new MemberDTO
+                        {
+                            MemberId = reader.GetInt32("member_id"),
+                            FullName = reader.GetString("full_name"),
+                            Birthday = reader.GetDateTime("birthday"),
+                            PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
+                            Email = reader.GetString("email"),
+                            Password = reader.GetString("password"),
+                            Role = reader.GetString("role"),
+                            Status = reader.GetInt32("status"),
+                            CreatedAt = reader.GetDateTime("created_at")
+                        };
+                    }
+                    return member;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Lỗi lấy thành viên theo ID: " + ex.Message);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+    }
+}

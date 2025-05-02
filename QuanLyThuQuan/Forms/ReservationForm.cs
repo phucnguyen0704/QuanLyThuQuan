@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace QuanLyThuQuan.Forms
 {
-    public partial class ReservationForm : Form //-------------------------------------------- ĐẶT CHỖ ---------------------------------------------------------------
+    public partial class ReservationForm : Form //-------------------------------------------- MƯỢN TRẢ ---------------------------------------------------------------
     {
         private readonly ReservationBLL reservationBLL;
         private List<ReservationDTO> reservationList;
@@ -138,7 +138,7 @@ namespace QuanLyThuQuan.Forms
 
                 if (reservationList == null)
                 {
-                    MessageBox.Show("Không thể tải dữ liệu đặt chỗ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không thể tải dữ liệu thông tin mượn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -149,7 +149,7 @@ namespace QuanLyThuQuan.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải dữ liệu đặt chỗ: {ex.Message}\nStackTrace: {ex.StackTrace}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải dữ liệu thông tin mượn: {ex.Message}\nStackTrace: {ex.StackTrace}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -187,10 +187,10 @@ namespace QuanLyThuQuan.Forms
 
         private void ConfigureDataGridViewColumns()
         {
-            dataGridView1.Columns["ReservationID"].HeaderText = "Mã đặt chỗ";
+            dataGridView1.Columns["ReservationID"].HeaderText = "Mã mượn";
             dataGridView1.Columns["MemberID"].HeaderText = "Mã thành viên";
             dataGridView1.Columns["SeatID"].HeaderText = "Mã ghế";
-            dataGridView1.Columns["ReservationType"].HeaderText = "Loại đặt chỗ";
+            dataGridView1.Columns["ReservationType"].HeaderText = "Loại mượn";
             dataGridView1.Columns["ReservationTime"].HeaderText = "Thời gian đặt";
             dataGridView1.Columns["DueTime"].HeaderText = "Thời hạn";
             dataGridView1.Columns["ReturnTime"].HeaderText = "Thời gian trả";
@@ -300,10 +300,10 @@ namespace QuanLyThuQuan.Forms
             cboSearchCategory.Items.Clear();
             cboSearchCategory.Items.AddRange(new string[] {
                 "Tất cả",
-                "Mã đặt chỗ",
+                "Mã mượn",
                 "Mã thành viên",
                 "Mã ghế",
-                "Loại đặt chỗ",
+                "Loại mượn",
                 "Trạng thái"
             });
             cboSearchCategory.SelectedIndex = 0;
@@ -395,7 +395,7 @@ namespace QuanLyThuQuan.Forms
         {
             if (string.IsNullOrEmpty(txtReservationID.Text))
             {
-                MessageBox.Show("Vui lòng chọn đặt chỗ cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn thông tin mượn cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -422,11 +422,11 @@ namespace QuanLyThuQuan.Forms
                     result = reservationBLL.update(reservation);
                     if (result)
                     {
-                        MessageBox.Show("Cập nhật đặt chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật đặt chỗ thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Cập nhật thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -435,11 +435,11 @@ namespace QuanLyThuQuan.Forms
                     result = reservationBLL.create(reservation);
                     if (result)
                     {
-                        MessageBox.Show("Thêm đặt chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Thêm thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Thêm đặt chỗ thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Thêm thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -545,26 +545,26 @@ namespace QuanLyThuQuan.Forms
             {
                 if (string.IsNullOrEmpty(txtReservationID.Text))
                 {
-                    MessageBox.Show("Vui lòng chọn đặt chỗ cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn thông tin mượn cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 int reservationID = int.Parse(txtReservationID.Text);
 
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa đặt chỗ này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa thông tin mượn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     bool success = reservationBLL.delete(reservationID);
                     if (success)
                     {
-                        MessageBox.Show("Xóa đặt chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xóa thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadReservations();
                         ClearForm();
                     }
                     else
                     {
-                        MessageBox.Show("Xóa đặt chỗ thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xóa thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -631,7 +631,7 @@ namespace QuanLyThuQuan.Forms
                         GetReservationTypeText(reservation.ReservationType).ToLower().Contains(searchText) ||
                         GetStatusText(reservation.Status).ToLower().Contains(searchText)
                     ).ToList();
-                case 1: // Mã đặt chỗ
+                case 1: // Mã mượn
                     return reservationList.Where(reservation =>
                         reservation.ReservationID.ToString().Contains(searchText)
                     ).ToList();
@@ -643,7 +643,7 @@ namespace QuanLyThuQuan.Forms
                     return reservationList.Where(reservation =>
                         reservation.SeatID.HasValue && reservation.SeatID.Value.ToString().Contains(searchText)
                     ).ToList();
-                case 4: // Loại đặt chỗ
+                case 4: // Loại mượn
                     return reservationList.Where(reservation =>
                         GetReservationTypeText(reservation.ReservationType).ToLower().Contains(searchText)
                     ).ToList();

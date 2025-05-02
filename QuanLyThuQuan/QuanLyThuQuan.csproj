@@ -100,13 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\DeviceBLL.cs" />
+    <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\ReservationBLL.cs" />
     <Compile Include="BLL\ReservationDetailBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
+    <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
     <Compile Include="DAL\ReservationDetailDAL.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
+    <Compile Include="DTO\MemberDTO.cs" />
     <Compile Include="DTO\ReservationDetailDTO.cs" />
     <Compile Include="DTO\ReservationDTO.cs" />
     <Compile Include="Forms\DeviceForm.cs">
@@ -115,95 +118,17 @@
     <Compile Include="Forms\DeviceForm.Designer.cs">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\fAccountProfile.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\fAccountProfile.Designer.cs">
-      <DependentUpon>fAccountProfile.cs</DependentUpon>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\fBookManage.cs">
+    <Compile Include="Forms\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\fBookManage.Designer.cs">
-      <DependentUpon>fBookManage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fBorrow_ReturnBook.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fBorrow_ReturnBook.Designer.cs">
-      <DependentUpon>fBorrow_ReturnBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fCardReaderManage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fCardReaderManage.Designer.cs">
-      <DependentUpon>fCardReaderManage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fContact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fContact.Designer.cs">
-      <DependentUpon>fContact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fGuideToUse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fGuideToUse.Designer.cs">
-      <DependentUpon>fGuideToUse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fLogin.Designer.cs">
-      <DependentUpon>fLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fPrintBorrowTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fPrintBorrowTicket.Designer.cs">
-      <DependentUpon>fPrintBorrowTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fPrintReturnTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fPrintReturnTicket.Designer.cs">
-      <DependentUpon>fPrintReturnTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fReaderManage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fReaderManage.Designer.cs">
-      <DependentUpon>fReaderManage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fSearchBook.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fSearchBook.Designer.cs">
-      <DependentUpon>fSearchBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fStaffManage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fStaffManage.Designer.cs">
-      <DependentUpon>fStaffManage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fStatistical.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fStatistical.Designer.cs">
-      <DependentUpon>fStatistical.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fTableManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fTableManager.Designer.cs">
-      <DependentUpon>fTableManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ReservationDetailForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ReservationDetailForm.Designer.cs">
-      <DependentUpon>ReservationDetailForm.cs</DependentUpon>
+    <Compile Include="Forms\ManagerForm.Designer.cs">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ReservationForm.cs">
       <SubType>Form</SubType>
@@ -216,47 +141,8 @@
     <EmbeddedResource Include="Forms\DeviceForm.resx">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fAccountProfile.resx">
-      <DependentUpon>fAccountProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fBookManage.resx">
-      <DependentUpon>fBookManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fBorrow_ReturnBook.resx">
-      <DependentUpon>fBorrow_ReturnBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fCardReaderManage.resx">
-      <DependentUpon>fCardReaderManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fContact.resx">
-      <DependentUpon>fContact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fGuideToUse.resx">
-      <DependentUpon>fGuideToUse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fLogin.resx">
-      <DependentUpon>fLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fPrintBorrowTicket.resx">
-      <DependentUpon>fPrintBorrowTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fPrintReturnTicket.resx">
-      <DependentUpon>fPrintReturnTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fReaderManage.resx">
-      <DependentUpon>fReaderManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fSearchBook.resx">
-      <DependentUpon>fSearchBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fStaffManage.resx">
-      <DependentUpon>fStaffManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fStatistical.resx">
-      <DependentUpon>fStatistical.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fTableManager.resx">
-      <DependentUpon>fTableManager.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>
