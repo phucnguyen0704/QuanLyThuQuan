@@ -1,4 +1,7 @@
-﻿namespace QuanLyThuQuan
+﻿using System;
+using System.Windows.Forms;
+
+namespace QuanLyThuQuan
 {
     partial class fMember
     {
@@ -36,8 +39,7 @@
             this.cboVaiTro = new System.Windows.Forms.ComboBox();
             this.dtpNgayDangKy = new System.Windows.Forms.DateTimePicker();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
-            this.txtDangNhap = new System.Windows.Forms.TextBox();
-            this.txtMatKhau = new System.Windows.Forms.TextBox();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMemberId = new System.Windows.Forms.TextBox();
             this.txtHoVaTen = new System.Windows.Forms.TextBox();
@@ -46,7 +48,6 @@
             this.lblVaiTro = new System.Windows.Forms.Label();
             this.lblTrangThai = new System.Windows.Forms.Label();
             this.lblNgaySinh = new System.Windows.Forms.Label();
-            this.lblDangNhap = new System.Windows.Forms.Label();
             this.lblMatKhau = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.lblHovaTen = new System.Windows.Forms.Label();
@@ -59,6 +60,8 @@
             this.cboNganh = new System.Windows.Forms.ComboBox();
             this.cbKhoa = new System.Windows.Forms.ComboBox();
             this.btnChiTiet = new System.Windows.Forms.Button();
+            this.lblPhoneNumber = new System.Windows.Forms.Label();
+            this.txtMatKhau = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,7 +120,7 @@
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Size = new System.Drawing.Size(224, 24);
             this.cboTrangThai.TabIndex = 47;
-            this.cboTrangThai.SelectedIndexChanged += new System.EventHandler(this.cboTrangThai_SelectedIndexChanged);
+            this.cboTrangThai.SelectedIndexChanged += new System.EventHandler(this.cboTrangThai_SelectedIndexChanged_1);
             // 
             // cboVaiTro
             // 
@@ -126,7 +129,7 @@
             this.cboVaiTro.Name = "cboVaiTro";
             this.cboVaiTro.Size = new System.Drawing.Size(224, 24);
             this.cboVaiTro.TabIndex = 46;
-            this.cboVaiTro.SelectedIndexChanged += new System.EventHandler(this.cboVaiTro_SelectedIndexChanged);
+            this.cboVaiTro.SelectedIndexChanged += new System.EventHandler(this.cboVaiTro_SelectedIndexChanged_1);
             // 
             // dtpNgayDangKy
             // 
@@ -142,19 +145,12 @@
             this.dtpBirthday.Size = new System.Drawing.Size(224, 22);
             this.dtpBirthday.TabIndex = 44;
             // 
-            // txtDangNhap
+            // txtPhoneNumber
             // 
-            this.txtDangNhap.Location = new System.Drawing.Point(168, 243);
-            this.txtDangNhap.Name = "txtDangNhap";
-            this.txtDangNhap.Size = new System.Drawing.Size(224, 22);
-            this.txtDangNhap.TabIndex = 43;
-            // 
-            // txtMatKhau
-            // 
-            this.txtMatKhau.Location = new System.Drawing.Point(168, 272);
-            this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(224, 22);
-            this.txtMatKhau.TabIndex = 42;
+            this.txtPhoneNumber.Location = new System.Drawing.Point(168, 241);
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.Size = new System.Drawing.Size(224, 22);
+            this.txtPhoneNumber.TabIndex = 42;
             // 
             // txtEmail
             // 
@@ -232,17 +228,6 @@
             this.lblNgaySinh.Text = "Ngày sinh:";
             this.lblNgaySinh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblDangNhap
-            // 
-            this.lblDangNhap.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblDangNhap.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDangNhap.Location = new System.Drawing.Point(18, 241);
-            this.lblDangNhap.Name = "lblDangNhap";
-            this.lblDangNhap.Size = new System.Drawing.Size(126, 22);
-            this.lblDangNhap.TabIndex = 33;
-            this.lblDangNhap.Text = " Đăng nhập:";
-            this.lblDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblMatKhau
             // 
             this.lblMatKhau.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -285,7 +270,6 @@
             this.dgvMembers.RowTemplate.Height = 24;
             this.dgvMembers.Size = new System.Drawing.Size(775, 105);
             this.dgvMembers.TabIndex = 29;
-            this.dgvMembers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembers_CellContentClick);
             // 
             // lbDanhSachThanhVien
             // 
@@ -338,7 +322,6 @@
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(224, 24);
             this.cboLop.TabIndex = 57;
-            this.cboLop.SelectedIndexChanged += new System.EventHandler(this.cboLop_SelectedIndexChanged);
             // 
             // cboNganh
             // 
@@ -347,7 +330,6 @@
             this.cboNganh.Name = "cboNganh";
             this.cboNganh.Size = new System.Drawing.Size(224, 24);
             this.cboNganh.TabIndex = 58;
-            this.cboNganh.SelectedIndexChanged += new System.EventHandler(this.cboNganh_SelectedIndexChanged);
             // 
             // cbKhoa
             // 
@@ -356,7 +338,6 @@
             this.cbKhoa.Name = "cbKhoa";
             this.cbKhoa.Size = new System.Drawing.Size(224, 24);
             this.cbKhoa.TabIndex = 59;
-            this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // btnChiTiet
             // 
@@ -369,11 +350,31 @@
             this.btnChiTiet.UseCompatibleTextRendering = true;
             this.btnChiTiet.UseVisualStyleBackColor = true;
             // 
+            // lblPhoneNumber
+            // 
+            this.lblPhoneNumber.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblPhoneNumber.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhoneNumber.Location = new System.Drawing.Point(18, 240);
+            this.lblPhoneNumber.Name = "lblPhoneNumber";
+            this.lblPhoneNumber.Size = new System.Drawing.Size(126, 22);
+            this.lblPhoneNumber.TabIndex = 61;
+            this.lblPhoneNumber.Text = "SĐT:";
+            this.lblPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtMatKhau
+            // 
+            this.txtMatKhau.Location = new System.Drawing.Point(168, 272);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Size = new System.Drawing.Size(224, 22);
+            this.txtMatKhau.TabIndex = 62;
+            // 
             // fMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtMatKhau);
+            this.Controls.Add(this.lblPhoneNumber);
             this.Controls.Add(this.btnChiTiet);
             this.Controls.Add(this.cbKhoa);
             this.Controls.Add(this.cboNganh);
@@ -389,8 +390,7 @@
             this.Controls.Add(this.cboVaiTro);
             this.Controls.Add(this.dtpNgayDangKy);
             this.Controls.Add(this.dtpBirthday);
-            this.Controls.Add(this.txtDangNhap);
-            this.Controls.Add(this.txtMatKhau);
+            this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtMemberId);
             this.Controls.Add(this.txtHoVaTen);
@@ -399,7 +399,6 @@
             this.Controls.Add(this.lblVaiTro);
             this.Controls.Add(this.lblTrangThai);
             this.Controls.Add(this.lblNgaySinh);
-            this.Controls.Add(this.lblDangNhap);
             this.Controls.Add(this.lblMatKhau);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.lblHovaTen);
@@ -414,6 +413,8 @@
 
         }
 
+       
+
         #endregion
 
         private System.Windows.Forms.Button btnNhapExcel;
@@ -424,8 +425,7 @@
         private System.Windows.Forms.ComboBox cboVaiTro;
         private System.Windows.Forms.DateTimePicker dtpNgayDangKy;
         private System.Windows.Forms.DateTimePicker dtpBirthday;
-        private System.Windows.Forms.TextBox txtDangNhap;
-        private System.Windows.Forms.TextBox txtMatKhau;
+        private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtMemberId;
         private System.Windows.Forms.TextBox txtHoVaTen;
@@ -434,7 +434,6 @@
         private System.Windows.Forms.Label lblVaiTro;
         private System.Windows.Forms.Label lblTrangThai;
         private System.Windows.Forms.Label lblNgaySinh;
-        private System.Windows.Forms.Label lblDangNhap;
         private System.Windows.Forms.Label lblMatKhau;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblHovaTen;
@@ -447,5 +446,13 @@
         private System.Windows.Forms.ComboBox cboNganh;
         private System.Windows.Forms.ComboBox cbKhoa;
         private System.Windows.Forms.Button btnChiTiet;
+        private EventHandler cboVaiTro_SelectedIndexChanged;
+        private EventHandler cboLop_SelectedIndexChanged;
+        private DataGridViewCellEventHandler dgvMembers_CellContentClick;
+        private readonly EventHandler cboNganh_SelectedIndexChanged;
+        private readonly EventHandler comboBox4_SelectedIndexChanged;
+        private readonly EventHandler cboTrangThai_SelectedIndexChanged;
+        private Label lblPhoneNumber;
+        private TextBox txtMatKhau;
     }
 }
