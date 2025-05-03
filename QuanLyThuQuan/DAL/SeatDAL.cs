@@ -57,11 +57,8 @@ namespace QuanLyThuQuan.DAL
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
-<<<<<<< HEAD
                     command.Parameters.AddWithValue("@seatId", seat.seatId);
                     OpenConnection();
-=======
->>>>>>> b1419d9df015c3e0d469bec10562fc05e9626c4f
                     command.ExecuteNonQuery();
                     return true;
                 }
@@ -126,13 +123,6 @@ namespace QuanLyThuQuan.DAL
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 OpenConnection();
                 MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-<<<<<<< HEAD
-                    string sql = @"SELECT * FROM seat where status = 1";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-                    OpenConnection();
-                    MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         SeatDTO seat = new SeatDTO(
@@ -142,27 +132,12 @@ namespace QuanLyThuQuan.DAL
                             );
                         seats.Add(seat);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Lỗi: " + ex.Message);
-=======
-                    SeatDTO seat = new SeatDTO(
-                        reader.GetInt32("seat_id"),
-                        reader.GetString("name"),
-                        reader.GetInt32("status")
-                    );
-                    seats.Add(seat);
->>>>>>> b1419d9df015c3e0d469bec10562fc05e9626c4f
-                }
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
                 Console.WriteLine("Lỗi khác: " + ex.Message);
-=======
+
                 Console.WriteLine("Lỗi: " + ex.Message);
->>>>>>> b1419d9df015c3e0d469bec10562fc05e9626c4f
             }
             finally
             {
