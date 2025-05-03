@@ -49,25 +49,27 @@ namespace QuanLyThuQuan.DAL
             {
                 try
                 {
+                    //MessageBox.Show("$" + seat.seatId);
                     string sql = @"
                             UPDATE seat
                             SET name = @seatName
                             WHERE seat_id = @seatId";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
+                    command.Parameters.AddWithValue("@seatId", seat.seatId);
                     OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
             }
             finally
@@ -95,13 +97,13 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
 
             }
@@ -133,12 +135,12 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
             }
             finally
             {
@@ -171,14 +173,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally
@@ -212,14 +214,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally
