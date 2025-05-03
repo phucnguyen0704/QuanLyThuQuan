@@ -1,5 +1,6 @@
 ﻿using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace QuanLyThuQuan.BLL
@@ -15,11 +16,20 @@ namespace QuanLyThuQuan.BLL
 
         public bool create(ReservationDTO reservation)
         {
+
+            if (reservation.ReservationTime > reservation.DueTime || (reservation.ReservationType == 2 && reservation.SeatID == null))
+            {
+                return false;
+            }
             return reservationDAL.create(reservation);
         }
 
         public bool update(ReservationDTO reservation)
         {
+            if (reservation.DueTime < reservation.ReturnTime)
+            {
+                reservation.Status = 3; // Vi phạm 
+            }
             return reservationDAL.update(reservation);
         }
 
