@@ -79,8 +79,9 @@ namespace QuanLyThuQuan
 
         private void btnSeats_Click(object sender, EventArgs e)
         {
+            SeatForm f = new SeatForm();
             //fSeatManage f = new fSeatManage();
-            //OpenChildForm(f);
+            OpenChildForm(f);
         }
 
         private void btnDevices_Click(object sender, EventArgs e)

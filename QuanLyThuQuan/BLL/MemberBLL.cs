@@ -35,8 +35,8 @@ namespace QuanLyThuQuan.BLL
 
         public int checkLogin(int memberId, string password, string role)
         {
-            List<MemberDTO> members = memberDAL.getAll();
-            foreach (var member in members)
+            MemberDTO member = memberDAL.getByID(memberId);
+            if (member != null)
             {
                 if (member.MemberId == memberId && member.Password == password && member.Role == role)
                 {
@@ -51,7 +51,7 @@ namespace QuanLyThuQuan.BLL
                     return 3; // đúng ID, đúng mật khẩu, sai quyền hạn
                 }
             }
-            return 4; // sai ID
+            return 4; // không tìm thấy ID
         }
 
         public MemberDTO getByID(int memberId)

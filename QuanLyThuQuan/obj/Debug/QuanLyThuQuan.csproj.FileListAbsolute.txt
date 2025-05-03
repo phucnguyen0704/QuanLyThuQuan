@@ -66,3 +66,6 @@ D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.pdb
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.DeviceForm.resources
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.ReservationForm.resources
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.LoginForm.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.fSeatManage.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.SeatForm.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.ManagerForm.resources

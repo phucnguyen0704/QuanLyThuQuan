@@ -103,20 +103,29 @@
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\ReservationBLL.cs" />
     <Compile Include="BLL\ReservationDetailBLL.cs" />
+    <Compile Include="BLL\SeatBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
     <Compile Include="DAL\ReservationDetailDAL.cs" />
+    <Compile Include="DAL\SeatDAL.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
     <Compile Include="DTO\MemberDTO.cs" />
     <Compile Include="DTO\ReservationDetailDTO.cs" />
     <Compile Include="DTO\ReservationDTO.cs" />
+    <Compile Include="DTO\SeatDTO.cs" />
     <Compile Include="Forms\DeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DeviceForm.Designer.cs">
       <DependentUpon>DeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fSeatManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fSeatManage.Designer.cs">
+      <DependentUpon>fSeatManage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -136,16 +145,31 @@
     <Compile Include="Forms\ReservationForm.Designer.cs">
       <DependentUpon>ReservationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SeatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeatForm.Designer.cs">
+      <DependentUpon>SeatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\DeviceForm.resx">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fSeatManage.resx">
+      <DependentUpon>fSeatManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerForm.resx">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeatForm.resx">
+      <DependentUpon>SeatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

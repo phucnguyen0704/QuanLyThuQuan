@@ -38,9 +38,11 @@ namespace QuanLyThuQuan
             {
                 case 1: // Successful login
                     this.Hide();
-                    ManagerForm mainForm = new ManagerForm(); // Replace with actual main form
+                    string userName = memberBLL.getByID(memberId).FullName; // Fetch member details
+                    ManagerForm mainForm = new ManagerForm(userName); // Replace with actual main form
                     mainForm.ShowDialog(this);
                     mainForm = null;
+
                     // Clear input fields after successful login
                     textBoxMemberId.Clear();
                     textBoxPassword.Clear();
@@ -102,6 +104,11 @@ namespace QuanLyThuQuan
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelLogin_Paint(object sender, PaintEventArgs e)
         {
 
         }
