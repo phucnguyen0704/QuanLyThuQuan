@@ -97,8 +97,8 @@ namespace QuanLyThuQuan.Utils
 
                                 tv.Email = worksheet.Cells[row, emailCol].Value?.ToString()?.Trim();
                                 if (!string.IsNullOrEmpty(tv.Email) && !IsValidEmail(tv.Email)) duLieuHopLe = false;
-
-                                tv.Username = worksheet.Cells[row, usernameCol].Value?.ToString()?.Trim();
+                                // trong cái db em kh thấy username nên em comment nó lại
+                                //tv.Username = worksheet.Cells[row, usernameCol].Value?.ToString()?.Trim();
                                 tv.Password = worksheet.Cells[row, passwordCol].Value?.ToString()?.Trim();
 
                                 // Đọc các cột khác tùy theo file Excel của bạn

@@ -160,7 +160,18 @@ namespace QuanLyThuQuan
                     break;
             }
 
-            //txtSeatName.ResetText();
+            dataGridViewSeat.ClearSelection(); // Bỏ chọn dòng
+            dataGridViewSeat.CurrentCell = null;
+
+            txtSeatID.Text = "";
+            txtSeatName.Text = "";
+            txtStatus.Text = "";
+
+            txtStatus.ReadOnly = true;
+            txtStatus.TabStop = false;
+            btnDelete.Enabled = false;
+            btnEdit.Enabled = false;
+            btnAdd.Enabled = true;
         }
 
         // Xử lý trong Button Xóa
@@ -191,6 +202,18 @@ namespace QuanLyThuQuan
                 default:
                     break;
             }
+            dataGridViewSeat.ClearSelection(); // Bỏ chọn dòng
+            dataGridViewSeat.CurrentCell = null;
+
+            txtSeatID.Text = "";
+            txtSeatName.Text = "";
+            txtStatus.Text = "";
+
+            txtStatus.ReadOnly = true;
+            txtStatus.TabStop = false;
+            btnDelete.Enabled = false;
+            btnEdit.Enabled = false;
+            btnAdd.Enabled = true;
         }
 
         private void lblSeatID_Click(object sender, EventArgs e)
@@ -228,6 +251,9 @@ namespace QuanLyThuQuan
             btnAdd.Enabled = true;
         }
 
-       
+        private void fSeatManage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
