@@ -1,4 +1,5 @@
 ﻿
+using MySql.Data.MySqlClient;
 using QuanLyThuQuan.BLL;
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
@@ -103,13 +104,14 @@ namespace QuanLyThuQuan
             string name = txtSeatName.Text;
             string error = seatBLL.create(name);
             var result = MessageBox.Show(
-            "Bạn có chắc muốn thêm chỗ "+name+" vào danh sách chứ?",  // Nội dung
+            "Bạn có chắc muốn thêm chỗ " + name + " vào danh sách chứ?",  // Nội dung
             "Xác nhận thêm chỗ",                        // Tiêu đề
             MessageBoxButtons.OKCancel,            // Nút OK và Cancel
             MessageBoxIcon.Warning                 // Icon (Warning, Question, Information…)
             );
-            switch (result) { 
-                case(DialogResult.OK):
+            switch (result)
+            {
+                case (DialogResult.OK):
                     if (error != null)
                     {
                         MessageBox.Show(error);
@@ -121,10 +123,11 @@ namespace QuanLyThuQuan
                     }
                     break;
                 default:
-                break;
+                    break;
             }
-                
+
             txtSeatName.ResetText();
+
         }
 
         // Xử lý trong Button Sửa

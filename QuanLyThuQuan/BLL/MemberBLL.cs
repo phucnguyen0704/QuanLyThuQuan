@@ -1,35 +1,89 @@
-﻿    using System.Collections.Generic;
-    using QuanLyThuQuan.DAL;
-    using QuanLyThuQuan.DTO;
+﻿using System;
+using System.Collections.Generic;
+using QuanLyThuQuan.DAL;
+using QuanLyThuQuan.DTO;
 
-    namespace QuanLyThuQuan.BLL
+namespace QuanLyThuQuan.BLL
+{
+    public class MemberBLL
     {
-        public class MemberBLL
+        private MemberDAL dal = new MemberDAL();
+
+        // Tạo một đối tượng MemberDTO rỗng
+        public MemberDTO CreateEmptyMember()
         {
-            private MemberDAL dal = new MemberDAL();
-
-            // Lấy danh sách tất cả thành viên
-            public List<MemberDTO> LayTatCa()
+            return new MemberDTO
             {
-                return dal.LayDanhSachThanhVien();
+                MemberId = 0,
+                FullName = string.Empty,
+                Email = string.Empty,
+                Birthday = DateTime.Today,
+                PhoneNumber = string.Empty,
+                Department = string.Empty,
+                Major = string.Empty,
+                Class = string.Empty,
+                Password = string.Empty,
+                Role = string.Empty,
+                Status = 0,
+                CreatedAt = DateTime.Today
+            };
+        }
+
+        // Lấy danh sách tất cả thành viên
+        public List<MemberDTO> GetAllMembers()
+        {
+            return dal.GetAllMembers();
+        }
+
+        // Thêm một thành viên mới
+        public bool AddMember(MemberDTO member)
+        {
+            try
+            {
+                dal.AddMember(member);
+                return true;
             }
-
-            // Thêm một thành viên mới
-            public bool ThemThanhVien(MemberDTO member)
+            catch (Exception ex)
             {
-                return dal.ThemThanhVien(member);
-            }
-
-            // Xóa thành viên theo ID
-            public bool XoaThanhVien(int id)
-            {
-                return dal.XoaThanhVien(id);
-            }
-
-            // Cập nhật thông tin thành viên
-            public bool CapNhatThanhVien(MemberDTO member)
-            {
-                return dal.CapNhatThanhVien(member);
+                Console.WriteLine($"Lỗi: {ex.Message}");
+                return false;
             }
         }
+
+        // Xóa thành viên theo ID
+        public bool DeleteMember(int id)
+        {
+            try
+            {
+                dal.DeleteMember(id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi: {ex.Message}");
+                return false;
+            }
+        }
+
+        // Cập nhật thông tin thành viên
+        public bool UpdateMember(MemberDTO member)
+        {
+            try
+            {
+                dal.UpdateMember(member);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi: {ex.Message}");
+                return false;
+            }
+        }
+
+        // Lấy thông tin thành viên theo ID
+        public MemberDTO GetMemberById(int id)
+        {
+            return dal.GetMemberById(id);
+        }
     }
+}

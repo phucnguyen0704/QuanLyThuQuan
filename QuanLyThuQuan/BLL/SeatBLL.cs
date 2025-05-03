@@ -28,7 +28,11 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập tên chỗ! ";
             }
+<<<<<<< HEAD
             if (!Regex.IsMatch(name, @"^[A-Za-z0-9\s]+$"))
+=======
+            if (!Regex.IsMatch(name, @"^[\p{L}0-9\s]+$"))
+>>>>>>> b1419d9df015c3e0d469bec10562fc05e9626c4f
             {
                 return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
             }
@@ -48,7 +52,11 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập tên chỗ! ";
             }
+<<<<<<< HEAD
             if (!Regex.IsMatch(newSeatName, @"^[A-Za-z0-9\s]+$"))
+=======
+            if (!Regex.IsMatch(newSeatName, @"^[\p{L}0-9\s]+$"))
+>>>>>>> b1419d9df015c3e0d469bec10562fc05e9626c4f
             {
                 return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
             }

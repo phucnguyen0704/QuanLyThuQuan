@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
 using QuanLyThuQuan.Web.Data;
 using QuanLyThuQuan.Web.DTO;
 using QuanLyThuQuan.Web.Models;
@@ -14,6 +15,35 @@ namespace QuanLyThuQuan.Web.Services.AuthService
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
             _db = appDb;
+        }
+
+        public async Task<Response<Member>> GetById(string memberId)
+        {
+            Response<Member> response = new();
+            try
+            {
+                var member =await _db.Members.FirstOrDefaultAsync(m => m.MemberId.ToString().Equals(memberId));
+                if (member == null)
+                {
+                    response.Success = false;
+                    response.Message = "Không tìm thấy thành viên";
+                    return response;
+                }
+                response.Success = true;
+                response.Data = member;
+            }
+            catch (MySqlException ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
         }
 
         public Response<Member> Login(string memberid, string password)
@@ -87,6 +117,77 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                 response.Success = false;
                 response.Message = ex.Message;
                 response.Data = null;
+            }
+            return response;
+        }
+
+        public async Task<Response<Member>> UpdatePassword(ChangePasswordDTO changePasswordDTO, string memberId)
+        {
+            Response<Member> response = new();
+            try
+            {
+                var member = await _db.Members.Where(m => m.MemberId.ToString() == memberId).FirstOrDefaultAsync();
+                if (member != null)
+                {
+                    if(!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password)){
+                        response.Success = false;
+                        response.Message = "Mật khẩu cũ không đúng. Xin vui lòng nhập lại!";
+                        return response;
+                    }
+                    member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
+                    _db.Members.Update(member);
+                    if(await _db.SaveChangesAsync() > 0)
+                    {
+                        response.Success = true;
+                        response.Message = "Cập nhật mật khẩu thành công!";
+                    }
+
+                }
+            }
+            catch (MySqlException mex)
+            {
+                response.Success = false;
+                response.Message = mex.Message;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        public async Task<Response<Member>> UpdateProfile(Member member)
+        {
+            Response<Member> response = new();
+            try
+            {
+                var obj = await _db.Members.Where(m => m.MemberId == member.MemberId).FirstOrDefaultAsync();
+                if (obj != null)
+                {
+                    obj.PhoneNumber = member.PhoneNumber;
+                    obj.Email = member.Email;
+                    obj.Birthday = member.Birthday;
+
+                    await _db.SaveChangesAsync();
+                    response.Success = true;
+                    response.Message = "Cập nhật thông tin cá nhân thành công";
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Message = "Lỗi! Không tìm thấy thành viên";
+                }
+            }
+            catch (MySqlException mex)
+            {
+                response.Success = false;
+                response.Message = mex.Message;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
             }
             return response;
         }

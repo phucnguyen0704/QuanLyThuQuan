@@ -8,5 +8,11 @@ namespace QuanLyThuQuan.Web.Services.AuthService
          Response<Member> Login(string memberid, string password);
 
         Task<Response<Member>> Register(Member member);
+
+        Task<Response<Member>> UpdatePassword(ChangePasswordDTO changePasswordDTO, string memberId);
+
+        Task<Response<Member>> UpdateProfile (Member member);
+
+        Task<Response<Member>> GetById(string memberId);
     }
 }
