@@ -1,6 +1,6 @@
-﻿using System;
-using System.Linq;
-using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
+﻿// ManagerForm.Designer.cs
+using System;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QuanLyThuQuan
 {
@@ -33,6 +33,18 @@ namespace QuanLyThuQuan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblClock = new System.Windows.Forms.Label();
@@ -49,6 +61,10 @@ namespace QuanLyThuQuan
             this.btnViolations = new System.Windows.Forms.Button();
             this.btnLogs = new System.Windows.Forms.Button();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.memberChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.deviceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.reservationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.seatChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblQLTV = new System.Windows.Forms.Label();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
@@ -56,6 +72,10 @@ namespace QuanLyThuQuan
             this.panelHeader.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memberChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviceChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seatChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
 
@@ -298,6 +318,10 @@ namespace QuanLyThuQuan
 
             // panelContent
             this.panelContent.BackColor = System.Drawing.Color.White;
+            this.panelContent.Controls.Add(this.memberChart);
+            this.panelContent.Controls.Add(this.deviceChart);
+            this.panelContent.Controls.Add(this.reservationChart);
+            this.panelContent.Controls.Add(this.seatChart);
             this.panelContent.Controls.Add(this.pictureBox1);
             this.panelContent.Controls.Add(this.lblQLTV);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -307,6 +331,74 @@ namespace QuanLyThuQuan
             this.panelContent.TabIndex = 2;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContent_Paint);
 
+            // memberChart
+            this.memberChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
+            chartArea1.Name = "ChartArea1";
+            this.memberChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.memberChart.Legends.Add(legend1);
+            this.memberChart.Location = new System.Drawing.Point(20, 20);
+            this.memberChart.Name = "memberChart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.memberChart.Series.Add(series1);
+            this.memberChart.Size = new System.Drawing.Size(450, 250);
+            this.memberChart.TabIndex = 2;
+            this.memberChart.Text = "Biểu đồ thành viên";
+            this.memberChart.Click += new System.EventHandler(this.memberChart_Click);
+
+            // deviceChart
+            this.deviceChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea2.Name = "ChartArea1";
+            this.deviceChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.deviceChart.Legends.Add(legend2);
+            this.deviceChart.Location = new System.Drawing.Point(490, 20);
+            this.deviceChart.Name = "deviceChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.deviceChart.Series.Add(series2);
+            this.deviceChart.Size = new System.Drawing.Size(450, 250);
+            this.deviceChart.TabIndex = 3;
+            this.deviceChart.Text = "Biểu đồ thiết bị";
+            this.deviceChart.Click += new System.EventHandler(this.deviceChart_Click);
+
+            // reservationChart
+            this.reservationChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
+            chartArea3.Name = "ChartArea1";
+            this.reservationChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.reservationChart.Legends.Add(legend3);
+            this.reservationChart.Location = new System.Drawing.Point(20, 290);
+            this.reservationChart.Name = "reservationChart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.reservationChart.Series.Add(series3);
+            this.reservationChart.Size = new System.Drawing.Size(450, 250);
+            this.reservationChart.TabIndex = 4;
+            this.reservationChart.Text = "Biểu đồ phiếu mượn";
+            this.reservationChart.Click += new System.EventHandler(this.reservationChart_Click);
+
+            // seatChart
+            this.seatChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea4.Name = "ChartArea1";
+            this.seatChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.seatChart.Legends.Add(legend4);
+            this.seatChart.Location = new System.Drawing.Point(490, 290);
+            this.seatChart.Name = "seatChart";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.seatChart.Series.Add(series4);
+            this.seatChart.Size = new System.Drawing.Size(450, 250);
+            this.seatChart.TabIndex = 5;
+            this.seatChart.Text = "Biểu đồ chỗ ngồi";
+            this.seatChart.Click += new System.EventHandler(this.seatChart_Click);
+
             // pictureBox1
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Location = new System.Drawing.Point(382, 150);
@@ -315,6 +407,7 @@ namespace QuanLyThuQuan
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
 
             // lblQLTV
             this.lblQLTV.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -326,12 +419,13 @@ namespace QuanLyThuQuan
             this.lblQLTV.Size = new System.Drawing.Size(339, 45);
             this.lblQLTV.TabIndex = 0;
             this.lblQLTV.Text = "QUẢN LÝ THƯ QUÁN";
+            this.lblQLTV.Visible = false;
 
             // timerClock
             this.timerClock.Interval = 1000;
             this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
 
-            // fTableManager
+            // ManagerForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
@@ -339,7 +433,7 @@ namespace QuanLyThuQuan
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelHeader);
             this.MinimumSize = new System.Drawing.Size(1000, 600);
-            this.Name = "fTableManager";
+            this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý thư quán";
             this.Load += new System.EventHandler(this.fTableManager_Load);
@@ -348,6 +442,10 @@ namespace QuanLyThuQuan
             this.panelMenu.ResumeLayout(false);
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memberChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviceChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seatChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
         }
@@ -373,5 +471,9 @@ namespace QuanLyThuQuan
         private System.Windows.Forms.Label lblClock;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Timer timerClock;
+        private System.Windows.Forms.DataVisualization.Charting.Chart memberChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart deviceChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart reservationChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart seatChart;
     }
 }
