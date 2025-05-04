@@ -69,5 +69,38 @@ namespace QuanLyThuQuan.Utils
             // Check if the date is in the past
             return date <= DateTime.Now;
         }
+        public static string ValidatePasswordChange(int memberId, string oldPassword, string newPassword, string confirmPassword, string role)
+        {
+            // Kiểm tra rỗng
+            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                return "Vui lòng nhập đầy đủ thông tin.";
+            }
+
+            // Kiểm tra mật khẩu mới và xác nhận khớp nhau
+            if (newPassword != confirmPassword)
+            {
+                return "Mật khẩu mới và xác nhận mật khẩu không khớp.";
+            }
+
+            // Kiểm tra mật khẩu mới khác mật khẩu cũ
+            if (oldPassword == newPassword)
+            {
+                return "Mật khẩu mới không được trùng mật khẩu cũ.";
+            }
+
+            // Gọi checkLogin từ MemberBLL để xác thực mật khẩu cũ
+            MemberBLL memberBLL = new MemberBLL();
+            int loginResult = memberBLL.checkLogin(memberId, oldPassword, role);
+
+            if (loginResult != 1)
+            {
+                return "Mật khẩu cũ không chính xác.";
+            }
+
+            // Nếu mọi thứ đều hợp lệ
+            return "VALID";
+        }
+
     }
 }
