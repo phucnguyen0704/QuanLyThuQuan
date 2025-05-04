@@ -89,7 +89,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                             UPDATE seat
-                            SET status = 0
+                            SET status = 2
                             WHERE seat_id = @seatId";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
@@ -120,7 +120,7 @@ namespace QuanLyThuQuan.DAL
             List<SeatDTO> seats = new List<SeatDTO>();
             try
             {
-                string sql = @"SELECT * FROM seat where status != 0";
+                string sql = @"SELECT * FROM seat where status != 2";
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 OpenConnection();
                 MySqlDataReader reader = command.ExecuteReader();

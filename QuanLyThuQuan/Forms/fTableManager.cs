@@ -219,13 +219,12 @@ namespace QuanLyThuQuan
                 int status = Convert.ToInt32(row["status"]);
                 int count = Convert.ToInt32(row["count"]);
                 string label = "";
-                if (status == 0) { continue; }
+                if (status == 2) { continue; }
 
                 switch (status)
                 {
                     case 1: label = "Còn trống"; break;
-                    case 2: label = "Đã được đặt"; break;
-                    case 3: label = "Đang bảo trì"; break;
+                    case 3: label = "Đã được đặt"; break;
                     default: label = ""; break;
                 }
                 
@@ -287,6 +286,11 @@ namespace QuanLyThuQuan
             }
 
             reservationChart.Series.Add(series);
+        }
+
+        private void fTableManager_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -80,7 +80,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                             UPDATE log
-                            SET status = 0
+                            SET status = 2
                             WHERE log_id = @logId";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());

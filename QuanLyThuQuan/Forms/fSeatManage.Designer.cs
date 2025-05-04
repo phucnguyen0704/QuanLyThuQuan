@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.txtSeatName = new System.Windows.Forms.TextBox();
             this.txtSeatID = new System.Windows.Forms.TextBox();
             this.lblSeatStatus = new System.Windows.Forms.Label();
@@ -50,12 +50,12 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cbStatus);
             this.panel2.Controls.Add(this.btnReset);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.txtStatus);
             this.panel2.Controls.Add(this.txtSeatName);
             this.panel2.Controls.Add(this.txtSeatID);
             this.panel2.Controls.Add(this.lblSeatStatus);
@@ -66,6 +66,18 @@
             this.panel2.Size = new System.Drawing.Size(360, 597);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Còn trống",
+            "Đã đặt"});
+            this.cbStatus.Location = new System.Drawing.Point(149, 165);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(180, 24);
+            this.cbStatus.TabIndex = 3;
+            this.cbStatus.TabStop = false;
             // 
             // btnReset
             // 
@@ -123,17 +135,6 @@
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.BackColor = System.Drawing.Color.White;
-            this.txtStatus.Enabled = false;
-            this.txtStatus.Location = new System.Drawing.Point(149, 167);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(180, 22);
-            this.txtStatus.TabIndex = 12;
-            this.txtStatus.TabStop = false;
             // 
             // txtSeatName
             // 
@@ -244,7 +245,6 @@
         private System.Windows.Forms.Label lblSeatName;
         private System.Windows.Forms.Label lblSeatID;
         private System.Windows.Forms.Label lblSeatStatus;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.TextBox txtSeatName;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
@@ -255,5 +255,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSeatID;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.ComboBox cbStatus;
     }
 }
