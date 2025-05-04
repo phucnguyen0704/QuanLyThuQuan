@@ -322,7 +322,7 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            // Kiểm tra tên ghế chỉ chứa chữ cái và số
+            //// Kiểm tra tên ghế chỉ chứa chữ cái và số
             //if (!Regex.IsMatch(txtSeatName.Text.Trim(), @"^[A-Za-z0-9]+$"))
             //{
             //    MessageBox.Show("Tên ghế chỉ gồm chữ cái và số, vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

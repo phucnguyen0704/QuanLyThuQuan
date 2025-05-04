@@ -58,5 +58,15 @@ namespace QuanLyThuQuan.BLL
         {
             return memberDAL.getByID(memberId);
         }
+
+        public MemberDTO getByPhone(string memberPhone)
+        {
+            return memberDAL.getByPhone(memberPhone);
+        }
+
+        public MemberDTO getByEmail(string memberEmail)
+        {
+            return memberDAL.getByEmail(memberEmail);
+        }
     }
 }
