@@ -109,7 +109,7 @@ namespace QuanLyThuQuan
 
         private void quyĐịnhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fRegulationManage f = new fRegulationManage();
+            RegulationForm f = new RegulationForm();
             f.ShowDialog();
         }
 
@@ -122,6 +122,18 @@ namespace QuanLyThuQuan
         private void NhậtKíVàoThưQuánToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fLogManage f = new fLogManage();
+            f.ShowDialog();
+        }
+
+        private void viPhạmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViolationForm f = new ViolationForm();
+            f.ShowDialog();
+        }
+
+        private void quảnLýĐặtChỗToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReservationForm f = new ReservationForm();
             f.ShowDialog();
         }
     }

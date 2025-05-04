@@ -14,12 +14,12 @@ using RegulationDTO = QuanLyThuQuan.DTO.RegulationDTO;
 
 namespace QuanLyThuQuan.Forms
 {
-    public partial class fRegulationManage : Form
+    public partial class RegulationForm : Form
     {
 
         private bool isAdding = false;
 
-        public fRegulationManage()
+        public RegulationForm()
         {
             InitializeComponent();
             init();
@@ -29,24 +29,20 @@ namespace QuanLyThuQuan.Forms
         {
             initDataGridView();
             loadData(RegulationBLL.Instance.GetAll());
-
-            txtID.Enabled = false;
-            setInputReadOnly(true);
-            setButtonState(true, true, false, false);
+            switchToViewMode();
 
             dateNgayTao.Value = dateNgayTao.MinDate;
-            
         }
 
         private void initDataGridView()
         {
             dataGridView.EnableHeadersVisualStyles = false;
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-            dataGridView.ReadOnly = true;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 76);
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.MultiSelect = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.ReadOnly = true;
+            dataGridView.MultiSelect = false;
             dataGridView.AllowUserToAddRows = false;
 
             dataGridView.Columns.Add("RegulationID", "ID");
@@ -54,6 +50,12 @@ namespace QuanLyThuQuan.Forms
             dataGridView.Columns.Add("Type", "Loại");
             dataGridView.Columns.Add("Description", "Mô tả");
             dataGridView.Columns.Add("CreatedAt", "Ngày tạo");
+
+            dataGridView.Columns["RegulationID"].FillWeight = 5;
+            dataGridView.Columns["Name"].FillWeight = 25;
+            dataGridView.Columns["Type"].FillWeight = 15;
+            dataGridView.Columns["Description"].FillWeight = 30;
+            dataGridView.Columns["CreatedAt"].FillWeight = 25;
         }
 
         private void loadData(List<RegulationDTO> regulations)
@@ -107,12 +109,34 @@ namespace QuanLyThuQuan.Forms
             dateNgayTao.Value = dateNgayTao.MinDate;
         }
 
-        private void setButtonState(bool themVisible, bool chinhSuaVisible, bool luuVisible, bool huyVisible)
+        private void setButtonState(bool themVisible, bool chinhSuaVisible, bool luuVisible, bool huyVisible, bool xoaVisible = true)
         {
             btnThem.Visible = themVisible;
             btnChinhSua.Visible = chinhSuaVisible;
             btnLuu.Visible = luuVisible;
             btnHuy.Visible = huyVisible;
+            btnXoa.Visible = xoaVisible;
+        }
+
+        private void switchToEditMode()
+        {
+            setInputReadOnly(false);
+            setButtonState(false, false, true, true, false);
+        }
+
+        private void switchToAddMode()
+        {
+            setInputReadOnly(false);
+            setButtonState(false, false, true, true, false);
+            flpnNgayTao.Visible = false;
+            txtTen.Focus();
+        }
+
+        private void switchToViewMode()
+        {
+            setInputReadOnly(true);
+            setButtonState(true, true, false, false);
+            flpnNgayTao.Visible = true;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
@@ -120,40 +144,33 @@ namespace QuanLyThuQuan.Forms
             if (dataGridView.SelectedRows.Count > 0)
             {
                 LoadFormFromSelectedRow();
-                setInputReadOnly(true);
-                setButtonState(true, true, false, false);
+                switchToViewMode();
             }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
             isAdding = true;
-            flpnNgayTao.Visible = false;
             ClearForm();
-            setInputReadOnly(false);
-            setButtonState(false, false, true, true);
-            txtTen.Focus();
+            switchToAddMode();
         }
 
         private void btnChinhSua_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn quy định cần chỉnh sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            setInputReadOnly(false);
-            setButtonState(false, false, true, true);
+            switchToEditMode();
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
             isAdding = false;
             LoadFormFromSelectedRow();
-            setInputReadOnly(true);
-            flpnNgayTao.Visible = true;
-            setButtonState(true, true, false, false);
+            switchToViewMode();
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -167,6 +184,36 @@ namespace QuanLyThuQuan.Forms
             else
             {
                 HandleUpdateRegulation();
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn quy định cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            HandleDeleteRegulation();
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            txtTimKiem.Text = string.Empty;
+            loadData(RegulationBLL.Instance.GetAll());
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtTimKiem.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                loadData(RegulationBLL.Instance.GetAll());
+            }
+            else
+            {
+                loadData(RegulationBLL.Instance.GetByName(searchText));
             }
         }
 
@@ -204,9 +251,16 @@ namespace QuanLyThuQuan.Forms
                 MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 isAdding = false;
                 loadData(RegulationBLL.Instance.GetAll());
-                ClearForm();
-                setInputReadOnly(true);
-                setButtonState(true, true, false, false);
+                //ClearForm();
+                switchToViewMode();
+                int lastRowIndex = dataGridView.Rows.Count - 1;
+                if (lastRowIndex >= 0)
+                {
+                    dataGridView.ClearSelection();
+                    dataGridView.Rows[lastRowIndex].Selected = true;
+                    dataGridView.FirstDisplayedScrollingRowIndex = lastRowIndex;
+                }
+                LoadFormFromSelectedRow();
             }
             else
             {
@@ -229,10 +283,12 @@ namespace QuanLyThuQuan.Forms
             if (result)
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadData(RegulationBLL.Instance.GetAll());
-                LoadFormFromSelectedRow();
-                setInputReadOnly(true);
-                setButtonState(true, true, false, false);
+
+                dataGridView.SelectedRows[0].Cells["Name"].Value = regulation.Name;
+                dataGridView.SelectedRows[0].Cells["Type"].Value = regulation.Type;
+                dataGridView.SelectedRows[0].Cells["Description"].Value = regulation.Description;
+                dataGridView.SelectedRows[0].Cells["CreatedAt"].Value = regulation.CreatedAt;
+                switchToViewMode();
             }
             else
             {
@@ -240,16 +296,27 @@ namespace QuanLyThuQuan.Forms
             }
         }
 
-        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        private void HandleDeleteRegulation() 
         {
-            string searchText = txtTimKiem.Text.Trim();
-            if (string.IsNullOrEmpty(searchText))
+            var row = dataGridView.SelectedRows[0];
+            int regulationID = Convert.ToInt32(row.Cells["RegulationID"].Value);
+
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa quy định này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes) return;
+
+            string errorMessage;
+            bool result = RegulationBLL.Instance.Delete(regulationID, out errorMessage);
+
+            if (result)
             {
+                MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadData(RegulationBLL.Instance.GetAll());
+                ClearForm();
+                LoadFormFromSelectedRow();
             }
             else
             {
-                loadData(RegulationBLL.Instance.GetByName(searchText));
+                MessageBox.Show("Xóa thất bại! " + errorMessage, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
