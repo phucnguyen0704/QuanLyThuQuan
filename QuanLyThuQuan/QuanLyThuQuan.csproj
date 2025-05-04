@@ -139,6 +139,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -158,11 +159,13 @@
     <Compile Include="BLL\LogBLL.cs" />
     <Compile Include="BLL\ReservationBLL.cs" />
     <Compile Include="BLL\ReservationDetailBLL.cs" />
+    <Compile Include="BLL\StatisticalBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
     <Compile Include="DAL\LogDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
     <Compile Include="DAL\ReservationDetailDAL.cs" />
+    <Compile Include="DAL\StatisticalsDAL.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\ReservationDetailDTO.cs" />

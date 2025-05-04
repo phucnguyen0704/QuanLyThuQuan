@@ -52,12 +52,13 @@ namespace QuanLyThuQuan.DAL
                     //MessageBox.Show("$" + seat.seatId);
                     string sql = @"
                             UPDATE seat
-                            SET name = @seatName
+                            SET name = @seatName, status = @status
                             WHERE seat_id = @seatId";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
                     command.Parameters.AddWithValue("@seatId", seat.seatId);
+                    command.Parameters.AddWithValue("@status", seat.status);
                     OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
@@ -119,7 +120,7 @@ namespace QuanLyThuQuan.DAL
             List<SeatDTO> seats = new List<SeatDTO>();
             try
             {
-                string sql = @"SELECT * FROM seat where status = 1";
+                string sql = @"SELECT * FROM seat where status != 0";
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 OpenConnection();
                 MySqlDataReader reader = command.ExecuteReader();

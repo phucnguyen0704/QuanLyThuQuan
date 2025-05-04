@@ -79,6 +79,9 @@ namespace QuanLyThuQuan
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
                 btnAdd.Enabled = false;
+                txtStatus.Enabled = true;
+                txtStatus.ReadOnly = false;
+                txtStatus.TabStop = true;
             }
         }
 
@@ -136,7 +139,9 @@ namespace QuanLyThuQuan
             
             string newName = txtSeatName.Text;
             string seatId = txtSeatID.Text;
-            string error = seatBLL.update(int.Parse(seatId), newName);
+            string status = txtStatus.Text;
+
+            string error = seatBLL.update(int.Parse(seatId), newName, status);
             var result = MessageBox.Show(
             "Bạn có chắc muốn cập nhật tên chỗ mới vào danh sách chứ?",  // Nội dung
             "Xác nhận cập nhật",                        // Tiêu đề
@@ -249,9 +254,17 @@ namespace QuanLyThuQuan
             btnDelete.Enabled = false;
             btnEdit.Enabled = false;
             btnAdd.Enabled = true;
+            txtStatus.Enabled = false;
+            txtStatus.ReadOnly = true;
+            txtStatus.TabStop = false;
         }
 
         private void fSeatManage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
