@@ -49,6 +49,7 @@ namespace QuanLyThuQuan.DAL
             {
                 try
                 {
+                    //MessageBox.Show("$" + seat.seatId);
                     string sql = @"
                             UPDATE seat
                             SET name = @seatName
@@ -56,18 +57,20 @@ namespace QuanLyThuQuan.DAL
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
+                    command.Parameters.AddWithValue("@seatId", seat.seatId);
+                    OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
             }
             finally
@@ -95,13 +98,13 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
 
             }
@@ -126,12 +129,14 @@ namespace QuanLyThuQuan.DAL
                         reader.GetInt32("seat_id"),
                         reader.GetString("name"),
                         reader.GetInt32("status")
-                    );
+                        );
                     seats.Add(seat);
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+
                 Console.WriteLine("Lỗi: " + ex.Message);
             }
             finally
@@ -165,14 +170,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally
@@ -206,14 +211,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally

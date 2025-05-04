@@ -73,7 +73,7 @@
             this.lblDisSeatInLib.ForeColor = System.Drawing.Color.White;
             this.lblDisSeatInLib.Location = new System.Drawing.Point(12, 58);
             this.lblDisSeatInLib.Name = "lblDisSeatInLib";
-            this.lblDisSeatInLib.Size = new System.Drawing.Size(307, 30);
+            this.lblDisSeatInLib.Size = new System.Drawing.Size(305, 30);
             this.lblDisSeatInLib.TabIndex = 1;
             this.lblDisSeatInLib.Text = "DANH SÁCH GHẾ THƯ QUÁN";
             // 
@@ -84,7 +84,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 40);
+            this.label1.Size = new System.Drawing.Size(209, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ GHẾ";
             // 
@@ -102,6 +102,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1184, 150);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // lblStatusValue
             // 
@@ -149,7 +150,7 @@
             this.lblSeatName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatName.Location = new System.Drawing.Point(50, 73);
             this.lblSeatName.Name = "lblSeatName";
-            this.lblSeatName.Size = new System.Drawing.Size(70, 21);
+            this.lblSeatName.Size = new System.Drawing.Size(66, 21);
             this.lblSeatName.TabIndex = 1;
             this.lblSeatName.Text = "Tên ghế:";
             // 

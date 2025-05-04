@@ -26,7 +26,7 @@ namespace QuanLyThuQuan.BLL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return "Vui long nhap ten cho! ";
+                return "Vui lòng nhập tên chỗ! ";
             }
             //if (!Regex.IsMatch(name, @"^[A-Za-z0-9]+$"))
             //{
@@ -34,7 +34,7 @@ namespace QuanLyThuQuan.BLL
             //}
             if (seatDAL.checkName(name) == true)
             {
-                return ("Ten cho da ton tai, vui long nhap lai!");
+                return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
             }
             SeatDTO seat = new SeatDTO { seatName = name };
             
@@ -42,7 +42,7 @@ namespace QuanLyThuQuan.BLL
             {
                 return null;
             }
-            return "Loi tao cho!";
+            return "Lỗi MySQL!";
         }
 
         public string update(int seatId, string newSeatName)
@@ -51,7 +51,7 @@ namespace QuanLyThuQuan.BLL
 
             if (string.IsNullOrWhiteSpace(newSeatName))
             {
-                return "Vui long nhap ten cho! ";
+                return "Vui lòng nhập tên chỗ! ";
             }
             //if (!Regex.IsMatch(newSeatName, @"^[A-Za-z0-9]+$"))
             //{
@@ -61,7 +61,7 @@ namespace QuanLyThuQuan.BLL
             {
                 if (seatDAL.checkName(newSeatName) == true)
                 {
-                    return ("Ten cho da ton tai, vui long nhap lai!");
+                    return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
                 }
             }
 
@@ -69,7 +69,7 @@ namespace QuanLyThuQuan.BLL
             if (seatDAL.update(seat)) {
                 return null;
             }
-            return "Loi cap nhat ten cho!";
+            return "Lỗi MySQL!";
         }
 
         public string delete(int seatId)
@@ -80,7 +80,7 @@ namespace QuanLyThuQuan.BLL
             {
                 return null;
             }
-            return "Loi xoa cho!";
+            return "Lỗi MySQL!!";
         }
 
         public List<SeatDTO> getAllSeat()

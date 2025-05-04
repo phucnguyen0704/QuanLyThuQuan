@@ -323,12 +323,12 @@ namespace QuanLyThuQuan.Forms
             }
 
             // Kiểm tra tên ghế chỉ chứa chữ cái và số
-            if (!Regex.IsMatch(txtSeatName.Text.Trim(), @"^[A-Za-z0-9]+$"))
-            {
-                MessageBox.Show("Tên ghế chỉ gồm chữ cái và số, vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSeatName.Focus();
-                return false;
-            }
+            //if (!Regex.IsMatch(txtSeatName.Text.Trim(), @"^[A-Za-z0-9]+$"))
+            //{
+            //    MessageBox.Show("Tên ghế chỉ gồm chữ cái và số, vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txtSeatName.Focus();
+            //    return false;
+            //}
 
             return true;
         }
@@ -451,6 +451,11 @@ namespace QuanLyThuQuan.Forms
         private void SeatForm_Load(object sender, EventArgs e)
         {
             // Khởi tạo form
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
