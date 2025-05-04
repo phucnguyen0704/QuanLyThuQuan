@@ -86,3 +86,4 @@ D:\do_an\cs\QLTV\QuanLyThuQuan\bin\Debug\Microsoft.Bcl.HashCode.xml
 D:\do_an\cs\QLTV\QuanLyThuQuan\bin\Debug\RBush.xml
 D:\do_an\cs\QLTV\QuanLyThuQuan\bin\Debug\SixLabors.Fonts.xml
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.MemberForm.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.HistoryForm.resources

@@ -1,6 +1,8 @@
 ﻿using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace QuanLyThuQuan.BLL
 {
@@ -67,6 +69,26 @@ namespace QuanLyThuQuan.BLL
         public MemberDTO getByEmail(string memberEmail)
         {
             return memberDAL.getByEmail(memberEmail);
+        }
+
+        public DataTable getReservationHistory(int memberId)
+        {
+            return memberDAL.getReservationHistory(memberId);
+        }
+
+        public DataTable getReservationDetails(int memberId)
+        {
+            return memberDAL.getReservationDetails(memberId);
+        }
+
+        public DataTable getViolationHistory(int memberId)
+        {
+            return memberDAL.getViolationHistory(memberId);
+        }
+
+        public DataTable getCheckInHistory(int memberId)
+        {
+            return memberDAL.getCheckInHistory(memberId);
         }
     }
 }

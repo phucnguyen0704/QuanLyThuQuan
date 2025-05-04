@@ -34,6 +34,7 @@ namespace QuanLyThuQuan.Forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnHistory = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -98,6 +99,7 @@ namespace QuanLyThuQuan.Forms
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.btnHistory);
             this.panel2.Controls.Add(this.btnClear);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
@@ -133,6 +135,21 @@ namespace QuanLyThuQuan.Forms
             this.panel2.Size = new System.Drawing.Size(350, 590);
             this.panel2.TabIndex = 1;
             // 
+            // btnHistory
+            // 
+            this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.btnHistory.FlatAppearance.BorderSize = 0;
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistory.ForeColor = System.Drawing.Color.White;
+            this.btnHistory.Location = new System.Drawing.Point(175, 540);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(160, 40);
+            this.btnHistory.TabIndex = 28;
+            this.btnHistory.Text = "Xem lịch sử";
+            this.btnHistory.UseVisualStyleBackColor = false;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
@@ -142,7 +159,7 @@ namespace QuanLyThuQuan.Forms
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Location = new System.Drawing.Point(15, 540);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(320, 40);
+            this.btnClear.Size = new System.Drawing.Size(160, 40);
             this.btnClear.TabIndex = 27;
             this.btnClear.Text = "Làm mới";
             this.btnClear.UseVisualStyleBackColor = false;
@@ -566,6 +583,7 @@ namespace QuanLyThuQuan.Forms
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;

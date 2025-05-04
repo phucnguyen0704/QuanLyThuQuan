@@ -465,8 +465,8 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (Checker.IsExistEmail(txtEmail.Text) != Int32.Parse(txtMemberId.Text) && Checker.IsExistEmail(txtEmail.Text) != 0) 
-            { 
+            if (Checker.IsExistEmail(txtEmail.Text) != Int32.Parse(txtMemberId.Text) && Checker.IsExistEmail(txtEmail.Text) != 0)
+            {
                 MessageBox.Show("Email thành viên đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMemberId.Focus();
                 return false;
@@ -600,6 +600,21 @@ namespace QuanLyThuQuan.Forms
             ClearForm();
             currentMember = null; // Xóa thành viên hiện tại khi làm mới form
             SetButtonsForViewMode();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMemberId.Text))
+            {
+                MessageBox.Show("Vui lòng chọn thành viên để xem lịch sử!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int memberId = int.Parse(txtMemberId.Text);
+
+            // Mở form lịch sử thành viên
+            HistoryForm historyForm = new HistoryForm(memberId);
+            historyForm.ShowDialog();
         }
 
         private void ClearForm()
