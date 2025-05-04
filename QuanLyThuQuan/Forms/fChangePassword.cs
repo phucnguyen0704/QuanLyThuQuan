@@ -18,6 +18,10 @@ namespace QuanLyThuQuan.Forms
             this.role = role;
         }
 
+        public fChangePassword()
+        {
+        }
+
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
             string oldPass = txtOldPassword.Text.Trim();
@@ -60,7 +64,7 @@ namespace QuanLyThuQuan.Forms
 
         private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
-
+                
         }
 
         private void lblOldPassword_Click(object sender, EventArgs e)

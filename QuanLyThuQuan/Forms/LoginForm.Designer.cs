@@ -44,9 +44,10 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.labelTitle.Location = new System.Drawing.Point(30, 20);
+            this.labelTitle.Location = new System.Drawing.Point(40, 25);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(204, 30);
+            this.labelTitle.Size = new System.Drawing.Size(250, 37);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Quản Lý Thư Quán";
             // 
@@ -55,9 +56,10 @@
             this.labelMemberId.AutoSize = true;
             this.labelMemberId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMemberId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.labelMemberId.Location = new System.Drawing.Point(30, 70);
+            this.labelMemberId.Location = new System.Drawing.Point(40, 86);
+            this.labelMemberId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMemberId.Name = "labelMemberId";
-            this.labelMemberId.Size = new System.Drawing.Size(94, 19);
+            this.labelMemberId.Size = new System.Drawing.Size(116, 23);
             this.labelMemberId.TabIndex = 1;
             this.labelMemberId.Text = "ID Thành viên";
             // 
@@ -66,27 +68,30 @@
             this.labelPassword.AutoSize = true;
             this.labelPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(102)))));
-            this.labelPassword.Location = new System.Drawing.Point(30, 120);
+            this.labelPassword.Location = new System.Drawing.Point(40, 148);
+            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(68, 19);
+            this.labelPassword.Size = new System.Drawing.Size(82, 23);
             this.labelPassword.TabIndex = 2;
             this.labelPassword.Text = "Mật khẩu";
             // 
             // textBoxMemberId
             // 
             this.textBoxMemberId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMemberId.Location = new System.Drawing.Point(30, 90);
+            this.textBoxMemberId.Location = new System.Drawing.Point(40, 111);
+            this.textBoxMemberId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxMemberId.Name = "textBoxMemberId";
-            this.textBoxMemberId.Size = new System.Drawing.Size(240, 25);
+            this.textBoxMemberId.Size = new System.Drawing.Size(319, 30);
             this.textBoxMemberId.TabIndex = 3;
             this.textBoxMemberId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMemberId_KeyPress);
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPassword.Location = new System.Drawing.Point(30, 140);
+            this.textBoxPassword.Location = new System.Drawing.Point(40, 172);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(240, 25);
+            this.textBoxPassword.Size = new System.Drawing.Size(319, 30);
             this.textBoxPassword.TabIndex = 4;
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
@@ -99,9 +104,10 @@
             this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogin.ForeColor = System.Drawing.Color.White;
-            this.buttonLogin.Location = new System.Drawing.Point(30, 180);
+            this.buttonLogin.Location = new System.Drawing.Point(40, 222);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(110, 35);
+            this.buttonLogin.Size = new System.Drawing.Size(147, 43);
             this.buttonLogin.TabIndex = 5;
             this.buttonLogin.Text = "Đăng nhập";
             this.buttonLogin.UseVisualStyleBackColor = false;
@@ -114,9 +120,10 @@
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(160, 180);
+            this.buttonExit.Location = new System.Drawing.Point(213, 222);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(110, 35);
+            this.buttonExit.Size = new System.Drawing.Size(147, 43);
             this.buttonExit.TabIndex = 6;
             this.buttonExit.Text = "Thoát";
             this.buttonExit.UseVisualStyleBackColor = false;
@@ -132,20 +139,22 @@
             this.panelLogin.Controls.Add(this.textBoxPassword);
             this.panelLogin.Controls.Add(this.buttonLogin);
             this.panelLogin.Controls.Add(this.buttonExit);
-            this.panelLogin.Location = new System.Drawing.Point(150, 50);
+            this.panelLogin.Location = new System.Drawing.Point(200, 62);
+            this.panelLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(300, 250);
+            this.panelLogin.Size = new System.Drawing.Size(400, 308);
             this.panelLogin.TabIndex = 7;
             this.panelLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLogin_Paint);
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(600, 350);
+            this.ClientSize = new System.Drawing.Size(800, 431);
             this.Controls.Add(this.panelLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

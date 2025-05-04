@@ -79,6 +79,9 @@ namespace QuanLyThuQuan
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
+           // fChangePassword changePasswordForm = new fChangePassword();
+           // changePasswordForm.ShowDialog();
+
             //fAccountProfile f = new fAccountProfile();
             //OpenChildForm(f);
         }
