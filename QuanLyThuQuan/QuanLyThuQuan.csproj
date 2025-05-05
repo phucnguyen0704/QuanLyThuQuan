@@ -226,12 +226,14 @@
     <Compile Include="BLL\ReservationBLL.cs" />
     <Compile Include="BLL\ReservationDetailBLL.cs" />
     <Compile Include="BLL\ViolationBLL.cs" />
+    <Compile Include="BLL\StatisticalBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
     <Compile Include="DAL\LogDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
     <Compile Include="DAL\ReservationDetailDAL.cs" />
     <Compile Include="DAL\ViolationDAL.cs" />
+    <Compile Include="DAL\StatisticalsDAL.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\ReservationDetailDTO.cs" />
@@ -410,12 +412,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="test.Designer.cs">
-      <DependentUpon>test.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Forms\DeviceForm.resx">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -503,9 +499,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

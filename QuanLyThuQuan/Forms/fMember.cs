@@ -1,7 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -11,20 +10,20 @@ using System.Windows.Forms;
 using ClosedXML.Excel;
 using QuanLyThuQuan.BLL;
 using QuanLyThuQuan.DTO;
+
 namespace QuanLyThuQuan
 {
     public partial class fMember : Form
     {
-        private List<Member> members = new List<Member>();
-        private const string filePath = "members.csv";
         private string connectionString = "Server=localhost;Database=LibraryDB;Uid=root;Pwd= ;";
-        
+
         public fMember()
         {
             InitializeComponent();
             LoadMembersFromMySQL();
             LoadRoles();
             LoadStatuses();
+            LoadDepartments();
             dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMembers.ReadOnly = true;
             dgvMembers.AllowUserToAddRows = false;
@@ -35,33 +34,7 @@ namespace QuanLyThuQuan
         private void fMember_Load(object sender, EventArgs e)
         {
             // Dữ liệu sẽ được load trong constructor
-            // Thêm các giá trị vào cboKhoa
-            cbKhoa.Items.Add("Khoa Công nghệ thông tin");
-            cbKhoa.Items.Add("Khoa Điện tử - Viễn thông");
-            cbKhoa.Items.Add("Khoa Cơ khí");
-            cbKhoa.Items.Add("Khoa Kinh tế");
-
-            // Thêm các giá trị vào cboNganh
-            cboNganh.Items.Add("Ngành Phần mềm");
-            cboNganh.Items.Add("Ngành Mạng máy tính");
-            cboNganh.Items.Add("Ngành Điện tử");
-            cboNganh.Items.Add("Ngành Kinh tế");
-
-            // Thêm các giá trị vào cboLop
-            cboLop.Items.Add("Lớp 1");
-            cboLop.Items.Add("Lớp 2");
-            cboLop.Items.Add("Lớp 3");
-
-            // Thêm các giá trị vào cboGioiTinh
-           // cboGioiTinh.Items.Add("Nam");
-          //  cboGioiTinh.Items.Add("Nữ");
-          //  cboGioiTinh.Items.Add("Khác");
-
-            // Chọn giá trị mặc định cho các ComboBox
-            cbKhoa.SelectedIndex = 0;
-            cboNganh.SelectedIndex = 0;
-            cboLop.SelectedIndex = 0;
-           // cboGioiTinh.SelectedIndex = 0;
+            LoadComboBoxes();
         }
 
         private void LoadRoles()
@@ -72,6 +45,24 @@ namespace QuanLyThuQuan
         private void LoadStatuses()
         {
             cboTrangThai.Items.AddRange(new string[] { "1", "2", "3" });
+        }
+
+        private void LoadDepartments()
+        {
+            cbKhoa.Items.AddRange(new string[] { "Khoa Công nghệ thông tin", "Khoa Điện tử - Viễn thông", "Khoa Cơ khí", "Khoa Kinh tế" });
+        }
+
+        private void LoadComboBoxes()
+        {
+            cboNganh.Items.AddRange(new string[] { "Ngành Phần mềm", "Ngành Mạng máy tính", "Ngành Điện tử", "Ngành Kinh tế" });
+            cboLop.Items.AddRange(new string[] { "Lớp 1", "Lớp 2", "Lớp 3" });
+
+            // Đặt giá trị mặc định
+            cbKhoa.SelectedIndex = 0;
+            cboNganh.SelectedIndex = 0;
+            cboLop.SelectedIndex = 0;
+            cboVaiTro.SelectedIndex = 0;
+            cboTrangThai.SelectedIndex = 0;
         }
 
         private void LoadMembersFromMySQL()
@@ -90,6 +81,7 @@ namespace QuanLyThuQuan
                             adapter.Fill(memberTable);
                             dgvMembers.DataSource = memberTable;
 
+                            // Đổi tên cột trong DataGridView
                             dgvMembers.Columns["member_id"].HeaderText = "ID";
                             dgvMembers.Columns["full_name"].HeaderText = "Họ và tên";
                             dgvMembers.Columns["birthday"].HeaderText = "Ngày sinh";
@@ -100,7 +92,6 @@ namespace QuanLyThuQuan
                             dgvMembers.Columns["class"].HeaderText = "Lớp";
                             dgvMembers.Columns["role"].HeaderText = "Vai trò";
                             dgvMembers.Columns["status"].HeaderText = "Trạng thái";
-                            
                         }
                     }
                 }
@@ -118,8 +109,8 @@ namespace QuanLyThuQuan
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, [class], password, role, status) " +
-                "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status)";
+                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, class, password, role, status) " +
+                        "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -127,7 +118,7 @@ namespace QuanLyThuQuan
                         command.Parameters.AddWithValue("@member_id", txtMemberId.Text);
                         command.Parameters.AddWithValue("@full_name", txtHoVaTen.Text);
                         command.Parameters.AddWithValue("@birthday", dtpBirthday.Value.ToString("yyyy-MM-dd"));
-                        command.Parameters.AddWithValue("@phone_number", txtDangNhap.Text);  // Bạn cần đảm bảo trường này chứa số điện thoại
+                        command.Parameters.AddWithValue("@phone_number", txtPhoneNumber.Text);
                         command.Parameters.AddWithValue("@email", txtEmail.Text);
                         command.Parameters.AddWithValue("@department", cbKhoa.SelectedItem?.ToString());
                         command.Parameters.AddWithValue("@major", cboNganh.SelectedItem?.ToString());
@@ -136,7 +127,6 @@ namespace QuanLyThuQuan
                         command.Parameters.AddWithValue("@role", cboVaiTro.SelectedItem?.ToString());
                         command.Parameters.AddWithValue("@status", cboTrangThai.SelectedItem?.ToString());
 
-                        // Thực thi câu lệnh
                         command.ExecuteNonQuery();
                         MessageBox.Show("Dữ liệu đã được lưu vào MySQL.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadMembersFromMySQL();  // Cập nhật lại danh sách thành viên
@@ -151,13 +141,12 @@ namespace QuanLyThuQuan
             {
                 MessageBox.Show("Lỗi chung: " + ex.Message);
             }
-
         }
 
-        private void btnLuu_Click_1(object sender, EventArgs e)
+        private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text) || string.IsNullOrWhiteSpace(txtDangNhap.Text) ||
-                string.IsNullOrWhiteSpace(txtMatKhau.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) ||
+            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text) || string.IsNullOrWhiteSpace(txtPhoneNumber.Text) ||
+                string.IsNullOrWhiteSpace(txtPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) ||
                 cboVaiTro.SelectedItem == null || cboTrangThai.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -168,22 +157,23 @@ namespace QuanLyThuQuan
             ClearInputFields();
         }
 
-        private void btnThoat_Click_1(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void ClearInputFields()
         {
-            txtMemberId.Text = "";
-            txtHoVaTen.Text = "";
+            txtMemberId.Clear();
+            txtHoVaTen.Clear();
             dtpBirthday.Value = DateTime.Now;
-            txtDangNhap.Text = "";
-            txtMatKhau.Text = "";
-            txtEmail.Text = "";
-            dtpNgayDangKy.Value = DateTime.Now;
+            txtPhoneNumber.Clear();
+            txtEmail.Clear();
             cboVaiTro.SelectedIndex = -1;
             cboTrangThai.SelectedIndex = -1;
+            cbKhoa.SelectedIndex = 0;
+            cboNganh.SelectedIndex = 0;
+            cboLop.SelectedIndex = 0;
         }
 
         private void dgvMembers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -194,18 +184,15 @@ namespace QuanLyThuQuan
                 txtMemberId.Text = row["member_id"].ToString();
                 txtHoVaTen.Text = row["full_name"].ToString();
                 dtpBirthday.Value = (DateTime)row["birthday"];
-                txtDangNhap.Text = row["phone_number"].ToString();
-                txtMatKhau.Text = row["password"].ToString();
+                txtPhoneNumber.Text = row["phone_number"].ToString();
+                txtPhoneNumber.Text = row["password"].ToString();
                 txtEmail.Text = row["email"].ToString();
                 cboVaiTro.SelectedItem = row["role"].ToString();
                 cboTrangThai.SelectedItem = row["status"].ToString();
-                dtpNgayDangKy.Value = DateTime.Now;
             }
         }
 
-        
-
-        private void btnXuatExcel_Click_1(object sender, EventArgs e)
+        private void btnXuatExcel_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
@@ -239,25 +226,6 @@ namespace QuanLyThuQuan
             }
         }
 
-
-        public class Member
-        {
-            public string MemberId { get; set; }
-            public string HoVaTen { get; set; }
-            public DateTime NgaySinh { get; set; }
-            public string DangNhap { get; set; }
-            public string MatKhau { get; set; }
-            public string Email { get; set; }
-            public DateTime NgayDangKy { get; set; }
-            public string VaiTro { get; set; }
-            public string TrangThai { get; set; }
-        }
-
-        private void txtHoVaTen_TextChanged(object sender, EventArgs e)
-        {
-            // Tìm kiếm/lọc dữ liệu nếu cần
-        }
-
         private void btnNhapExcel_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -269,7 +237,7 @@ namespace QuanLyThuQuan
 
                 try
                 {
-                    using (var workbook = new ClosedXML.Excel.XLWorkbook(filePath))
+                    using (var workbook = new XLWorkbook(filePath))
                     {
                         var worksheet = workbook.Worksheets.First();
                         var dataTable = new DataTable();
@@ -303,169 +271,12 @@ namespace QuanLyThuQuan
             }
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void cboVaiTro_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            // Lấy dữ liệu từ form
-            string memberId = txtMemberId.Text.Trim();
-            string hoVaTen = txtHoVaTen.Text.Trim();
-            DateTime ngaySinh = dtpBirthday.Value;
-            string dangNhap = txtDangNhap.Text.Trim(); // login name?
-            string matKhau = txtMatKhau.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            DateTime ngayDangKy = dtpNgayDangKy.Value;
-            string vaiTro = cboVaiTro.SelectedItem?.ToString();
-            string trangThaiStr = cboTrangThai.SelectedItem?.ToString();
-
-            // Thêm các trường mới
-            string khoa = cbKhoa.SelectedItem?.ToString();
-            string nganh = cboNganh.SelectedItem?.ToString();
-            string lop = cboLop.SelectedItem?.ToString();
-            //string gioiTinh = cboGioiTinh.SelectedItem?.ToString(); // Mở comment nếu sử dụng
-
-            if (string.IsNullOrWhiteSpace(hoVaTen) ||
-                string.IsNullOrWhiteSpace(dangNhap) ||
-                string.IsNullOrWhiteSpace(matKhau) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrEmpty(vaiTro) ||
-                string.IsNullOrEmpty(trangThaiStr))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                int trangThai = int.TryParse(cboTrangThai.SelectedItem?.ToString(), out int t) ? t : 0;
-                DateTime now = DateTime.Now;
-
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "INSERT INTO member (member_id, full_name, birthday, phone_number, email, department, major, class, password, role, status, created_at) " +
-                                   "VALUES (@member_id, @full_name, @birthday, @phone_number, @email, @department, @major, @class, @password, @role, @status, @created_at)";
-
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@member_id", memberId);
-                        command.Parameters.AddWithValue("@full_name", hoVaTen);
-                        command.Parameters.AddWithValue("@birthday", ngaySinh.ToString("yyyy-MM-dd"));
-                        command.Parameters.AddWithValue("@phone_number", dangNhap);
-                        command.Parameters.AddWithValue("@email", email);
-                        command.Parameters.AddWithValue("@department", khoa);
-                        command.Parameters.AddWithValue("@major", nganh);
-                        command.Parameters.AddWithValue("@class", lop);
-                        command.Parameters.AddWithValue("@password", matKhau);
-                        command.Parameters.AddWithValue("@role", vaiTro);
-                        command.Parameters.AddWithValue("@status", trangThai); // Đưa xuống đây nè
-                                                                               //command.Parameters.AddWithValue("@gender", ""); // nếu đang để trống
-                                                                               // command.Parameters.AddWithValue("@register_date", ngayDangKy.ToString("yyyy-MM-dd"));
-                                                                               // Kiểm tra xem created_at có phải là null không, nếu có thì dùng thời gian hiện tại
-
-
-                        if (ngayDangKy == null)
-                        {
-                            command.Parameters.AddWithValue("@created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@created_at", ngayDangKy);
-                        }
-
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-
-                MessageBox.Show("Lưu thành viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadMembersFromMySQL();
-                ClearInputFields();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnXuatExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var workbook = new XLWorkbook())
-                {
-                    var worksheet = workbook.Worksheets.Add("DanhSachThanhVien");
-
-                    // Header
-                    for (int i = 0; i < dgvMembers.Columns.Count; i++)
-                    {
-                        worksheet.Cell(1, i + 1).Value = dgvMembers.Columns[i].HeaderText;
-                    }
-
-                    // Data
-                    for (int i = 0; i < dgvMembers.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dgvMembers.Columns.Count; j++)
-                        {
-                            worksheet.Cell(i + 2, j + 1).Value = dgvMembers.Rows[i].Cells[j].Value?.ToString();
-                        }
-                    }
-
-                    SaveFileDialog save = new SaveFileDialog();
-                    save.Filter = "Excel Workbook|*.xlsx";
-                    if (save.ShowDialog() == DialogResult.OK)
-                    {
-                        workbook.SaveAs(save.FileName);
-                        MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message);
-            }
-        }
-
-        private void cboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvMembers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboVaiTro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboNganh_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboTrangThai_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

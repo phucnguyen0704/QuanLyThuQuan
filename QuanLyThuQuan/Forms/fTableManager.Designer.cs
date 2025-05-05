@@ -28,6 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.quảnLýĐộcGiảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +51,8 @@
             this.chỗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thànhViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NhậtKíVàoThưQuánToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viPhạmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýĐặtChỗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traCứuSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.theoDõiMượnTrảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,9 +63,15 @@
             this.đăngXuấtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblQLTV = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
-            this.viPhạmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quảnLýĐặtChỗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.memberChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.deviceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.reservationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.seatChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memberChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviceChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seatChart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -157,6 +177,20 @@
             this.NhậtKíVàoThưQuánToolStripMenuItem.Text = "Nhật kí vào thư quán";
             this.NhậtKíVàoThưQuánToolStripMenuItem.Click += new System.EventHandler(this.NhậtKíVàoThưQuánToolStripMenuItem_Click);
             // 
+            // viPhạmToolStripMenuItem
+            // 
+            this.viPhạmToolStripMenuItem.Name = "viPhạmToolStripMenuItem";
+            this.viPhạmToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.viPhạmToolStripMenuItem.Text = "Vi phạm";
+            this.viPhạmToolStripMenuItem.Click += new System.EventHandler(this.viPhạmToolStripMenuItem_Click);
+            // 
+            // quảnLýĐặtChỗToolStripMenuItem
+            // 
+            this.quảnLýĐặtChỗToolStripMenuItem.Name = "quảnLýĐặtChỗToolStripMenuItem";
+            this.quảnLýĐặtChỗToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.quảnLýĐặtChỗToolStripMenuItem.Text = "Quản lý đặt chỗ";
+            this.quảnLýĐặtChỗToolStripMenuItem.Click += new System.EventHandler(this.quảnLýĐặtChỗToolStripMenuItem_Click);
+            // 
             // traCứuSáchToolStripMenuItem
             // 
             this.traCứuSáchToolStripMenuItem.Name = "traCứuSáchToolStripMenuItem";
@@ -240,19 +274,70 @@
             this.lblWelcome.TabIndex = 3;
             this.lblWelcome.Text = "Welcome";
             // 
-            // viPhạmToolStripMenuItem
+            // memberChart
             // 
-            this.viPhạmToolStripMenuItem.Name = "viPhạmToolStripMenuItem";
-            this.viPhạmToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.viPhạmToolStripMenuItem.Text = "Vi phạm";
-            this.viPhạmToolStripMenuItem.Click += new System.EventHandler(this.viPhạmToolStripMenuItem_Click);
+            chartArea1.Name = "ChartArea1";
+            this.memberChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.memberChart.Legends.Add(legend1);
+            this.memberChart.Location = new System.Drawing.Point(12, 68);
+            this.memberChart.Name = "memberChart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.memberChart.Series.Add(series1);
+            this.memberChart.Size = new System.Drawing.Size(333, 172);
+            this.memberChart.TabIndex = 4;
+            this.memberChart.Text = "chart1";
+            this.memberChart.Click += new System.EventHandler(this.chart1_Click);
             // 
-            // quảnLýĐặtChỗToolStripMenuItem
+            // deviceChart
             // 
-            this.quảnLýĐặtChỗToolStripMenuItem.Name = "quảnLýĐặtChỗToolStripMenuItem";
-            this.quảnLýĐặtChỗToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.quảnLýĐặtChỗToolStripMenuItem.Text = "Quản lý đặt chỗ";
-            this.quảnLýĐặtChỗToolStripMenuItem.Click += new System.EventHandler(this.quảnLýĐặtChỗToolStripMenuItem_Click);
+            chartArea2.Name = "ChartArea1";
+            this.deviceChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.deviceChart.Legends.Add(legend2);
+            this.deviceChart.Location = new System.Drawing.Point(430, 68);
+            this.deviceChart.Name = "deviceChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.deviceChart.Series.Add(series2);
+            this.deviceChart.Size = new System.Drawing.Size(340, 172);
+            this.deviceChart.TabIndex = 5;
+            this.deviceChart.Text = "chart2";
+            // 
+            // reservationChart
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.reservationChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.reservationChart.Legends.Add(legend3);
+            this.reservationChart.Location = new System.Drawing.Point(12, 286);
+            this.reservationChart.Name = "reservationChart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.reservationChart.Series.Add(series3);
+            this.reservationChart.Size = new System.Drawing.Size(333, 213);
+            this.reservationChart.TabIndex = 6;
+            this.reservationChart.Text = "chart3";
+            // 
+            // seatChart
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.seatChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.seatChart.Legends.Add(legend4);
+            this.seatChart.Location = new System.Drawing.Point(430, 286);
+            this.seatChart.Name = "seatChart";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.seatChart.Series.Add(series4);
+            this.seatChart.Size = new System.Drawing.Size(340, 213);
+            this.seatChart.TabIndex = 7;
+            this.seatChart.Text = "chart4";
             // 
             // fTableManager
             // 
@@ -261,16 +346,23 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(617, 457);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.lblQLTV);
+            this.Controls.Add(this.seatChart);
+            this.Controls.Add(this.reservationChart);
+            this.Controls.Add(this.deviceChart);
+            this.Controls.Add(this.memberChart);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "fTableManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý thư viện";
+            this.Load += new System.EventHandler(this.fTableManager_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memberChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviceChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reservationChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seatChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,6 +390,10 @@
         private System.Windows.Forms.ToolStripMenuItem quyĐịnhToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thànhViênToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NhậtKíVàoThưQuánToolStripMenuItem;
+        private System.Windows.Forms.DataVisualization.Charting.Chart memberChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart deviceChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart reservationChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart seatChart;
         private System.Windows.Forms.ToolStripMenuItem viPhạmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýĐặtChỗToolStripMenuItem;
     }

@@ -20,9 +20,9 @@ namespace QuanLyThuQuan.DAL
             try
             {
                 string sql = @"INSERT INTO seat (name) VALUES (@seatName)";
+                OpenConnection();
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 command.Parameters.AddWithValue("@seatName", seat.seatName);
-                OpenConnection();
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -49,25 +49,29 @@ namespace QuanLyThuQuan.DAL
             {
                 try
                 {
+                    //MessageBox.Show("$" + seat.seatId);
                     string sql = @"
                             UPDATE seat
-                            SET name = @seatName
+                            SET name = @seatName, status = @status
                             WHERE seat_id = @seatId";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
+                    command.Parameters.AddWithValue("@seatId", seat.seatId);
+                    command.Parameters.AddWithValue("@status", seat.status);
                     OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
             }
             finally
@@ -85,23 +89,23 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                             UPDATE seat
-                            SET status = 0
+                            SET status = 2
                             WHERE seat_id = @seatId";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatId", seatId);
-                    OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
 
             }
@@ -111,16 +115,15 @@ namespace QuanLyThuQuan.DAL
             }
         }
 
-        public List<SeatDTO> getAll() {
+        public List<SeatDTO> getAll()
+        {
             List<SeatDTO> seats = new List<SeatDTO>();
             try
             {
-                try
-                {
-                    string sql = @"SELECT * FROM seat where status = 1";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-                    OpenConnection();
-                    MySqlDataReader reader = command.ExecuteReader();
+                string sql = @"SELECT * FROM seat where status != 2";
+                MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                OpenConnection();
+                MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         SeatDTO seat = new SeatDTO(
@@ -130,15 +133,12 @@ namespace QuanLyThuQuan.DAL
                             );
                         seats.Add(seat);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Loi: " + ex.Message);
-                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
+
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
             finally
             {
@@ -155,9 +155,9 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"Select * from seat where seat_id = @id";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@id", id);
-                    OpenConnection();
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
@@ -171,14 +171,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally
@@ -196,9 +196,9 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"Select * from seat where name=@seatName";
+                    OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seatName);
-                    OpenConnection();
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
@@ -212,14 +212,14 @@ namespace QuanLyThuQuan.DAL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Loi: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi khac: " + ex.Message);
+                Console.WriteLine("Lỗi khác: " + ex.Message);
                 return null;
             }
             finally

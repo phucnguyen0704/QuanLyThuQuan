@@ -108,6 +108,6 @@ namespace QuanLyThuQuan
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtSeatName;
         private System.Windows.Forms.CheckBox checkBox1;
-        private readonly EventHandler test_Load;
+       // private readonly EventHandler test_Load;  (em thấy lỗi nên em thêm cái này) 
     }
 }

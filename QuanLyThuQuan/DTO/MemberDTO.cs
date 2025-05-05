@@ -7,14 +7,16 @@ namespace QuanLyThuQuan.DTO
         public int MemberId { get; set; }
         public string FullName { get; set; }
         public DateTime Birthday { get; set; }
-       
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string PhoneNumber { get; set; } // em mới thêm lại
         public string Email { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string Department { get; set; }
+        public string Major { get; set; }
+        public string Class { get; set; }
+        public string Password { get; set; }
         public string Role { get; set; }
         public int Status { get; set; }
-
- 
+        public DateTime CreatedAt { get; set; }
+        
+        
     }
 }

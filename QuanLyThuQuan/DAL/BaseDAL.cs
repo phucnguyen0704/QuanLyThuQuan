@@ -13,8 +13,8 @@ namespace QuanLyThuQuan.DAL
     {
         private MySqlConnection connection;
         //private string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=root;SslMode=none;";
-        //string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
-        string connectionString = "server=localhost;port=3308;user=root;password=123456;database=librarydb;SslMode=none;";
+        string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
+        //string connectionString = "server=localhost;port=3308;user=root;password=123456;database=librarydb;SslMode=none;";
         public BaseDAL()
         {
             connection = new MySqlConnection(connectionString);

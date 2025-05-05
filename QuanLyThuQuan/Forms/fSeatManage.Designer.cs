@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.txtSeatName = new System.Windows.Forms.TextBox();
             this.txtSeatID = new System.Windows.Forms.TextBox();
             this.lblSeatStatus = new System.Windows.Forms.Label();
@@ -50,12 +50,12 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cbStatus);
             this.panel2.Controls.Add(this.btnReset);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.txtStatus);
             this.panel2.Controls.Add(this.txtSeatName);
             this.panel2.Controls.Add(this.txtSeatID);
             this.panel2.Controls.Add(this.lblSeatStatus);
@@ -65,6 +65,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(360, 597);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Còn trống",
+            "Đã đặt"});
+            this.cbStatus.Location = new System.Drawing.Point(149, 165);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(180, 24);
+            this.cbStatus.TabIndex = 3;
+            this.cbStatus.TabStop = false;
             // 
             // btnReset
             // 
@@ -83,10 +96,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(144, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
+            this.label1.Size = new System.Drawing.Size(104, 24);
             this.label1.TabIndex = 23;
             this.label1.Text = "Tùy chỉnh";
             // 
@@ -123,17 +136,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtStatus
-            // 
-            this.txtStatus.BackColor = System.Drawing.Color.White;
-            this.txtStatus.Enabled = false;
-            this.txtStatus.Location = new System.Drawing.Point(149, 167);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(180, 22);
-            this.txtStatus.TabIndex = 12;
-            this.txtStatus.TabStop = false;
-            // 
             // txtSeatName
             // 
             this.txtSeatName.Location = new System.Drawing.Point(149, 125);
@@ -157,27 +159,30 @@
             // lblSeatStatus
             // 
             this.lblSeatStatus.AutoSize = true;
+            this.lblSeatStatus.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatStatus.Location = new System.Drawing.Point(20, 173);
             this.lblSeatStatus.Name = "lblSeatStatus";
-            this.lblSeatStatus.Size = new System.Drawing.Size(67, 16);
+            this.lblSeatStatus.Size = new System.Drawing.Size(71, 16);
             this.lblSeatStatus.TabIndex = 2;
             this.lblSeatStatus.Text = "Trạng thái";
             // 
             // lblSeatName
             // 
             this.lblSeatName.AutoSize = true;
+            this.lblSeatName.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatName.Location = new System.Drawing.Point(20, 131);
             this.lblSeatName.Name = "lblSeatName";
-            this.lblSeatName.Size = new System.Drawing.Size(56, 16);
+            this.lblSeatName.Size = new System.Drawing.Size(58, 16);
             this.lblSeatName.TabIndex = 1;
             this.lblSeatName.Text = "Tên chỗ";
             // 
             // lblSeatID
             // 
             this.lblSeatID.AutoSize = true;
+            this.lblSeatID.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatID.Location = new System.Drawing.Point(20, 85);
             this.lblSeatID.Name = "lblSeatID";
-            this.lblSeatID.Size = new System.Drawing.Size(51, 16);
+            this.lblSeatID.Size = new System.Drawing.Size(53, 16);
             this.lblSeatID.TabIndex = 0;
             this.lblSeatID.Text = "Mã chỗ";
             this.lblSeatID.Click += new System.EventHandler(this.lblSeatID_Click);
@@ -208,10 +213,10 @@
             // 
             this.lblDisBookInLib.AutoSize = true;
             this.lblDisBookInLib.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.lblDisBookInLib.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisBookInLib.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisBookInLib.Location = new System.Drawing.Point(500, 18);
             this.lblDisBookInLib.Name = "lblDisBookInLib";
-            this.lblDisBookInLib.Size = new System.Drawing.Size(97, 25);
+            this.lblDisBookInLib.Size = new System.Drawing.Size(96, 24);
             this.lblDisBookInLib.TabIndex = 0;
             this.lblDisBookInLib.Text = "Vị trí chỗ";
             // 
@@ -240,7 +245,6 @@
         private System.Windows.Forms.Label lblSeatName;
         private System.Windows.Forms.Label lblSeatID;
         private System.Windows.Forms.Label lblSeatStatus;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.TextBox txtSeatName;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
@@ -251,5 +255,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSeatID;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.ComboBox cbStatus;
     }
 }
