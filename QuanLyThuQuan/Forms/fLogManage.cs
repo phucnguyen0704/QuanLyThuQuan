@@ -1,5 +1,6 @@
 ﻿using ClosedXML;
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 using QuanLyThuQuan.BLL;
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
@@ -51,8 +52,8 @@ namespace QuanLyThuQuan.Forms
             dataGridViewLog.DataBindingComplete += dataGridViewLog_DataBindingComplete;
 
             dataGridViewLog.EnableHeadersVisualStyles = false;
-            dataGridViewLog.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dataGridViewLog.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            //dataGridViewLog.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            //dataGridViewLog.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dataGridViewLog.ReadOnly = true;
             dataGridViewLog.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewLog.MultiSelect = false;
@@ -62,6 +63,31 @@ namespace QuanLyThuQuan.Forms
 
             // Đăng ký sự kiện click nút chi tiết
             dataGridViewLog.CellContentClick += dataGridViewLog_CellContentClickbtnDetail;
+            dataGridViewLog.CellFormatting += dataGridViewLog_CellFormatting;
+        }
+
+        // Tùy chỉnh hiển thị cột "Trạng thái"
+        private void dataGridViewLog_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewLog.Columns["status"].Index && e.RowIndex >= 0)
+            {
+                int status;
+                if (int.TryParse(e.Value?.ToString(), out status))
+                {
+                    switch (status)
+                    {
+                        case 1:
+                            e.Value = "Đã ghi nhận";
+                            break;
+                        case 2:
+                            e.Value = "Đã xóa";
+                            break;
+                        default:
+                            e.Value = "Không xác định";
+                            break;
+                    }
+                }
+            }
         }
 
         // Xoá chọn sau khi bind xong
@@ -79,7 +105,7 @@ namespace QuanLyThuQuan.Forms
                 txtLogID.Text = row.Cells["LogId"].Value.ToString();
                 txtLogMemberID.Text = row.Cells["memberId"].Value.ToString();
                 txtStatus.Text = row.Cells["status"].Value.ToString();
-                
+                txtStatus.Text = txtStatus.Text == "1" ? "Đã ghi nhận" : txtStatus.Text == "2" ? "Đã xóa" : "";
                 string[] parts = row.Cells["checkInTime"].Value.ToString().Split(' ');
                 string timeOnly = parts[1];
                 string[] timeParts = timeOnly.Split(':');

@@ -42,7 +42,7 @@ namespace QuanLyThuQuan.BLL
             return null;
         }
 
-        public string update(int seatId, string newSeatName, string newStatus) {
+        public string update(int seatId, string newSeatName, int newStatus) {
             SeatDTO seat = seatDAL.getById(seatId);
 
             if (string.IsNullOrWhiteSpace(newSeatName))
@@ -60,14 +60,8 @@ namespace QuanLyThuQuan.BLL
                     return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
                 }
             }
-            if (string.IsNullOrWhiteSpace(newStatus))
-            {
-                return "Vui lòng nhập trạng thái (1: Còn trống " +
-                                                 "2: Đã được đặt " +
-                                                 "3: Đang bảo trì)";
-            }
             seat.seatName = newSeatName;
-            seat.status = int.Parse(newStatus);
+            seat.status = newStatus;
             seatDAL.update(seat);
             return null;
         }
