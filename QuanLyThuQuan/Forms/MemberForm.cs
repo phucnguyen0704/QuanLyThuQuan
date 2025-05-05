@@ -733,5 +733,10 @@ namespace QuanLyThuQuan.Forms
         {
 
         }
+
+        private void txtMemberId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

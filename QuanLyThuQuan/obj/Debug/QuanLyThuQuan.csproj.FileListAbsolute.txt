@@ -154,5 +154,5 @@ C:\Users\ttkie\Documents\QuanLyThuQuan\QuanLyThuQuan\bin\Debug\System.Numerics.V
 C:\Users\ttkie\Documents\QuanLyThuQuan\QuanLyThuQuan\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\ttkie\Documents\QuanLyThuQuan\QuanLyThuQuan\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\ttkie\Documents\QuanLyThuQuan\QuanLyThuQuan\obj\Debug\QuanLyTh.BD2212A7.Up2Date
-D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.fChangePassword.resources
 D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.ChangePasswordForm.resources
+D:\do_an\cs\QLTV\QuanLyThuQuan\obj\Debug\QuanLyThuQuan.Forms.LogForm.resources

@@ -131,7 +131,8 @@ namespace QuanLyThuQuan
         private void btnLogs_Click(object sender, EventArgs e)
         {
             //fLogManage f = new fLogManage();
-            //OpenChildForm(f);
+            LogForm f = new LogForm();
+            OpenChildForm(f);
         }
 
         private void fTableManager_Load(object sender, EventArgs e)

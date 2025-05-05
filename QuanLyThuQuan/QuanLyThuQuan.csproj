@@ -126,17 +126,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\DeviceBLL.cs" />
+    <Compile Include="BLL\LogBLL.cs" />
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\ReservationBLL.cs" />
     <Compile Include="BLL\ReservationDetailBLL.cs" />
     <Compile Include="BLL\SeatBLL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
+    <Compile Include="DAL\LogDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
     <Compile Include="DAL\ReservationDetailDAL.cs" />
     <Compile Include="DAL\SeatDAL.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
+    <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\MemberDTO.cs" />
     <Compile Include="DTO\ReservationDetailDTO.cs" />
     <Compile Include="DTO\ReservationDTO.cs" />
@@ -153,17 +156,17 @@
     <Compile Include="Forms\DeviceForm.Designer.cs">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\fChangePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fChangePassword.Designer.cs">
-      <DependentUpon>fChangePassword.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -204,11 +207,11 @@
     <EmbeddedResource Include="Forms\DeviceForm.resx">
       <DependentUpon>DeviceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fChangePassword.resx">
-      <DependentUpon>fChangePassword.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
