@@ -59,6 +59,13 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     response.Data = null;
                     return response;
                 }
+                if(member.Status == 3)
+                {
+                    response.Success = false;
+                    response.Message = $"Tài khoản của bạn đã bị khóa! Xin vui lòng đến thư quán để biết thêm thông tin";
+                    response.Data = null;
+                    return response;
+                }
                 response.Success = BCrypt.Net.BCrypt.Verify(password, member.Password);
                 if (response.Success)
                 {
