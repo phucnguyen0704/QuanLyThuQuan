@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -237,7 +240,6 @@
     <Compile Include="BLL\SeatBLL.cs" />
     <Compile Include="BLL\ViolationBLL.cs" />
     <Compile Include="BLL\StatisticalBLL.cs" />
-    <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DeviceDAL.cs" />
     <Compile Include="DAL\LogDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
@@ -362,7 +364,6 @@
     <Compile Include="Forms\ViolationForm.Designer.cs">
       <DependentUpon>ViolationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="iText\Kernel\Pdf\PdfFontFactory.cs" />
     <Compile Include="Forms\ReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +388,7 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utils\SecurityCoder.cs" />
     <EmbeddedResource Include="Forms\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -19,6 +19,7 @@ namespace QuanLyThuQuan
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+            //Application.Run(new ManagerForm(3)); // Replace with actual member ID
         }
     }
 }

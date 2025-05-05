@@ -1,5 +1,6 @@
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using QuanLyThuQuan.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +18,7 @@ namespace QuanLyThuQuan.BLL
 
         public bool create(MemberDTO member)
         {
+            member.Password = SecurityCoder.Encrypt(member.Password);
             return memberDAL.create(member);
         }
 
@@ -40,15 +42,16 @@ namespace QuanLyThuQuan.BLL
             MemberDTO member = memberDAL.getByID(memberId);
             if (member != null)
             {
-                if (member.MemberId == memberId && member.Password == password && member.Role == role)
+                bool resultOfCheckPass = SecurityCoder.Verify(password, member.Password);
+                if (member.MemberId == memberId && resultOfCheckPass && member.Role == role)
                 {
                     return 1; // đăng nhập thành công
                 }
-                else if (member.MemberId == memberId && member.Password != password)
+                else if (member.MemberId == memberId && !resultOfCheckPass)
                 {
                     return 2; // đúng ID, sai mật khẩu
                 }
-                else if (member.MemberId == memberId && member.Password == password && member.Role != role)
+                else if (member.MemberId == memberId && resultOfCheckPass && member.Role != role)
                 {
                     return 3; // đúng ID, đúng mật khẩu, sai quyền hạn
                 }
@@ -61,7 +64,7 @@ namespace QuanLyThuQuan.BLL
             MemberDTO member = memberDAL.getByID(memberId);
             if (member != null)
             {
-                member.Password = newPassword;
+                member.Password = SecurityCoder.Encrypt(newPassword);
                 return memberDAL.update(member);
             }
             return false; // không tìm thấy ID

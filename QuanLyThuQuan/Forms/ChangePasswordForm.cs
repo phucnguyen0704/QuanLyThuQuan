@@ -1,4 +1,5 @@
 ﻿using QuanLyThuQuan.BLL;
+using QuanLyThuQuan.Utils;
 using System;
 using System.Windows.Forms;
 
@@ -25,6 +26,14 @@ namespace QuanLyThuQuan
                 string.IsNullOrWhiteSpace(textBoxConfirmPassword.Text))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi đổi mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!Checker.IsValidPassword(textBoxNewPassword.Text))
+            {
+                MessageBox.Show("Mật khẩu tối thiểu 6 kí tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxConfirmPassword.Clear();
+                textBoxConfirmPassword.Focus();
                 return;
             }
 

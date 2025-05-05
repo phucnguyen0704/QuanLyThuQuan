@@ -60,6 +60,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     return response;
                 }
                 response.Success = BCrypt.Net.BCrypt.Verify(password, member.Password);
+                //response.Success = true;
                 if (response.Success)
                 {
                     response.Message = "Đăng nhập thành công";
@@ -134,7 +135,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                         response.Message = "Mật khẩu cũ không đúng. Xin vui lòng nhập lại!";
                         return response;
                     }
-                    member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
+                    //member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
                     _db.Members.Update(member);
                     if(await _db.SaveChangesAsync() > 0)
                     {
