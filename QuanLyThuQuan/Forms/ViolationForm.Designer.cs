@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblQLVP = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.flpnLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.lblThongtinVP = new System.Windows.Forms.Label();
+            this.flpnID = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblID = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.flpnMaTV = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMaTV = new System.Windows.Forms.Label();
-            this.txtMaSV = new System.Windows.Forms.TextBox();
+            this.txtMaTV = new System.Windows.Forms.TextBox();
             this.btnChonMaSV = new System.Windows.Forms.Button();
             this.flpnLoiViPham = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMaQD = new System.Windows.Forms.Label();
@@ -59,9 +63,10 @@
             this.lblNgayTao = new System.Windows.Forms.Label();
             this.dtpNgayTao = new System.Windows.Forms.DateTimePicker();
             this.flpnButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnChiTiet = new System.Windows.Forms.Button();
             this.btnChinhSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.pnRight = new System.Windows.Forms.Panel();
@@ -72,15 +77,13 @@
             this.lblTieuChiTrangThai = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnChiTiet = new System.Windows.Forms.Button();
-            this.flpnID = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblID = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
+            this.btnChonMaDatCho = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.flpnLeft.SuspendLayout();
+            this.flpnID.SuspendLayout();
             this.flpnMaTV.SuspendLayout();
             this.flpnLoiViPham.SuspendLayout();
             this.flpnMaDatCho.SuspendLayout();
@@ -93,7 +96,6 @@
             this.pnRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flpnID.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblQLVP
@@ -166,10 +168,41 @@
             this.lblThongtinVP.Text = "Thông tin vi phạm";
             this.lblThongtinVP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // flpnID
+            // 
+            this.flpnID.Controls.Add(this.lblID);
+            this.flpnID.Controls.Add(this.txtID);
+            this.flpnID.Location = new System.Drawing.Point(3, 58);
+            this.flpnID.Name = "flpnID";
+            this.flpnID.Size = new System.Drawing.Size(485, 40);
+            this.flpnID.TabIndex = 5;
+            // 
+            // lblID
+            // 
+            this.lblID.Location = new System.Drawing.Point(3, 3);
+            this.lblID.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(133, 30);
+            this.lblID.TabIndex = 0;
+            this.lblID.Text = "ID:";
+            this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtID
+            // 
+            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtID.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(139, 3);
+            this.txtID.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(331, 29);
+            this.txtID.TabIndex = 1;
+            // 
             // flpnMaTV
             // 
             this.flpnMaTV.Controls.Add(this.lblMaTV);
-            this.flpnMaTV.Controls.Add(this.txtMaSV);
+            this.flpnMaTV.Controls.Add(this.txtMaTV);
             this.flpnMaTV.Controls.Add(this.btnChonMaSV);
             this.flpnMaTV.Location = new System.Drawing.Point(3, 104);
             this.flpnMaTV.Name = "flpnMaTV";
@@ -186,17 +219,17 @@
             this.lblMaTV.Text = "Mã TV:";
             this.lblMaTV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtMaSV
+            // txtMaTV
             // 
-            this.txtMaSV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaSV.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtMaSV.Enabled = false;
-            this.txtMaSV.Location = new System.Drawing.Point(139, 3);
-            this.txtMaSV.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.txtMaSV.Name = "txtMaSV";
-            this.txtMaSV.ReadOnly = true;
-            this.txtMaSV.Size = new System.Drawing.Size(251, 29);
-            this.txtMaSV.TabIndex = 1;
+            this.txtMaTV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaTV.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtMaTV.Enabled = false;
+            this.txtMaTV.Location = new System.Drawing.Point(139, 3);
+            this.txtMaTV.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtMaTV.Name = "txtMaTV";
+            this.txtMaTV.ReadOnly = true;
+            this.txtMaTV.Size = new System.Drawing.Size(251, 29);
+            this.txtMaTV.TabIndex = 1;
             // 
             // btnChonMaSV
             // 
@@ -208,7 +241,7 @@
             this.btnChonMaSV.TabIndex = 2;
             this.btnChonMaSV.Text = "Chọn";
             this.btnChonMaSV.UseVisualStyleBackColor = true;
-            this.btnChonMaSV.Click += new System.EventHandler(this.btnChonMaSV_Click);
+            this.btnChonMaSV.Click += new System.EventHandler(this.btnChonMaTV_Click);
             // 
             // flpnLoiViPham
             // 
@@ -258,6 +291,7 @@
             // 
             this.flpnMaDatCho.Controls.Add(this.lblMaDatCho);
             this.flpnMaDatCho.Controls.Add(this.txtMaDatCho);
+            this.flpnMaDatCho.Controls.Add(this.btnChonMaDatCho);
             this.flpnMaDatCho.Location = new System.Drawing.Point(3, 196);
             this.flpnMaDatCho.Name = "flpnMaDatCho";
             this.flpnMaDatCho.Size = new System.Drawing.Size(485, 40);
@@ -282,7 +316,7 @@
             this.txtMaDatCho.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.txtMaDatCho.Name = "txtMaDatCho";
             this.txtMaDatCho.ReadOnly = true;
-            this.txtMaDatCho.Size = new System.Drawing.Size(331, 29);
+            this.txtMaDatCho.Size = new System.Drawing.Size(251, 29);
             this.txtMaDatCho.TabIndex = 1;
             // 
             // flpnHThucXuLy
@@ -457,19 +491,19 @@
             this.flpnButtonGroup.Size = new System.Drawing.Size(484, 146);
             this.flpnButtonGroup.TabIndex = 7;
             // 
-            // btnXoa
+            // btnChiTiet
             // 
-            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoa.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnXoa.Location = new System.Drawing.Point(361, 49);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(120, 40);
-            this.btnXoa.TabIndex = 4;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = false;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.btnChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnChiTiet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChiTiet.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnChiTiet.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnChiTiet.Location = new System.Drawing.Point(361, 3);
+            this.btnChiTiet.Name = "btnChiTiet";
+            this.btnChiTiet.Size = new System.Drawing.Size(120, 40);
+            this.btnChiTiet.TabIndex = 5;
+            this.btnChiTiet.Text = "Chi tiết";
+            this.btnChiTiet.UseVisualStyleBackColor = false;
+            this.btnChiTiet.Click += new System.EventHandler(this.btnChiTiet_Click);
             // 
             // btnChinhSua
             // 
@@ -499,6 +533,20 @@
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoa.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXoa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnXoa.Location = new System.Drawing.Point(361, 49);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(120, 40);
+            this.btnXoa.TabIndex = 4;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnHuy
             // 
@@ -543,6 +591,8 @@
             // 
             // dataGridView
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -590,7 +640,7 @@
             this.cbTieuChiTrangThai.FormattingEnabled = true;
             this.cbTieuChiTrangThai.Items.AddRange(new object[] {
             "Tất cả",
-            "Chờ xử lý",
+            "Đang xử lý",
             "Đã xử lý"});
             this.cbTieuChiTrangThai.Location = new System.Drawing.Point(718, 6);
             this.cbTieuChiTrangThai.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
@@ -617,6 +667,7 @@
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(152, 29);
             this.txtTimKiem.TabIndex = 1;
+            this.txtTimKiem.TabStop = false;
             this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
             // label1
@@ -630,51 +681,17 @@
             this.label1.Text = "Tìm kiếm theo Mã TV:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnChiTiet
+            // btnChonMaDatCho
             // 
-            this.btnChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.btnChiTiet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChiTiet.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnChiTiet.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnChiTiet.Location = new System.Drawing.Point(361, 3);
-            this.btnChiTiet.Name = "btnChiTiet";
-            this.btnChiTiet.Size = new System.Drawing.Size(120, 40);
-            this.btnChiTiet.TabIndex = 5;
-            this.btnChiTiet.Text = "Chi tiết";
-            this.btnChiTiet.UseVisualStyleBackColor = false;
-            this.btnChiTiet.Click += new System.EventHandler(this.btnChiTiet_Click);
-            // 
-            // flpnID
-            // 
-            this.flpnID.Controls.Add(this.lblID);
-            this.flpnID.Controls.Add(this.txtID);
-            this.flpnID.Location = new System.Drawing.Point(3, 58);
-            this.flpnID.Name = "flpnID";
-            this.flpnID.Size = new System.Drawing.Size(485, 40);
-            this.flpnID.TabIndex = 5;
-            this.flpnID.Visible = false;
-            // 
-            // lblID
-            // 
-            this.lblID.Location = new System.Drawing.Point(3, 3);
-            this.lblID.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(133, 30);
-            this.lblID.TabIndex = 0;
-            this.lblID.Text = "ID:";
-            this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtID
-            // 
-            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(139, 3);
-            this.txtID.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(331, 29);
-            this.txtID.TabIndex = 1;
+            this.btnChonMaDatCho.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnChonMaDatCho.Location = new System.Drawing.Point(393, 3);
+            this.btnChonMaDatCho.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.btnChonMaDatCho.Name = "btnChonMaDatCho";
+            this.btnChonMaDatCho.Size = new System.Drawing.Size(77, 30);
+            this.btnChonMaDatCho.TabIndex = 3;
+            this.btnChonMaDatCho.Text = "Chọn";
+            this.btnChonMaDatCho.UseVisualStyleBackColor = true;
+            this.btnChonMaDatCho.Click += new System.EventHandler(this.btnChonMaDatCho_Click);
             // 
             // ViolationForm
             // 
@@ -694,6 +711,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.flpnLeft.ResumeLayout(false);
+            this.flpnID.ResumeLayout(false);
+            this.flpnID.PerformLayout();
             this.flpnMaTV.ResumeLayout(false);
             this.flpnMaTV.PerformLayout();
             this.flpnLoiViPham.ResumeLayout(false);
@@ -711,8 +730,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flpnID.ResumeLayout(false);
-            this.flpnID.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -727,7 +744,7 @@
         private System.Windows.Forms.Button btnChonQD;
         private System.Windows.Forms.FlowLayoutPanel flpnMaTV;
         private System.Windows.Forms.Label lblMaTV;
-        private System.Windows.Forms.TextBox txtMaSV;
+        private System.Windows.Forms.TextBox txtMaTV;
         private System.Windows.Forms.Button btnChonMaSV;
         private System.Windows.Forms.FlowLayoutPanel flpnLeft;
         private System.Windows.Forms.Label lblThongtinVP;
@@ -767,5 +784,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpnID;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Button btnChonMaDatCho;
     }
 }

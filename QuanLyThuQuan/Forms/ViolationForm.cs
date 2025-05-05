@@ -68,6 +68,7 @@ namespace QuanLyThuQuan.Forms
 
             btnChonMaSV.Enabled = false;
             btnChonQD.Enabled = false;
+            btnChonMaDatCho.Enabled = false;
             cbHthucXuLy.Enabled = false;
             cbThoiGianKhoa.Enabled = false;
             txtTienBoiThuong.Enabled = false;
@@ -92,8 +93,11 @@ namespace QuanLyThuQuan.Forms
         }
 
         private void switchToAddMode() {
+            txtID.Text = string.Empty;
+
             btnChonMaSV.Enabled = true;
             btnChonQD.Enabled = true;
+            btnChonMaDatCho.Enabled = true;
             cbHthucXuLy.Enabled = true;
             flpnThoiGianKhoa.Visible = false;
             cbThoiGianKhoa.Enabled = true;
@@ -113,9 +117,11 @@ namespace QuanLyThuQuan.Forms
         private void switchToEditMode()
         {
             btnChonMaSV.Enabled = false;
+            btnChonMaDatCho.Enabled = false;
 
             if (cbTrangThai.Text == "Đang xử lý") {
                 btnChonQD.Enabled = true;
+
                 cbHthucXuLy.Enabled = true;
                 cbThoiGianKhoa.Enabled = true;
                 txtTienBoiThuong.Enabled = true;
@@ -206,7 +212,7 @@ namespace QuanLyThuQuan.Forms
                     violation.ViolationID,
                     violation.MemberID,
                     violation.RegulationID,
-                    violation.ReservationID,
+                    violation.ReservationID.HasValue ? violation.ReservationID.Value.ToString() : "",
                     violation.Penalty,
                     thoiGianKhoaText,
                     statusText,
@@ -223,7 +229,7 @@ namespace QuanLyThuQuan.Forms
             if (row.Cells["ViolationID"].Value != null)
             {
                 txtID.Text = row.Cells["ViolationID"].Value.ToString();
-                txtMaSV.Text = row.Cells["MemberID"].Value.ToString();
+                txtMaTV.Text = row.Cells["MemberID"].Value.ToString();
                 txtMaQD.Text = row.Cells["RegulationID"].Value.ToString();
                 txtMaDatCho.Text = row.Cells["ReservationID"].Value.ToString();
 
@@ -244,7 +250,7 @@ namespace QuanLyThuQuan.Forms
 
         private void ClearForm()
         {
-            txtMaSV.Text = string.Empty;
+            txtMaTV.Text = string.Empty;
             txtMaQD.Text = string.Empty;
             txtMaDatCho.Text = string.Empty;
 
@@ -321,15 +327,15 @@ namespace QuanLyThuQuan.Forms
 
         private bool validateForm() 
         {
-            if (string.IsNullOrWhiteSpace(txtMaSV.Text))
+            if (string.IsNullOrWhiteSpace(txtMaTV.Text))
             {
-                MessageBox.Show("Vui lòng chọn thành viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn mã thành viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtMaQD.Text))
             {
-                MessageBox.Show("Vui lòng chọn quy định.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn mã quy định.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -371,11 +377,6 @@ namespace QuanLyThuQuan.Forms
 
         private void HandleAddViolation()
         {
-
-        }
-
-        private void HandleUpdateViolation() 
-        {
             DateTime? dueTime = null;
             if (!string.IsNullOrWhiteSpace(cbThoiGianKhoa.Text))
             {
@@ -390,6 +391,77 @@ namespace QuanLyThuQuan.Forms
             }
 
             int status = 1;
+            if (cbTrangThai.Text == "Đang xử lý")
+            {
+                status = Dang_Xu_Ly;
+            }
+            else if (cbTrangThai.Text == "Đã xử lý")
+            {
+                status = Da_Xu_Ly;
+            }
+
+            int? maDatCho = null;
+            if (int.TryParse(txtMaDatCho.Text, out int tempId))
+            {
+                maDatCho = tempId;
+            }
+
+            ViolationDTO violation = new ViolationDTO(
+                                        int.Parse(txtMaTV.Text),
+                                        int.Parse(txtMaQD.Text),
+                                        maDatCho,
+                                        txtTienBoiThuong.Text,
+                                        dueTime,
+                                        status
+                                    );
+            bool result = ViolationBLL.Instance.Create(violation);
+
+            if (result)
+            {
+                MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                isAdding = false;
+                loadData(ViolationBLL.Instance.GetAll());
+                //ClearForm();
+                switchToViewMode();
+                if (dataGridView.Rows.Count >= 0)
+                {
+                    dataGridView.ClearSelection();
+                    dataGridView.Rows[0].Selected = true;
+                    dataGridView.FirstDisplayedScrollingRowIndex = 0;
+                }
+                LoadFormFromSelectedRow();
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi xảy ra khi thêm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void HandleUpdateViolation() 
+        {
+            string tienBoiThuong = null;
+            if (cbHthucXuLy.Text == "Bồi thường" || cbHthucXuLy.Text == "Khóa tài khoản & Bồi thường")
+            {
+                tienBoiThuong = txtTienBoiThuong.Text;
+            }
+
+            DateTime? dueTime = null;
+            if (cbHthucXuLy.Text == "Khóa tài khoản" || cbHthucXuLy.Text == "Khóa tài khoản & Bồi thường") 
+            {
+                if (!string.IsNullOrWhiteSpace(cbThoiGianKhoa.Text))
+                {
+                    if (cbThoiGianKhoa.Text == "Vĩnh viễn")
+                    {
+                        dueTime = new DateTime(9999, 12, 31);
+                    }
+                    else if (int.TryParse(cbThoiGianKhoa.Text, out int months))
+                    {
+                        dueTime = dtpNgayTao.Value.AddMonths(months);
+                    }
+                }
+            }
+            
+            int status = 1;
 
             if(cbTrangThai.Text == "Đang xử lý") {
                 status = Dang_Xu_Ly;
@@ -397,16 +469,26 @@ namespace QuanLyThuQuan.Forms
                 status = Da_Xu_Ly;
             }
 
+            int? reservationId = null;
+            if (!string.IsNullOrWhiteSpace(txtMaDatCho.Text))
+            {
+                if (int.TryParse(txtMaDatCho.Text, out int tempId))
+                {
+                    reservationId = tempId;
+                }
+            }
+
             ViolationDTO violation = new ViolationDTO(
                                         int.Parse(txtID.Text),
-                                        int.Parse(txtMaSV.Text),
+                                        int.Parse(txtMaTV.Text),
                                         int.Parse(txtMaQD.Text),
-                                        int.Parse(txtMaDatCho.Text),
-                                        txtTienBoiThuong.Text,
+                                        reservationId,
+                                        tienBoiThuong,
                                         null,
                                         dueTime,
                                         status
                                     );
+
             bool result = ViolationBLL.Instance.Update(violation);
 
             if (result)
@@ -415,11 +497,19 @@ namespace QuanLyThuQuan.Forms
 
                 dataGridView.SelectedRows[0].Cells["MemberID"].Value = violation.MemberID;
                 dataGridView.SelectedRows[0].Cells["RegulationID"].Value = violation.RegulationID;
-                dataGridView.SelectedRows[0].Cells["ReservationID"].Value = violation.ReservationID;
+                dataGridView.SelectedRows[0].Cells["ReservationID"].Value = violation.ReservationID.HasValue ? violation.ReservationID.Value.ToString() : "";
                 dataGridView.SelectedRows[0].Cells["Penalty"].Value = violation.Penalty;
-                dataGridView.SelectedRows[0].Cells["DueTime"].Value = cbThoiGianKhoa.Text;
+                if (dueTime.HasValue)
+                {
+                    dataGridView.SelectedRows[0].Cells["DueTime"].Value = cbThoiGianKhoa.Text;
+                }
+                else
+                {
+                    dataGridView.SelectedRows[0].Cells["DueTime"].Value = "";
+                }
                 dataGridView.SelectedRows[0].Cells["Status"].Value = cbTrangThai.Text;
 
+                LoadFormFromSelectedRow();
                 switchToViewMode();
             }
             else
@@ -500,9 +590,15 @@ namespace QuanLyThuQuan.Forms
             switchToViewMode();
         }
 
-        private void btnChonMaSV_Click(object sender, EventArgs e)
+        private void btnChonMaTV_Click(object sender, EventArgs e)
         {
+            int.TryParse(txtMaTV.Text, out int id);
 
+            using (var form = new SelectMemberForm(id))
+            {
+                if (form.ShowDialog() == DialogResult.OK && form.SelectedMemberID.HasValue)
+                    txtMaTV.Text = form.SelectedMemberID.Value.ToString();
+            }
         }
 
         private void btnChonQD_Click(object sender, EventArgs e)
@@ -513,6 +609,27 @@ namespace QuanLyThuQuan.Forms
             {
                 if (form.ShowDialog() == DialogResult.OK && form.SelectedRegulationID.HasValue)
                     txtMaQD.Text = form.SelectedRegulationID.Value.ToString();
+            }
+        }
+
+        private void btnChonMaDatCho_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaTV.Text))
+            {
+                MessageBox.Show("Vui lòng chọn mã thành viên trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int? maDatCho = null;
+            if (int.TryParse(txtMaDatCho.Text, out int tempId))
+            {
+                maDatCho = tempId;
+            }
+
+            using (var form = new SelectViolatedReservationForm(maDatCho, int.Parse(txtMaTV.Text)))
+            {
+                if (form.ShowDialog() == DialogResult.OK && form.SelectedReservationID.HasValue)
+                    txtMaDatCho.Text = form.SelectedReservationID.Value.ToString();
             }
         }
 
@@ -550,8 +667,8 @@ namespace QuanLyThuQuan.Forms
 
         private void btnChiTiet_Click(object sender, EventArgs e)
         {
-
+            var form = new ViolationDetailForm(ViolationBLL.Instance.GetById(int.Parse(txtID.Text)), cbHthucXuLy.Text, cbThoiGianKhoa.Text, txtTienBoiThuong.Text);
+            form.ShowDialog();
         }
     }
-
 }

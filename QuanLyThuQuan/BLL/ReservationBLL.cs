@@ -47,5 +47,10 @@ namespace QuanLyThuQuan.BLL
         {
             return reservationDAL.getByID(reservationID);
         }
+
+        public List<ReservationDTO> getCurrentViolatedReservationsByMemberID(int memberID)
+        {
+            return reservationDAL.getCurrentViolatedReservationsByMemberID(memberID);
+        }
     }
 }

@@ -323,11 +323,23 @@
     <Compile Include="Forms\fMember.Designer.cs">
       <DependentUpon>fMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectMemberForm.Designer.cs">
+      <DependentUpon>SelectMemberForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectRegulationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SelectRegulationForm.Designer.cs">
       <DependentUpon>SelectRegulationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectViolatedReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectViolatedReservationForm.Designer.cs">
+      <DependentUpon>SelectViolatedReservationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViolationDetailForm.cs">
       <SubType>Form</SubType>
@@ -403,8 +415,14 @@
     <EmbeddedResource Include="Forms\SeatForm.resx">
       <DependentUpon>SeatForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectMemberForm.resx">
+      <DependentUpon>SelectMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectRegulationForm.resx">
       <DependentUpon>SelectRegulationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectViolatedReservationForm.resx">
+      <DependentUpon>SelectViolatedReservationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViolationDetailForm.resx">
       <DependentUpon>ViolationDetailForm.cs</DependentUpon>

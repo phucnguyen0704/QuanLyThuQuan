@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.lblHuongDan = new System.Windows.Forms.Label();
@@ -49,6 +50,8 @@
             // 
             // dataGridView
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -57,6 +60,7 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(0, 74);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 30;
             this.dataGridView.Size = new System.Drawing.Size(784, 387);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);

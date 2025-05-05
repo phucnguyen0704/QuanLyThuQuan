@@ -228,5 +228,59 @@ namespace QuanLyThuQuan.DAL
                 CloseConnection();
             }
         }
+
+        public List<ReservationDTO> getCurrentViolatedReservationsByMemberID(int memberId)
+        {
+            List<ReservationDTO> reservations = new List<ReservationDTO>();
+            string sql = @"
+                            SELECT r.reservation_id, r.member_id, r.seat_id, r.reservation_type,
+                                r.reservation_time, r.due_time, r.return_time,
+                                r.status, r.created_at
+                            FROM reservation r
+                            WHERE r.status = 3 AND r.member_id = @memberId
+                            AND NOT EXISTS (
+                                SELECT 1
+                                FROM violation v
+                                WHERE v.reservation_id = r.reservation_id
+                            );";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@memberId", memberId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int? seatID = reader.IsDBNull(reader.GetOrdinal("seat_id"))
+                                ? (int?)null
+                                : reader.GetInt32(reader.GetOrdinal("seat_id"));
+                            DateTime? returnTime = reader.IsDBNull(reader.GetOrdinal("return_time"))
+                                ? (DateTime?)null
+                                : reader.GetDateTime(reader.GetOrdinal("return_time"));
+
+                            ReservationDTO reservation = new ReservationDTO(
+                                reader.GetInt32("reservation_id"),
+                                reader.GetInt32("member_id"),
+                                seatID,
+                                reader.GetInt32("reservation_type"),
+                                reader.GetDateTime("reservation_time"),
+                                reader.GetDateTime("due_time"),
+                                returnTime,
+                                reader.GetInt32("status"),
+                                reader.GetDateTime("created_at")
+                            );
+                            reservations.Add(reservation);
+                        }
+                    }
+                }
+            }
+
+            return reservations;
+        }
+
     }
 }
