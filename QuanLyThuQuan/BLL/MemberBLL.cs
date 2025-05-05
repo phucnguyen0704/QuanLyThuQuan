@@ -1,4 +1,4 @@
-﻿using QuanLyThuQuan.DAL;
+using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
 using System;
 using System.Collections.Generic;

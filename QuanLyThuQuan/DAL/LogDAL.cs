@@ -1,4 +1,4 @@
-﻿
+
 using DocumentFormat.OpenXml.Wordprocessing;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;

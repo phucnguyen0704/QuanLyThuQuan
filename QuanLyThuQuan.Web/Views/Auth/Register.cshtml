@@ -1,0 +1,198 @@
+﻿@{
+    Layout = null;
+}
+@model QuanLyThuQuan.Web.Models.Member;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thư Quán LTE | Log in </title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Admin/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                @TempData["success"]
+            </div>
+        }
+        @if (TempData["err"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                @TempData["err"]
+            </div>
+        }
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a class="h1" asp-controller="booking" asp-action="viewseat"><b>Admin</b>LTE</a>
+            </div>
+            <div class="card-body">
+
+                <form method="post" asp-controller="auth" asp-action="register">
+                    <!-- MemberId -->
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" name="MemberId" placeholder="Mã thành viên" asp-for="MemberId" required min="1">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FullName -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="FullName" placeholder="Họ và tên" asp-for="FullName" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-circle"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Birthday -->
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" name="Birthday" placeholder="Ngày sinh" asp-for="Birthday">
+                        <div class="input-group-append">
+                            
+                        </div>
+                    </div>
+
+                    <!-- PhoneNumber -->
+                    <div class="input-group mb-3">
+                        <input type="tel" class="form-control" name="PhoneNumber" placeholder="Số điện thoại" asp-for="PhoneNumber" pattern="[0-9]{10}" title="Số điện thoại phải có 10 chữ số">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-phone"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name="Email" placeholder="Email" asp-for="Email" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="Department" placeholder="Khoa" asp-for="Department">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-building"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Major -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="Major" placeholder="Ngành học" asp-for="Major">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-graduation-cap"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="Class" placeholder="Lớp" asp-for="Class">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-chalkboard-teacher"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group mb-3">
+                        <input type="password" name="Password" id="password" class="form-control" placeholder="Mật khẩu" asp-for="Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span style="cursor: pointer;" onclick="togglePasswordVisibility()">
+                                    <i class="fa fa-eye-slash" id="togglePasswordIcon"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- JavaScript for Password Toggle -->
+                <script>
+                    function togglePasswordVisibility() {
+                        const passwordInput = document.getElementById('password');
+                        const toggleIcon = document.getElementById('togglePasswordIcon');
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            toggleIcon.classList.remove('fa-eye-slash');
+                            toggleIcon.classList.add('fa-eye');
+                        } else {
+                            passwordInput.type = 'password';
+                            toggleIcon.classList.remove('fa-eye');
+                            toggleIcon.classList.add('fa-eye-slash');
+                        }
+                    }
+                </script>
+
+
+                <!-- /.social-auth-links -->
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Admin/dist/js/adminlte.min.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var togglePasswordIcon = document.getElementById("togglePasswordIcon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePasswordIcon.classList.remove("fa-eye-slash");
+                togglePasswordIcon.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+
+
+                togglePasswordIcon.classList.remove("fa-eye");
+                togglePasswordIcon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -118,14 +118,14 @@ namespace QuanLyThuQuan
 
         private void btnRegulations_Click(object sender, EventArgs e)
         {
-            //fRegulationManage f = new fRegulationManage();
-            //OpenChildForm(f);
+            RegulationForm f = new RegulationForm();
+            OpenChildForm(f);
         }
 
         private void btnViolations_Click(object sender, EventArgs e)
         {
-            //fRegulationManage f = new fRegulationManage();
-            //OpenChildForm(f);
+            ViolationForm f = new ViolationForm();
+            OpenChildForm(f);
         }
 
         private void btnLogs_Click(object sender, EventArgs e)

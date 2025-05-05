@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Seat Page";
+    ViewData["booking"] = "menu-open";
+    ViewData["booking-viewseat"] = "active";
+}
+
+@model QuanLyThuQuan.Web.Models.Seat;
+@section csslinks {
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Chỗ trong thư quán</h1>
+            </div>
+            <div class="col-sm-6">
+                <a href="/booking/newreservation" class="btn btn-primary float-sm-right">Mượn thiết bị</a>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid mt-4">
+        <div class="row">
+            @foreach (var seat in ViewBag.seats as List<Seat>)
+            {
+                bool isDisabled = seat.Status == 3;
+                string boxClass = isDisabled ? "bg-secondary" : "bg-success";
+                string linkClass = isDisabled ? "disabled" : "";
+                string href = isDisabled ? "#" : $"/booking/newreservation?seatId={seat.SeatId}";
+
+                <div class="col-lg-3 col-6 mb-4">
+                    <div class="small-box @boxClass">
+                        <div class="inner text-white">
+                            <h3>@seat.SeatId</h3>
+                            <p>@seat.Name</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chair"></i>
+                        </div>
+                        <a href="@href" class="small-box-footer @linkClass">
+                            @if (isDisabled)
+                            {
+                                @: Booked
+                            }
+                            else
+                            {
+                                
+                                @: Book <i class="fas fa-arrow-circle-right"></i>
+                            }
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section jslinks {
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+}

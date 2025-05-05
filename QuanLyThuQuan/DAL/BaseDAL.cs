@@ -1,38 +1,38 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyThuQuan.DAL
 {
-    class BaseDAL
+    public class BaseDAL
     {
         private MySqlConnection connection;
-
+        //private string connectionString = "Server=localhost;Database=librarydb;Uid=root;Pwd=root;SslMode=none;";
+        string connectionString = "server=localhost;port=3306;user=root;password=;database=librarydb;SslMode=none;";
+        //string connectionString = "server=localhost;port=3308;user=root;password=123456;database=librarydb;SslMode=none;";
         public BaseDAL()
         {
-            string connectionString = @"
-                Server=localhost;
-                Port=3306;
-                Database=librarydb;
-                User ID=root;
-                Password=root;
-                Charset=utf8mb4;
-            ";
             connection = new MySqlConnection(connectionString);
         }
+
 
         public void OpenConnection()
         {
             try
             {
-                if (connection.State == System.Data.ConnectionState.Closed)
+                if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
-                    Console.WriteLine("✅ Đã kết nối MySQL thành công.");
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi mở kết nối MySQL: " + ex.Message);
+                MessageBox.Show("Không thể mở kết nối! Lỗi: " + ex.Message);
             }
         }
 
@@ -51,8 +51,6 @@ namespace QuanLyThuQuan.DAL
                 Console.WriteLine("❌ Lỗi đóng kết nối MySQL: " + ex.Message);
             }
         }
-
-        public void createTable() { }
 
         public MySqlConnection GetConnection()
         {

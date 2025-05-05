@@ -37,5 +37,10 @@ namespace QuanLyThuQuan.BLL
         {
             return reservationDetailDAL.getByID(reservationDetailID);
         }
+
+        public List<ReservationDetailDTO> getByReservationID(int reservationID)
+        { 
+            return reservationDetailDAL.getByReservationID(reservationID);
+        }
     }
 }

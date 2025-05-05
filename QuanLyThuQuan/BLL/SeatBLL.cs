@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
 using System;

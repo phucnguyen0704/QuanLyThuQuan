@@ -1,0 +1,121 @@
+﻿@{
+
+}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a class="brand-link">
+        <img src="~/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a class="d-block">@Context.Session.GetString("memberId")</a>
+                <span class="badge badge-info"></span>
+            </div>
+        </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            @if (Context.Session.GetString("memberId") != null)
+            {
+                <div class="col-md-12" style="text-align: center;">
+                    <a class="btn btn-block btn-outline-danger" asp-controller="auth" asp-action="logout"><i class="fas fa-power-off"></i><span class=""> Logout</span></a>
+                </div>
+            }
+        </div>
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                @if (Context.Session.GetString("memberId") != null)
+                {
+
+
+                    <li class="nav-item @ViewData["thanhvien"]">
+                        <a class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Thành viên
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a  class="nav-link  @ViewData["thanhvien-profile"]" asp-controller="home" asp-action="index">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thông tin cá nhân</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  @ViewData["thanhven-changepass"]" asp-controller="home" asp-action="changePassword">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Đổi mật khẩu</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                }
+
+                <li class="nav-item  @ViewData["booking"] ">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Thông tin mượn/trả
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link  @ViewData["booking-viewseat"]" asp-controller="booking" asp-action="ViewSeat">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách chỗ ngồi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  @ViewData["booking-booking"]" asp-controller="booking" asp-action="booking">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lập phiếu mượn</p>
+                            </a>
+                        </li>
+                        @if (Context.Session.GetString("memberId") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link  @ViewData["booking-history"]" asp-controller="booking" asp-action="HistoryBooking">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nhật ký mượn/trả</p>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+
+               
+
+                   
+
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

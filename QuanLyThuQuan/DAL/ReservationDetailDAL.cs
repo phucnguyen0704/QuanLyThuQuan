@@ -206,5 +206,46 @@ namespace QuanLyThuQuan.DAL
                 CloseConnection();
             }
         }
+
+        public List<ReservationDetailDTO> getByReservationID(int reservationID)
+        {
+            List<ReservationDetailDTO> details = new List<ReservationDetailDTO>();
+
+            try
+            {
+                string sql = @"
+                            SELECT * FROM reservation_detail 
+                            WHERE reservation_id = @reservation_id;
+                             ";
+
+                MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                command.Parameters.AddWithValue("@reservation_id", reservationID);
+
+                OpenConnection();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReservationDetailDTO detail = new ReservationDetailDTO(
+                            reader.GetInt32("reservation_detail_id"),
+                            reader.GetInt32("reservation_id"),
+                            reader.GetInt32("device_id"),
+                            reader.GetInt32("status")
+                        );
+                        details.Add(detail);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Lỗi lấy chi tiết đặt chỗ theo reservation_id: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return details;
+        }
     }
 }
