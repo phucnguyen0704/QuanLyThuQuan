@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "History - Booking" ;
+    ViewData["Title"] = "History - Booking";
     ViewData["booking"] = "menu-open";
-    ViewData["booking-history"] = "active";
+    ViewData["regulation-history"] = "active";
 }
 
-@model List<QuanLyThuQuan.Web.DTO.ReservationDTO>
+@model List<QuanLyThuQuan.Web.Models.Violation>
 
 @section csslinks {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
@@ -28,67 +28,14 @@
     <script src="~/Admin/plugins/jszip/jszip.min.js"></script>
     <script src="~/Admin/plugins/pdfmake/pdfmake.min.js"></script>
     <script src="~/Admin/plugins/pdfmake/vfs_fonts.js"></script>
-    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script> *@
-    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.print.min.js"></script> *@
-    @* <script src="~/Admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> *@
+@* <script src="~/Admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script> *@
+@* <script src="~/Admin/plugins/datatables-buttons/js/buttons.print.min.js"></script> *@
+@* <script src="~/Admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> *@
 
-    @* <script src="~/js/configTableData.js"></script> *@
+@* <script src="~/js/configTableData.js"></script> *@
 
 
-    <script>
-               
-        $(document).ready(function () {
-            // Xử lý khi nhấn nút "Xem chi tiết"
-            $('.btn-show-details').on('click', function () {
-                var reservationId = $(this).data('id');
-                console.log(reservationId);
-                // Gọi Ajax để lấy ReservationDetails
-                $.ajax({
-                    url: 'api/reservations/' + reservationId + '/details',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (details) {
-                        var tbody = $('#reservationDetailTableBody');
-                        tbody.empty(); // Xóa dữ liệu cũ
-
-                        if (details && details.length > 0) {
-                            details.forEach(function (detail) {
-                                var statusText = detail.status == 1 ? 'Đang mượn' :
-                                                detail.status == 2 ? 'Đã trả' :
-                                                detail.status == 3 ? 'Vi phạm' : 'Không xác định';
-
-                                var row = `<tr>
-                                    <td>${detail.reservationDetailId}</td>
-                                    <td>${detail.device ? detail.device.name : 'N/A'}</td>
-                                    <td>${statusText}</td>
-                                </tr>`;
-                                tbody.append(row);
-                            });
-
-                            $('#reservationDetailModal').modal('show');
-                        } else {
-                            alert('Không tìm thấy chi tiết cho phiếu mượn này.');
-                        }
-                    },
-                    error: function () {
-                        alert('Đã xảy ra lỗi khi tải chi tiết.');
-                    }
-                });
-            });
-
-            
-        });
-
-        $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true
-            });
-    </script>
+   
 }
 
 
@@ -101,7 +48,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Nhật ký mượn/trả</li>
+                    <li class="breadcrumb-item active">Lịch sử vi phạm</li>
                 </ol>
             </div>
         </div>
@@ -114,91 +61,73 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                   
+
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                   
                                     <th>Mã thành viên</th>
                                     <th>Họ tên</th>
-                                    <th>Phương thức mượn</th>
-                                    <th>Chỗ ngồi</th>
-                                    <th>Thời gian mượn</th>
-                                    <th>Thời gian dự kiến trả</th>
-                                    <th>Thời gian trả ghi nhận</th>
+                                    <th>Loại vi phạm</th>
+                                    <th>Mã phiếu mượn vi phạm</th>
+                                    <th>Hình phạt</th>
+                                    <th>Thời gian phạt cho đến</th>
+                                    <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
-                                   
-                                    <th>Chi tiết</th>
+
+                                  
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Reservation.ReservationId</td>
-                                        <td>@item.Reservation.MemberId</td>
-                                        <td>@(item.Reservation.Member.FullName ?? "N/A")</td>
+                                        <td>@item.Member.MemberId</td>
+                                        <td>@item.Member.FullName</td>
+                                        <td>@item.Regulation.Name</td>
+                                        <td>@(item.ReservationId)</td>
+                                       <td>@item.Penalty</td>
+                                     
+                                        <td>@(item.DueTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                        <td>@(item.CreatedAt?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
                                         <td>
-                                            @switch (item.Reservation.ReservationType)
+                                            @switch (item.Status)
                                             {
                                                 case 1:
-                                                    @: Mượn tại chỗ
+                                                    @: <span class="badge rounded-pill bg-danger"> Chưa xử phạt </span>
                                                     break;
                                                 case 2:
-                                                    @: Mượn mang về
-                                                    break;
-                                                default:
-                                                    @: Không xác định
-                                                    break;
-                                            }
-                                        </td>
-                                        <td>@(item.Reservation.Seat?.Name ?? "N/A")</td>
-                                        <td>@(item.Reservation.ReservationTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>@(item.Reservation.DueTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>@(item.Reservation.ReturnTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>
-                                            @switch (item.Reservation.Status)
-                                            {
-                                                case 1:
-                                                    @:<span class="badge rounded-pill bg-primary"> Đang mượn </span>
-                                                    break;
-                                                case 2:
-                                                    @: <span class="badge rounded-pill bg-secondary"> Đã trả </span>
-                                                    break;
-                                                case 3:
-                                                    @: <span class="badge rounded-pill bg-danger"> Vi phạm </span>
+                                                    @: <span class="badge rounded-pill bg-success"> Đã xử phạt </span>
                                                     break;
                                                 default:
                                                     @: <span class="badge rounded-pill bg-secondary"> N/A </span>
                                                     break;
                                             }
                                         </td>
-                                        
-                                        <td>
 
-                                            <button class="btn btn-info btn-sm btn-show-details"
-                                                    data-id="@item.Reservation.ReservationId">
-                                                Xem chi tiết
-                                            </button>
-                                        </td>
+                                        @* <td> *@
+
+                                        @*     <button class="btn btn-info btn-sm btn-show-details" *@
+                                        @*             data-id="@item.Reservation.ReservationId"> *@
+                                        @*         Xem chi tiết *@
+                                        @*     </button> *@
+                                        @* </td>    *@
                                     </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Id</th>
+                                   
                                     <th>Mã thành viên</th>
                                     <th>Họ tên</th>
-                                    <th>Phương thức mượn</th>
-                                    <th>Chỗ ngồi</th>
-                                    <th>Thời gian mượn</th>
-                                    <th>Thời gian dự kiến trả</th>
-                                    <th>Thời gian trả ghi nhận</th>
+                                    <th>Loại vi phạm</th>
+                                    <th>Mã phiếu mượn vi phạm</th>
+                                    <th>Hình phạt</th>
+                                    <th>Thời gian phạt cho đến</th>
+                                    <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
-                                    
-                                    <th>Chi tiết</th>
                                 </tr>
                             </tfoot>
                         </table>

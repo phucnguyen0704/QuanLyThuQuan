@@ -4,6 +4,7 @@ using QuanLyThuQuan.Web.Services.AuthService;
 using QuanLyThuQuan.Web.Services.BookingService;
 using QuanLyThuQuan.Web.Services.DeviceService;
 using QuanLyThuQuan.Web.Services.SeatService;
+using QuanLyThuQuan.Web.Services.VolationService;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISeatService, SeatService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IViolationService, ViolationService>();
 #endregion
 
 var app = builder.Build();

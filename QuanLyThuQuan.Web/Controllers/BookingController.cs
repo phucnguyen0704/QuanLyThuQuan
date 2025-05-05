@@ -4,6 +4,7 @@ using QuanLyThuQuan.Web.Models;
 using QuanLyThuQuan.Web.Services.BookingService;
 using QuanLyThuQuan.Web.Services.DeviceService;
 using QuanLyThuQuan.Web.Services.SeatService;
+using QuanLyThuQuan.Web.Services.VolationService;
 
 namespace QuanLyThuQuan.Web.Controllers
 {
@@ -13,12 +14,14 @@ namespace QuanLyThuQuan.Web.Controllers
         private readonly ISeatService _seatService;
         private readonly IDeviceService _deviceService;
         private readonly IBookingService _bookingService;
+        private readonly IViolationService _violationService;
 
-        public BookingController(ISeatService seatService, IDeviceService deviceService, IBookingService bookingService)
+        public BookingController(ISeatService seatService, IDeviceService deviceService, IBookingService bookingService, IViolationService violationService)
         {
             _seatService = seatService;
             _deviceService = deviceService;
             _bookingService = bookingService;
+            _violationService = violationService;
         }
 
         [HttpGet]
@@ -85,6 +88,15 @@ namespace QuanLyThuQuan.Web.Controllers
         public async Task<IActionResult> HistoryBooking()
         {
             var result = await _bookingService.GetMemberBookings(long.Parse(HttpContext.Session.GetString("memberId")));
+
+            return View(result.Data);
+        }
+
+        [HttpGet]
+        [Route("history-regulation")]
+        public async Task<IActionResult> HistoryRegulation()
+        {
+            var result = await _violationService.GetViolations(HttpContext.Session.GetString("memberId")??"");
 
             return View(result.Data);
         }
