@@ -38,8 +38,7 @@ namespace QuanLyThuQuan
             {
                 case 1: // Successful login
                     this.Hide();
-                    string userName = memberBLL.getByID(memberId).FullName; // Fetch member details
-                    ManagerForm mainForm = new ManagerForm(userName); // Replace with actual main form
+                    ManagerForm mainForm = new ManagerForm(memberId); // Replace with actual main form
                     mainForm.ShowDialog(this);
                     mainForm = null;
 

@@ -1,5 +1,6 @@
 ﻿// ManagerForm.cs
 using QuanLyThuQuan.BLL;
+using QuanLyThuQuan.DTO;
 using QuanLyThuQuan.Forms;
 using System;
 using System.Data;
@@ -15,8 +16,7 @@ namespace QuanLyThuQuan
         private static readonly Color HeaderColor = Color.FromArgb(51, 51, 76);
         private static readonly Color AccentColor = Color.FromArgb(40, 167, 69);
         private static readonly Color ButtonHoverColor = Color.FromArgb(72, 72, 108);
-
-        private string currentUserName = "";
+        private MemberDTO member = new MemberDTO();
 
         public ManagerForm()
         {
@@ -25,12 +25,20 @@ namespace QuanLyThuQuan
             LoadAllCharts();
         }
 
-        public ManagerForm(string userName)
+        // Update the constructor to create an instance of MemberBLL
+        private readonly MemberBLL memberBLL = new MemberBLL();
+
+        public ManagerForm(int memberId)
         {
             InitializeComponent();
-            this.currentUserName = userName;
+            this.member = memberBLL.getByID(memberId); // Use the instance of MemberBLL
+            if (member == null)
+            {
+                MessageBox.Show("Không tìm thấy thông tin thành viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             CustomizeDesign();
-            lblWelcome.Text = "Xin chào: " + userName;
+            lblWelcome.Text = "Xin chào: " + this.member.FullName;
             LoadAllCharts();
         }
 
@@ -79,11 +87,9 @@ namespace QuanLyThuQuan
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-           // fChangePassword changePasswordForm = new fChangePassword();
-           // changePasswordForm.ShowDialog();
-
-            //fAccountProfile f = new fAccountProfile();
-            //OpenChildForm(f);
+            ChangePasswordForm changePasswordForm = new ChangePasswordForm(this.member.MemberId);
+            OpenChildForm(changePasswordForm);
+            this.Close();
         }
 
         private void btnSeats_Click(object sender, EventArgs e)

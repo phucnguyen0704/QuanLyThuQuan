@@ -56,6 +56,17 @@ namespace QuanLyThuQuan.BLL
             return 4; // không tìm thấy ID
         }
 
+        public bool changePassword(int memberId, string newPassword)
+        {
+            MemberDTO member = memberDAL.getByID(memberId);
+            if (member != null)
+            {
+                member.Password = newPassword;
+                return memberDAL.update(member);
+            }
+            return false; // không tìm thấy ID
+        }
+
         public MemberDTO getByID(int memberId)
         {
             return memberDAL.getByID(memberId);
