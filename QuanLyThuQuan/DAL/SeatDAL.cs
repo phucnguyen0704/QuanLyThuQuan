@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace QuanLyThuQuan.DAL
 {
-    public class SeatDAL : BaseDAL
+    class SeatDAL : BaseDAL
     {
         public SeatDAL() : base()
         {
@@ -52,13 +52,12 @@ namespace QuanLyThuQuan.DAL
                     //MessageBox.Show("$" + seat.seatId);
                     string sql = @"
                             UPDATE seat
-                            SET name = @seatName, status = @status
+                            SET name = @seatName
                             WHERE seat_id = @seatId";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@seatName", seat.seatName);
                     command.Parameters.AddWithValue("@seatId", seat.seatId);
-                    command.Parameters.AddWithValue("@status", seat.status);
                     OpenConnection();
                     command.ExecuteNonQuery();
                     return true;
@@ -89,7 +88,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                             UPDATE seat
-                            SET status = 2
+                            SET status = 0
                             WHERE seat_id = @seatId";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
@@ -120,19 +119,19 @@ namespace QuanLyThuQuan.DAL
             List<SeatDTO> seats = new List<SeatDTO>();
             try
             {
-                string sql = @"SELECT * FROM seat where status != 2";
+                string sql = @"SELECT * FROM seat where status = 1";
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 OpenConnection();
                 MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        SeatDTO seat = new SeatDTO(
-                            reader.GetInt32("seat_id"),
-                            reader.GetString("name"),
-                            reader.GetInt32("status")
-                            );
-                        seats.Add(seat);
-                    }
+                while (reader.Read())
+                {
+                    SeatDTO seat = new SeatDTO(
+                        reader.GetInt32("seat_id"),
+                        reader.GetString("name"),
+                        reader.GetInt32("status")
+                        );
+                    seats.Add(seat);
+                }
             }
             catch (Exception ex)
             {

@@ -86,9 +86,9 @@ namespace QuanLyThuQuan.Forms
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 25);
+            this.label1.Size = new System.Drawing.Size(226, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "QUẢN LÝ ĐẶT CHỖ";
+            this.label1.Text = "QUẢN LÝ MƯỢN THIẾT BỊ/ CHỖ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel2
@@ -149,7 +149,7 @@ namespace QuanLyThuQuan.Forms
             this.lblReturnTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturnTime.Location = new System.Drawing.Point(12, 290);
             this.lblReturnTime.Name = "lblReturnTime";
-            this.lblReturnTime.Size = new System.Drawing.Size(93, 16);
+            this.lblReturnTime.Size = new System.Drawing.Size(84, 16);
             this.lblReturnTime.TabIndex = 22;
             this.lblReturnTime.Text = "Thời gian trả:";
             // 
@@ -159,7 +159,7 @@ namespace QuanLyThuQuan.Forms
             this.lblReservationTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReservationTime.Location = new System.Drawing.Point(12, 230);
             this.lblReservationTime.Name = "lblReservationTime";
-            this.lblReservationTime.Size = new System.Drawing.Size(95, 16);
+            this.lblReservationTime.Size = new System.Drawing.Size(88, 16);
             this.lblReservationTime.TabIndex = 21;
             this.lblReservationTime.Text = "Thời gian đặt:";
             // 
@@ -254,7 +254,7 @@ namespace QuanLyThuQuan.Forms
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(12, 350);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 16);
+            this.label9.Size = new System.Drawing.Size(65, 16);
             this.label9.TabIndex = 14;
             this.label9.Text = "Ngày tạo:";
             // 
@@ -273,7 +273,7 @@ namespace QuanLyThuQuan.Forms
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(12, 320);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 16);
+            this.label8.Size = new System.Drawing.Size(70, 16);
             this.label8.TabIndex = 12;
             this.label8.Text = "Trạng thái:";
             // 
@@ -293,7 +293,7 @@ namespace QuanLyThuQuan.Forms
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(12, 260);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 16);
+            this.label6.Size = new System.Drawing.Size(62, 16);
             this.label6.TabIndex = 8;
             this.label6.Text = "Thời hạn:";
             // 
@@ -313,9 +313,9 @@ namespace QuanLyThuQuan.Forms
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 16);
+            this.label5.Size = new System.Drawing.Size(83, 16);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Loại đặt chỗ:";
+            this.label5.Text = "Loại mượn:";
             // 
             // txtSeatID
             // 
@@ -331,7 +331,7 @@ namespace QuanLyThuQuan.Forms
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 170);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.Size = new System.Drawing.Size(55, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Mã ghế:";
             // 
@@ -349,7 +349,7 @@ namespace QuanLyThuQuan.Forms
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 16);
+            this.label3.Size = new System.Drawing.Size(92, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Mã thành viên:";
             // 
@@ -368,9 +368,9 @@ namespace QuanLyThuQuan.Forms
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.Size = new System.Drawing.Size(76, 16);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Mã đặt chỗ:";
+            this.label2.Text = "Mã mượn:";
             // 
             // panel3
             // 
@@ -400,7 +400,7 @@ namespace QuanLyThuQuan.Forms
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(20, 20);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 16);
+            this.label10.Size = new System.Drawing.Size(65, 16);
             this.label10.TabIndex = 1;
             this.label10.Text = "Tìm kiếm:";
             // 
@@ -457,7 +457,7 @@ namespace QuanLyThuQuan.Forms
             this.Controls.Add(this.panel1);
             this.Name = "ReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý đặt chỗ";
+            this.Text = "Quản lý mượn thiết bị/ chỗ";
             this.Load += new System.EventHandler(this.ReservationForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

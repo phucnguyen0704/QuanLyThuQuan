@@ -7,7 +7,7 @@ namespace QuanLyThuQuan.DTO
         public int MemberId { get; set; }
         public string FullName { get; set; }
         public DateTime Birthday { get; set; }
-        public string PhoneNumber { get; set; } // em mới thêm lại
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Department { get; set; }
         public string Major { get; set; }
@@ -16,7 +16,5 @@ namespace QuanLyThuQuan.DTO
         public string Role { get; set; }
         public int Status { get; set; }
         public DateTime CreatedAt { get; set; }
-        
-        
     }
 }

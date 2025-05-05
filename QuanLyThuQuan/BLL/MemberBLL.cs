@@ -1,89 +1,94 @@
-﻿using System;
-using System.Collections.Generic;
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace QuanLyThuQuan.BLL
 {
-    public class MemberBLL
+    class MemberBLL
     {
-        private MemberDAL dal = new MemberDAL();
+        private MemberDAL memberDAL;
 
-        // Tạo một đối tượng MemberDTO rỗng
-        public MemberDTO CreateEmptyMember()
+        public MemberBLL()
         {
-            return new MemberDTO
-            {
-                MemberId = 0,
-                FullName = string.Empty,
-                Email = string.Empty,
-                Birthday = DateTime.Today,
-                PhoneNumber = string.Empty,
-                Department = string.Empty,
-                Major = string.Empty,
-                Class = string.Empty,
-                Password = string.Empty,
-                Role = string.Empty,
-                Status = 0,
-                CreatedAt = DateTime.Today
-            };
+            memberDAL = new MemberDAL();
         }
 
-        // Lấy danh sách tất cả thành viên
-        public List<MemberDTO> GetAllMembers()
+        public bool create(MemberDTO member)
         {
-            return dal.GetAllMembers();
+            return memberDAL.create(member);
         }
 
-        // Thêm một thành viên mới
-        public bool AddMember(MemberDTO member)
+        public bool update(MemberDTO member)
         {
-            try
-            {
-                dal.AddMember(member);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi: {ex.Message}");
-                return false;
-            }
+            return memberDAL.update(member);
         }
 
-        // Xóa thành viên theo ID
-        public bool DeleteMember(int id)
+        public bool delete(int memberId)
         {
-            try
-            {
-                dal.DeleteMember(id);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi: {ex.Message}");
-                return false;
-            }
+            return memberDAL.delete(memberId);
         }
 
-        // Cập nhật thông tin thành viên
-        public bool UpdateMember(MemberDTO member)
+        public List<MemberDTO> getAll()
         {
-            try
-            {
-                dal.UpdateMember(member);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi: {ex.Message}");
-                return false;
-            }
+            return memberDAL.getAll();
         }
 
-        // Lấy thông tin thành viên theo ID
-        public MemberDTO GetMemberById(int id)
+        public int checkLogin(int memberId, string password, string role)
         {
-            return dal.GetMemberById(id);
+            MemberDTO member = memberDAL.getByID(memberId);
+            if (member != null)
+            {
+                if (member.MemberId == memberId && member.Password == password && member.Role == role)
+                {
+                    return 1; // đăng nhập thành công
+                }
+                else if (member.MemberId == memberId && member.Password != password)
+                {
+                    return 2; // đúng ID, sai mật khẩu
+                }
+                else if (member.MemberId == memberId && member.Password == password && member.Role != role)
+                {
+                    return 3; // đúng ID, đúng mật khẩu, sai quyền hạn
+                }
+            }
+            return 4; // không tìm thấy ID
+        }
+
+        public MemberDTO getByID(int memberId)
+        {
+            return memberDAL.getByID(memberId);
+        }
+
+        public MemberDTO getByPhone(string memberPhone)
+        {
+            return memberDAL.getByPhone(memberPhone);
+        }
+
+        public MemberDTO getByEmail(string memberEmail)
+        {
+            return memberDAL.getByEmail(memberEmail);
+        }
+
+        public DataTable getReservationHistory(int memberId)
+        {
+            return memberDAL.getReservationHistory(memberId);
+        }
+
+        public DataTable getReservationDetails(int memberId)
+        {
+            return memberDAL.getReservationDetails(memberId);
+        }
+
+        public DataTable getViolationHistory(int memberId)
+        {
+            return memberDAL.getViolationHistory(memberId);
+        }
+
+        public DataTable getCheckInHistory(int memberId)
+        {
+            return memberDAL.getCheckInHistory(memberId);
         }
     }
 }
