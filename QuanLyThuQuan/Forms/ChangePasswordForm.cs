@@ -8,9 +8,9 @@ namespace QuanLyThuQuan
     public partial class ChangePasswordForm : Form
     {
         private readonly MemberBLL memberBLL;
-        private int memberId;
+        private uint memberId;
 
-        public ChangePasswordForm(int memberId)
+        public ChangePasswordForm(uint memberId)
         {
             InitializeComponent();
             memberBLL = new MemberBLL();

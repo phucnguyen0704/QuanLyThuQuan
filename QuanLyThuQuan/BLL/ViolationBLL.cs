@@ -47,7 +47,7 @@ namespace QuanLyThuQuan.BLL
             return violationDAL.GetById(id);
         }
 
-        public List<ViolationDTO> GetByMemberId(int memberId)
+        public List<ViolationDTO> GetByMemberId(uint memberId)
         {
             return violationDAL.GetByMemberId(memberId);
         }

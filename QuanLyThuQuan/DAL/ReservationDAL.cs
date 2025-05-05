@@ -154,7 +154,7 @@ namespace QuanLyThuQuan.DAL
 
                             ReservationDTO reservation = new ReservationDTO(
                                 reader.GetInt32("reservation_id"),
-                                reader.GetInt32("member_id"),
+                                reader.GetUInt32("member_id"),
                                 seatID,
                                 reader.GetInt32("reservation_type"),
                                 reader.GetDateTime("reservation_time"),
@@ -205,7 +205,7 @@ namespace QuanLyThuQuan.DAL
 
                             return new ReservationDTO(
                                 reader.GetInt32("reservation_id"),
-                                reader.GetInt32("member_id"),
+                                reader.GetUInt32("member_id"),
                                 seatID,
                                 reader.GetInt32("reservation_type"),
                                 reader.GetDateTime("reservation_time"),
@@ -264,7 +264,7 @@ namespace QuanLyThuQuan.DAL
 
                             ReservationDTO reservation = new ReservationDTO(
                                 reader.GetInt32("reservation_id"),
-                                reader.GetInt32("member_id"),
+                                reader.GetUInt32("member_id"),
                                 seatID,
                                 reader.GetInt32("reservation_type"),
                                 reader.GetDateTime("reservation_time"),

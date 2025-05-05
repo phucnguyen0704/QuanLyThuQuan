@@ -27,7 +27,7 @@ namespace QuanLyThuQuan.BLL
             return memberDAL.update(member);
         }
 
-        public bool delete(int memberId)
+        public bool delete(uint memberId)
         {
             return memberDAL.delete(memberId);
         }
@@ -37,7 +37,7 @@ namespace QuanLyThuQuan.BLL
             return memberDAL.getAll();
         }
 
-        public int checkLogin(int memberId, string password, string role)
+        public int checkLogin(uint memberId, string password, string role)
         {
             MemberDTO member = memberDAL.getByID(memberId);
             if (member != null)
@@ -59,7 +59,7 @@ namespace QuanLyThuQuan.BLL
             return 4; // không tìm thấy ID
         }
 
-        public bool changePassword(int memberId, string newPassword)
+        public bool changePassword(uint memberId, string newPassword)
         {
             MemberDTO member = memberDAL.getByID(memberId);
             if (member != null)
@@ -70,7 +70,7 @@ namespace QuanLyThuQuan.BLL
             return false; // không tìm thấy ID
         }
 
-        public MemberDTO getByID(int memberId)
+        public MemberDTO getByID(uint memberId)
         {
             return memberDAL.getByID(memberId);
         }
@@ -85,22 +85,22 @@ namespace QuanLyThuQuan.BLL
             return memberDAL.getByEmail(memberEmail);
         }
 
-        public DataTable getReservationHistory(int memberId)
+        public DataTable getReservationHistory(uint memberId)
         {
             return memberDAL.getReservationHistory(memberId);
         }
 
-        public DataTable getReservationDetails(int memberId)
+        public DataTable getReservationDetails(uint memberId)
         {
             return memberDAL.getReservationDetails(memberId);
         }
 
-        public DataTable getViolationHistory(int memberId)
+        public DataTable getViolationHistory(uint memberId)
         {
             return memberDAL.getViolationHistory(memberId);
         }
 
-        public DataTable getCheckInHistory(int memberId)
+        public DataTable getCheckInHistory(uint memberId)
         {
             return memberDAL.getCheckInHistory(memberId);
         }

@@ -407,7 +407,7 @@ namespace QuanLyThuQuan.Forms
             }
 
             ViolationDTO violation = new ViolationDTO(
-                                        int.Parse(txtMaTV.Text),
+                                        uint.Parse(txtMaTV.Text),
                                         int.Parse(txtMaQD.Text),
                                         maDatCho,
                                         txtTienBoiThuong.Text,
@@ -480,7 +480,7 @@ namespace QuanLyThuQuan.Forms
 
             ViolationDTO violation = new ViolationDTO(
                                         int.Parse(txtID.Text),
-                                        int.Parse(txtMaTV.Text),
+                                        uint.Parse(txtMaTV.Text),
                                         int.Parse(txtMaQD.Text),
                                         reservationId,
                                         tienBoiThuong,

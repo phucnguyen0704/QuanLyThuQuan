@@ -221,7 +221,7 @@ namespace QuanLyThuQuan.Forms
                     return;
                 }
 
-                if (!Checker.IsExitsMemberId(Int32.Parse(txtMemberID.Text)))
+                if (!Checker.IsExitsMemberId(uint.Parse(txtMemberID.Text)))
                 {
                     MessageBox.Show("Mã sinh viên không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtMemberID.Focus();

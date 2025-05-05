@@ -4,7 +4,7 @@ namespace QuanLyThuQuan.DTO
 {
     public class MemberDTO
     {
-        public int MemberId { get; set; }
+        public uint MemberId { get; set; }
         public string FullName { get; set; }
         public DateTime Birthday { get; set; }
         public string PhoneNumber { get; set; }

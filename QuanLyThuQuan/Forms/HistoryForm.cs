@@ -11,7 +11,7 @@ namespace QuanLyThuQuan.Forms
     public partial class HistoryForm : Form
     {
         private readonly MemberBLL memberBLL;
-        private int memberId;
+        private uint memberId;
         private MemberDTO member;
 
         // Định nghĩa các hằng số để tránh "magic numbers"
@@ -29,7 +29,7 @@ namespace QuanLyThuQuan.Forms
         private static readonly Color StatusReturnedColor = Color.FromArgb(0, 123, 255); // Màu xanh dương
         private static readonly Color StatusViolationColor = Color.FromArgb(220, 53, 69); // Màu đỏ
 
-        public HistoryForm(int memberId)
+        public HistoryForm(uint memberId)
         {
             InitializeComponent();
             this.memberId = memberId;
@@ -119,7 +119,7 @@ namespace QuanLyThuQuan.Forms
             }
         }
 
-        private void LoadReservationDetails(int reservationId)
+        private void LoadReservationDetails(uint reservationId)
         {
             try
             {
@@ -396,7 +396,7 @@ namespace QuanLyThuQuan.Forms
                 {
                     try
                     {
-                        int reservationId = Convert.ToInt32(cellValue);
+                        uint reservationId = Convert.ToUInt32(cellValue);
                         LoadReservationDetails(reservationId);
                         lblSelectedReservation.Text = $"Chi tiết phiếu mượn: {reservationId}";
                     }

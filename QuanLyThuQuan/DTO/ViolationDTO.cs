@@ -9,7 +9,7 @@ namespace QuanLyThuQuan.DTO
     public class ViolationDTO
     {
         public int ViolationID { get; set; }
-        public int MemberID { get; set; }
+        public uint MemberID { get; set; }
         public int RegulationID { get; set; }
         public int? ReservationID { get; set; }
         public string Penalty { get; set; }
@@ -19,7 +19,7 @@ namespace QuanLyThuQuan.DTO
 
         public ViolationDTO() { }
 
-        public ViolationDTO(int memberID, int regulationID, int? reservationID, string penalty, DateTime? dueTime, int status)
+        public ViolationDTO(uint memberID, int regulationID, int? reservationID, string penalty, DateTime? dueTime, int status)
         {
             MemberID = memberID;
             RegulationID = regulationID;
@@ -29,7 +29,7 @@ namespace QuanLyThuQuan.DTO
             Status = status;
         }
 
-        public ViolationDTO(int violationID, int memberID, int regulationID, int? reservationID, string penalty, DateTime? createdAt, DateTime? dueTime, int status)
+        public ViolationDTO(int violationID, uint memberID, int regulationID, int? reservationID, string penalty, DateTime? createdAt, DateTime? dueTime, int status)
         {
             ViolationID = violationID;
             MemberID = memberID;

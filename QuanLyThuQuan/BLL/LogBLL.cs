@@ -49,9 +49,9 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập tên mã sinh viên! ";
             }
-            if (!Regex.IsMatch(memberid, @"^[A-Za-z0-9\s]+$"))
+            if (!Regex.IsMatch(memberid, @"^[0-9\s]+$"))
             {
-                return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+                return "Mã sinh viên chỉ bao gồm chữ số, vui lòng nhập lại!";
             }
             if (checkin == null)
             {

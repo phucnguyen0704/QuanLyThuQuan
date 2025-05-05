@@ -100,7 +100,7 @@ namespace QuanLyThuQuan.DAL
             }
         }
 
-        public bool delete(int memberId)
+        public bool delete(uint memberId)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     MemberDTO member = new MemberDTO
                     {
-                        MemberId = reader.GetInt32("member_id"),
+                        MemberId = reader.GetUInt32("member_id"),
                         FullName = reader.GetString("full_name"),
                         Birthday = reader.GetDateTime("birthday"),
                         PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
@@ -178,7 +178,7 @@ namespace QuanLyThuQuan.DAL
             return members;
         }
 
-        public MemberDTO getByID(int memberId)
+        public MemberDTO getByID(uint memberId)
         {
             MemberDTO member = null;
             try
@@ -195,7 +195,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     member = new MemberDTO
                     {
-                        MemberId = reader.GetInt32("member_id"),
+                        MemberId = reader.GetUInt32("member_id"),
                         FullName = reader.GetString("full_name"),
                         Birthday = reader.GetDateTime("birthday"),
                         PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
@@ -242,7 +242,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     member = new MemberDTO
                     {
-                        MemberId = reader.GetInt32("member_id"),
+                        MemberId = reader.GetUInt32("member_id"),
                         FullName = reader.GetString("full_name"),
                         Birthday = reader.GetDateTime("birthday"),
                         PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
@@ -289,7 +289,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     member = new MemberDTO
                     {
-                        MemberId = reader.GetInt32("member_id"),
+                        MemberId = reader.GetUInt32("member_id"),
                         FullName = reader.GetString("full_name"),
                         Birthday = reader.GetDateTime("birthday"),
                         PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phone_number")) ? null : reader.GetString("phone_number"),
@@ -320,7 +320,7 @@ namespace QuanLyThuQuan.DAL
         }
 
         // Thêm phương thức lấy lịch sử mượn thiết bị
-        public DataTable getReservationHistory(int memberId)
+        public DataTable getReservationHistory(uint memberId)
         {
             DataTable dt = new DataTable();
             try
@@ -366,7 +366,7 @@ namespace QuanLyThuQuan.DAL
         }
 
         // Thêm phương thức lấy chi tiết mượn thiết bị
-        public DataTable getReservationDetails(int reservationId)
+        public DataTable getReservationDetails(uint reservationId)
         {
             DataTable dt = new DataTable();
             try
@@ -408,7 +408,7 @@ namespace QuanLyThuQuan.DAL
         }
 
         // Thêm phương thức lấy lịch sử vi phạm
-        public DataTable getViolationHistory(int memberId)
+        public DataTable getViolationHistory(uint memberId)
         {
             DataTable dt = new DataTable();
             try
@@ -457,7 +457,7 @@ namespace QuanLyThuQuan.DAL
         }
 
         // Thêm phương thức lấy lịch sử check-in
-        public DataTable getCheckInHistory(int memberId)
+        public DataTable getCheckInHistory(uint memberId)
         {
             DataTable dt = new DataTable();
             try

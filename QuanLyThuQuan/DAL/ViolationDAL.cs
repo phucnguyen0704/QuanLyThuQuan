@@ -155,7 +155,7 @@ namespace QuanLyThuQuan.DAL
                     {
                         violations.Add(new ViolationDTO(
                             reader.GetInt32("violation_id"),
-                            reader.GetInt32("member_id"),
+                            reader.GetUInt32("member_id"),
                             reader.GetInt32("regulation_id"),
                             reader.IsDBNull(reader.GetOrdinal("reservation_id")) ? (int?) null : reader.GetInt32("reservation_id"),
                             reader.IsDBNull(reader.GetOrdinal("penalty")) ? string.Empty : reader.GetString("penalty"),
@@ -200,7 +200,7 @@ namespace QuanLyThuQuan.DAL
                     {
                         violation = new ViolationDTO(
                             reader.GetInt32("violation_id"),
-                            reader.GetInt32("member_id"),
+                            reader.GetUInt32("member_id"),
                             reader.GetInt32("regulation_id"),
                             reader.IsDBNull(reader.GetOrdinal("reservation_id")) ? (int?)null : reader.GetInt32("reservation_id"),
                             reader.IsDBNull(reader.GetOrdinal("penalty")) ? string.Empty : reader.GetString("penalty"),
@@ -227,7 +227,7 @@ namespace QuanLyThuQuan.DAL
             return violation;
         }
 
-        public List<ViolationDTO> GetByMemberId(int memberId)
+        public List<ViolationDTO> GetByMemberId(uint memberId)
         {
             List<ViolationDTO> results = new List<ViolationDTO>();
             string sql = @"SELECT * FROM violation WHERE member_id = @member_id ORDER BY violation_id DESC";
@@ -244,7 +244,7 @@ namespace QuanLyThuQuan.DAL
                     {
                         results.Add(new ViolationDTO(
                             reader.GetInt32("violation_id"),
-                            reader.GetInt32("member_id"),
+                            reader.GetUInt32("member_id"),
                             reader.GetInt32("regulation_id"),
                             reader.IsDBNull(reader.GetOrdinal("reservation_id")) ? (int?)null : reader.GetInt32("reservation_id"),
                             reader.IsDBNull(reader.GetOrdinal("penalty")) ? string.Empty : reader.GetString("penalty"),
@@ -310,7 +310,7 @@ namespace QuanLyThuQuan.DAL
                     {
                         var violation = new ViolationDTO(
                             reader.GetInt32("violation_id"),
-                            reader.GetInt32("member_id"),
+                            reader.GetUInt32("member_id"),
                             reader.GetInt32("regulation_id"),
                             reader.IsDBNull(reader.GetOrdinal("reservation_id")) ? (int?)null : reader.GetInt32("reservation_id"),
                             reader.IsDBNull(reader.GetOrdinal("penalty")) ? string.Empty : reader.GetString("penalty"),

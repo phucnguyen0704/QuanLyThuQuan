@@ -1,16 +1,17 @@
-﻿using System;
+﻿using QuanLyThuQuan.BLL;
+using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using QuanLyThuQuan.BLL;
-using QuanLyThuQuan.DTO;
 
 namespace QuanLyThuQuan.Utils
 {
     class Checker
     {
-        public static bool IsExitsMemberId(int memberId)
+        public static bool IsExitsMemberId(uint memberId)
         {
             // Check if the email exists in the database
             MemberBLL memberBLL = new MemberBLL();
@@ -28,7 +29,7 @@ namespace QuanLyThuQuan.Utils
             return System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
-        public static int IsExistEmail(string email)
+        public static uint IsExistEmail(string email)
         {
             // Check if the email exists in the database
             MemberBLL memberBLL = new MemberBLL();
@@ -46,7 +47,7 @@ namespace QuanLyThuQuan.Utils
             return System.Text.RegularExpressions.Regex.IsMatch(phoneNumber, @"^\d{9:}$");
         }
 
-        public static int IsExistPhone(string phone)
+        public static uint IsExistPhone(string phone)
         {
             // Check if the email exists in the database
             MemberBLL memberBLL = new MemberBLL();
@@ -69,7 +70,7 @@ namespace QuanLyThuQuan.Utils
             // Check if the date is in the past
             return date <= DateTime.Now;
         }
-        public static string ValidatePasswordChange(int memberId, string oldPassword, string newPassword, string confirmPassword, string role)
+        public static string ValidatePasswordChange(uint memberId, string oldPassword, string newPassword, string confirmPassword, string role)
         {
             // Kiểm tra rỗng
             if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))

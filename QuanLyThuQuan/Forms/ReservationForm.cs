@@ -158,7 +158,7 @@ namespace QuanLyThuQuan.Forms
             DataTable dt = new DataTable();
 
             dt.Columns.Add("ReservationID", typeof(int));
-            dt.Columns.Add("MemberID", typeof(int));
+            dt.Columns.Add("MemberID", typeof(uint));
             dt.Columns.Add("SeatID", typeof(int)).AllowDBNull = true; // Cho phép null
             dt.Columns.Add("ReservationType", typeof(string));
             dt.Columns.Add("ReservationTime", typeof(DateTime));
@@ -463,9 +463,9 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (!int.TryParse(txtMemberID.Text, out _))
+            if (!uint.TryParse(txtMemberID.Text, out _))
             {
-                MessageBox.Show("Mã thành viên phải là số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Mã thành viên phải là số nguyên dương!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMemberID.Focus();
                 return false;
             }
@@ -484,7 +484,7 @@ namespace QuanLyThuQuan.Forms
         private ReservationDTO GetReservationFromForm()
         {
             int reservationID = isEditing ? int.Parse(txtReservationID.Text) : 0;
-            int memberID = int.Parse(txtMemberID.Text);
+            uint memberID = uint.Parse(txtMemberID.Text);
             int? seatID;
             if (string.IsNullOrEmpty(txtSeatID.Text))
             {

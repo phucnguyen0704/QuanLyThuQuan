@@ -24,10 +24,10 @@ namespace QuanLyThuQuan
                 return;
             }
 
-            // Ensure Member ID is numeric
-            if (!int.TryParse(textBoxMemberId.Text, out int memberId))
+            // Ensure Member ID is numeric > 0
+            if (!uint.TryParse(textBoxMemberId.Text, out uint memberId))
             {
-                MessageBox.Show("ID thành viên phải là số!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ID thành viên phải là số dương!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

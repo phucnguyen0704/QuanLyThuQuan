@@ -418,7 +418,7 @@ namespace QuanLyThuQuan.Forms
             // Kiểm tra ID có bị trùng không (chỉ khi thêm mới)
             if (!isEditing)
             {
-                if (Checker.IsExitsMemberId(Int32.Parse(txtMemberId.Text)))
+                if (Checker.IsExitsMemberId(uint.Parse(txtMemberId.Text)))
                 {
                     MessageBox.Show("Mã thành viên đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtMemberId.Focus();
@@ -442,7 +442,7 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (Checker.IsExistPhone(txtPhoneNumber.Text) != Int32.Parse(txtMemberId.Text) && Checker.IsExistPhone(txtPhoneNumber.Text) != 0)
+            if (Checker.IsExistPhone(txtPhoneNumber.Text) != UInt32.Parse(txtMemberId.Text) && Checker.IsExistPhone(txtPhoneNumber.Text) != 0)
             {
                 MessageBox.Show("Sdt thành viên đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMemberId.Focus();
@@ -465,7 +465,7 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (Checker.IsExistEmail(txtEmail.Text) != Int32.Parse(txtMemberId.Text) && Checker.IsExistEmail(txtEmail.Text) != 0)
+            if (Checker.IsExistEmail(txtEmail.Text) != UInt32.Parse(txtMemberId.Text) && Checker.IsExistEmail(txtEmail.Text) != 0)
             {
                 MessageBox.Show("Email thành viên đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMemberId.Focus();
@@ -524,7 +524,7 @@ namespace QuanLyThuQuan.Forms
         private MemberDTO GetMemberFromForm()
         {
             // Khi đang sửa, sử dụng ID của thành viên hiện tại
-            int memberId = isEditing ? currentMember.MemberId : int.Parse(txtMemberId.Text);
+            uint memberId = isEditing ? currentMember.MemberId : uint.Parse(txtMemberId.Text);
             string fullName = txtFullName.Text.Trim();
             DateTime birthday = dtpBirthday.Value;
             string phoneNumber = txtPhoneNumber.Text.Trim();
@@ -570,7 +570,7 @@ namespace QuanLyThuQuan.Forms
                     return;
                 }
 
-                int memberId = int.Parse(txtMemberId.Text);
+                uint memberId = uint.Parse(txtMemberId.Text);
 
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa thành viên này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -610,7 +610,7 @@ namespace QuanLyThuQuan.Forms
                 return;
             }
 
-            int memberId = int.Parse(txtMemberId.Text);
+            uint memberId = uint.Parse(txtMemberId.Text);
 
             // Mở form lịch sử thành viên
             HistoryForm historyForm = new HistoryForm(memberId);

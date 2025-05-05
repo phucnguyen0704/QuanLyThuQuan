@@ -28,7 +28,7 @@ namespace QuanLyThuQuan
         // Update the constructor to create an instance of MemberBLL
         private readonly MemberBLL memberBLL = new MemberBLL();
 
-        public ManagerForm(int memberId)
+        public ManagerForm(uint memberId)
         {
             InitializeComponent();
             this.member = memberBLL.getByID(memberId); // Use the instance of MemberBLL
