@@ -49,7 +49,7 @@
             this.lblDSTV.Location = new System.Drawing.Point(0, 0);
             this.lblDSTV.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDSTV.Name = "lblDSTV";
-            this.lblDSTV.Size = new System.Drawing.Size(984, 68);
+            this.lblDSTV.Size = new System.Drawing.Size(1384, 68);
             this.lblDSTV.TabIndex = 0;
             this.lblDSTV.Text = "Danh sách thành viên";
             this.lblDSTV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -61,7 +61,7 @@
             this.lblHuongDan.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblHuongDan.Location = new System.Drawing.Point(0, 68);
             this.lblHuongDan.Name = "lblHuongDan";
-            this.lblHuongDan.Size = new System.Drawing.Size(984, 31);
+            this.lblHuongDan.Size = new System.Drawing.Size(1384, 31);
             this.lblHuongDan.TabIndex = 1;
             this.lblHuongDan.Text = "Nhấp chuột 2 lần để chọn";
             this.lblHuongDan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -77,7 +77,7 @@
             this.flpnTimKiem.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flpnTimKiem.Location = new System.Drawing.Point(0, 102);
             this.flpnTimKiem.Name = "flpnTimKiem";
-            this.flpnTimKiem.Size = new System.Drawing.Size(984, 40);
+            this.flpnTimKiem.Size = new System.Drawing.Size(1384, 40);
             this.flpnTimKiem.TabIndex = 2;
             // 
             // btnLamMoi
@@ -85,7 +85,7 @@
             this.btnLamMoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLamMoi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLamMoi.Location = new System.Drawing.Point(870, 3);
+            this.btnLamMoi.Location = new System.Drawing.Point(1270, 3);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(109, 35);
             this.btnLamMoi.TabIndex = 6;
@@ -95,7 +95,7 @@
             // 
             // txtTKMaTV
             // 
-            this.txtTKMaTV.Location = new System.Drawing.Point(688, 6);
+            this.txtTKMaTV.Location = new System.Drawing.Point(1088, 6);
             this.txtTKMaTV.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtTKMaTV.Name = "txtTKMaTV";
             this.txtTKMaTV.Size = new System.Drawing.Size(176, 29);
@@ -104,7 +104,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(415, 0);
+            this.label2.Location = new System.Drawing.Point(815, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(267, 35);
             this.label2.TabIndex = 4;
@@ -115,14 +115,15 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
             this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(0, 144);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 30;
-            this.dataGridView.Size = new System.Drawing.Size(984, 319);
+            this.dataGridView.Size = new System.Drawing.Size(1384, 519);
             this.dataGridView.TabIndex = 3;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
@@ -130,16 +131,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.ClientSize = new System.Drawing.Size(1384, 661);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.flpnTimKiem);
             this.Controls.Add(this.lblHuongDan);
             this.Controls.Add(this.lblDSTV);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1000, 500);
+            this.MinimumSize = new System.Drawing.Size(1400, 700);
             this.Name = "SelectMemberForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chọn thành viên";

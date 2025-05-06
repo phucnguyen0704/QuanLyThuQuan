@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTieuDe = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -71,6 +71,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(4, 109);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -90,8 +93,8 @@
             // 
             // dgvReservation
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReservation.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvReservation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReservation.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,11 +120,13 @@
             // 
             // dgvReservationDetail
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvReservationDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvReservationDetail.Location = new System.Drawing.Point(0, 34);
             this.dgvReservationDetail.Name = "dgvReservationDetail";
             this.dgvReservationDetail.RowTemplate.Height = 30;
@@ -138,9 +143,6 @@
             this.Controls.Add(this.lblTieuDe);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1400, 700);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1400, 700);
             this.Name = "SelectViolatedReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

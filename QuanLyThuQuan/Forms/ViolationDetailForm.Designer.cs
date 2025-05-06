@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblChiTietVP = new System.Windows.Forms.Label();
             this.pnChiTietVP = new System.Windows.Forms.Panel();
             this.pvViPhamQD = new System.Windows.Forms.Panel();
@@ -57,15 +57,16 @@
             this.lblTrangThai = new System.Windows.Forms.Label();
             this.txtTrangThai = new System.Windows.Forms.TextBox();
             this.splitContainerVPDatCho = new System.Windows.Forms.SplitContainer();
+            this.pnLeftSplitContainerPanel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMaDatCho = new System.Windows.Forms.Label();
             this.txtMaDatCho = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblMaChoNgoi = new System.Windows.Forms.Label();
-            this.txtMaCho = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblThoiGianTra = new System.Windows.Forms.Label();
             this.txtTGTra = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblMaChoNgoi = new System.Windows.Forms.Label();
+            this.txtMaCho = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblHanTra = new System.Windows.Forms.Label();
             this.txtHanTra = new System.Windows.Forms.TextBox();
@@ -75,6 +76,7 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTGianMuon = new System.Windows.Forms.Label();
             this.txtTGMuon = new System.Windows.Forms.TextBox();
+            this.lblChiTietPhieu = new System.Windows.Forms.Label();
             this.lblChiTietPhieuMuon = new System.Windows.Forms.Label();
             this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
             this.lblViPhamQD = new System.Windows.Forms.Label();
@@ -104,7 +106,6 @@
             this.flpnHoTen = new System.Windows.Forms.FlowLayoutPanel();
             this.lblHoTen = new System.Windows.Forms.Label();
             this.txtHoten = new System.Windows.Forms.TextBox();
-            this.lblChiTietPhieu = new System.Windows.Forms.Label();
             this.pnChiTietVP.SuspendLayout();
             this.pvViPhamQD.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
@@ -121,9 +122,10 @@
             this.splitContainerVPDatCho.Panel1.SuspendLayout();
             this.splitContainerVPDatCho.Panel2.SuspendLayout();
             this.splitContainerVPDatCho.SuspendLayout();
+            this.pnLeftSplitContainerPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel6.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -425,13 +427,7 @@
             // 
             // splitContainerVPDatCho.Panel1
             // 
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.lblChiTietPhieu);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel6);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel5);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel4);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel3);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.pnLeftSplitContainerPanel1);
             // 
             // splitContainerVPDatCho.Panel2
             // 
@@ -442,14 +438,31 @@
             this.splitContainerVPDatCho.TabIndex = 7;
             this.splitContainerVPDatCho.Visible = false;
             // 
+            // pnLeftSplitContainerPanel1
+            // 
+            this.pnLeftSplitContainerPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel1);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.lblChiTietPhieu);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel6);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel5);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel4);
+            this.pnLeftSplitContainerPanel1.Controls.Add(this.flowLayoutPanel3);
+            this.pnLeftSplitContainerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnLeftSplitContainerPanel1.Location = new System.Drawing.Point(0, 0);
+            this.pnLeftSplitContainerPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.pnLeftSplitContainerPanel1.Name = "pnLeftSplitContainerPanel1";
+            this.pnLeftSplitContainerPanel1.Size = new System.Drawing.Size(368, 312);
+            this.pnLeftSplitContainerPanel1.TabIndex = 10;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.lblMaDatCho);
             this.flowLayoutPanel1.Controls.Add(this.txtMaDatCho);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 29);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 29);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(361, 40);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // lblMaDatCho
@@ -467,9 +480,38 @@
             this.txtMaDatCho.Location = new System.Drawing.Point(117, 3);
             this.txtMaDatCho.Name = "txtMaDatCho";
             this.txtMaDatCho.ReadOnly = true;
-            this.txtMaDatCho.Size = new System.Drawing.Size(231, 29);
+            this.txtMaDatCho.Size = new System.Drawing.Size(233, 29);
             this.txtMaDatCho.TabIndex = 2;
             this.txtMaDatCho.TabStop = false;
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.Controls.Add(this.lblThoiGianTra);
+            this.flowLayoutPanel6.Controls.Add(this.txtTGTra);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(0, 231);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(361, 40);
+            this.flowLayoutPanel6.TabIndex = 8;
+            // 
+            // lblThoiGianTra
+            // 
+            this.lblThoiGianTra.Location = new System.Drawing.Point(3, 6);
+            this.lblThoiGianTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblThoiGianTra.Name = "lblThoiGianTra";
+            this.lblThoiGianTra.Size = new System.Drawing.Size(151, 25);
+            this.lblThoiGianTra.TabIndex = 1;
+            this.lblThoiGianTra.Text = "Thời gian trả:";
+            // 
+            // txtTGTra
+            // 
+            this.txtTGTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtTGTra.Location = new System.Drawing.Point(160, 3);
+            this.txtTGTra.Name = "txtTGTra";
+            this.txtTGTra.ReadOnly = true;
+            this.txtTGTra.Size = new System.Drawing.Size(190, 29);
+            this.txtTGTra.TabIndex = 5;
+            this.txtTGTra.TabStop = false;
             // 
             // flowLayoutPanel2
             // 
@@ -478,7 +520,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 71);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(364, 40);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(361, 40);
             this.flowLayoutPanel2.TabIndex = 6;
             // 
             // lblMaChoNgoi
@@ -500,40 +542,11 @@
             this.txtMaCho.TabIndex = 2;
             this.txtMaCho.TabStop = false;
             // 
-            // flowLayoutPanel6
-            // 
-            this.flowLayoutPanel6.Controls.Add(this.lblThoiGianTra);
-            this.flowLayoutPanel6.Controls.Add(this.txtTGTra);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 237);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(361, 40);
-            this.flowLayoutPanel6.TabIndex = 8;
-            // 
-            // lblThoiGianTra
-            // 
-            this.lblThoiGianTra.Location = new System.Drawing.Point(3, 6);
-            this.lblThoiGianTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblThoiGianTra.Name = "lblThoiGianTra";
-            this.lblThoiGianTra.Size = new System.Drawing.Size(151, 25);
-            this.lblThoiGianTra.TabIndex = 1;
-            this.lblThoiGianTra.Text = "Thời gian trả:";
-            // 
-            // txtTGTra
-            // 
-            this.txtTGTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtTGTra.Location = new System.Drawing.Point(160, 3);
-            this.txtTGTra.Name = "txtTGTra";
-            this.txtTGTra.ReadOnly = true;
-            this.txtTGTra.Size = new System.Drawing.Size(186, 29);
-            this.txtTGTra.TabIndex = 5;
-            this.txtTGTra.TabStop = false;
-            // 
             // flowLayoutPanel5
             // 
             this.flowLayoutPanel5.Controls.Add(this.lblHanTra);
             this.flowLayoutPanel5.Controls.Add(this.txtHanTra);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 196);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 191);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(361, 40);
@@ -554,7 +567,7 @@
             this.txtHanTra.Location = new System.Drawing.Point(160, 3);
             this.txtHanTra.Name = "txtHanTra";
             this.txtHanTra.ReadOnly = true;
-            this.txtHanTra.Size = new System.Drawing.Size(186, 29);
+            this.txtHanTra.Size = new System.Drawing.Size(190, 29);
             this.txtHanTra.TabIndex = 4;
             this.txtHanTra.TabStop = false;
             // 
@@ -562,7 +575,7 @@
             // 
             this.flowLayoutPanel4.Controls.Add(this.lblLoaiMuon);
             this.flowLayoutPanel4.Controls.Add(this.txtLoaiMuon);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 113);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 111);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(361, 40);
@@ -583,7 +596,7 @@
             this.txtLoaiMuon.Location = new System.Drawing.Point(117, 3);
             this.txtLoaiMuon.Name = "txtLoaiMuon";
             this.txtLoaiMuon.ReadOnly = true;
-            this.txtLoaiMuon.Size = new System.Drawing.Size(229, 29);
+            this.txtLoaiMuon.Size = new System.Drawing.Size(233, 29);
             this.txtLoaiMuon.TabIndex = 2;
             this.txtLoaiMuon.TabStop = false;
             // 
@@ -591,7 +604,7 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.lblTGianMuon);
             this.flowLayoutPanel3.Controls.Add(this.txtTGMuon);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 155);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 151);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(361, 40);
@@ -612,9 +625,22 @@
             this.txtTGMuon.Location = new System.Drawing.Point(160, 3);
             this.txtTGMuon.Name = "txtTGMuon";
             this.txtTGMuon.ReadOnly = true;
-            this.txtTGMuon.Size = new System.Drawing.Size(186, 29);
+            this.txtTGMuon.Size = new System.Drawing.Size(190, 29);
             this.txtTGMuon.TabIndex = 3;
             this.txtTGMuon.TabStop = false;
+            // 
+            // lblChiTietPhieu
+            // 
+            this.lblChiTietPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.lblChiTietPhieu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblChiTietPhieu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChiTietPhieu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblChiTietPhieu.Location = new System.Drawing.Point(0, 0);
+            this.lblChiTietPhieu.Name = "lblChiTietPhieu";
+            this.lblChiTietPhieu.Size = new System.Drawing.Size(366, 28);
+            this.lblChiTietPhieu.TabIndex = 9;
+            this.lblChiTietPhieu.Text = "Chi tiết phiếu mượn";
+            this.lblChiTietPhieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblChiTietPhieuMuon
             // 
@@ -631,15 +657,17 @@
             // 
             // dgvReservationDetail
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvReservationDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 50);
+            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 30);
             this.dgvReservationDetail.Name = "dgvReservationDetail";
             this.dgvReservationDetail.RowTemplate.Height = 30;
-            this.dgvReservationDetail.Size = new System.Drawing.Size(504, 262);
+            this.dgvReservationDetail.Size = new System.Drawing.Size(504, 282);
             this.dgvReservationDetail.TabIndex = 0;
             // 
             // lblViPhamQD
@@ -912,18 +940,6 @@
             this.txtHoten.TabIndex = 2;
             this.txtHoten.TabStop = false;
             // 
-            // lblChiTietPhieu
-            // 
-            this.lblChiTietPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.lblChiTietPhieu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblChiTietPhieu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblChiTietPhieu.Location = new System.Drawing.Point(0, 0);
-            this.lblChiTietPhieu.Name = "lblChiTietPhieu";
-            this.lblChiTietPhieu.Size = new System.Drawing.Size(364, 28);
-            this.lblChiTietPhieu.TabIndex = 9;
-            this.lblChiTietPhieu.Text = "Chi tiết phiếu mượn";
-            this.lblChiTietPhieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // ViolationDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -963,12 +979,13 @@
             this.splitContainerVPDatCho.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerVPDatCho)).EndInit();
             this.splitContainerVPDatCho.ResumeLayout(false);
+            this.pnLeftSplitContainerPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
@@ -1075,5 +1092,6 @@
         private System.Windows.Forms.Label lblHinhThucXuLy;
         private System.Windows.Forms.TextBox txtHThucXuLy;
         private System.Windows.Forms.Label lblChiTietPhieu;
+        private System.Windows.Forms.Panel pnLeftSplitContainerPanel1;
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace QuanLyThuQuan.Forms
 {
@@ -669,6 +670,26 @@ namespace QuanLyThuQuan.Forms
         {
             var form = new ViolationDetailForm(ViolationBLL.Instance.GetById(int.Parse(txtID.Text)), cbHthucXuLy.Text, cbThoiGianKhoa.Text, txtTienBoiThuong.Text);
             form.ShowDialog();
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView.Columns[e.ColumnIndex].Name == "Status" && e.Value != null)
+            {
+                string status = e.Value.ToString();
+
+                switch (status)
+                {
+                    case "Đang xử lý":
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.BackColor = Color.FromArgb(255, 193, 7);
+                        break;
+                    case "Đã xử lý":
+                        e.CellStyle.ForeColor = Color.White;
+                        e.CellStyle.BackColor = Color.FromArgb(40, 167, 69);
+                        break;
+                }
+            }
         }
     }
 }
