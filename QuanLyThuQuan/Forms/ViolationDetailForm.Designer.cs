@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblChiTietVP = new System.Windows.Forms.Label();
             this.pnChiTietVP = new System.Windows.Forms.Panel();
             this.pvViPhamQD = new System.Windows.Forms.Panel();
@@ -47,12 +47,36 @@
             this.flpnBoiThuong = new System.Windows.Forms.FlowLayoutPanel();
             this.lblBoiThuong = new System.Windows.Forms.Label();
             this.txtTienBoiThuong = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel12 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblHinhThucXuLy = new System.Windows.Forms.Label();
+            this.txtHThucXuLy = new System.Windows.Forms.TextBox();
             this.flpnThoiGian = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTGianVP = new System.Windows.Forms.Label();
             this.dtpNgayTao = new System.Windows.Forms.DateTimePicker();
             this.flpnTrangThai = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTrangThai = new System.Windows.Forms.Label();
             this.txtTrangThai = new System.Windows.Forms.TextBox();
+            this.splitContainerVPDatCho = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblMaDatCho = new System.Windows.Forms.Label();
+            this.txtMaDatCho = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblMaChoNgoi = new System.Windows.Forms.Label();
+            this.txtMaCho = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblThoiGianTra = new System.Windows.Forms.Label();
+            this.txtTGTra = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblHanTra = new System.Windows.Forms.Label();
+            this.txtHanTra = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblLoaiMuon = new System.Windows.Forms.Label();
+            this.txtLoaiMuon = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblTGianMuon = new System.Windows.Forms.Label();
+            this.txtTGMuon = new System.Windows.Forms.TextBox();
+            this.lblChiTietPhieuMuon = new System.Windows.Forms.Label();
+            this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
             this.lblViPhamQD = new System.Windows.Forms.Label();
             this.pnThongTinTV = new System.Windows.Forms.Panel();
             this.lblThongTinTV = new System.Windows.Forms.Label();
@@ -80,30 +104,7 @@
             this.flpnHoTen = new System.Windows.Forms.FlowLayoutPanel();
             this.lblHoTen = new System.Windows.Forms.Label();
             this.txtHoten = new System.Windows.Forms.TextBox();
-            this.splitContainerVPDatCho = new System.Windows.Forms.SplitContainer();
-            this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
-            this.lblChiTietPhieuMuon = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblMaDatCho = new System.Windows.Forms.Label();
-            this.txtMaDatCho = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblMaChoNgoi = new System.Windows.Forms.Label();
-            this.txtMaCho = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblTGianMuon = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblLoaiMuon = new System.Windows.Forms.Label();
-            this.txtLoaiMuon = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblHanTra = new System.Windows.Forms.Label();
-            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblThoiGianTra = new System.Windows.Forms.Label();
-            this.txtTGMuon = new System.Windows.Forms.TextBox();
-            this.txtHanTra = new System.Windows.Forms.TextBox();
-            this.txtTGTra = new System.Windows.Forms.TextBox();
-            this.txtHThucXuLy = new System.Windows.Forms.TextBox();
-            this.lblHinhThucXuLy = new System.Windows.Forms.Label();
-            this.flowLayoutPanel12 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblChiTietPhieu = new System.Windows.Forms.Label();
             this.pnChiTietVP.SuspendLayout();
             this.pvViPhamQD.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
@@ -113,8 +114,20 @@
             this.flowLayoutPanel9.SuspendLayout();
             this.flpnKhoaTK.SuspendLayout();
             this.flpnBoiThuong.SuspendLayout();
+            this.flowLayoutPanel12.SuspendLayout();
             this.flpnThoiGian.SuspendLayout();
             this.flpnTrangThai.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVPDatCho)).BeginInit();
+            this.splitContainerVPDatCho.Panel1.SuspendLayout();
+            this.splitContainerVPDatCho.Panel2.SuspendLayout();
+            this.splitContainerVPDatCho.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel6.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationDetail)).BeginInit();
             this.pnThongTinTV.SuspendLayout();
             this.flpnMaTV.SuspendLayout();
             this.flpnLop.SuspendLayout();
@@ -124,18 +137,6 @@
             this.flpnEmail.SuspendLayout();
             this.flpnNgaySinh.SuspendLayout();
             this.flpnHoTen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVPDatCho)).BeginInit();
-            this.splitContainerVPDatCho.Panel1.SuspendLayout();
-            this.splitContainerVPDatCho.Panel2.SuspendLayout();
-            this.splitContainerVPDatCho.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationDetail)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
-            this.flowLayoutPanel6.SuspendLayout();
-            this.flowLayoutPanel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblChiTietVP
@@ -330,6 +331,35 @@
             this.txtTienBoiThuong.TabIndex = 2;
             this.txtTienBoiThuong.TabStop = false;
             // 
+            // flowLayoutPanel12
+            // 
+            this.flowLayoutPanel12.Controls.Add(this.lblHinhThucXuLy);
+            this.flowLayoutPanel12.Controls.Add(this.txtHThucXuLy);
+            this.flowLayoutPanel12.Location = new System.Drawing.Point(0, 3);
+            this.flowLayoutPanel12.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.flowLayoutPanel12.Name = "flowLayoutPanel12";
+            this.flowLayoutPanel12.Size = new System.Drawing.Size(413, 40);
+            this.flowLayoutPanel12.TabIndex = 4;
+            // 
+            // lblHinhThucXuLy
+            // 
+            this.lblHinhThucXuLy.Location = new System.Drawing.Point(3, 6);
+            this.lblHinhThucXuLy.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblHinhThucXuLy.Name = "lblHinhThucXuLy";
+            this.lblHinhThucXuLy.Size = new System.Drawing.Size(149, 25);
+            this.lblHinhThucXuLy.TabIndex = 1;
+            this.lblHinhThucXuLy.Text = "Hình thức xử lý:";
+            // 
+            // txtHThucXuLy
+            // 
+            this.txtHThucXuLy.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtHThucXuLy.Location = new System.Drawing.Point(158, 3);
+            this.txtHThucXuLy.Name = "txtHThucXuLy";
+            this.txtHThucXuLy.ReadOnly = true;
+            this.txtHThucXuLy.Size = new System.Drawing.Size(247, 29);
+            this.txtHThucXuLy.TabIndex = 2;
+            this.txtHThucXuLy.TabStop = false;
+            // 
             // flpnThoiGian
             // 
             this.flpnThoiGian.Controls.Add(this.lblTGianVP);
@@ -387,6 +417,230 @@
             this.txtTrangThai.Size = new System.Drawing.Size(116, 29);
             this.txtTrangThai.TabIndex = 2;
             this.txtTrangThai.TabStop = false;
+            // 
+            // splitContainerVPDatCho
+            // 
+            this.splitContainerVPDatCho.Location = new System.Drawing.Point(3, 195);
+            this.splitContainerVPDatCho.Name = "splitContainerVPDatCho";
+            // 
+            // splitContainerVPDatCho.Panel1
+            // 
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.lblChiTietPhieu);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel2);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel6);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel5);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel4);
+            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel3);
+            // 
+            // splitContainerVPDatCho.Panel2
+            // 
+            this.splitContainerVPDatCho.Panel2.Controls.Add(this.lblChiTietPhieuMuon);
+            this.splitContainerVPDatCho.Panel2.Controls.Add(this.dgvReservationDetail);
+            this.splitContainerVPDatCho.Size = new System.Drawing.Size(876, 312);
+            this.splitContainerVPDatCho.SplitterDistance = 368;
+            this.splitContainerVPDatCho.TabIndex = 7;
+            this.splitContainerVPDatCho.Visible = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.lblMaDatCho);
+            this.flowLayoutPanel1.Controls.Add(this.txtMaDatCho);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 29);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 40);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // lblMaDatCho
+            // 
+            this.lblMaDatCho.Location = new System.Drawing.Point(3, 6);
+            this.lblMaDatCho.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblMaDatCho.Name = "lblMaDatCho";
+            this.lblMaDatCho.Size = new System.Drawing.Size(108, 25);
+            this.lblMaDatCho.TabIndex = 1;
+            this.lblMaDatCho.Text = "Mã phiếu:";
+            // 
+            // txtMaDatCho
+            // 
+            this.txtMaDatCho.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtMaDatCho.Location = new System.Drawing.Point(117, 3);
+            this.txtMaDatCho.Name = "txtMaDatCho";
+            this.txtMaDatCho.ReadOnly = true;
+            this.txtMaDatCho.Size = new System.Drawing.Size(231, 29);
+            this.txtMaDatCho.TabIndex = 2;
+            this.txtMaDatCho.TabStop = false;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.lblMaChoNgoi);
+            this.flowLayoutPanel2.Controls.Add(this.txtMaCho);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 71);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(364, 40);
+            this.flowLayoutPanel2.TabIndex = 6;
+            // 
+            // lblMaChoNgoi
+            // 
+            this.lblMaChoNgoi.Location = new System.Drawing.Point(3, 6);
+            this.lblMaChoNgoi.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblMaChoNgoi.Name = "lblMaChoNgoi";
+            this.lblMaChoNgoi.Size = new System.Drawing.Size(109, 25);
+            this.lblMaChoNgoi.TabIndex = 1;
+            this.lblMaChoNgoi.Text = "Mã chỗ:";
+            // 
+            // txtMaCho
+            // 
+            this.txtMaCho.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtMaCho.Location = new System.Drawing.Point(118, 3);
+            this.txtMaCho.Name = "txtMaCho";
+            this.txtMaCho.ReadOnly = true;
+            this.txtMaCho.Size = new System.Drawing.Size(232, 29);
+            this.txtMaCho.TabIndex = 2;
+            this.txtMaCho.TabStop = false;
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.Controls.Add(this.lblThoiGianTra);
+            this.flowLayoutPanel6.Controls.Add(this.txtTGTra);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 237);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(361, 40);
+            this.flowLayoutPanel6.TabIndex = 8;
+            // 
+            // lblThoiGianTra
+            // 
+            this.lblThoiGianTra.Location = new System.Drawing.Point(3, 6);
+            this.lblThoiGianTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblThoiGianTra.Name = "lblThoiGianTra";
+            this.lblThoiGianTra.Size = new System.Drawing.Size(151, 25);
+            this.lblThoiGianTra.TabIndex = 1;
+            this.lblThoiGianTra.Text = "Thời gian trả:";
+            // 
+            // txtTGTra
+            // 
+            this.txtTGTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtTGTra.Location = new System.Drawing.Point(160, 3);
+            this.txtTGTra.Name = "txtTGTra";
+            this.txtTGTra.ReadOnly = true;
+            this.txtTGTra.Size = new System.Drawing.Size(186, 29);
+            this.txtTGTra.TabIndex = 5;
+            this.txtTGTra.TabStop = false;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.lblHanTra);
+            this.flowLayoutPanel5.Controls.Add(this.txtHanTra);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 196);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(361, 40);
+            this.flowLayoutPanel5.TabIndex = 7;
+            // 
+            // lblHanTra
+            // 
+            this.lblHanTra.Location = new System.Drawing.Point(3, 6);
+            this.lblHanTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblHanTra.Name = "lblHanTra";
+            this.lblHanTra.Size = new System.Drawing.Size(151, 25);
+            this.lblHanTra.TabIndex = 1;
+            this.lblHanTra.Text = "Hạn trả:";
+            // 
+            // txtHanTra
+            // 
+            this.txtHanTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtHanTra.Location = new System.Drawing.Point(160, 3);
+            this.txtHanTra.Name = "txtHanTra";
+            this.txtHanTra.ReadOnly = true;
+            this.txtHanTra.Size = new System.Drawing.Size(186, 29);
+            this.txtHanTra.TabIndex = 4;
+            this.txtHanTra.TabStop = false;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.lblLoaiMuon);
+            this.flowLayoutPanel4.Controls.Add(this.txtLoaiMuon);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 113);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(361, 40);
+            this.flowLayoutPanel4.TabIndex = 7;
+            // 
+            // lblLoaiMuon
+            // 
+            this.lblLoaiMuon.Location = new System.Drawing.Point(3, 6);
+            this.lblLoaiMuon.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblLoaiMuon.Name = "lblLoaiMuon";
+            this.lblLoaiMuon.Size = new System.Drawing.Size(108, 25);
+            this.lblLoaiMuon.TabIndex = 1;
+            this.lblLoaiMuon.Text = "Loại mượn:";
+            // 
+            // txtLoaiMuon
+            // 
+            this.txtLoaiMuon.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtLoaiMuon.Location = new System.Drawing.Point(117, 3);
+            this.txtLoaiMuon.Name = "txtLoaiMuon";
+            this.txtLoaiMuon.ReadOnly = true;
+            this.txtLoaiMuon.Size = new System.Drawing.Size(229, 29);
+            this.txtLoaiMuon.TabIndex = 2;
+            this.txtLoaiMuon.TabStop = false;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.lblTGianMuon);
+            this.flowLayoutPanel3.Controls.Add(this.txtTGMuon);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 155);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(361, 40);
+            this.flowLayoutPanel3.TabIndex = 6;
+            // 
+            // lblTGianMuon
+            // 
+            this.lblTGianMuon.Location = new System.Drawing.Point(3, 6);
+            this.lblTGianMuon.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            this.lblTGianMuon.Name = "lblTGianMuon";
+            this.lblTGianMuon.Size = new System.Drawing.Size(151, 25);
+            this.lblTGianMuon.TabIndex = 1;
+            this.lblTGianMuon.Text = "Thời gian mượn:";
+            // 
+            // txtTGMuon
+            // 
+            this.txtTGMuon.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtTGMuon.Location = new System.Drawing.Point(160, 3);
+            this.txtTGMuon.Name = "txtTGMuon";
+            this.txtTGMuon.ReadOnly = true;
+            this.txtTGMuon.Size = new System.Drawing.Size(186, 29);
+            this.txtTGMuon.TabIndex = 3;
+            this.txtTGMuon.TabStop = false;
+            // 
+            // lblChiTietPhieuMuon
+            // 
+            this.lblChiTietPhieuMuon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.lblChiTietPhieuMuon.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblChiTietPhieuMuon.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChiTietPhieuMuon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblChiTietPhieuMuon.Location = new System.Drawing.Point(0, 0);
+            this.lblChiTietPhieuMuon.Name = "lblChiTietPhieuMuon";
+            this.lblChiTietPhieuMuon.Size = new System.Drawing.Size(504, 27);
+            this.lblChiTietPhieuMuon.TabIndex = 1;
+            this.lblChiTietPhieuMuon.Text = "Danh sách thiết bị đã mượn";
+            this.lblChiTietPhieuMuon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvReservationDetail
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 50);
+            this.dgvReservationDetail.Name = "dgvReservationDetail";
+            this.dgvReservationDetail.RowTemplate.Height = 30;
+            this.dgvReservationDetail.Size = new System.Drawing.Size(504, 262);
+            this.dgvReservationDetail.TabIndex = 0;
             // 
             // lblViPhamQD
             // 
@@ -658,257 +912,17 @@
             this.txtHoten.TabIndex = 2;
             this.txtHoten.TabStop = false;
             // 
-            // splitContainerVPDatCho
+            // lblChiTietPhieu
             // 
-            this.splitContainerVPDatCho.Location = new System.Drawing.Point(3, 195);
-            this.splitContainerVPDatCho.Name = "splitContainerVPDatCho";
-            // 
-            // splitContainerVPDatCho.Panel1
-            // 
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel6);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel5);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel4);
-            this.splitContainerVPDatCho.Panel1.Controls.Add(this.flowLayoutPanel3);
-            // 
-            // splitContainerVPDatCho.Panel2
-            // 
-            this.splitContainerVPDatCho.Panel2.Controls.Add(this.lblChiTietPhieuMuon);
-            this.splitContainerVPDatCho.Panel2.Controls.Add(this.dgvReservationDetail);
-            this.splitContainerVPDatCho.Size = new System.Drawing.Size(876, 292);
-            this.splitContainerVPDatCho.SplitterDistance = 368;
-            this.splitContainerVPDatCho.TabIndex = 7;
-            this.splitContainerVPDatCho.Visible = false;
-            // 
-            // dgvReservationDetail
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 30);
-            this.dgvReservationDetail.Name = "dgvReservationDetail";
-            this.dgvReservationDetail.RowTemplate.Height = 30;
-            this.dgvReservationDetail.Size = new System.Drawing.Size(504, 262);
-            this.dgvReservationDetail.TabIndex = 0;
-            // 
-            // lblChiTietPhieuMuon
-            // 
-            this.lblChiTietPhieuMuon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.lblChiTietPhieuMuon.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblChiTietPhieuMuon.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblChiTietPhieuMuon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblChiTietPhieuMuon.Location = new System.Drawing.Point(0, 0);
-            this.lblChiTietPhieuMuon.Name = "lblChiTietPhieuMuon";
-            this.lblChiTietPhieuMuon.Size = new System.Drawing.Size(504, 27);
-            this.lblChiTietPhieuMuon.TabIndex = 1;
-            this.lblChiTietPhieuMuon.Text = "Danh sách thiết bị đã mượn";
-            this.lblChiTietPhieuMuon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.lblMaDatCho);
-            this.flowLayoutPanel1.Controls.Add(this.txtMaDatCho);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 3);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 40);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // lblMaDatCho
-            // 
-            this.lblMaDatCho.Location = new System.Drawing.Point(3, 6);
-            this.lblMaDatCho.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblMaDatCho.Name = "lblMaDatCho";
-            this.lblMaDatCho.Size = new System.Drawing.Size(108, 25);
-            this.lblMaDatCho.TabIndex = 1;
-            this.lblMaDatCho.Text = "Mã đặt chỗ:";
-            // 
-            // txtMaDatCho
-            // 
-            this.txtMaDatCho.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtMaDatCho.Location = new System.Drawing.Point(117, 3);
-            this.txtMaDatCho.Name = "txtMaDatCho";
-            this.txtMaDatCho.ReadOnly = true;
-            this.txtMaDatCho.Size = new System.Drawing.Size(231, 29);
-            this.txtMaDatCho.TabIndex = 2;
-            this.txtMaDatCho.TabStop = false;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.lblMaChoNgoi);
-            this.flowLayoutPanel2.Controls.Add(this.txtMaCho);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 49);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(364, 40);
-            this.flowLayoutPanel2.TabIndex = 6;
-            // 
-            // lblMaChoNgoi
-            // 
-            this.lblMaChoNgoi.Location = new System.Drawing.Point(3, 6);
-            this.lblMaChoNgoi.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblMaChoNgoi.Name = "lblMaChoNgoi";
-            this.lblMaChoNgoi.Size = new System.Drawing.Size(109, 25);
-            this.lblMaChoNgoi.TabIndex = 1;
-            this.lblMaChoNgoi.Text = "Mã chỗ:";
-            // 
-            // txtMaCho
-            // 
-            this.txtMaCho.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtMaCho.Location = new System.Drawing.Point(118, 3);
-            this.txtMaCho.Name = "txtMaCho";
-            this.txtMaCho.ReadOnly = true;
-            this.txtMaCho.Size = new System.Drawing.Size(232, 29);
-            this.txtMaCho.TabIndex = 2;
-            this.txtMaCho.TabStop = false;
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.Controls.Add(this.lblTGianMuon);
-            this.flowLayoutPanel3.Controls.Add(this.txtTGMuon);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 141);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(361, 40);
-            this.flowLayoutPanel3.TabIndex = 6;
-            // 
-            // lblTGianMuon
-            // 
-            this.lblTGianMuon.Location = new System.Drawing.Point(3, 6);
-            this.lblTGianMuon.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblTGianMuon.Name = "lblTGianMuon";
-            this.lblTGianMuon.Size = new System.Drawing.Size(151, 25);
-            this.lblTGianMuon.TabIndex = 1;
-            this.lblTGianMuon.Text = "Thời gian mượn:";
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Controls.Add(this.lblLoaiMuon);
-            this.flowLayoutPanel4.Controls.Add(this.txtLoaiMuon);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 95);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(361, 40);
-            this.flowLayoutPanel4.TabIndex = 7;
-            // 
-            // lblLoaiMuon
-            // 
-            this.lblLoaiMuon.Location = new System.Drawing.Point(3, 6);
-            this.lblLoaiMuon.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblLoaiMuon.Name = "lblLoaiMuon";
-            this.lblLoaiMuon.Size = new System.Drawing.Size(108, 25);
-            this.lblLoaiMuon.TabIndex = 1;
-            this.lblLoaiMuon.Text = "Loại mượn:";
-            // 
-            // txtLoaiMuon
-            // 
-            this.txtLoaiMuon.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtLoaiMuon.Location = new System.Drawing.Point(117, 3);
-            this.txtLoaiMuon.Name = "txtLoaiMuon";
-            this.txtLoaiMuon.ReadOnly = true;
-            this.txtLoaiMuon.Size = new System.Drawing.Size(229, 29);
-            this.txtLoaiMuon.TabIndex = 2;
-            this.txtLoaiMuon.TabStop = false;
-            // 
-            // flowLayoutPanel5
-            // 
-            this.flowLayoutPanel5.Controls.Add(this.lblHanTra);
-            this.flowLayoutPanel5.Controls.Add(this.txtHanTra);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 187);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(361, 40);
-            this.flowLayoutPanel5.TabIndex = 7;
-            // 
-            // lblHanTra
-            // 
-            this.lblHanTra.Location = new System.Drawing.Point(3, 6);
-            this.lblHanTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblHanTra.Name = "lblHanTra";
-            this.lblHanTra.Size = new System.Drawing.Size(151, 25);
-            this.lblHanTra.TabIndex = 1;
-            this.lblHanTra.Text = "Hạn trả:";
-            // 
-            // flowLayoutPanel6
-            // 
-            this.flowLayoutPanel6.Controls.Add(this.lblThoiGianTra);
-            this.flowLayoutPanel6.Controls.Add(this.txtTGTra);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 233);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(361, 40);
-            this.flowLayoutPanel6.TabIndex = 8;
-            // 
-            // lblThoiGianTra
-            // 
-            this.lblThoiGianTra.Location = new System.Drawing.Point(3, 6);
-            this.lblThoiGianTra.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblThoiGianTra.Name = "lblThoiGianTra";
-            this.lblThoiGianTra.Size = new System.Drawing.Size(151, 25);
-            this.lblThoiGianTra.TabIndex = 1;
-            this.lblThoiGianTra.Text = "Thời gian trả:";
-            // 
-            // txtTGMuon
-            // 
-            this.txtTGMuon.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtTGMuon.Location = new System.Drawing.Point(160, 3);
-            this.txtTGMuon.Name = "txtTGMuon";
-            this.txtTGMuon.ReadOnly = true;
-            this.txtTGMuon.Size = new System.Drawing.Size(186, 29);
-            this.txtTGMuon.TabIndex = 3;
-            this.txtTGMuon.TabStop = false;
-            // 
-            // txtHanTra
-            // 
-            this.txtHanTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtHanTra.Location = new System.Drawing.Point(160, 3);
-            this.txtHanTra.Name = "txtHanTra";
-            this.txtHanTra.ReadOnly = true;
-            this.txtHanTra.Size = new System.Drawing.Size(186, 29);
-            this.txtHanTra.TabIndex = 4;
-            this.txtHanTra.TabStop = false;
-            // 
-            // txtTGTra
-            // 
-            this.txtTGTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtTGTra.Location = new System.Drawing.Point(160, 3);
-            this.txtTGTra.Name = "txtTGTra";
-            this.txtTGTra.ReadOnly = true;
-            this.txtTGTra.Size = new System.Drawing.Size(186, 29);
-            this.txtTGTra.TabIndex = 5;
-            this.txtTGTra.TabStop = false;
-            // 
-            // txtHThucXuLy
-            // 
-            this.txtHThucXuLy.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtHThucXuLy.Location = new System.Drawing.Point(158, 3);
-            this.txtHThucXuLy.Name = "txtHThucXuLy";
-            this.txtHThucXuLy.ReadOnly = true;
-            this.txtHThucXuLy.Size = new System.Drawing.Size(247, 29);
-            this.txtHThucXuLy.TabIndex = 2;
-            this.txtHThucXuLy.TabStop = false;
-            // 
-            // lblHinhThucXuLy
-            // 
-            this.lblHinhThucXuLy.Location = new System.Drawing.Point(3, 6);
-            this.lblHinhThucXuLy.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.lblHinhThucXuLy.Name = "lblHinhThucXuLy";
-            this.lblHinhThucXuLy.Size = new System.Drawing.Size(149, 25);
-            this.lblHinhThucXuLy.TabIndex = 1;
-            this.lblHinhThucXuLy.Text = "Hình thức xử lý:";
-            // 
-            // flowLayoutPanel12
-            // 
-            this.flowLayoutPanel12.Controls.Add(this.lblHinhThucXuLy);
-            this.flowLayoutPanel12.Controls.Add(this.txtHThucXuLy);
-            this.flowLayoutPanel12.Location = new System.Drawing.Point(0, 3);
-            this.flowLayoutPanel12.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel12.Name = "flowLayoutPanel12";
-            this.flowLayoutPanel12.Size = new System.Drawing.Size(413, 40);
-            this.flowLayoutPanel12.TabIndex = 4;
+            this.lblChiTietPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.lblChiTietPhieu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChiTietPhieu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblChiTietPhieu.Location = new System.Drawing.Point(0, 0);
+            this.lblChiTietPhieu.Name = "lblChiTietPhieu";
+            this.lblChiTietPhieu.Size = new System.Drawing.Size(364, 28);
+            this.lblChiTietPhieu.TabIndex = 9;
+            this.lblChiTietPhieu.Text = "Chi tiết phiếu mượn";
+            this.lblChiTietPhieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ViolationDetailForm
             // 
@@ -940,9 +954,28 @@
             this.flpnKhoaTK.PerformLayout();
             this.flpnBoiThuong.ResumeLayout(false);
             this.flpnBoiThuong.PerformLayout();
+            this.flowLayoutPanel12.ResumeLayout(false);
+            this.flowLayoutPanel12.PerformLayout();
             this.flpnThoiGian.ResumeLayout(false);
             this.flpnTrangThai.ResumeLayout(false);
             this.flpnTrangThai.PerformLayout();
+            this.splitContainerVPDatCho.Panel1.ResumeLayout(false);
+            this.splitContainerVPDatCho.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVPDatCho)).EndInit();
+            this.splitContainerVPDatCho.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel6.ResumeLayout(false);
+            this.flowLayoutPanel6.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationDetail)).EndInit();
             this.pnThongTinTV.ResumeLayout(false);
             this.flpnMaTV.ResumeLayout(false);
             this.flpnMaTV.PerformLayout();
@@ -959,25 +992,6 @@
             this.flpnNgaySinh.ResumeLayout(false);
             this.flpnHoTen.ResumeLayout(false);
             this.flpnHoTen.PerformLayout();
-            this.splitContainerVPDatCho.Panel1.ResumeLayout(false);
-            this.splitContainerVPDatCho.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVPDatCho)).EndInit();
-            this.splitContainerVPDatCho.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservationDetail)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
-            this.flowLayoutPanel6.ResumeLayout(false);
-            this.flowLayoutPanel6.PerformLayout();
-            this.flowLayoutPanel12.ResumeLayout(false);
-            this.flowLayoutPanel12.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1060,5 +1074,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel12;
         private System.Windows.Forms.Label lblHinhThucXuLy;
         private System.Windows.Forms.TextBox txtHThucXuLy;
+        private System.Windows.Forms.Label lblChiTietPhieu;
     }
 }

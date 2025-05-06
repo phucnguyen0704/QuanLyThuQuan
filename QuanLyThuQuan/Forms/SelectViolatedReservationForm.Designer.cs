@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTieuDe = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvReservation = new System.Windows.Forms.DataGridView();
-            this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,7 +54,7 @@
             this.lblTieuDe.Name = "lblTieuDe";
             this.lblTieuDe.Size = new System.Drawing.Size(1384, 68);
             this.lblTieuDe.TabIndex = 0;
-            this.lblTieuDe.Text = "Danh sách đặt chỗ đã vi phạm (Mã TV:";
+            this.lblTieuDe.Text = "Danh sách phiếu mượn đã vi phạm (Mã TV:";
             this.lblTieuDe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -90,8 +90,8 @@
             // 
             // dgvReservation
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReservation.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvReservation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReservation.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,19 +102,6 @@
             this.dgvReservation.TabIndex = 0;
             this.dgvReservation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservation_CellDoubleClick);
             this.dgvReservation.SelectionChanged += new System.EventHandler(this.dgvReservation_SelectionChanged);
-            // 
-            // dgvReservationDetail
-            // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightGray;
-            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 34);
-            this.dgvReservationDetail.Name = "dgvReservationDetail";
-            this.dgvReservationDetail.RowTemplate.Height = 30;
-            this.dgvReservationDetail.Size = new System.Drawing.Size(1380, 234);
-            this.dgvReservationDetail.TabIndex = 1;
             // 
             // label3
             // 
@@ -127,6 +114,19 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Danh sách thiết bị đã mượn";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dgvReservationDetail
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            this.dgvReservationDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvReservationDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvReservationDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservationDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvReservationDetail.Location = new System.Drawing.Point(0, 34);
+            this.dgvReservationDetail.Name = "dgvReservationDetail";
+            this.dgvReservationDetail.RowTemplate.Height = 30;
+            this.dgvReservationDetail.Size = new System.Drawing.Size(1380, 234);
+            this.dgvReservationDetail.TabIndex = 1;
             // 
             // SelectViolatedReservationForm
             // 
@@ -144,7 +144,7 @@
             this.MinimumSize = new System.Drawing.Size(1400, 700);
             this.Name = "SelectViolatedReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Chọn đặt chỗ";
+            this.Text = "Chọn phiếu mượn";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

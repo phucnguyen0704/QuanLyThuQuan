@@ -63,7 +63,7 @@ namespace QuanLyThuQuan.Forms
             dgvReservation.Rows.Clear();
             dgvReservation.Columns.Clear();
 
-            dgvReservation.Columns.Add("ReservationID", "Mã đặt chỗ");
+            dgvReservation.Columns.Add("ReservationID", "Mã phiếu mượn");
             dgvReservation.Columns.Add("SeatID", "Mã chỗ ngồi");
             dgvReservation.Columns.Add("ReservationType", "Loại mượn");
             dgvReservation.Columns.Add("ReservationTime", "Thời gian mượn");

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblQLVP = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.flpnLeft = new System.Windows.Forms.FlowLayoutPanel();
@@ -47,6 +47,7 @@
             this.flpnMaDatCho = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMaDatCho = new System.Windows.Forms.Label();
             this.txtMaDatCho = new System.Windows.Forms.TextBox();
+            this.btnChonMaDatCho = new System.Windows.Forms.Button();
             this.flpnHThucXuLy = new System.Windows.Forms.FlowLayoutPanel();
             this.lblHinhThucXuLy = new System.Windows.Forms.Label();
             this.cbHthucXuLy = new System.Windows.Forms.ComboBox();
@@ -77,7 +78,6 @@
             this.lblTieuChiTrangThai = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnChonMaDatCho = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -302,9 +302,9 @@
             this.lblMaDatCho.Location = new System.Drawing.Point(3, 3);
             this.lblMaDatCho.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblMaDatCho.Name = "lblMaDatCho";
-            this.lblMaDatCho.Size = new System.Drawing.Size(133, 30);
+            this.lblMaDatCho.Size = new System.Drawing.Size(148, 30);
             this.lblMaDatCho.TabIndex = 0;
-            this.lblMaDatCho.Text = "Mã đặt chỗ:";
+            this.lblMaDatCho.Text = "Mã phiếu mượn:";
             this.lblMaDatCho.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtMaDatCho
@@ -312,12 +312,24 @@
             this.txtMaDatCho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMaDatCho.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtMaDatCho.Enabled = false;
-            this.txtMaDatCho.Location = new System.Drawing.Point(139, 3);
+            this.txtMaDatCho.Location = new System.Drawing.Point(154, 3);
             this.txtMaDatCho.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.txtMaDatCho.Name = "txtMaDatCho";
             this.txtMaDatCho.ReadOnly = true;
-            this.txtMaDatCho.Size = new System.Drawing.Size(251, 29);
+            this.txtMaDatCho.Size = new System.Drawing.Size(236, 29);
             this.txtMaDatCho.TabIndex = 1;
+            // 
+            // btnChonMaDatCho
+            // 
+            this.btnChonMaDatCho.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnChonMaDatCho.Location = new System.Drawing.Point(393, 3);
+            this.btnChonMaDatCho.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.btnChonMaDatCho.Name = "btnChonMaDatCho";
+            this.btnChonMaDatCho.Size = new System.Drawing.Size(77, 30);
+            this.btnChonMaDatCho.TabIndex = 3;
+            this.btnChonMaDatCho.Text = "Chọn";
+            this.btnChonMaDatCho.UseVisualStyleBackColor = true;
+            this.btnChonMaDatCho.Click += new System.EventHandler(this.btnChonMaDatCho_Click);
             // 
             // flpnHThucXuLy
             // 
@@ -591,8 +603,8 @@
             // 
             // dataGridView
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -680,18 +692,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm kiếm theo Mã TV:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnChonMaDatCho
-            // 
-            this.btnChonMaDatCho.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnChonMaDatCho.Location = new System.Drawing.Point(393, 3);
-            this.btnChonMaDatCho.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.btnChonMaDatCho.Name = "btnChonMaDatCho";
-            this.btnChonMaDatCho.Size = new System.Drawing.Size(77, 30);
-            this.btnChonMaDatCho.TabIndex = 3;
-            this.btnChonMaDatCho.Text = "Chọn";
-            this.btnChonMaDatCho.UseVisualStyleBackColor = true;
-            this.btnChonMaDatCho.Click += new System.EventHandler(this.btnChonMaDatCho_Click);
             // 
             // ViolationForm
             // 

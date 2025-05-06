@@ -152,7 +152,7 @@ namespace QuanLyThuQuan.Forms
             dataGridView.Columns.Add("ViolationID", "ID");
             dataGridView.Columns.Add("MemberID", "Mã TV");
             dataGridView.Columns.Add("RegulationID", "Mã quy định");
-            dataGridView.Columns.Add("ReservationID", "Mã đặt chỗ");
+            dataGridView.Columns.Add("ReservationID", "Mã phiếu mượn");
             dataGridView.Columns.Add("Penalty", "Số tiền bồi thường");
             dataGridView.Columns.Add("DueTime", "Thời gian khóa(tháng)");
             dataGridView.Columns.Add("Status", "Trạng thái");
