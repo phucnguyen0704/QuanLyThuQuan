@@ -10,5 +10,7 @@ namespace QuanLyThuQuan.Web.Services.BookingService
         Task<Response<ReservationDTO>> CreateBooking(ReservationDTO reservationDTO, List<uint> deviceIds);
 
         Task<Response<List<ReservationDetail>>> GetReservationDetails(int reservationId);
+
+        
     }
 }
