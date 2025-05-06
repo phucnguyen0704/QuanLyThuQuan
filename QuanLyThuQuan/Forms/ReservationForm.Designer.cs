@@ -304,6 +304,7 @@ namespace QuanLyThuQuan.Forms
             // 
             // txtSeatID
             // 
+            this.txtSeatID.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtSeatID.Enabled = false;
             this.txtSeatID.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtSeatID.Location = new System.Drawing.Point(240, 162);
@@ -311,6 +312,7 @@ namespace QuanLyThuQuan.Forms
             this.txtSeatID.Name = "txtSeatID";
             this.txtSeatID.Size = new System.Drawing.Size(142, 29);
             this.txtSeatID.TabIndex = 26;
+            this.txtSeatID.TextChanged += new System.EventHandler(this.txtSeatID_TextChanged);
             // 
             // label4
             // 
@@ -458,6 +460,7 @@ namespace QuanLyThuQuan.Forms
             // 
             // txtMemberID
             // 
+            this.txtMemberID.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtMemberID.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtMemberID.Location = new System.Drawing.Point(240, 90);
             this.txtMemberID.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);

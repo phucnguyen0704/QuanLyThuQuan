@@ -1,13 +1,53 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Cmp;
 using QuanLyThuQuan.DTO;
 using System;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyThuQuan.DAL
 {
     class ReservationDAL: BaseDAL
     {
         public ReservationDAL() : base() { }
+
+        private int getSeatStatusFromReservationStatus(int reservationStatus) 
+        {
+                int seatStatus = 0;
+
+                switch (reservationStatus)
+                {
+                    case 1: // Đang sử dụng
+                        seatStatus = 3;
+                        break;
+                    case 2: // Đã trả
+                        seatStatus = 1;
+                        break;
+                    case 3: // Vi phạm
+                        seatStatus = 1;
+                        break;
+                }
+            return seatStatus;
+        }
+
+        private int getDeviceStatusFromReservationStatus(int reservationStatus)
+        {
+            int deviceStatus = 0;
+            switch (reservationStatus)
+            {
+                case 1: // Đang sử dụng
+                    deviceStatus = 2; // Đang mượn
+                    break;
+                case 2: // Đã trả
+                    deviceStatus = 1; // Còn
+                    break;
+                case 3: // Vi phạm
+                    deviceStatus = 2;
+                    break;
+            }
+
+            return deviceStatus;
+        }
 
         public bool create(ReservationDTO reservation)
         {
@@ -174,11 +214,17 @@ namespace QuanLyThuQuan.DAL
                 }
 
                 // Cập nhật trạng thái ghế
-                string updateSeatSql = "UPDATE seat SET status = 3 WHERE seat_id = @seat_id";
-                using (MySqlCommand updateSeatCmd = new MySqlCommand(updateSeatSql, conn, transaction))
+                if (reservation.SeatID.HasValue)
                 {
-                    updateSeatCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
-                    updateSeatCmd.ExecuteNonQuery();
+                    int seatStatus = getSeatStatusFromReservationStatus(reservation.Status);
+
+                    string updateSeatSql = "UPDATE seat SET status = @status WHERE seat_id = @seat_id";
+                    using (MySqlCommand updateSeatCmd = new MySqlCommand(updateSeatSql, conn, transaction))
+                    {
+                        updateSeatCmd.Parameters.AddWithValue("@status", seatStatus);
+                        updateSeatCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                        updateSeatCmd.ExecuteNonQuery();
+                    }
                 }
 
                 transaction.Commit();
@@ -230,17 +276,21 @@ namespace QuanLyThuQuan.DAL
                 }
 
                 // Cập nhật trạng thái ghế (seat)
-                string updateSeatStatusSql = @"
-            UPDATE seat 
-            SET status = @seat_status
-            WHERE seat_id = @seat_id;";
-
-                using (MySqlCommand updateSeatStatusCmd = new MySqlCommand(updateSeatStatusSql, conn, transaction))
+                if (reservation.SeatID.HasValue)
                 {
-                    updateSeatStatusCmd.Parameters.AddWithValue("@seat_status", reservation.Status);
-                    updateSeatStatusCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    int seatStatus = getSeatStatusFromReservationStatus(reservation.Status);
 
-                    updateSeatStatusCmd.ExecuteNonQuery();
+                    string updateSeatStatusSql = @"
+                                                UPDATE seat 
+                                                SET status = @seat_status
+                                                WHERE seat_id = @seat_id;";
+
+                    using (MySqlCommand updateSeatStatusCmd = new MySqlCommand(updateSeatStatusSql, conn, transaction))
+                    {
+                        updateSeatStatusCmd.Parameters.AddWithValue("@seat_status", seatStatus);
+                        updateSeatStatusCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID.Value);
+                        updateSeatStatusCmd.ExecuteNonQuery();
+                    }
                 }
 
                 // Cập nhật reservation_detail và trạng thái của các thiết bị
@@ -259,7 +309,7 @@ namespace QuanLyThuQuan.DAL
 
                     using (MySqlCommand updateDeviceStatusCmd = new MySqlCommand(updateDeviceStatusSql, conn, transaction))
                     {
-                        updateDeviceStatusCmd.Parameters.AddWithValue("@device_status", detail.Status);
+                        updateDeviceStatusCmd.Parameters.AddWithValue("@device_status", getDeviceStatusFromReservationStatus(reservation.Status));
                         updateDeviceStatusCmd.Parameters.AddWithValue("@device_id", detail.DeviceID);
 
                         updateDeviceStatusCmd.ExecuteNonQuery();
