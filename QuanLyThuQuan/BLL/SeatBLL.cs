@@ -1,4 +1,3 @@
-﻿using K4os.Compression.LZ4.Streams.Adapters;
 using MySql.Data.MySqlClient;
 using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
@@ -14,7 +13,7 @@ using System.Xml.Linq;
 
 namespace QuanLyThuQuan.BLL
 {
-    public class SeatBLL
+    class SeatBLL
     {
         private SeatDAL seatDAL;
 
@@ -29,30 +28,35 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập tên chỗ! ";
             }
-            if (!Regex.IsMatch(name, @"^[A-Za-z0-9\s]+$"))
-            {
-                return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
-            }
+            //if (!Regex.IsMatch(name, @"^[A-Za-z0-9]+$"))
+            //{
+            //    return "Ten cho chi gom chu cai va so, vui long nhap lai!";
+            //}
             if (seatDAL.checkName(name) == true)
             {
                 return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
             }
             SeatDTO seat = new SeatDTO { seatName = name };
-            seatDAL.create(seat);
-            return null;
+            
+            if (seatDAL.create(seat))
+            {
+                return null;
+            }
+            return "Lỗi MySQL!";
         }
 
-        public string update(int seatId, string newSeatName, int newStatus) {
+        public string update(int seatId, string newSeatName)
+        {
             SeatDTO seat = seatDAL.getById(seatId);
 
             if (string.IsNullOrWhiteSpace(newSeatName))
             {
                 return "Vui lòng nhập tên chỗ! ";
             }
-            if (!Regex.IsMatch(newSeatName, @"^[A-Za-z0-9\s]+$"))
-            {     
-                return "Tên chỗ chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
-            }
+            //if (!Regex.IsMatch(newSeatName, @"^[A-Za-z0-9]+$"))
+            //{
+            //    return "Ten cho chi gom chu cai va so, vui long nhap lai!";
+            //}
             if (!newSeatName.Equals(seat.seatName, StringComparison.OrdinalIgnoreCase))
             {
                 if (seatDAL.checkName(newSeatName) == true)
@@ -60,35 +64,45 @@ namespace QuanLyThuQuan.BLL
                     return ("Tên chỗ đã tồn tại, vui lòng nhập lại!");
                 }
             }
+
             seat.seatName = newSeatName;
-            seat.status = newStatus;
-            seatDAL.update(seat);
-            return null;
+            if (seatDAL.update(seat)) {
+                return null;
+            }
+            return "Lỗi MySQL!";
         }
 
-        public string delete(int seatId) {
+        public string delete(int seatId)
+        {
             SeatDTO seat = seatDAL.getById(seatId);
-            
-            seatDAL.delete(seat.seatId);
-            return null;
+
+            if (seatDAL.delete(seat.seatId))
+            {
+                return null;
+            }
+            return "Lỗi MySQL!!";
         }
 
-        public List<SeatDTO> getAllSeat() {
+        public List<SeatDTO> getAllSeat()
+        {
             return seatDAL.getAll();
         }
 
-        public SeatDTO getById(int id) { 
+        public SeatDTO getById(int id)
+        {
             return (seatDAL.getById(id));
         }
 
-        public SeatDTO getByName(String name) { 
+        public SeatDTO getByName(String name)
+        {
             return seatDAL.getByName(name);
         }
 
-        public bool checkName(String name) { 
+        public bool checkName(String name)
+        {
             return seatDAL.checkName(name);
         }
 
-       
+
     }
 }

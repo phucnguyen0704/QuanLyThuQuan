@@ -27,9 +27,32 @@ namespace QuanLyThuQuan.BLL
             return regulationDAL.Update(regulation);
         }
 
-        public bool Delete(int regulationID)
+        public bool Delete(int regulationID, out string errorMessage)
         {
-            return regulationDAL.Delete(regulationID);
+            try
+            {
+                bool result = regulationDAL.Delete(regulationID);
+                errorMessage = result ? null : "Không thể xóa quy định. Lý do không xác định.";
+                return result;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                // 1451 - Mã lỗi ràng buộc khóa ngoại của MySQL
+                if (ex.Number == 1451)
+                {
+                    errorMessage = "Không thể xóa quy định vì đã được áp dụng trong vi phạm.";
+                }
+                else
+                {
+                    errorMessage = "Lỗi cơ sở dữ liệu: " + ex.Message;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = "Lỗi hệ thống: " + ex.Message;
+                return false;
+            }
         }
 
         public List<RegulationDTO> GetAll()

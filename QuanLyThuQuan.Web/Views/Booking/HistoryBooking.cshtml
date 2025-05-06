@@ -134,56 +134,63 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @if (Model != null && Model.Any())
                                 {
-                                    <tr>
-                                        <td>@item.Reservation.ReservationId</td>
-                                        <td>@item.Reservation.MemberId</td>
-                                        <td>@(item.Reservation.Member.FullName ?? "N/A")</td>
-                                        <td>
-                                            @switch (item.Reservation.ReservationType)
-                                            {
-                                                case 1:
-                                                    @: Mượn tại chỗ
-                                                    break;
-                                                case 2:
-                                                    @: Mượn mang về
-                                                    break;
-                                                default:
-                                                    @: Không xác định
-                                                    break;
-                                            }
-                                        </td>
-                                        <td>@(item.Reservation.Seat?.Name ?? "N/A")</td>
-                                        <td>@(item.Reservation.ReservationTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>@(item.Reservation.DueTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>@(item.Reservation.ReturnTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                        <td>
-                                            @switch (item.Reservation.Status)
-                                            {
-                                                case 1:
-                                                    @:<span class="badge rounded-pill bg-primary"> Đang mượn </span>
-                                                    break;
-                                                case 2:
-                                                    @: <span class="badge rounded-pill bg-secondary"> Đã trả </span>
-                                                    break;
-                                                case 3:
-                                                    @: <span class="badge rounded-pill bg-danger"> Vi phạm </span>
-                                                    break;
-                                                default:
-                                                    @: <span class="badge rounded-pill bg-secondary"> N/A </span>
-                                                    break;
-                                            }
-                                        </td>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Reservation.ReservationId</td>
+                                            <td>@item.Reservation.MemberId</td>
+                                            <td>@(item.Reservation.Member.FullName ?? "N/A")</td>
+                                            <td>
+                                                @switch (item.Reservation.ReservationType)
+                                                {
+                                                    case 1:
+                                                        @: Mượn tại chỗ
+                                                        break;
+                                                    case 2:
+                                                        @: Mượn mang về
+                                                        break;
+                                                    default:
+                                                        @: Không xác định
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>@(item.Reservation.Seat?.Name ?? "N/A")</td>
+                                            <td>@(item.Reservation.ReservationTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                            <td>@(item.Reservation.DueTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                            <td>@(item.Reservation.ReturnTime?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                            <td>
+                                                @switch (item.Reservation.Status)
+                                                {
+                                                    case 1:
+                                                        @:<span class="badge rounded-pill bg-primary"> Đang mượn </span>
+                                                        break;
+                                                    case 2:
+                                                        @: <span class="badge rounded-pill bg-secondary"> Đã trả </span>
+                                                        break;
+                                                    case 3:
+                                                        @: <span class="badge rounded-pill bg-danger"> Vi phạm </span>
+                                                        break;
+                                                    default:
+                                                        @: <span class="badge rounded-pill bg-secondary"> N/A </span>
+                                                        break;
+                                                }
+                                            </td>
                                         
-                                        <td>
+                                            <td>
 
-                                            <button class="btn btn-info btn-sm btn-show-details"
-                                                    data-id="@item.Reservation.ReservationId">
-                                                Xem chi tiết
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                <button class="btn btn-info btn-sm btn-show-details"
+                                                        data-id="@item.Reservation.ReservationId">
+                                                    Xem chi tiết
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="10">Không có dữ liệu</td></tr>
                                 }
                             </tbody>
                             <tfoot>

@@ -16,15 +16,12 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"
-                        INSERT INTO reservation_detail (reservation_id, device_id, borrow_time, due_time, return_time, status)
-                        VALUES (@reservation_id, @device_id, @borrow_time, @due_time, @return_time, @status);
+                        INSERT INTO reservation_detail (reservation_id, device_id, status)
+                        VALUES (@reservation_id, @device_id, @status);
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@reservation_id", reservationDetail.ReservationID);
                     command.Parameters.AddWithValue("@device_id", reservationDetail.DeviceID);
-                    command.Parameters.AddWithValue("@borrow_time", reservationDetail.BorrowTime);
-                    command.Parameters.AddWithValue("@due_time", reservationDetail.DueTime);
-                    command.Parameters.AddWithValue("@return_time", reservationDetail.ReturnTime);
                     command.Parameters.AddWithValue("@status", reservationDetail.Status);
 
                     OpenConnection();
@@ -57,16 +54,13 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                         UPDATE reservation_detail 
-                        SET reservation_id = @reservation_id, device_id = @device_id, borrow_time = @borrow_time, due_time = @due_time, return_time = @return_time, status = @status
+                        SET reservation_id = @reservation_id, device_id = @device_id, status = @status
                         WHERE reservation_detail_id = @reservation_detail_id;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@reservation_detail_id", reservationDetail.ReservationDetailID);
                     command.Parameters.AddWithValue("@reservation_id", reservationDetail.ReservationID);
                     command.Parameters.AddWithValue("@device_id", reservationDetail.DeviceID);
-                    command.Parameters.AddWithValue("@borrow_time", reservationDetail.BorrowTime);
-                    command.Parameters.AddWithValue("@due_time", reservationDetail.DueTime);
-                    command.Parameters.AddWithValue("@return_time", reservationDetail.ReturnTime);
                     command.Parameters.AddWithValue("@status", reservationDetail.Status);
 
                     OpenConnection();
@@ -145,10 +139,7 @@ namespace QuanLyThuQuan.DAL
                         ReservationDetailDTO reservationDetail = new ReservationDetailDTO(
                             reader.GetInt32("reservation_detail_id"),
                             reader.GetInt32("reservation_id"),
-                            reader.GetInt32("device_id"),
-                            reader.GetDateTime("borrow_time"),
-                            reader.GetDateTime("due_time"),
-                            reader.GetDateTime("return_time"),
+                            reader.GetInt32("device_id"),                            
                             reader.GetInt32("status")
                         );
                         reservationDetails.Add(reservationDetail);
@@ -193,9 +184,6 @@ namespace QuanLyThuQuan.DAL
                             reader.GetInt32("reservation_detail_id"),
                             reader.GetInt32("reservation_id"),
                             reader.GetInt32("device_id"),
-                            reader.GetDateTime("borrow_time"),
-                            reader.GetDateTime("due_time"),
-                            reader.GetDateTime("return_time"),
                             reader.GetInt32("status")
                         );
                     }
@@ -217,6 +205,47 @@ namespace QuanLyThuQuan.DAL
             {
                 CloseConnection();
             }
+        }
+
+        public List<ReservationDetailDTO> getByReservationID(int reservationID)
+        {
+            List<ReservationDetailDTO> details = new List<ReservationDetailDTO>();
+
+            try
+            {
+                string sql = @"
+                            SELECT * FROM reservation_detail 
+                            WHERE reservation_id = @reservation_id;
+                             ";
+
+                MySqlCommand command = new MySqlCommand(sql, GetConnection());
+                command.Parameters.AddWithValue("@reservation_id", reservationID);
+
+                OpenConnection();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReservationDetailDTO detail = new ReservationDetailDTO(
+                            reader.GetInt32("reservation_detail_id"),
+                            reader.GetInt32("reservation_id"),
+                            reader.GetInt32("device_id"),
+                            reader.GetInt32("status")
+                        );
+                        details.Add(detail);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Lỗi lấy chi tiết đặt chỗ theo reservation_id: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return details;
         }
     }
 }

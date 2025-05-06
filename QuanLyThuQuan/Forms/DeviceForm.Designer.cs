@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDisDeviceInLib = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +45,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblDeviceID = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboSearchCategory = new System.Windows.Forms.ComboBox();
+            this.lblSearchCategory = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -71,6 +72,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 100);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // lblDisDeviceInLib
             // 
@@ -79,7 +81,7 @@
             this.lblDisDeviceInLib.ForeColor = System.Drawing.Color.White;
             this.lblDisDeviceInLib.Location = new System.Drawing.Point(12, 58);
             this.lblDisDeviceInLib.Name = "lblDisDeviceInLib";
-            this.lblDisDeviceInLib.Size = new System.Drawing.Size(290, 25);
+            this.lblDisDeviceInLib.Size = new System.Drawing.Size(347, 30);
             this.lblDisDeviceInLib.TabIndex = 1;
             this.lblDisDeviceInLib.Text = "DANH SÁCH THIẾT BỊ THƯ QUÁN";
             // 
@@ -90,7 +92,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 33);
+            this.label1.Size = new System.Drawing.Size(267, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ THIẾT BỊ";
             // 
@@ -114,6 +116,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1184, 200);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // picPreview
             // 
@@ -156,7 +159,7 @@
             this.lblImage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblImage.Location = new System.Drawing.Point(50, 155);
             this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(77, 21);
+            this.lblImage.Size = new System.Drawing.Size(76, 21);
             this.lblImage.TabIndex = 8;
             this.lblImage.Text = "Hình ảnh:";
             // 
@@ -168,6 +171,7 @@
             this.dtpCreatedAt.Name = "dtpCreatedAt";
             this.dtpCreatedAt.Size = new System.Drawing.Size(200, 29);
             this.dtpCreatedAt.TabIndex = 7;
+            this.dtpCreatedAt.ValueChanged += new System.EventHandler(this.dtpCreatedAt_ValueChanged);
             // 
             // cboStatus
             // 
@@ -212,7 +216,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(520, 73);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(84, 21);
+            this.lblStatus.Size = new System.Drawing.Size(82, 21);
             this.lblStatus.TabIndex = 2;
             this.lblStatus.Text = "Trạng thái:";
             // 
@@ -222,7 +226,7 @@
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(50, 73);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(95, 21);
+            this.lblName.Size = new System.Drawing.Size(88, 21);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Tên thiết bị:";
             // 
@@ -232,13 +236,15 @@
             this.lblDeviceID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeviceID.Location = new System.Drawing.Point(50, 33);
             this.lblDeviceID.Name = "lblDeviceID";
-            this.lblDeviceID.Size = new System.Drawing.Size(90, 21);
+            this.lblDeviceID.Size = new System.Drawing.Size(87, 21);
             this.lblDeviceID.TabIndex = 0;
             this.lblDeviceID.Text = "Mã thiết bị:";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panel3.Controls.Add(this.cboSearchCategory);
+            this.panel3.Controls.Add(this.lblSearchCategory);
             this.panel3.Controls.Add(this.btnSave);
             this.panel3.Controls.Add(this.txtSearch);
             this.panel3.Controls.Add(this.lblSearch);
@@ -251,6 +257,28 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1184, 60);
             this.panel3.TabIndex = 2;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // cboSearchCategory
+            // 
+            this.cboSearchCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSearchCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSearchCategory.FormattingEnabled = true;
+            this.cboSearchCategory.Location = new System.Drawing.Point(670, 17);
+            this.cboSearchCategory.Name = "cboSearchCategory";
+            this.cboSearchCategory.Size = new System.Drawing.Size(150, 29);
+            this.cboSearchCategory.TabIndex = 8;
+            this.cboSearchCategory.SelectedIndexChanged += new System.EventHandler(this.cboSearchCategory_SelectedIndexChanged);
+            // 
+            // lblSearchCategory
+            // 
+            this.lblSearchCategory.AutoSize = true;
+            this.lblSearchCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchCategory.Location = new System.Drawing.Point(580, 20);
+            this.lblSearchCategory.Name = "lblSearchCategory";
+            this.lblSearchCategory.Size = new System.Drawing.Size(74, 21);
+            this.lblSearchCategory.TabIndex = 7;
+            this.lblSearchCategory.Text = "Tìm theo:";
             // 
             // btnSave
             // 
@@ -280,11 +308,11 @@
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(770, 20);
+            this.lblSearch.Location = new System.Drawing.Point(830, 20);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(79, 21);
+            this.lblSearch.Size = new System.Drawing.Size(13, 21);
             this.lblSearch.TabIndex = 4;
-            this.lblSearch.Text = "Tìm kiếm:";
+            this.lblSearch.Text = ":";
             // 
             // btnClear
             // 
@@ -372,7 +400,6 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeviceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Thiết Bị - Thư Quán";
@@ -416,5 +443,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cboSearchCategory;
+        private System.Windows.Forms.Label lblSearchCategory;
     }
 }
