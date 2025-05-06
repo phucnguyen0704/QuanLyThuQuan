@@ -17,6 +17,8 @@ namespace QuanLyThuQuan.Forms
     {
         private readonly ReservationBLL reservationBLL;
         private readonly ReservationDetailBLL reservationDetailBLL;
+        private readonly MemberBLL memberBLL;
+
         private List<ReservationDTO> reservationList;
         private bool isEditing = false;
         private ReservationDTO currentReservation; // Lưu trữ thông tin reservation hiện tại để khôi phục khi cần
@@ -46,6 +48,7 @@ namespace QuanLyThuQuan.Forms
             InitializeComponent();
             reservationBLL = new ReservationBLL();
             reservationDetailBLL = new ReservationDetailBLL();
+            memberBLL = new MemberBLL();
 
             // Đăng ký sự kiện CellFormatting
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
@@ -406,6 +409,9 @@ namespace QuanLyThuQuan.Forms
             dtpReservationTime.Enabled = true;
             dtpDueTime.Enabled = true;
             cboStatus.Enabled = true;
+
+            cboStatus.SelectedIndex = 0;
+            cboStatus.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -446,6 +452,7 @@ namespace QuanLyThuQuan.Forms
 
                 ReservationDTO reservation = GetReservationFromForm();
                 List<ReservationDetailDTO> reservationDetails = getReservationDetailFromForm();
+
                 bool result;
 
                 if (isEditing)
@@ -462,13 +469,11 @@ namespace QuanLyThuQuan.Forms
                     if (result)
                     {
                         MessageBox.Show("Cập nhật thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dataGridView1.SelectedRows[0].Cells["Status"].Value = cboStatus.Text;
+                        // dataGridView1.SelectedRows[0].Cells["Status"].Value = cboStatus.Text;
                     }
                     else
                     {
                         MessageBox.Show("Cập nhật thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        ClearForm();
-                        LoadReservations();
                         return;
                     }
                 }
@@ -492,10 +497,10 @@ namespace QuanLyThuQuan.Forms
                         MessageBox.Show("Thêm thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    ClearForm();
-                    LoadReservations();
                 }
 
+                ClearForm();
+                LoadReservations();
                 SetButtonsForViewMode();
             }
             catch (Exception ex)
@@ -516,6 +521,22 @@ namespace QuanLyThuQuan.Forms
             if (!uint.TryParse(txtMemberID.Text, out _))
             {
                 MessageBox.Show("Mã thành viên phải là số nguyên dương!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMemberID.Focus();
+                return false;
+            }
+
+            MemberDTO member = memberBLL.getByID(uint.Parse(txtMemberID.Text));
+
+            if (member == null)
+            {
+                MessageBox.Show("Mã thành viên không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMemberID.Focus();
+                return false;
+            }
+
+            if (member.Status == 3)
+            {
+                MessageBox.Show("Mã thành viên đã bị khóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMemberID.Focus();
                 return false;
             }
@@ -601,7 +622,7 @@ namespace QuanLyThuQuan.Forms
             List<ReservationDetailDTO> reservationDetails = new List<ReservationDetailDTO>();
             List<int> selectedDeviceIDs = getSelectedDeviceIDList();
 
-            if(selectedDeviceIDs.Count != 0)
+            if (selectedDeviceIDs.Count != 0)
             {
                 int reservationID = txtReservationID.Text != "" ? int.Parse(txtReservationID.Text) : 0;
                 if (reservationID == 0)
@@ -619,8 +640,6 @@ namespace QuanLyThuQuan.Forms
                     }
                 }
             }
-
-            MessageBox.Show(string.Join(", ", reservationDetails));
 
             return reservationDetails;
         }
@@ -787,8 +806,9 @@ namespace QuanLyThuQuan.Forms
 
             using (var form = new SelectAvailableSeatForm(currentSeatID))
             {
-                if (form.ShowDialog() == DialogResult.OK && form.SelectedSeatID.HasValue)
+                if (form.ShowDialog() == DialogResult.OK && form.SelectedSeatID.HasValue) {
                     txtSeatID.Text = form.SelectedSeatID.Value.ToString();
+                }
             }
         }
 
@@ -797,8 +817,10 @@ namespace QuanLyThuQuan.Forms
             List<int> selectedIDs = new List<int>();
             if (!string.IsNullOrWhiteSpace(richTxtDeviceIDList.Text))
             {
-                selectedIDs = richTxtDeviceIDList.Text
-                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                string[] lines = richTxtDeviceIDList.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+
+                selectedIDs = lines
+                    .Select(s => s.Trim())
                     .Select(s => int.TryParse(s, out int id) ? id : -1)
                     .Where(id => id != -1)
                     .ToList();
@@ -833,6 +855,7 @@ namespace QuanLyThuQuan.Forms
                     {
                         // Lưu reservation hiện tại để có thể khôi phục khi cần
                         currentReservation = selectedReservation;
+
                         List<int> selectedDeviceIDs = reservationDetailBLL.getByReservationID(reservationID)
                             .Select(rd => rd.DeviceID)
                             .ToList();
@@ -861,6 +884,19 @@ namespace QuanLyThuQuan.Forms
             ClearForm();
             LoadReservations();
             loadFormFromSelectedRow();
+        }
+
+        private void txtSeatID_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSeatID.Text == "")
+            {
+                cboReservationType.Enabled = true;
+            }
+            else
+            {
+                cboReservationType.SelectedIndex = 0;
+                cboReservationType.Enabled = false;
+            }
         }
     }
 }

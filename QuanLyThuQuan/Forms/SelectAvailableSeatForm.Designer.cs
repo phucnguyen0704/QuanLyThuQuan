@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDSChoNgoi = new System.Windows.Forms.Label();
             this.lblHuongDan = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -133,8 +133,8 @@
             // 
             // dataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -158,6 +158,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MinimumSize = new System.Drawing.Size(1400, 700);
             this.Name = "SelectAvailableSeatForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chọn chỗ ngồi";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
