@@ -27,11 +27,6 @@ namespace QuanLyThuQuan.BLL
             return violationDAL.Update(violation);
         }
 
-        public bool UpdateStatus(int id, int status)
-        {
-            return violationDAL.UpdateStatus(id, status);
-        }
-
         public bool Delete(int id)
         {
             return violationDAL.Delete(id);

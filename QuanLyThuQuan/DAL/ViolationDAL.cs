@@ -11,31 +11,43 @@ namespace QuanLyThuQuan.DAL
 
         public bool Create(ViolationDTO violation)
         {
-            string sql = @"INSERT INTO violation (member_id, regulation_id, reservation_id, penalty, due_time, status) 
-                           VALUES (@member_id, @regulation_id, @reservation_id, @penalty, @due_time, @status)";
-            MySqlConnection conn = GetConnection();
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            string insertViolationSql = @"INSERT INTO violation (member_id, regulation_id, reservation_id, penalty, due_time, status) 
+                         VALUES (@member_id, @regulation_id, @reservation_id, @penalty, @due_time, @status)";
 
-            cmd.Parameters.AddWithValue("@member_id", violation.MemberID);
-            cmd.Parameters.AddWithValue("@regulation_id", violation.RegulationID);
-            cmd.Parameters.AddWithValue("@reservation_id", violation.ReservationID);
-            cmd.Parameters.AddWithValue("@penalty", violation.Penalty);
-            cmd.Parameters.AddWithValue("@due_time", violation.DueTime.HasValue ? (object)violation.DueTime : DBNull.Value);
-            cmd.Parameters.AddWithValue("@status", violation.Status);
+            string updateMemberStatusSql = @"UPDATE member SET status = 3 WHERE member_id = @member_id";
+
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
 
             try
             {
                 OpenConnection();
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Lỗi MySQL khi tạo violation: " + ex.Message);
-                return false;
+                transaction = conn.BeginTransaction();
+
+                MySqlCommand insertCmd = new MySqlCommand(insertViolationSql, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@member_id", violation.MemberID);
+                insertCmd.Parameters.AddWithValue("@regulation_id", violation.RegulationID);
+                insertCmd.Parameters.AddWithValue("@reservation_id", violation.ReservationID);
+                insertCmd.Parameters.AddWithValue("@penalty", violation.Penalty);
+                insertCmd.Parameters.AddWithValue("@due_time", violation.DueTime.HasValue ? (object)violation.DueTime : DBNull.Value);
+                insertCmd.Parameters.AddWithValue("@status", violation.Status);
+
+                insertCmd.ExecuteNonQuery();
+
+                if (violation.Status == 2 && violation.DueTime.HasValue)
+                {
+                    MySqlCommand updateCmd = new MySqlCommand(updateMemberStatusSql, conn, transaction);
+                    updateCmd.Parameters.AddWithValue("@member_id", violation.MemberID);
+                    updateCmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi không xác định khi tạo violation: " + ex.Message);
+                Console.WriteLine("Lỗi khi tạo violation và cập nhật member: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
                 return false;
             }
             finally
@@ -46,63 +58,47 @@ namespace QuanLyThuQuan.DAL
 
         public bool Update(ViolationDTO violation)
         {
-            string sql = @"UPDATE violation SET member_id = @member_id, regulation_id = @regulation_id, 
-                           reservation_id = @reservation_id, penalty = @penalty, due_time = @due_time, 
-                           status = @status WHERE violation_id = @id";
-            MySqlConnection conn = GetConnection();
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            string updateViolationSql = @"UPDATE violation 
+                                  SET member_id = @member_id, regulation_id = @regulation_id, 
+                                      reservation_id = @reservation_id, penalty = @penalty, 
+                                      due_time = @due_time, status = @status 
+                                  WHERE violation_id = @id";
 
-            cmd.Parameters.AddWithValue("@member_id", violation.MemberID);
-            cmd.Parameters.AddWithValue("@regulation_id", violation.RegulationID);
-            cmd.Parameters.AddWithValue("@reservation_id", violation.ReservationID);
-            cmd.Parameters.AddWithValue("@penalty", violation.Penalty);
-            cmd.Parameters.AddWithValue("@due_time", violation.DueTime.HasValue ? (object)violation.DueTime : DBNull.Value);
-            cmd.Parameters.AddWithValue("@status", violation.Status);
-            cmd.Parameters.AddWithValue("@id", violation.ViolationID);
+            string updateMemberStatusSql = @"UPDATE member SET status = 3 WHERE member_id = @member_id";
+
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
 
             try
             {
                 OpenConnection();
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Lỗi MySQL khi cập nhật violation: " + ex.Message);
-                return false;
+                transaction = conn.BeginTransaction();
+
+                MySqlCommand updateViolationCmd = new MySqlCommand(updateViolationSql, conn, transaction);
+                updateViolationCmd.Parameters.AddWithValue("@member_id", violation.MemberID);
+                updateViolationCmd.Parameters.AddWithValue("@regulation_id", violation.RegulationID);
+                updateViolationCmd.Parameters.AddWithValue("@reservation_id", violation.ReservationID);
+                updateViolationCmd.Parameters.AddWithValue("@penalty", violation.Penalty);
+                updateViolationCmd.Parameters.AddWithValue("@due_time", violation.DueTime.HasValue ? (object)violation.DueTime : DBNull.Value);
+                updateViolationCmd.Parameters.AddWithValue("@status", violation.Status);
+                updateViolationCmd.Parameters.AddWithValue("@id", violation.ViolationID);
+
+                updateViolationCmd.ExecuteNonQuery();
+
+                if (violation.Status == 2 && violation.DueTime.HasValue)
+                {
+                    MySqlCommand updateMemberCmd = new MySqlCommand(updateMemberStatusSql, conn, transaction);
+                    updateMemberCmd.Parameters.AddWithValue("@member_id", violation.MemberID);
+                    updateMemberCmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi không xác định khi cập nhật violation: " + ex.Message);
-                return false;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-        public bool UpdateStatus(int violationId, int newStatus)
-        {
-            string sql = "UPDATE violation SET status = @status WHERE violation_id = @id";
-            MySqlConnection conn = GetConnection();
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-            cmd.Parameters.AddWithValue("@status", newStatus);
-            cmd.Parameters.AddWithValue("@id", violationId);
-
-            try
-            {
-                OpenConnection();
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Lỗi MySQL khi cập nhật status violation: " + ex.Message);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi không xác định khi cập nhật status violation: " + ex.Message);
+                Console.WriteLine("Lỗi khi cập nhật violation và member: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
                 return false;
             }
             finally
