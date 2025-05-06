@@ -1,4 +1,5 @@
 ﻿// ReservationForm.cs
+using DocumentFormat.OpenXml.Office2010.Drawing;
 using Org.BouncyCastle.Asn1.Cmp;
 using QuanLyThuQuan.BLL;
 using QuanLyThuQuan.DTO;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace QuanLyThuQuan.Forms
@@ -14,6 +16,7 @@ namespace QuanLyThuQuan.Forms
     public partial class ReservationForm : Form //-------------------------------------------- MƯỢN TRẢ ---------------------------------------------------------------
     {
         private readonly ReservationBLL reservationBLL;
+        private readonly ReservationDetailBLL reservationDetailBLL;
         private List<ReservationDTO> reservationList;
         private bool isEditing = false;
         private ReservationDTO currentReservation; // Lưu trữ thông tin reservation hiện tại để khôi phục khi cần
@@ -42,6 +45,7 @@ namespace QuanLyThuQuan.Forms
         {
             InitializeComponent();
             reservationBLL = new ReservationBLL();
+            reservationDetailBLL = new ReservationDetailBLL();
 
             // Đăng ký sự kiện CellFormatting
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
@@ -57,6 +61,8 @@ namespace QuanLyThuQuan.Forms
 
             // Ẩn nút Lưu khi khởi động form
             btnSave.Visible = false;
+
+            SetButtonsForViewMode();
         }
 
         private void CboStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -187,9 +193,9 @@ namespace QuanLyThuQuan.Forms
 
         private void ConfigureDataGridViewColumns()
         {
-            dataGridView1.Columns["ReservationID"].HeaderText = "Mã mượn";
+            dataGridView1.Columns["ReservationID"].HeaderText = "Mã phiếu mượn";
             dataGridView1.Columns["MemberID"].HeaderText = "Mã thành viên";
-            dataGridView1.Columns["SeatID"].HeaderText = "Mã ghế";
+            dataGridView1.Columns["SeatID"].HeaderText = "Mã chỗ";
             dataGridView1.Columns["ReservationType"].HeaderText = "Loại mượn";
             dataGridView1.Columns["ReservationTime"].HeaderText = "Thời gian đặt";
             dataGridView1.Columns["DueTime"].HeaderText = "Thời hạn";
@@ -202,7 +208,7 @@ namespace QuanLyThuQuan.Forms
             dataGridView1.Columns["ReturnTime"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
             dataGridView1.Columns["ReturnTime"].DefaultCellStyle.NullValue = "";
             dataGridView1.Columns["SeatID"].DefaultCellStyle.NullValue = ""; // Hiển thị trống khi null
-            dataGridView1.Columns["CreatedAt"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView1.Columns["CreatedAt"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
         }
 
         private string GetReservationTypeText(int reservationType)
@@ -309,44 +315,21 @@ namespace QuanLyThuQuan.Forms
             cboSearchCategory.SelectedIndex = 0;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.RowIndex >= dataGridView1.Rows.Count)
-                return;
-
-            try
-            {
-                int reservationID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ReservationID"].Value);
-                ReservationDTO selectedReservation = reservationList.FirstOrDefault(r => r.ReservationID == reservationID);
-
-                if (selectedReservation != null)
-                {
-                    // Lưu reservation hiện tại để có thể khôi phục khi cần
-                    currentReservation = selectedReservation;
-
-                    PopulateFormFields(selectedReservation);
-                    SetButtonsForViewMode();
-
-                    // Cập nhật trạng thái trước đó
-                    previousStatus = cboStatus.SelectedItem.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi chọn dòng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void PopulateFormFields(ReservationDTO reservation)
+        private void PopulateFormFields(ReservationDTO reservation, List<int> selectedDeviceIDs)
         {
             txtReservationID.Text = reservation.ReservationID.ToString();
             txtMemberID.Text = reservation.MemberID.ToString();
             txtSeatID.Text = reservation.SeatID.HasValue ? reservation.SeatID.Value.ToString() : "";
 
+            string deviceIDList = string.Join(Environment.NewLine, selectedDeviceIDs);
+            richTxtDeviceIDList.Text = deviceIDList;
+
+
             cboReservationType.SelectedIndex = reservation.ReservationType - 1;
 
             // Hiển thị thời gian đặt trong label
-            lblReservationTimeValue.Text = reservation.ReservationTime.ToString("dd/MM/yyyy HH:mm");
+            //lblReservationTimeValue.Text = reservation.ReservationTime.ToString("dd/MM/yyyy HH:mm");
+            dtpReservationTime.Value = reservation.ReservationTime;
 
             dtpDueTime.Value = reservation.DueTime;
 
@@ -366,17 +349,63 @@ namespace QuanLyThuQuan.Forms
 
         private void SetButtonsForViewMode()
         {
-            btnEdit.Visible = true;
-            btnDelete.Visible = true;
-            btnSave.Visible = false;
             isEditing = false;
+
+            btnAdd.Visible = true;
+            btnSave.Visible = false;
+            btnClear.Visible = false;
+            //btnDelete.Visible = true;
+
+            if (GetStatusValue(cboStatus.Text) == STATUS_VIOLATION || GetStatusValue(cboStatus.Text) == STATUS_RETURNED) 
+            {
+                btnEdit.Visible = false;
+            } else {
+                btnEdit.Visible = true;
+            }
+
+            txtMemberID.Enabled = false;
+            cboReservationType.Enabled = false;
+            btnChonMaGhe.Enabled = false;
+            btnChonThietBi.Enabled = false;
+            dtpReservationTime.Enabled = false;
+            dtpDueTime.Enabled = false;
+            cboStatus.Enabled = false;
         }
 
         private void SetButtonsForEditMode()
         {
             btnSave.Visible = true;
+            btnClear.Visible = true;
+
+            btnAdd.Visible = false;
             btnEdit.Visible = false;
-            btnDelete.Visible = false;
+            //btnDelete.Visible = false;
+
+            // txtMemberID.Enabled = true;
+            // cboReservationType.Enabled = true;
+            // btnChonMaGhe.Enabled = true;
+            // btnChonThietBi.Enabled = true;
+            // if(!isEditing) dtpReservationTime.Enabled = true;
+            // dtpDueTime.Enabled = true;
+            cboStatus.Enabled = true;
+        }
+
+        private void SetButtonsForAddMode()
+        {
+                        btnSave.Visible = true;
+            btnClear.Visible = true;
+
+            btnAdd.Visible = false;
+            btnEdit.Visible = false;
+            //btnDelete.Visible = false;
+
+            txtMemberID.Enabled = true;
+            cboReservationType.Enabled = true;
+            btnChonMaGhe.Enabled = true;
+            btnChonThietBi.Enabled = true;
+            dtpReservationTime.Enabled = true;
+            dtpDueTime.Enabled = true;
+            cboStatus.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -384,8 +413,9 @@ namespace QuanLyThuQuan.Forms
             ClearForm();
             currentReservation = null; // Xóa reservation hiện tại khi thêm mới
             isEditing = false;
-            SetButtonsForEditMode();
+            SetButtonsForAddMode();
             txtMemberID.Focus();
+            dtpReservationTime.Value = DateTime.Now;
 
             // Cập nhật trạng thái trước đó
             previousStatus = cboStatus.SelectedItem.ToString();
@@ -415,24 +445,44 @@ namespace QuanLyThuQuan.Forms
                     return;
 
                 ReservationDTO reservation = GetReservationFromForm();
+                List<ReservationDetailDTO> reservationDetails = getReservationDetailFromForm();
                 bool result;
 
                 if (isEditing)
                 {
-                    result = reservationBLL.update(reservation);
+                    if (reservationDetails.Count == 0) 
+                    { 
+                        result = reservationBLL.update(reservation);
+                    }
+                    else
+                    {
+                        result = reservationBLL.update(reservation, reservationDetails);
+                    }
+
                     if (result)
                     {
                         MessageBox.Show("Cập nhật thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.SelectedRows[0].Cells["Status"].Value = cboStatus.Text;
                     }
                     else
                     {
                         MessageBox.Show("Cập nhật thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ClearForm();
+                        LoadReservations();
                         return;
                     }
                 }
                 else
                 {
-                    result = reservationBLL.create(reservation);
+                    if (reservationDetails.Count == 0)
+                    {
+                        result = reservationBLL.create(reservation);
+                    }
+                    else 
+                    {
+                        result = reservationBLL.create(reservation, reservationDetails);
+                    }
+
                     if (result)
                     {
                         MessageBox.Show("Thêm thông tin mượn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -442,10 +492,10 @@ namespace QuanLyThuQuan.Forms
                         MessageBox.Show("Thêm thông tin mượn thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    ClearForm();
+                    LoadReservations();
                 }
 
-                LoadReservations();
-                ClearForm();
                 SetButtonsForViewMode();
             }
             catch (Exception ex)
@@ -475,6 +525,13 @@ namespace QuanLyThuQuan.Forms
             {
                 MessageBox.Show("Mã ghế phải là số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSeatID.Focus();
+                return false;
+            }
+
+            if(string.IsNullOrEmpty(txtSeatID.Text) && string.IsNullOrEmpty(richTxtDeviceIDList.Text))
+            {
+                MessageBox.Show("Vui lòng chọn chỗ hoặc thiết bị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnChonThietBi.Focus();
                 return false;
             }
 
@@ -539,6 +596,36 @@ namespace QuanLyThuQuan.Forms
             );
         }
 
+        private List<ReservationDetailDTO> getReservationDetailFromForm() 
+        {
+            List<ReservationDetailDTO> reservationDetails = new List<ReservationDetailDTO>();
+            List<int> selectedDeviceIDs = getSelectedDeviceIDList();
+
+            if(selectedDeviceIDs.Count != 0)
+            {
+                int reservationID = txtReservationID.Text != "" ? int.Parse(txtReservationID.Text) : 0;
+                if (reservationID == 0)
+                {
+                    foreach (int deviceID in selectedDeviceIDs)
+                    {
+                        reservationDetails.Add(new ReservationDetailDTO(reservationID, deviceID, GetStatusValue(cboStatus.Text)));
+                    }
+                }
+                else {
+                    reservationDetails = reservationDetailBLL.getByReservationID(reservationID);
+                    foreach (var detail in reservationDetails)
+                    {
+                       detail.Status = GetStatusValue(cboStatus.Text);
+                    }
+                }
+            }
+
+            MessageBox.Show(string.Join(", ", reservationDetails));
+
+            return reservationDetails;
+        }
+
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -578,6 +665,7 @@ namespace QuanLyThuQuan.Forms
         {
             ClearForm();
             currentReservation = null; // Xóa reservation hiện tại khi làm mới form
+            loadFormFromSelectedRow();
             SetButtonsForViewMode();
         }
 
@@ -586,10 +674,12 @@ namespace QuanLyThuQuan.Forms
             txtReservationID.Text = "";
             txtMemberID.Text = "";
             txtSeatID.Text = "";
+            richTxtDeviceIDList.Text = "";
             cboReservationType.SelectedIndex = 0;
 
             // Đặt thời gian đặt là thời gian hiện tại
-            lblReservationTimeValue.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            //lblReservationTimeValue.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            dtpReservationTime.Value = DateTime.Now;
 
             dtpDueTime.Value = DateTime.Now.AddHours(2);
 
@@ -680,10 +770,6 @@ namespace QuanLyThuQuan.Forms
         {
         }
 
-        private void cboReservationType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
         }
@@ -692,8 +778,89 @@ namespace QuanLyThuQuan.Forms
         {
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnChonMaGhe_Click(object sender, EventArgs e)
         {
+            int? currentSeatID = null;
+
+            if (int.TryParse(txtSeatID.Text, out int seatId))
+                currentSeatID = seatId;
+
+            using (var form = new SelectAvailableSeatForm(currentSeatID))
+            {
+                if (form.ShowDialog() == DialogResult.OK && form.SelectedSeatID.HasValue)
+                    txtSeatID.Text = form.SelectedSeatID.Value.ToString();
+            }
+        }
+
+        private List<int> getSelectedDeviceIDList() 
+        {
+            List<int> selectedIDs = new List<int>();
+            if (!string.IsNullOrWhiteSpace(richTxtDeviceIDList.Text))
+            {
+                selectedIDs = richTxtDeviceIDList.Text
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => int.TryParse(s, out int id) ? id : -1)
+                    .Where(id => id != -1)
+                    .ToList();
+            }
+            return selectedIDs;
+        }
+
+        private void btnChonThietBi_Click(object sender, EventArgs e)
+        {
+            List<int> selectedIDs = getSelectedDeviceIDList();
+
+            using (var form = new SelectAvailableDeviceForm(selectedIDs))
+            {
+                if (form.ShowDialog() == DialogResult.OK && form.SelectedDeviceIDs.Any())
+                {
+                    string deviceIDList = string.Join(Environment.NewLine, form.SelectedDeviceIDs);
+                    richTxtDeviceIDList.Text = deviceIDList;
+                }
+            }
+        }
+
+        private void loadFormFromSelectedRow() 
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int reservationID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ReservationID"].Value);
+                    ReservationDTO selectedReservation = reservationList.FirstOrDefault(r => r.ReservationID == reservationID);
+
+                    if (selectedReservation != null)
+                    {
+                        // Lưu reservation hiện tại để có thể khôi phục khi cần
+                        currentReservation = selectedReservation;
+                        List<int> selectedDeviceIDs = reservationDetailBLL.getByReservationID(reservationID)
+                            .Select(rd => rd.DeviceID)
+                            .ToList();
+
+                        PopulateFormFields(selectedReservation, selectedDeviceIDs);
+                        SetButtonsForViewMode();
+
+                        // Cập nhật trạng thái trước đó
+                        previousStatus = cboStatus.SelectedItem.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi chọn dòng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            loadFormFromSelectedRow();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            LoadReservations();
+            loadFormFromSelectedRow();
         }
     }
 }

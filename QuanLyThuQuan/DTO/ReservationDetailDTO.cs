@@ -29,6 +29,14 @@ namespace QuanLyThuQuan.DTO
             Status = status;
         }
 
+        public ReservationDetailDTO(int reservationID, int deviceID, int status)
+        {
+            ReservationDetailID = 0;
+            ReservationID = reservationID;
+            DeviceID = deviceID;
+            Status = status;
+        }
+
         public override string ToString()
         {
             return $"ID: {ReservationDetailID}, ReservationID: {ReservationID}, DeviceID: {DeviceID}, Status: {Status}";

@@ -334,6 +334,18 @@
     <Compile Include="Forms\fMember.Designer.cs">
       <DependentUpon>fMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectAvailableDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectAvailableDeviceForm.Designer.cs">
+      <DependentUpon>SelectAvailableDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectAvailableSeatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectAvailableSeatForm.Designer.cs">
+      <DependentUpon>SelectAvailableSeatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectMemberForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,6 +440,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SeatForm.resx">
       <DependentUpon>SeatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectAvailableDeviceForm.resx">
+      <DependentUpon>SelectAvailableDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectAvailableSeatForm.resx">
+      <DependentUpon>SelectAvailableSeatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectMemberForm.resx">
       <DependentUpon>SelectMemberForm.cs</DependentUpon>

@@ -61,6 +61,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMaDatCho = new System.Windows.Forms.Label();
             this.txtMaDatCho = new System.Windows.Forms.TextBox();
+            this.lblChiTietPhieu = new System.Windows.Forms.Label();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblThoiGianTra = new System.Windows.Forms.Label();
             this.txtTGTra = new System.Windows.Forms.TextBox();
@@ -76,7 +77,6 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTGianMuon = new System.Windows.Forms.Label();
             this.txtTGMuon = new System.Windows.Forms.TextBox();
-            this.lblChiTietPhieu = new System.Windows.Forms.Label();
             this.lblChiTietPhieuMuon = new System.Windows.Forms.Label();
             this.dgvReservationDetail = new System.Windows.Forms.DataGridView();
             this.lblViPhamQD = new System.Windows.Forms.Label();
@@ -369,7 +369,7 @@
             this.flpnThoiGian.Location = new System.Drawing.Point(3, 152);
             this.flpnThoiGian.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.flpnThoiGian.Name = "flpnThoiGian";
-            this.flpnThoiGian.Size = new System.Drawing.Size(261, 40);
+            this.flpnThoiGian.Size = new System.Drawing.Size(339, 40);
             this.flpnThoiGian.TabIndex = 5;
             // 
             // lblTGianVP
@@ -383,19 +383,19 @@
             // 
             // dtpNgayTao
             // 
-            this.dtpNgayTao.CustomFormat = "dd-MM-yyyy";
+            this.dtpNgayTao.CustomFormat = "dd-MM-yyyy HH:mm:ss";
             this.dtpNgayTao.Enabled = false;
             this.dtpNgayTao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgayTao.Location = new System.Drawing.Point(106, 3);
             this.dtpNgayTao.Name = "dtpNgayTao";
-            this.dtpNgayTao.Size = new System.Drawing.Size(147, 29);
+            this.dtpNgayTao.Size = new System.Drawing.Size(219, 29);
             this.dtpNgayTao.TabIndex = 2;
             // 
             // flpnTrangThai
             // 
             this.flpnTrangThai.Controls.Add(this.lblTrangThai);
             this.flpnTrangThai.Controls.Add(this.txtTrangThai);
-            this.flpnTrangThai.Location = new System.Drawing.Point(270, 152);
+            this.flpnTrangThai.Location = new System.Drawing.Point(348, 152);
             this.flpnTrangThai.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.flpnTrangThai.Name = "flpnTrangThai";
             this.flpnTrangThai.Size = new System.Drawing.Size(240, 40);
@@ -483,6 +483,19 @@
             this.txtMaDatCho.Size = new System.Drawing.Size(233, 29);
             this.txtMaDatCho.TabIndex = 2;
             this.txtMaDatCho.TabStop = false;
+            // 
+            // lblChiTietPhieu
+            // 
+            this.lblChiTietPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.lblChiTietPhieu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblChiTietPhieu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblChiTietPhieu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblChiTietPhieu.Location = new System.Drawing.Point(0, 0);
+            this.lblChiTietPhieu.Name = "lblChiTietPhieu";
+            this.lblChiTietPhieu.Size = new System.Drawing.Size(366, 28);
+            this.lblChiTietPhieu.TabIndex = 9;
+            this.lblChiTietPhieu.Text = "Chi tiết phiếu mượn";
+            this.lblChiTietPhieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel6
             // 
@@ -628,19 +641,6 @@
             this.txtTGMuon.Size = new System.Drawing.Size(190, 29);
             this.txtTGMuon.TabIndex = 3;
             this.txtTGMuon.TabStop = false;
-            // 
-            // lblChiTietPhieu
-            // 
-            this.lblChiTietPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.lblChiTietPhieu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblChiTietPhieu.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblChiTietPhieu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblChiTietPhieu.Location = new System.Drawing.Point(0, 0);
-            this.lblChiTietPhieu.Name = "lblChiTietPhieu";
-            this.lblChiTietPhieu.Size = new System.Drawing.Size(366, 28);
-            this.lblChiTietPhieu.TabIndex = 9;
-            this.lblChiTietPhieu.Text = "Chi tiết phiếu mượn";
-            this.lblChiTietPhieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblChiTietPhieuMuon
             // 

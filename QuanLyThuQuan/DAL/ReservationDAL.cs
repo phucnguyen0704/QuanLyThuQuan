@@ -11,38 +11,126 @@ namespace QuanLyThuQuan.DAL
 
         public bool create(ReservationDTO reservation)
         {
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
+
             try
             {
-                try
-                {
-                    string sql = @"
-                        INSERT INTO reservation (member_id, seat_id, reservation_type, reservation_time, due_time, return_time, status, created_at)
-                        VALUES (@member_id, @seat_id, @reservation_type, @reservation_time, @due_time, @return_time, @status, @created_at);
-                    ";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-                    command.Parameters.AddWithValue("@member_id", reservation.MemberID);
-                    command.Parameters.AddWithValue("@seat_id", reservation.SeatID);
-                    command.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
-                    command.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
-                    command.Parameters.AddWithValue("@due_time", reservation.DueTime);
-                    command.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
-                    command.Parameters.AddWithValue("@status", reservation.Status);
-                    command.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+                OpenConnection();
+                transaction = conn.BeginTransaction();
 
-                    OpenConnection();
-                    command.ExecuteNonQuery();
-                    return true;
+                string insertSql = @"
+            INSERT INTO reservation (member_id, seat_id, reservation_type, reservation_time, due_time, return_time, status, created_at)
+            VALUES (@member_id, @seat_id, @reservation_type, @reservation_time, @due_time, @return_time, @status, @created_at);
+        ";
 
-                }
-                catch (MySqlException ex)
+                using (MySqlCommand insertCmd = new MySqlCommand(insertSql, conn, transaction))
                 {
-                    Console.WriteLine("Lỗi thêm đặt chỗ: " + ex.Message);
-                    return false;
+                    insertCmd.Parameters.AddWithValue("@member_id", reservation.MemberID);
+                    insertCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    insertCmd.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
+                    insertCmd.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
+                    insertCmd.Parameters.AddWithValue("@due_time", reservation.DueTime);
+                    insertCmd.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
+                    insertCmd.Parameters.AddWithValue("@status", reservation.Status);
+                    insertCmd.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+
+                    insertCmd.ExecuteNonQuery();
                 }
+
+                // Update trạng thái ghế thành
+                string updateSeatSql = "UPDATE seat SET status = 3 WHERE seat_id = @seat_id";
+                using (MySqlCommand updateSeatCmd = new MySqlCommand(updateSeatSql, conn, transaction))
+                {
+                    updateSeatCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    updateSeatCmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khác: " + ex.Message);
+                Console.WriteLine("Lỗi tạo reservation + update seat: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool create(ReservationDTO reservation, List<ReservationDetailDTO> details)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
+
+            try
+            {
+                OpenConnection();
+                transaction = conn.BeginTransaction();
+
+                // Thêm reservation
+                string insertReservationSql = @"
+            INSERT INTO reservation (member_id, seat_id, reservation_type, reservation_time, due_time, return_time, status, created_at)
+            VALUES (@member_id, @seat_id, @reservation_type, @reservation_time, @due_time, @return_time, @status, @created_at);
+            SELECT LAST_INSERT_ID();";
+
+                int insertedReservationID;
+
+                using (MySqlCommand reservationCmd = new MySqlCommand(insertReservationSql, conn, transaction))
+                {
+                    reservationCmd.Parameters.AddWithValue("@member_id", reservation.MemberID);
+                    reservationCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    reservationCmd.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
+                    reservationCmd.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
+                    reservationCmd.Parameters.AddWithValue("@due_time", reservation.DueTime);
+                    reservationCmd.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
+                    reservationCmd.Parameters.AddWithValue("@status", reservation.Status);
+                    reservationCmd.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+
+                    insertedReservationID = Convert.ToInt32(reservationCmd.ExecuteScalar());
+                }
+
+                // Cập nhật trạng thái ghế
+                string updateSeatSql = "UPDATE seat SET status = 3 WHERE seat_id = @seat_id";
+                using (MySqlCommand updateSeatCmd = new MySqlCommand(updateSeatSql, conn, transaction))
+                {
+                    updateSeatCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    updateSeatCmd.ExecuteNonQuery();
+                }
+
+                // Thêm từng ReservationDetail và cập nhật trạng thái thiết bị
+                string insertDetailSql = @"
+            INSERT INTO reservation_detail (reservation_id, device_id, status)
+            VALUES (@reservation_id, @device_id, @status)";
+                string updateDeviceSql = "UPDATE device SET status = 2 WHERE device_id = @device_id";
+
+                foreach (var detail in details)
+                {
+                    using (MySqlCommand detailCmd = new MySqlCommand(insertDetailSql, conn, transaction))
+                    {
+                        detailCmd.Parameters.AddWithValue("@reservation_id", insertedReservationID);
+                        detailCmd.Parameters.AddWithValue("@device_id", detail.DeviceID);
+                        detailCmd.Parameters.AddWithValue("@status", detail.Status);
+                        detailCmd.ExecuteNonQuery();
+                    }
+
+                    using (MySqlCommand updateDeviceCmd = new MySqlCommand(updateDeviceSql, conn, transaction))
+                    {
+                        updateDeviceCmd.Parameters.AddWithValue("@device_id", detail.DeviceID);
+                        updateDeviceCmd.ExecuteNonQuery();
+                    }
+                }
+
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi thêm reservation kèm detail: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
                 return false;
             }
             finally
@@ -53,40 +141,149 @@ namespace QuanLyThuQuan.DAL
 
         public bool update(ReservationDTO reservation)
         {
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
+
             try
             {
-                try
-                {
-                    string sql = @"
-                        UPDATE reservation 
-                        SET member_id = @member_id, seat_id = @seat_id, reservation_type = @reservation_type, reservation_time = @reservation_time, due_time = @due_time, return_time = @return_time, status = @status, created_at = @created_at 
-                        WHERE reservation_id = @reservation_id AND status <> 4;
-                    ";
-                    MySqlCommand command = new MySqlCommand(sql, GetConnection());
-                    command.Parameters.AddWithValue("@reservation_id", reservation.ReservationID);
-                    command.Parameters.AddWithValue("@member_id", reservation.MemberID);
-                    command.Parameters.AddWithValue("@seat_id", reservation.SeatID);
-                    command.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
-                    command.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
-                    command.Parameters.AddWithValue("@due_time", reservation.DueTime);
-                    command.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
-                    command.Parameters.AddWithValue("@status", reservation.Status);
-                    command.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+                OpenConnection();
+                transaction = conn.BeginTransaction();
 
-                    OpenConnection();
-                    command.ExecuteNonQuery();
-                    return true;
+                // Cập nhật thông tin Reservation
+                string updateReservationSql = @"
+            UPDATE reservation 
+            SET member_id = @member_id, seat_id = @seat_id, reservation_type = @reservation_type,
+                reservation_time = @reservation_time, due_time = @due_time, return_time = @return_time,
+                status = @status, created_at = @created_at
+            WHERE reservation_id = @reservation_id AND status <> 4;
+        ";
 
-                }
-                catch (MySqlException ex)
+                using (MySqlCommand updateReservationCmd = new MySqlCommand(updateReservationSql, conn, transaction))
                 {
-                    Console.WriteLine("Lỗi cập nhật đặt chỗ: " + ex.Message);
-                    return false;
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_id", reservation.ReservationID);
+                    updateReservationCmd.Parameters.AddWithValue("@member_id", reservation.MemberID);
+                    updateReservationCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
+                    updateReservationCmd.Parameters.AddWithValue("@due_time", reservation.DueTime);
+                    updateReservationCmd.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
+                    updateReservationCmd.Parameters.AddWithValue("@status", reservation.Status);
+                    updateReservationCmd.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+
+                    updateReservationCmd.ExecuteNonQuery();
                 }
+
+                // Cập nhật trạng thái ghế
+                string updateSeatSql = "UPDATE seat SET status = 3 WHERE seat_id = @seat_id";
+                using (MySqlCommand updateSeatCmd = new MySqlCommand(updateSeatSql, conn, transaction))
+                {
+                    updateSeatCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    updateSeatCmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khác: " + ex.Message);
+                Console.WriteLine("Lỗi khi cập nhật reservation và seat: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool update(ReservationDTO reservation, List<ReservationDetailDTO> details)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlTransaction transaction = null;
+
+            try
+            {
+                OpenConnection();
+                transaction = conn.BeginTransaction();
+
+                // Cập nhật reservation
+                string updateReservationSql = @"
+            UPDATE reservation 
+            SET member_id = @member_id, seat_id = @seat_id, reservation_type = @reservation_type,
+                reservation_time = @reservation_time, due_time = @due_time, return_time = @return_time,
+                status = @status, created_at = @created_at
+            WHERE reservation_id = @reservation_id AND status <> 4;";
+
+                using (MySqlCommand updateReservationCmd = new MySqlCommand(updateReservationSql, conn, transaction))
+                {
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_id", reservation.ReservationID);
+                    updateReservationCmd.Parameters.AddWithValue("@member_id", reservation.MemberID);
+                    updateReservationCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_type", reservation.ReservationType);
+                    updateReservationCmd.Parameters.AddWithValue("@reservation_time", reservation.ReservationTime);
+                    updateReservationCmd.Parameters.AddWithValue("@due_time", reservation.DueTime);
+                    updateReservationCmd.Parameters.AddWithValue("@return_time", reservation.ReturnTime);
+                    updateReservationCmd.Parameters.AddWithValue("@status", reservation.Status);
+                    updateReservationCmd.Parameters.AddWithValue("@created_at", reservation.CreatedAt);
+
+                    updateReservationCmd.ExecuteNonQuery();
+                }
+
+                // Cập nhật trạng thái ghế (seat)
+                string updateSeatStatusSql = @"
+            UPDATE seat 
+            SET status = @seat_status
+            WHERE seat_id = @seat_id;";
+
+                using (MySqlCommand updateSeatStatusCmd = new MySqlCommand(updateSeatStatusSql, conn, transaction))
+                {
+                    updateSeatStatusCmd.Parameters.AddWithValue("@seat_status", reservation.Status);
+                    updateSeatStatusCmd.Parameters.AddWithValue("@seat_id", reservation.SeatID);
+
+                    updateSeatStatusCmd.ExecuteNonQuery();
+                }
+
+                // Cập nhật reservation_detail và trạng thái của các thiết bị
+                string updateDetailSql = @"
+            UPDATE reservation_detail
+            SET reservation_id = @reservation_id, device_id = @device_id, status = @status
+            WHERE reservation_detail_id = @reservation_detail_id;";
+
+                foreach (var detail in details)
+                {
+                    // Cập nhật trạng thái thiết bị (device)
+                    string updateDeviceStatusSql = @"
+                UPDATE device
+                SET status = @device_status
+                WHERE device_id = @device_id;";
+
+                    using (MySqlCommand updateDeviceStatusCmd = new MySqlCommand(updateDeviceStatusSql, conn, transaction))
+                    {
+                        updateDeviceStatusCmd.Parameters.AddWithValue("@device_status", detail.Status);
+                        updateDeviceStatusCmd.Parameters.AddWithValue("@device_id", detail.DeviceID);
+
+                        updateDeviceStatusCmd.ExecuteNonQuery();
+                    }
+
+                    // Cập nhật reservation_detail
+                    using (MySqlCommand updateDetailCmd = new MySqlCommand(updateDetailSql, conn, transaction))
+                    {
+                        updateDetailCmd.Parameters.AddWithValue("@reservation_detail_id", detail.ReservationDetailID);
+                        updateDetailCmd.Parameters.AddWithValue("@reservation_id", reservation.ReservationID);
+                        updateDetailCmd.Parameters.AddWithValue("@device_id", detail.DeviceID);
+                        updateDetailCmd.Parameters.AddWithValue("@status", detail.Status);
+
+                        updateDetailCmd.ExecuteNonQuery();
+                    }
+                }
+
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật reservation và detail: " + ex.Message);
+                try { transaction?.Rollback(); } catch { }
                 return false;
             }
             finally
@@ -136,7 +333,7 @@ namespace QuanLyThuQuan.DAL
             try
             {
                 string sql = @"
-                        SELECT * FROM reservation WHERE status <> 4;
+                        SELECT * FROM reservation WHERE status <> 4 ORDER BY reservation_id DESC;
                     ";
                 using (MySqlCommand command = new MySqlCommand(sql, GetConnection()))
                 {

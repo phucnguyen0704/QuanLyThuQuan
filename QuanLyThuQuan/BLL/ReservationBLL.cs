@@ -24,6 +24,11 @@ namespace QuanLyThuQuan.BLL
             return reservationDAL.create(reservation);
         }
 
+        public bool create(ReservationDTO reservation, List<ReservationDetailDTO> reservationDetails)
+        {
+            return reservationDAL.create(reservation, reservationDetails);
+        }
+
         public bool update(ReservationDTO reservation)
         {
             if (reservation.DueTime < reservation.ReturnTime)
@@ -31,6 +36,11 @@ namespace QuanLyThuQuan.BLL
                 reservation.Status = 3; // Vi phạm 
             }
             return reservationDAL.update(reservation);
+        }
+
+        public bool update(ReservationDTO reservation, List<ReservationDetailDTO> reservationDetails)
+        {
+            return reservationDAL.update(reservation, reservationDetails);
         }
 
         public bool delete(int reservationId)
