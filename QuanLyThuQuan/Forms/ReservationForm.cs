@@ -617,6 +617,27 @@ namespace QuanLyThuQuan.Forms
             );
         }
 
+        private int getDeviceStatusFromReservationStatus()
+        {
+            int status = 0;
+
+            switch (GetStatusValue(cboStatus.Text))
+            {
+                case STATUS_BORROWING:
+                case STATUS_VIOLATION:
+                    status = 2; // Đang mượn
+                    break;
+                case STATUS_RETURNED:
+                    status = 1; // Còn
+                    break;
+                case STATUS_CANCELED:
+                    status = 1;
+                    break;
+            }
+
+            return status;
+        }
+
         private List<ReservationDetailDTO> getReservationDetailFromForm() 
         {
             List<ReservationDetailDTO> reservationDetails = new List<ReservationDetailDTO>();
@@ -625,11 +646,12 @@ namespace QuanLyThuQuan.Forms
             if (selectedDeviceIDs.Count != 0)
             {
                 int reservationID = txtReservationID.Text != "" ? int.Parse(txtReservationID.Text) : 0;
+                int deviceStatus = getDeviceStatusFromReservationStatus();
                 if (reservationID == 0)
                 {
                     foreach (int deviceID in selectedDeviceIDs)
                     {
-                        reservationDetails.Add(new ReservationDetailDTO(reservationID, deviceID, GetStatusValue(cboStatus.Text)));
+                        reservationDetails.Add(new ReservationDetailDTO(reservationID, deviceID, deviceStatus));
                     }
                 }
                 else {
