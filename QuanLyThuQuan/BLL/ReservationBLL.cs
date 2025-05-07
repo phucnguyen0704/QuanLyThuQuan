@@ -1,5 +1,6 @@
 ﻿using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace QuanLyThuQuan.BLL
@@ -15,12 +16,31 @@ namespace QuanLyThuQuan.BLL
 
         public bool create(ReservationDTO reservation)
         {
+
+            if (reservation.ReservationTime > reservation.DueTime || (reservation.ReservationType == 2 && reservation.SeatID == null))
+            {
+                return false;
+            }
             return reservationDAL.create(reservation);
+        }
+
+        public bool create(ReservationDTO reservation, List<ReservationDetailDTO> reservationDetails)
+        {
+            return reservationDAL.create(reservation, reservationDetails);
         }
 
         public bool update(ReservationDTO reservation)
         {
+            if (reservation.DueTime < reservation.ReturnTime)
+            {
+                reservation.Status = 3; // Vi phạm 
+            }
             return reservationDAL.update(reservation);
+        }
+
+        public bool update(ReservationDTO reservation, List<ReservationDetailDTO> reservationDetails)
+        {
+            return reservationDAL.update(reservation, reservationDetails);
         }
 
         public bool delete(int reservationId)
@@ -36,6 +56,11 @@ namespace QuanLyThuQuan.BLL
         public ReservationDTO getByID(int reservationID)
         {
             return reservationDAL.getByID(reservationID);
+        }
+
+        public List<ReservationDTO> getCurrentViolatedReservationsByMemberID(int memberID)
+        {
+            return reservationDAL.getCurrentViolatedReservationsByMemberID(memberID);
         }
     }
 }

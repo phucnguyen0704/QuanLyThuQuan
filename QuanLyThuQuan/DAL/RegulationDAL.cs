@@ -26,12 +26,12 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi tạo quy định: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi tạo quy định: " + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi tạo quy định: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi tạo quy định: " + ex.Message);
                 return false;
             }
             finally
@@ -58,12 +58,12 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi cập nhật quy định: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi cập nhật quy định: " + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi cập nhật quy định: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi cập nhật quy định: " + ex.Message);
                 return false;
             }
             finally
@@ -86,12 +86,12 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi xóa quy định: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi xóa quy định: " + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi xóa quy định: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi xóa quy định: " + ex.Message);
                 return false;
             }
             finally
@@ -126,11 +126,11 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi lấy tất cả quy định: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi lấy tất cả quy định: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi lấy tất cả quy định: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi lấy tất cả quy định: " + ex.Message);
             }
             finally
             {
@@ -167,11 +167,11 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi lấy quy định theo ID: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi lấy quy định theo ID: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi lấy quy định theo ID: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi lấy quy định theo ID: " + ex.Message);
             }
             finally
             {
@@ -208,11 +208,11 @@ namespace QuanLyThuQuan.DAL
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("❌ Lỗi MySQL khi tìm quy định theo tên: " + ex.Message);
+                Console.WriteLine("Lỗi MySQL khi tìm quy định theo tên: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Lỗi không xác định khi tìm quy định theo tên: " + ex.Message);
+                Console.WriteLine("Lỗi không xác định khi tìm quy định theo tên: " + ex.Message);
             }
             finally
             {

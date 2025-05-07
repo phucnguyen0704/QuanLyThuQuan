@@ -1,4 +1,5 @@
-﻿using QuanLyThuQuan.DAL;
+
+using QuanLyThuQuan.DAL;
 using QuanLyThuQuan.DTO;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace QuanLyThuQuan.BLL
 {
-    public class LogBLL
+    class LogBLL
     {
         private LogDAL logDAL;
 
-        public LogBLL() { 
+        public LogBLL()
+        {
             logDAL = new LogDAL();
         }
 
@@ -23,17 +25,20 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập mã sinh viên! ";
             }
-            if (!Regex.IsMatch(memberId, @"^[A-Za-z0-9\s]+$"))
-            {
-                return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
-            }
+            //if (!Regex.IsMatch(memberId, @"^[A-Za-z0-9\s]+$"))
+            //{
+            //    return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+            //}
             if (checkin == null)
             {
                 return "Vui lòng chọn thời gian vào thư quán!";
             }
-            LogDTO logDTO = new LogDTO() { memberId = memberId, checkinTime=checkin};
-            logDAL.create(logDTO);
-            return null;
+            
+            LogDTO logDTO = new LogDTO() { memberId = memberId, checkinTime = checkin };
+            if (logDAL.create(logDTO)){
+                return null;
+            }
+            return "Lỗi MySQL!";
         }
 
         public string update(int logId, string memberid, DateTime checkin)
@@ -44,27 +49,32 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng nhập tên mã sinh viên! ";
             }
-            if (!Regex.IsMatch(memberid, @"^[A-Za-z0-9\s]+$"))
+            if (!Regex.IsMatch(memberid, @"^[0-9\s]+$"))
             {
-                return "Mã sinh viên chỉ bao gồm chữ cái và số, vui lòng nhập lại!";
+                return "Mã sinh viên chỉ bao gồm chữ số, vui lòng nhập lại!";
             }
-            if(checkin == null)
+            if (checkin == null)
             {
                 return "Vui lòng chọn thời gian vào thư quán!";
             }
 
             log.memberId = memberid;
             log.checkinTime = checkin;
-            logDAL.update(log);
-            return null;
+            if (logDAL.update(log))
+            {
+                return null;
+            }
+            return "Lỗi MySQL!";
         }
 
         public string delete(int logId)
         {
             LogDTO log = logDAL.getById(logId);
-
-            logDAL.delete(log.logId);
-            return null;
+            if (logDAL.delete(log.logId))
+            {
+                return null;
+            }
+            return "Lỗi MySQL!";
         }
     }
 }

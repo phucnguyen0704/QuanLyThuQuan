@@ -9,13 +9,14 @@ namespace QuanLyThuQuan.DTO
 {
     public class LogDTO
     {
-        public int logId {  get; set; }
+        public int logId { get; set; }
         public string memberId { get; set; }
         public DateTime checkinTime { get; set; }
         public int status { get; set; }
         public DateTime createdAt { get; set; }
 
-        public LogDTO() {
+        public LogDTO()
+        {
             logId = 0;
             memberId = string.Empty;
             checkinTime = DateTime.MinValue;

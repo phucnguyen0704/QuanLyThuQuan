@@ -18,9 +18,8 @@ namespace QuanLyThuQuan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fLogin());
-            //Application.Run(new test());
-
+            Application.Run(new LoginForm());
+            //Application.Run(new ManagerForm(3)); // Replace with actual member ID
         }
     }
 }

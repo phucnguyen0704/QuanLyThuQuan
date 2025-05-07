@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+
+using DocumentFormat.OpenXml.Wordprocessing;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using QuanLyThuQuan.DTO;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyThuQuan.DAL
 {
-    public class LogDAL : BaseDAL
+    class LogDAL : BaseDAL
     {
         public LogDAL() : base() { }
 
@@ -36,18 +37,20 @@ namespace QuanLyThuQuan.DAL
                 Console.WriteLine("Lỗi khác: " + ex.Message);
                 return false;
             }
-            finally { 
+            finally
+            {
                 CloseConnection();
             }
-            
+
         }
 
-        public bool update(LogDTO log) {
+        public bool update(LogDTO log)
+        {
             try
             {
                 string sql = @"UPDATE log
                             SET member_id = @memberId, checkin_time = @checkinTime
-                            WHERE log_id = @logId";
+                            WHERE log_id = @logId AND status <> 2";
                 OpenConnection();
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 command.Parameters.AddWithValue("@memberId", log.memberId);
@@ -73,7 +76,8 @@ namespace QuanLyThuQuan.DAL
 
         }
 
-        public bool delete(int logId) {
+        public bool delete(int logId)
+        {
             try
             {
                 try
@@ -81,7 +85,7 @@ namespace QuanLyThuQuan.DAL
                     string sql = @"
                             UPDATE log
                             SET status = 2
-                            WHERE log_id = @logId";
+                            WHERE log_id = @logId AND status <> 2";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@logId", logId);
@@ -106,11 +110,12 @@ namespace QuanLyThuQuan.DAL
             }
         }
 
-        public List<LogDTO> getAll() { 
-            List<LogDTO> logs =  new List<LogDTO>();
+        public List<LogDTO> getAll()
+        {
+            List<LogDTO> logs = new List<LogDTO>();
             try
             {
-                string sql = @"SELECT * FROM log where status = 1";
+                string sql = @"SELECT * FROM log WHERE status <> 2";
                 MySqlCommand command = new MySqlCommand(sql, GetConnection());
                 OpenConnection();
                 MySqlDataReader reader = command.ExecuteReader();
@@ -137,13 +142,14 @@ namespace QuanLyThuQuan.DAL
             return logs;
         }
 
-        public LogDTO getById(int id) {
+        public LogDTO getById(int id)
+        {
             LogDTO log = null;
             try
             {
                 try
                 {
-                    string sql = @"Select * from log where log_id = @id";
+                    string sql = @"SELECT * FROM log WHERE log_id = @id AND status <> 2";
                     OpenConnection();
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@id", id);

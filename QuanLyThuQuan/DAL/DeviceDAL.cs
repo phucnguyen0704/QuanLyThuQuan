@@ -56,7 +56,7 @@ namespace QuanLyThuQuan.DAL
                     string sql = @"
                         UPDATE device 
                         SET name = @name, image = @image, status = @status, created_at = @created_at 
-                        WHERE device_id = @device_id;
+                        WHERE device_id = @device_id AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@device_id", device.DeviceID);
@@ -95,8 +95,8 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                         UPDATE device 
-                        SET status = 2 
-                        WHERE device_id = @device_id;
+                        SET status = 4
+                        WHERE device_id = @device_id AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@device_id", deviceID);
@@ -131,7 +131,7 @@ namespace QuanLyThuQuan.DAL
                 try
                 {
                     string sql = @"
-                        SELECT * FROM device;
+                        SELECT * FROM device WHERE status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     OpenConnection();
@@ -173,7 +173,7 @@ namespace QuanLyThuQuan.DAL
                 {
                     string sql = @"
                         SELECT * FROM device 
-                        WHERE device_id = @device_id;
+                        WHERE device_id = @device_id AND status <> 4;
                     ";
                     MySqlCommand command = new MySqlCommand(sql, GetConnection());
                     command.Parameters.AddWithValue("@device_id", deviceID);
