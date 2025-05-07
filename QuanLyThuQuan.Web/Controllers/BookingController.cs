@@ -43,7 +43,7 @@ namespace QuanLyThuQuan.Web.Controllers
         public async Task<IActionResult> Booking(int? seatId)
         {
 
-            if(HttpContext.Session.GetString("memberId") == null)
+            if (HttpContext.Session.GetString("memberId") == null)
             {
                 return RedirectToAction("Login", "Auth");
             }
@@ -71,16 +71,21 @@ namespace QuanLyThuQuan.Web.Controllers
         [Route("newreservationStore")]
         public async Task<IActionResult> BookingStore(ReservationDTO reservationDTO, List<uint> deviceIds)
         {
-            
-                var response = await _bookingService.CreateBooking(reservationDTO, deviceIds);
-                if (response.Success)
-                {
-                    TempData["success"] = "Đặt chỗ thành công";
-                    return RedirectToAction("ViewSeat");
-                }
-                TempData["err"] = response.Message;
+            if (reservationDTO.Reservation.SeatId == 0 && reservationDTO.Reservation.ReservationType == 1)
+            {
+                TempData["err"] ="Hãy chọn chỗ ngồi";
                 return View(reservationDTO);
-            
+            }
+
+            var response = await _bookingService.CreateBooking(reservationDTO, deviceIds);
+            if (response.Success)
+            {
+                TempData["success"] = "Đặt chỗ thành công";
+                return RedirectToAction("ViewSeat");
+            }
+            TempData["err"] = response.Message;
+            return View(reservationDTO);
+
         }
 
         [HttpGet]
@@ -96,7 +101,7 @@ namespace QuanLyThuQuan.Web.Controllers
         [Route("history-regulation")]
         public async Task<IActionResult> HistoryRegulation()
         {
-            var result = await _violationService.GetViolations(HttpContext.Session.GetString("memberId")??"");
+            var result = await _violationService.GetViolations(HttpContext.Session.GetString("memberId") ?? "");
 
             return View(result.Data);
         }
