@@ -74,7 +74,7 @@ namespace QuanLyThuQuan.Web.Controllers
             if (reservationDTO.Reservation.SeatId == 0 && reservationDTO.Reservation.ReservationType == 1)
             {
                 TempData["err"] ="Hãy chọn chỗ ngồi";
-                return View(reservationDTO);
+                return RedirectToAction("Booking");
             }
 
             var response = await _bookingService.CreateBooking(reservationDTO, deviceIds);
@@ -84,7 +84,7 @@ namespace QuanLyThuQuan.Web.Controllers
                 return RedirectToAction("ViewSeat");
             }
             TempData["err"] = response.Message;
-            return View(reservationDTO);
+            return RedirectToAction("Booking");
 
         }
 

@@ -94,7 +94,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
            Response<Member> response = new();
             try
             {
-                var memberId = await _db.Members.FindAsync(member.MemberId);
+                var memberId = await _db.Members.FirstOrDefaultAsync(m => m.MemberId == member.MemberId);
                 if (memberId != null)
                 {
                     response.Success = false;
