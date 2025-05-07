@@ -85,7 +85,7 @@ namespace QuanLyThuQuan.Forms
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1464, 85);
+            this.panel1.Size = new System.Drawing.Size(1370, 85);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
@@ -134,7 +134,7 @@ namespace QuanLyThuQuan.Forms
             this.panel2.Location = new System.Drawing.Point(0, 85);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(488, 676);
+            this.panel2.Size = new System.Drawing.Size(488, 664);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -509,7 +509,7 @@ namespace QuanLyThuQuan.Forms
             this.panel3.Location = new System.Drawing.Point(488, 85);
             this.panel3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(976, 50);
+            this.panel3.Size = new System.Drawing.Size(882, 50);
             this.panel3.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -522,7 +522,7 @@ namespace QuanLyThuQuan.Forms
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(976, 50);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(882, 50);
             this.flowLayoutPanel1.TabIndex = 21;
             // 
             // btnRefresh
@@ -532,7 +532,7 @@ namespace QuanLyThuQuan.Forms
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(870, 5);
+            this.btnRefresh.Location = new System.Drawing.Point(776, 5);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 40);
@@ -546,7 +546,7 @@ namespace QuanLyThuQuan.Forms
             this.cboSearchCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSearchCategory.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cboSearchCategory.FormattingEnabled = true;
-            this.cboSearchCategory.Location = new System.Drawing.Point(738, 10);
+            this.cboSearchCategory.Location = new System.Drawing.Point(644, 10);
             this.cboSearchCategory.Margin = new System.Windows.Forms.Padding(6, 10, 6, 5);
             this.cboSearchCategory.Name = "cboSearchCategory";
             this.cboSearchCategory.Size = new System.Drawing.Size(120, 30);
@@ -556,7 +556,7 @@ namespace QuanLyThuQuan.Forms
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtSearch.Location = new System.Drawing.Point(201, 10);
+            this.txtSearch.Location = new System.Drawing.Point(107, 10);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(6, 10, 6, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(525, 29);
@@ -566,7 +566,7 @@ namespace QuanLyThuQuan.Forms
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label10.Location = new System.Drawing.Point(84, 8);
+            this.label10.Location = new System.Drawing.Point(771, 58);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 8, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(105, 34);
@@ -589,7 +589,7 @@ namespace QuanLyThuQuan.Forms
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(976, 626);
+            this.dataGridView1.Size = new System.Drawing.Size(882, 614);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -597,17 +597,18 @@ namespace QuanLyThuQuan.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1464, 761);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.MinimumSize = new System.Drawing.Size(1480, 800);
+            this.MinimumSize = new System.Drawing.Size(1364, 718);
             this.Name = "ReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý mượn thiết bị/ chỗ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ReservationForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

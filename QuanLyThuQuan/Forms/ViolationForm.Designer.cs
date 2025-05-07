@@ -108,7 +108,7 @@
             this.lblQLVP.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.lblQLVP.Name = "lblQLVP";
             this.lblQLVP.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lblQLVP.Size = new System.Drawing.Size(1464, 85);
+            this.lblQLVP.Size = new System.Drawing.Size(1370, 85);
             this.lblQLVP.TabIndex = 0;
             this.lblQLVP.Text = "Quản lý vi phạm";
             this.lblQLVP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -129,7 +129,7 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.pnRight);
-            this.splitContainer.Size = new System.Drawing.Size(1464, 676);
+            this.splitContainer.Size = new System.Drawing.Size(1370, 664);
             this.splitContainer.SplitterDistance = 488;
             this.splitContainer.TabIndex = 0;
             // 
@@ -151,7 +151,7 @@
             this.flpnLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpnLeft.Location = new System.Drawing.Point(0, 0);
             this.flpnLeft.Name = "flpnLeft";
-            this.flpnLeft.Size = new System.Drawing.Size(488, 676);
+            this.flpnLeft.Size = new System.Drawing.Size(488, 664);
             this.flpnLeft.TabIndex = 5;
             // 
             // lblThongtinVP
@@ -598,7 +598,7 @@
             this.pnRight.Controls.Add(this.flowLayoutPanel1);
             this.pnRight.Location = new System.Drawing.Point(2, 6);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(970, 670);
+            this.pnRight.Size = new System.Drawing.Size(876, 658);
             this.pnRight.TabIndex = 0;
             // 
             // dataGridView
@@ -614,7 +614,7 @@
             this.dataGridView.Location = new System.Drawing.Point(-1, 59);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 30;
-            this.dataGridView.Size = new System.Drawing.Size(969, 609);
+            this.dataGridView.Size = new System.Drawing.Size(875, 597);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
@@ -630,7 +630,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(968, 45);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(874, 45);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnLamMoi
@@ -639,7 +639,7 @@
             this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLamMoi.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnLamMoi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLamMoi.Location = new System.Drawing.Point(845, 3);
+            this.btnLamMoi.Location = new System.Drawing.Point(751, 3);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(120, 40);
             this.btnLamMoi.TabIndex = 5;
@@ -655,7 +655,7 @@
             "Tất cả",
             "Đang xử lý",
             "Đã xử lý"});
-            this.cbTieuChiTrangThai.Location = new System.Drawing.Point(718, 6);
+            this.cbTieuChiTrangThai.Location = new System.Drawing.Point(624, 6);
             this.cbTieuChiTrangThai.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.cbTieuChiTrangThai.Name = "cbTieuChiTrangThai";
             this.cbTieuChiTrangThai.Size = new System.Drawing.Size(121, 30);
@@ -665,7 +665,7 @@
             // lblTieuChiTrangThai
             // 
             this.lblTieuChiTrangThai.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblTieuChiTrangThai.Location = new System.Drawing.Point(611, 4);
+            this.lblTieuChiTrangThai.Location = new System.Drawing.Point(517, 4);
             this.lblTieuChiTrangThai.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblTieuChiTrangThai.Name = "lblTieuChiTrangThai";
             this.lblTieuChiTrangThai.Size = new System.Drawing.Size(101, 40);
@@ -675,7 +675,7 @@
             // 
             // txtTimKiem
             // 
-            this.txtTimKiem.Location = new System.Drawing.Point(453, 6);
+            this.txtTimKiem.Location = new System.Drawing.Point(359, 6);
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(152, 29);
@@ -686,7 +686,7 @@
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.Location = new System.Drawing.Point(251, 4);
+            this.label1.Location = new System.Drawing.Point(157, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 40);
@@ -698,15 +698,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1464, 761);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.lblQLVP);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.MinimumSize = new System.Drawing.Size(1480, 800);
+            this.MinimumSize = new System.Drawing.Size(1364, 718);
             this.Name = "ViolationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý vi phạm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
