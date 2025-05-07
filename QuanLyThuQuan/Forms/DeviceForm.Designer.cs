@@ -403,6 +403,7 @@
             this.Name = "DeviceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Thiết Bị - Thư Quán";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.DeviceForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

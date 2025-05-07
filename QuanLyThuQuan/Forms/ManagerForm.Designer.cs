@@ -33,18 +33,18 @@ namespace QuanLyThuQuan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblClock = new System.Windows.Forms.Label();
@@ -87,9 +87,8 @@ namespace QuanLyThuQuan
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1579, 98);
+            this.panelHeader.Size = new System.Drawing.Size(1028, 80);
             this.panelHeader.TabIndex = 0;
             this.panelHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeader_Paint);
             // 
@@ -99,10 +98,9 @@ namespace QuanLyThuQuan
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.Location = new System.Drawing.Point(1440, 62);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDate.Location = new System.Drawing.Point(924, 50);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(96, 23);
+            this.lblDate.Size = new System.Drawing.Size(74, 17);
             this.lblDate.TabIndex = 3;
             this.lblDate.Text = "01/01/2023";
             // 
@@ -112,10 +110,9 @@ namespace QuanLyThuQuan
             this.lblClock.AutoSize = true;
             this.lblClock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClock.ForeColor = System.Drawing.Color.White;
-            this.lblClock.Location = new System.Drawing.Point(1440, 31);
-            this.lblClock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblClock.Location = new System.Drawing.Point(924, 25);
             this.lblClock.Name = "lblClock";
-            this.lblClock.Size = new System.Drawing.Size(72, 23);
+            this.lblClock.Size = new System.Drawing.Size(56, 17);
             this.lblClock.TabIndex = 2;
             this.lblClock.Text = "00:00:00";
             // 
@@ -124,10 +121,9 @@ namespace QuanLyThuQuan
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(16, 62);
-            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWelcome.Location = new System.Drawing.Point(12, 50);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(91, 28);
+            this.lblWelcome.Size = new System.Drawing.Size(72, 21);
             this.lblWelcome.TabIndex = 1;
             this.lblWelcome.Text = "Xin chào:";
             // 
@@ -137,10 +133,9 @@ namespace QuanLyThuQuan
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(600, 25);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(372, 20);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(360, 46);
+            this.lblTitle.Size = new System.Drawing.Size(285, 37);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "QUẢN LÝ THƯ QUÁN";
             // 
@@ -158,10 +153,9 @@ namespace QuanLyThuQuan
             this.panelMenu.Controls.Add(this.btnProfile);
             this.panelMenu.Controls.Add(this.btnLogout);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 98);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMenu.Location = new System.Drawing.Point(0, 80);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(293, 716);
+            this.panelMenu.Size = new System.Drawing.Size(220, 529);
             this.panelMenu.TabIndex = 1;
             // 
             // btnLogs
@@ -172,11 +166,10 @@ namespace QuanLyThuQuan
             this.btnLogs.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogs.ForeColor = System.Drawing.Color.White;
             this.btnLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogs.Location = new System.Drawing.Point(0, 294);
-            this.btnLogs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogs.Location = new System.Drawing.Point(0, 240);
             this.btnLogs.Name = "btnLogs";
-            this.btnLogs.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnLogs.Size = new System.Drawing.Size(293, 49);
+            this.btnLogs.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnLogs.Size = new System.Drawing.Size(220, 40);
             this.btnLogs.TabIndex = 17;
             this.btnLogs.Text = "  Nhật ký vào thư quán";
             this.btnLogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,11 +185,10 @@ namespace QuanLyThuQuan
             this.btnViolations.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViolations.ForeColor = System.Drawing.Color.White;
             this.btnViolations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViolations.Location = new System.Drawing.Point(0, 245);
-            this.btnViolations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnViolations.Location = new System.Drawing.Point(0, 200);
             this.btnViolations.Name = "btnViolations";
-            this.btnViolations.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnViolations.Size = new System.Drawing.Size(293, 49);
+            this.btnViolations.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnViolations.Size = new System.Drawing.Size(220, 40);
             this.btnViolations.TabIndex = 16;
             this.btnViolations.Text = "  Vi phạm";
             this.btnViolations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,11 +204,10 @@ namespace QuanLyThuQuan
             this.btnRegulations.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegulations.ForeColor = System.Drawing.Color.White;
             this.btnRegulations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegulations.Location = new System.Drawing.Point(0, 196);
-            this.btnRegulations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegulations.Location = new System.Drawing.Point(0, 160);
             this.btnRegulations.Name = "btnRegulations";
-            this.btnRegulations.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnRegulations.Size = new System.Drawing.Size(293, 49);
+            this.btnRegulations.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnRegulations.Size = new System.Drawing.Size(220, 40);
             this.btnRegulations.TabIndex = 15;
             this.btnRegulations.Text = "  Quy định";
             this.btnRegulations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,11 +223,10 @@ namespace QuanLyThuQuan
             this.btnMembers.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMembers.ForeColor = System.Drawing.Color.White;
             this.btnMembers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMembers.Location = new System.Drawing.Point(0, 147);
-            this.btnMembers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMembers.Location = new System.Drawing.Point(0, 120);
             this.btnMembers.Name = "btnMembers";
-            this.btnMembers.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnMembers.Size = new System.Drawing.Size(293, 49);
+            this.btnMembers.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnMembers.Size = new System.Drawing.Size(220, 40);
             this.btnMembers.TabIndex = 14;
             this.btnMembers.Text = "  Thành viên";
             this.btnMembers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -252,11 +242,10 @@ namespace QuanLyThuQuan
             this.btnReservations.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReservations.ForeColor = System.Drawing.Color.White;
             this.btnReservations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReservations.Location = new System.Drawing.Point(0, 98);
-            this.btnReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReservations.Location = new System.Drawing.Point(0, 80);
             this.btnReservations.Name = "btnReservations";
-            this.btnReservations.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnReservations.Size = new System.Drawing.Size(293, 49);
+            this.btnReservations.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnReservations.Size = new System.Drawing.Size(220, 40);
             this.btnReservations.TabIndex = 13;
             this.btnReservations.Text = "  Mượn trả";
             this.btnReservations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,11 +261,10 @@ namespace QuanLyThuQuan
             this.btnDevices.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDevices.ForeColor = System.Drawing.Color.White;
             this.btnDevices.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDevices.Location = new System.Drawing.Point(0, 49);
-            this.btnDevices.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDevices.Location = new System.Drawing.Point(0, 40);
             this.btnDevices.Name = "btnDevices";
-            this.btnDevices.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnDevices.Size = new System.Drawing.Size(293, 49);
+            this.btnDevices.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnDevices.Size = new System.Drawing.Size(220, 40);
             this.btnDevices.TabIndex = 12;
             this.btnDevices.Text = "  Thiết bị";
             this.btnDevices.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -293,10 +281,9 @@ namespace QuanLyThuQuan
             this.btnSeats.ForeColor = System.Drawing.Color.White;
             this.btnSeats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeats.Location = new System.Drawing.Point(0, 0);
-            this.btnSeats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSeats.Name = "btnSeats";
-            this.btnSeats.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnSeats.Size = new System.Drawing.Size(293, 49);
+            this.btnSeats.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSeats.Size = new System.Drawing.Size(220, 40);
             this.btnSeats.TabIndex = 11;
             this.btnSeats.Text = "  Chỗ ngồi";
             this.btnSeats.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,10 +299,11 @@ namespace QuanLyThuQuan
             this.btnProfile.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProfile.ForeColor = System.Drawing.Color.White;
             this.btnProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProfile.Location = new System.Drawing.Point(0, 501);
+            this.btnProfile.Location = new System.Drawing.Point(0, 457);
+            this.btnProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnProfile.Size = new System.Drawing.Size(220, 40);
+            this.btnProfile.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnProfile.Size = new System.Drawing.Size(220, 32);
             this.btnProfile.TabIndex = 1;
             this.btnProfile.Text = "  Đổi mật khẩu";
             this.btnProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -332,11 +320,10 @@ namespace QuanLyThuQuan
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogout.Location = new System.Drawing.Point(0, 667);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Location = new System.Drawing.Point(0, 489);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnLogout.Size = new System.Drawing.Size(293, 49);
+            this.btnLogout.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnLogout.Size = new System.Drawing.Size(220, 40);
             this.btnLogout.TabIndex = 0;
             this.btnLogout.Text = "  Đăng xuất";
             this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -354,27 +341,25 @@ namespace QuanLyThuQuan
             this.panelContent.Controls.Add(this.pictureBox1);
             this.panelContent.Controls.Add(this.lblQLTV);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(293, 98);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelContent.Location = new System.Drawing.Point(220, 80);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1286, 716);
+            this.panelContent.Size = new System.Drawing.Size(808, 529);
             this.panelContent.TabIndex = 2;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContent_Paint);
             // 
             // memberChart
             // 
-            chartArea5.Name = "ChartArea1";
-            this.memberChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.memberChart.Legends.Add(legend5);
-            this.memberChart.Location = new System.Drawing.Point(27, 25);
-            this.memberChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea1.Name = "ChartArea1";
+            this.memberChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.memberChart.Legends.Add(legend1);
+            this.memberChart.Location = new System.Drawing.Point(20, 20);
             this.memberChart.Name = "memberChart";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.memberChart.Series.Add(series5);
-            this.memberChart.Size = new System.Drawing.Size(600, 308);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.memberChart.Series.Add(series1);
+            this.memberChart.Size = new System.Drawing.Size(450, 250);
             this.memberChart.TabIndex = 2;
             this.memberChart.Text = "Biểu đồ thành viên";
             this.memberChart.Click += new System.EventHandler(this.memberChart_Click);
@@ -382,18 +367,17 @@ namespace QuanLyThuQuan
             // deviceChart
             // 
             this.deviceChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.deviceChart.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.deviceChart.Legends.Add(legend6);
-            this.deviceChart.Location = new System.Drawing.Point(654, 25);
-            this.deviceChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea2.Name = "ChartArea1";
+            this.deviceChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.deviceChart.Legends.Add(legend2);
+            this.deviceChart.Location = new System.Drawing.Point(334, 20);
             this.deviceChart.Name = "deviceChart";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.deviceChart.Series.Add(series6);
-            this.deviceChart.Size = new System.Drawing.Size(600, 308);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.deviceChart.Series.Add(series2);
+            this.deviceChart.Size = new System.Drawing.Size(450, 250);
             this.deviceChart.TabIndex = 3;
             this.deviceChart.Text = "Biểu đồ thiết bị";
             this.deviceChart.Click += new System.EventHandler(this.deviceChart_Click);
@@ -401,18 +385,17 @@ namespace QuanLyThuQuan
             // reservationChart
             // 
             this.reservationChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            chartArea7.Name = "ChartArea1";
-            this.reservationChart.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.reservationChart.Legends.Add(legend7);
-            this.reservationChart.Location = new System.Drawing.Point(27, 358);
-            this.reservationChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea3.Name = "ChartArea1";
+            this.reservationChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.reservationChart.Legends.Add(legend3);
+            this.reservationChart.Location = new System.Drawing.Point(20, 238);
             this.reservationChart.Name = "reservationChart";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.reservationChart.Series.Add(series7);
-            this.reservationChart.Size = new System.Drawing.Size(600, 308);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.reservationChart.Series.Add(series3);
+            this.reservationChart.Size = new System.Drawing.Size(450, 250);
             this.reservationChart.TabIndex = 4;
             this.reservationChart.Text = "Biểu đồ phiếu mượn";
             this.reservationChart.Click += new System.EventHandler(this.reservationChart_Click);
@@ -420,18 +403,17 @@ namespace QuanLyThuQuan
             // seatChart
             // 
             this.seatChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea8.Name = "ChartArea1";
-            this.seatChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.seatChart.Legends.Add(legend8);
-            this.seatChart.Location = new System.Drawing.Point(654, 358);
-            this.seatChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea4.Name = "ChartArea1";
+            this.seatChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.seatChart.Legends.Add(legend4);
+            this.seatChart.Location = new System.Drawing.Point(334, 238);
             this.seatChart.Name = "seatChart";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.seatChart.Series.Add(series8);
-            this.seatChart.Size = new System.Drawing.Size(600, 308);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.seatChart.Series.Add(series4);
+            this.seatChart.Size = new System.Drawing.Size(450, 250);
             this.seatChart.TabIndex = 5;
             this.seatChart.Text = "Biểu đồ chỗ ngồi";
             this.seatChart.Click += new System.EventHandler(this.seatChart_Click);
@@ -439,10 +421,9 @@ namespace QuanLyThuQuan
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Location = new System.Drawing.Point(510, 186);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(304, 124);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(267, 246);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -454,10 +435,9 @@ namespace QuanLyThuQuan
             this.lblQLTV.AutoSize = true;
             this.lblQLTV.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQLTV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
-            this.lblQLTV.Location = new System.Drawing.Point(401, 456);
-            this.lblQLTV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQLTV.Location = new System.Drawing.Point(223, 343);
             this.lblQLTV.Name = "lblQLTV";
-            this.lblQLTV.Size = new System.Drawing.Size(421, 54);
+            this.lblQLTV.Size = new System.Drawing.Size(339, 45);
             this.lblQLTV.TabIndex = 0;
             this.lblQLTV.Text = "QUẢN LÝ THƯ QUÁN";
             this.lblQLTV.Visible = false;
@@ -469,17 +449,17 @@ namespace QuanLyThuQuan
             // 
             // ManagerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1579, 814);
+            this.ClientSize = new System.Drawing.Size(1028, 609);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1327, 728);
+            this.MinimumSize = new System.Drawing.Size(999, 591);
             this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý thư quán";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.fTableManager_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

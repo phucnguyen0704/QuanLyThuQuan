@@ -310,29 +310,11 @@
     <Compile Include="Forms\MemberForm.Designer.cs">
       <DependentUpon>MemberForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\fDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fDetail.Designer.cs">
-      <DependentUpon>fDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fLogManage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fLogManage.Designer.cs">
-      <DependentUpon>fLogManage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\RegulationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\RegulationForm.Designer.cs">
       <DependentUpon>RegulationForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\fMember.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\fMember.Designer.cs">
-      <DependentUpon>fMember.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectAvailableDeviceForm.cs">
       <SubType>Form</SubType>
@@ -422,15 +404,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MemberForm.resx">
       <DependentUpon>MemberForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fDetail.resx">
-      <DependentUpon>fDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fLogManage.resx">
-      <DependentUpon>fLogManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\fMember.resx">
-      <DependentUpon>fMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegulationForm.resx">
       <DependentUpon>RegulationForm.cs</DependentUpon>

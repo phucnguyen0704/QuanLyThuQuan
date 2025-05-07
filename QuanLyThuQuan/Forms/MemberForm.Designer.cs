@@ -538,6 +538,7 @@ namespace QuanLyThuQuan.Forms
             this.Name = "MemberForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý thành viên";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MemberForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
