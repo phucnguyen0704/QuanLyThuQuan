@@ -21,6 +21,14 @@ namespace QuanLyThuQuan
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
             // Validate input
+            if (Checker.IsWhiteSpace(textBoxOldPassword.Text) ||
+                Checker.IsWhiteSpace(textBoxNewPassword.Text) ||
+                Checker.IsWhiteSpace(textBoxConfirmPassword.Text))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu không chỉ khoảng trắng!", "Lỗi đổi mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(textBoxOldPassword.Text) ||
                 string.IsNullOrWhiteSpace(textBoxNewPassword.Text) ||
                 string.IsNullOrWhiteSpace(textBoxConfirmPassword.Text))

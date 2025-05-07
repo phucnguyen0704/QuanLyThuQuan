@@ -79,7 +79,7 @@ namespace QuanLyThuQuan.Web.Controllers
                 TempData["err"] = "Mật khẩu mới không được trùng với mật khẩu cũ";
                 return RedirectToAction(nameof(ChangePassword));
             }
-            if (!changePasswordDTO.ConfirmPassword.Equals(changePasswordDTO.NewPassword))
+            if (changePasswordDTO.ConfirmPassword != changePasswordDTO.NewPassword)
             {
                 TempData["err"] = "Xác nhận mật khẩu phải giống với mật khẩu mới";
                 return RedirectToAction(nameof(ChangePassword));
