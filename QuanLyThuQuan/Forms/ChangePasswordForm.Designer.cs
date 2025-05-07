@@ -176,7 +176,7 @@
             this.Name = "ChangePasswordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đổi mật khẩu - Quản Lý Thư Quán";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangePasswordForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangePasswordForm_FormClosing);
             this.Load += new System.EventHandler(this.ChangePasswordForm_Load);
             this.panelChangePassword.ResumeLayout(false);
             this.panelChangePassword.PerformLayout();

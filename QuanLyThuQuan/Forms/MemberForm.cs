@@ -602,6 +602,7 @@ namespace QuanLyThuQuan.Forms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            LoadMembers(); // Tải lại danh sách thành viên
             ClearForm();
             currentMember = null; // Xóa thành viên hiện tại khi làm mới form
             SetButtonsForViewMode();

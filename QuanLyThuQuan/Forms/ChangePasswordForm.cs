@@ -93,7 +93,7 @@ namespace QuanLyThuQuan
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void textBoxNewPassword_KeyPress(object sender, KeyPressEventArgs e)
@@ -136,6 +136,11 @@ namespace QuanLyThuQuan
         private void textBoxOldPassword_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ChangePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK; 
         }
     }
 }

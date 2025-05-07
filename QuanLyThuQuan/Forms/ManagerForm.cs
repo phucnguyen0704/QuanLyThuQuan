@@ -5,6 +5,7 @@ using QuanLyThuQuan.Forms;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -87,9 +88,15 @@ namespace QuanLyThuQuan
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            ChangePasswordForm changePasswordForm = new ChangePasswordForm(this.member.MemberId);
-            OpenChildForm(changePasswordForm);
-            this.Close();
+            this.Hide();
+
+            using (var changePasswordForm = new ChangePasswordForm(this.member.MemberId))
+            {
+                if (changePasswordForm.ShowDialog() == DialogResult.OK)
+                {
+                    this.Show();
+                }
+            }
         }
 
         private void btnSeats_Click(object sender, EventArgs e)
