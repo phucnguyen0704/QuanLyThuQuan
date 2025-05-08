@@ -346,6 +346,11 @@ namespace QuanLyThuQuan.Forms
 
                 if (isEditing)
                 {
+                    if (member.Role == "admin") 
+                    {
+                        MessageBox.Show("Không thể sửa admin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     result = memberBLL.update(member);
                     if (result)
                     {
@@ -597,6 +602,7 @@ namespace QuanLyThuQuan.Forms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            LoadMembers(); // Tải lại danh sách thành viên
             ClearForm();
             currentMember = null; // Xóa thành viên hiện tại khi làm mới form
             SetButtonsForViewMode();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyThuQuan.Utils
 {
@@ -11,7 +12,8 @@ namespace QuanLyThuQuan.Utils
     {
         public static string Encrypt(string input)
         {
-            return BCrypt.Net.BCrypt.HashPassword(input);
+                return BCrypt.Net.BCrypt.HashPassword(input);
+
         }
 
         public static bool Verify(string input, string hash)

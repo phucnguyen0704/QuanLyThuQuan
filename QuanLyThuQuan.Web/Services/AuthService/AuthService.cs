@@ -4,6 +4,7 @@ using QuanLyThuQuan.Web.Data;
 using QuanLyThuQuan.Web.DTO;
 using QuanLyThuQuan.Web.Models;
 
+
 namespace QuanLyThuQuan.Web.Services.AuthService
 {
     public class AuthService : IAuthService
@@ -15,6 +16,11 @@ namespace QuanLyThuQuan.Web.Services.AuthService
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
             _db = appDb;
+        }
+
+        public bool IsWhiteSpace(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.Trim().Length == 0;
         }
 
         public async Task<Response<Member>> GetById(string memberId)
@@ -198,20 +204,38 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                 var member = await _db.Members.Where(m => m.MemberId.ToString() == memberId).FirstOrDefaultAsync();
                 if (member != null)
                 {
-                    if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password))
+                    if (IsWhiteSpace(changePasswordDTO.Password) || IsWhiteSpace(changePasswordDTO.NewPassword) || IsWhiteSpace(changePasswordDTO.ConfirmPassword))
                     {
                         response.Success = false;
-                        response.Message = "Mật khẩu cũ không đúng. Xin vui lòng nhập lại!";
+                        response.Message = "Vui lòng nhập mật khẩu không chỉ khoảng trắng!";
                         return response;
                     }
-                    member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
-                    _db.Members.Update(member);
-                    if (await _db.SaveChangesAsync() > 0)
+
+                    if (string.IsNullOrWhiteSpace(changePasswordDTO.Password) || string.IsNullOrWhiteSpace(changePasswordDTO.NewPassword) || IsWhiteSpace(changePasswordDTO.ConfirmPassword))
                     {
-                        response.Success = true;
-                        response.Message = "Cập nhật mật khẩu thành công!";
+                        response.Success = false;
+                        response.Message = "Vui lòng không để trống mật khẩu!";
+                        return response;
                     }
 
+
+                    if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password))
+                    {
+                        if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password))
+                        {
+                            response.Success = false;
+                            response.Message = "Mật khẩu cũ không đúng. Xin vui lòng nhập lại!";
+                            return response;
+                        }
+                        member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
+                        _db.Members.Update(member);
+                        if (await _db.SaveChangesAsync() > 0)
+                        {
+                            response.Success = true;
+                            response.Message = "Cập nhật mật khẩu thành công!";
+                        }
+
+                    }
                 }
             }
             catch (MySqlException mex)

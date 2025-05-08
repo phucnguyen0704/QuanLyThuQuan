@@ -72,10 +72,16 @@ namespace QuanLyThuQuan.Utils
         }
         public static string ValidatePasswordChange(uint memberId, string oldPassword, string newPassword, string confirmPassword, string role)
         {
+            // Kiểm tra null hoặc rỗng
+            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
+            {
+                return "Vui lòng không để trống các trường.";
+            }
+
             // Kiểm tra rỗng
             if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
             {
-                return "Vui lòng nhập đầy đủ thông tin.";
+                return "Vui lòng nhập đầy đủ thông tin và không được để mật khẩu chỉ khoảng trắng.";
             }
 
             // Kiểm tra mật khẩu mới và xác nhận khớp nhau
@@ -101,6 +107,11 @@ namespace QuanLyThuQuan.Utils
 
             // Nếu mọi thứ đều hợp lệ
             return "VALID";
+        }
+
+        public static bool IsWhiteSpace(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.Trim().Length == 0;
         }
 
     }

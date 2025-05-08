@@ -46,9 +46,9 @@ namespace QuanLyThuQuan.Forms
             this.tabReservations = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvReservations = new System.Windows.Forms.DataGridView();
+            this.dgvDevices = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblSelectedReservation = new System.Windows.Forms.Label();
-            this.dgvDevices = new System.Windows.Forms.DataGridView();
             this.tabViolations = new System.Windows.Forms.TabPage();
             this.dgvViolations = new System.Windows.Forms.DataGridView();
             this.tabCheckIns = new System.Windows.Forms.TabPage();
@@ -62,8 +62,8 @@ namespace QuanLyThuQuan.Forms
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservations)).BeginInit();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDevices)).BeginInit();
+            this.panel3.SuspendLayout();
             this.tabViolations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViolations)).BeginInit();
             this.tabCheckIns.SuspendLayout();
@@ -121,7 +121,7 @@ namespace QuanLyThuQuan.Forms
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 25);
+            this.label1.Size = new System.Drawing.Size(233, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "LỊCH SỬ THÀNH VIÊN";
             // 
@@ -148,7 +148,7 @@ namespace QuanLyThuQuan.Forms
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDepartment.Location = new System.Drawing.Point(862, 45);
             this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(49, 16);
+            this.lblDepartment.Size = new System.Drawing.Size(52, 16);
             this.lblDepartment.TabIndex = 7;
             this.lblDepartment.Text = "[Khoa]";
             // 
@@ -158,7 +158,7 @@ namespace QuanLyThuQuan.Forms
             this.lblClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClass.Location = new System.Drawing.Point(862, 15);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(40, 16);
+            this.lblClass.Size = new System.Drawing.Size(43, 16);
             this.lblClass.TabIndex = 6;
             this.lblClass.Text = "[Lớp]";
             // 
@@ -168,7 +168,7 @@ namespace QuanLyThuQuan.Forms
             this.lblMemberId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMemberId.Location = new System.Drawing.Point(400, 45);
             this.lblMemberId.Name = "lblMemberId";
-            this.lblMemberId.Size = new System.Drawing.Size(108, 16);
+            this.lblMemberId.Size = new System.Drawing.Size(112, 16);
             this.lblMemberId.TabIndex = 5;
             this.lblMemberId.Text = "[Mã thành viên]";
             // 
@@ -243,7 +243,7 @@ namespace QuanLyThuQuan.Forms
             this.tabReservations.Padding = new System.Windows.Forms.Padding(3);
             this.tabReservations.Size = new System.Drawing.Size(1192, 481);
             this.tabReservations.TabIndex = 0;
-            this.tabReservations.Text = "Lịch sử mượn thiết bị";
+            this.tabReservations.Text = "Lịch sử mượn";
             this.tabReservations.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -262,7 +262,7 @@ namespace QuanLyThuQuan.Forms
             this.splitContainer1.Panel2.Controls.Add(this.dgvDevices);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Size = new System.Drawing.Size(1186, 475);
-            this.splitContainer1.SplitterDistance = 237;
+            this.splitContainer1.SplitterDistance = 235;
             this.splitContainer1.TabIndex = 0;
             // 
             // dgvReservations
@@ -272,9 +272,20 @@ namespace QuanLyThuQuan.Forms
             this.dgvReservations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvReservations.Location = new System.Drawing.Point(0, 0);
             this.dgvReservations.Name = "dgvReservations";
-            this.dgvReservations.Size = new System.Drawing.Size(1186, 237);
+            this.dgvReservations.Size = new System.Drawing.Size(1186, 235);
             this.dgvReservations.TabIndex = 0;
             this.dgvReservations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservations_CellClick);
+            this.dgvReservations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservations_CellContentClick);
+            // 
+            // dgvDevices
+            // 
+            this.dgvDevices.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDevices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDevices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDevices.Location = new System.Drawing.Point(0, 40);
+            this.dgvDevices.Name = "dgvDevices";
+            this.dgvDevices.Size = new System.Drawing.Size(1186, 196);
+            this.dgvDevices.TabIndex = 1;
             // 
             // panel3
             // 
@@ -292,19 +303,9 @@ namespace QuanLyThuQuan.Forms
             this.lblSelectedReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectedReservation.Location = new System.Drawing.Point(12, 12);
             this.lblSelectedReservation.Name = "lblSelectedReservation";
-            this.lblSelectedReservation.Size = new System.Drawing.Size(219, 16);
+            this.lblSelectedReservation.Size = new System.Drawing.Size(217, 16);
             this.lblSelectedReservation.TabIndex = 0;
             this.lblSelectedReservation.Text = "Chi tiết phiếu mượn: Chưa chọn";
-            // 
-            // dgvDevices
-            // 
-            this.dgvDevices.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDevices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDevices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDevices.Location = new System.Drawing.Point(0, 40);
-            this.dgvDevices.Name = "dgvDevices";
-            this.dgvDevices.Size = new System.Drawing.Size(1186, 194);
-            this.dgvDevices.TabIndex = 1;
             // 
             // tabViolations
             // 
@@ -359,6 +360,7 @@ namespace QuanLyThuQuan.Forms
             this.Name = "HistoryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lịch sử thành viên";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -371,9 +373,9 @@ namespace QuanLyThuQuan.Forms
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDevices)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDevices)).EndInit();
             this.tabViolations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvViolations)).EndInit();
             this.tabCheckIns.ResumeLayout(false);

@@ -330,6 +330,7 @@ namespace QuanLyThuQuan.Forms
             this.Name = "LogForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý nhật ký ra vào";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LogForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

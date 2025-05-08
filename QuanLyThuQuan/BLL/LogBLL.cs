@@ -13,10 +13,12 @@ namespace QuanLyThuQuan.BLL
     class LogBLL
     {
         private LogDAL logDAL;
+        private MemberDAL memberDAL;
 
         public LogBLL()
         {
             logDAL = new LogDAL();
+            memberDAL = new MemberDAL();
         }
 
         public string create(string memberId, DateTime checkin)
@@ -33,11 +35,18 @@ namespace QuanLyThuQuan.BLL
             {
                 return "Vui lòng chọn thời gian vào thư quán!";
             }
+
+            MemberDTO member = memberDAL.getByID(uint.Parse(memberId));
+            if (member.Status == 3)
+            {
+                return "Tài khoản đã bị khóa!";
+            }
             
             LogDTO logDTO = new LogDTO() { memberId = memberId, checkinTime = checkin };
             if (logDAL.create(logDTO)){
                 return null;
             }
+
             return "Lỗi MySQL!";
         }
 

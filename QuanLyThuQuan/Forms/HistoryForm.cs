@@ -421,5 +421,10 @@ namespace QuanLyThuQuan.Forms
             dgvDevices.DataSource = null;
             lblSelectedReservation.Text = "Chi tiết phiếu mượn: Chưa chọn";
         }
+
+        private void dgvReservations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

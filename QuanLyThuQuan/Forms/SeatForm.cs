@@ -376,6 +376,7 @@ namespace QuanLyThuQuan.Forms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            LoadSeats();
             ClearForm();
             SetButtonsForViewMode();
         }

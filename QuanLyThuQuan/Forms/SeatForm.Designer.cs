@@ -326,6 +326,7 @@
             this.Name = "SeatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Ghế - Thư Quán";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SeatForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

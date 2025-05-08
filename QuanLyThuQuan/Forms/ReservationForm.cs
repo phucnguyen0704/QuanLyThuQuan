@@ -395,7 +395,7 @@ namespace QuanLyThuQuan.Forms
 
         private void SetButtonsForAddMode()
         {
-                        btnSave.Visible = true;
+            btnSave.Visible = true;
             btnClear.Visible = true;
 
             btnAdd.Visible = false;
@@ -556,6 +556,19 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
+            if (dtpReservationTime.Value < DateTime.Today) 
+            {
+                MessageBox.Show("Thời gian đặt phải từ thời điểm hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpReservationTime.Focus();
+                return false;
+            }
+
+            if(dtpReservationTime.Value > dtpDueTime.Value)
+            {
+                MessageBox.Show("Thời gian đặt không được lớn hơn thời gian trả!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
@@ -682,6 +695,7 @@ namespace QuanLyThuQuan.Forms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            LoadReservations();
             ClearForm();
             currentReservation = null; // Xóa reservation hiện tại khi làm mới form
             loadFormFromSelectedRow();
