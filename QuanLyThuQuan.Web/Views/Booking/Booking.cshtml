@@ -6,11 +6,11 @@
 
 @model QuanLyThuQuan.Web.DTO.ReservationDTO;
 @section csslinks {
-<!-- Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<!-- Bootstrap CSS and JS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 }
 
 <form method="post" asp-controller="booking" asp-action="BookingStore">
@@ -19,7 +19,7 @@
         <div class="card shadow-sm border-0">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h3 class="card-title mb-0">Lập phiếu mượn thiết bị</h3>
-               
+
             </div>
 
             <div class="card-body">
@@ -39,8 +39,8 @@
                                 <option value="0">Chọn chỗ</option>
                                 @foreach (var seat in ViewBag.seats)
                                 {
-								    var isSelected = seat.SeatId == ViewBag.seatId ? "selected" : null;
-                                    
+                                    var isSelected = seat.SeatId == ViewBag.seatId ? "selected" : null;
+
                                     <option value="@seat.SeatId" selected="@isSelected">@seat.Name</option>
 
                                 }
@@ -49,12 +49,12 @@
 
                         <div class="form-group">
                             <label class="form-label">Thời gian mượn chỗ</label>
-                            <input type="datetime-local" class="form-control" asp-for="Reservation.ReservationTime" required />
+                            <input type="datetime-local" id="ReservationTime" class="form-control" asp-for="Reservation.ReservationTime" required />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Thời gian trả chỗ</label>
-                            <input type="datetime-local" class="form-control" asp-for="Reservation.DueTime" required />
+                            <input type="datetime-local" id="DueTime" class="form-control" asp-for="Reservation.DueTime" required />
                         </div>
                     </div>
 
@@ -64,15 +64,15 @@
                             <label class="form-label">Mã thành viên</label>
                             <input type="number" class="form-control" value="@ViewBag.memberId" asp-for="Reservation.MemberId" readonly>
                         </div>
-                    
+
                         <div class="form-group">
                             <label class="form-label">Thiết bị</label>
                             <select name="deviceIds" class="form-select" multiple required>
-								@foreach (var device in ViewBag.devices)
-								{
-									<option value="@device.DeviceId">@device.Name</option>
-								})
-                               
+                                @foreach (var device in ViewBag.devices)
+                                {
+                                    <option value="@device.DeviceId">@device.Name</option>
+                                })
+
                             </select>
                             <small class="form-text text-muted">Giữ Ctrl để chọn nhiều thiết bị.</small>
                         </div>
@@ -101,8 +101,56 @@
              }
          });
     </script>
+    <script>
+        const borrowTimeInput = document.getElementById('ReservationTime');
+        const returnTimeInput = document.getElementById('DueTime');
+
+        function getCurrentDateTime() {
+            const now = new Date();
+            return now.toISOString().slice(0, 16); 
+        }
+
+        function formatDateTime(date) {
+            return date.toISOString().slice(0, 16);
+        }
+
+        borrowTimeInput.min = getCurrentDateTime();
+
+        returnTimeInput.disabled = true;
+
+        // Xử lý sự kiện khi Thời gian mượn thay đổi
+        borrowTimeInput.addEventListener('change', function () {
+            const borrowTime = new Date(this.value);
+
+            if (this.value) {
+                // Kích hoạt Thời gian trả
+                returnTimeInput.disabled = false;
+
+                returnTimeInput.min = formatDateTime(borrowTime);
+
+                if (returnTimeInput.value && new Date(returnTimeInput.value) < borrowTime) {
+                    returnTimeInput.value = '';
+                }
+            } else {
+                returnTimeInput.disabled = true;
+                returnTimeInput.value = '';
+            }
+        });
+
+        returnTimeInput.addEventListener('change', function () {
+            const borrowTime = new Date(borrowTimeInput.value);
+            const returnTime = new Date(this.value);
+
+            if (returnTime < borrowTime) {
+                this.value = '';
+                alert('Thời gian trả phải sau Thời gian mượn.');
+            }
+        });
+    </script>
 </form>
-@section jslinks{
+@section jslinks {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+   
 }

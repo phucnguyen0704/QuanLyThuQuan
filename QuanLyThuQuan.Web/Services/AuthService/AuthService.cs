@@ -22,7 +22,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
             Response<Member> response = new();
             try
             {
-                var member =await _db.Members.FirstOrDefaultAsync(m => m.MemberId.ToString().Equals(memberId));
+                var member = await _db.Members.FirstOrDefaultAsync(m => m.MemberId.ToString().Equals(memberId));
                 if (member == null)
                 {
                     response.Success = false;
@@ -59,7 +59,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     response.Data = null;
                     return response;
                 }
-                if(member.Status == 3)
+                if (member.Status == 3)
                 {
                     response.Success = false;
                     response.Message = $"Tài khoản của bạn đã bị khóa! Xin vui lòng đến thư quán để biết thêm thông tin";
@@ -91,9 +91,27 @@ namespace QuanLyThuQuan.Web.Services.AuthService
 
         public async Task<Response<Member>> Register(Member member)
         {
-           Response<Member> response = new();
+            Response<Member> response = new();
             try
             {
+                //Check Email
+                if (await IsEmailExists(member.Email??""))
+                {
+                    response.Success = false ;
+                    response.Message = "Email đã tồn tại!";
+                    response.Data = member;
+                    return response;
+                }
+
+                //Check Phone Number
+                if (await IsPhoneNumberExists(member.PhoneNumber ?? ""))
+                {
+                    response.Success = false;
+                    response.Message = "Số điện thoại đã tồn tại!";
+                    response.Data = member;
+                    return response;
+                }
+
                 var memberId = await _db.Members.FirstOrDefaultAsync(m => m.MemberId == member.MemberId);
                 if (memberId != null)
                 {
@@ -103,7 +121,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     return response;
                 }
                 member.Password = BCrypt.Net.BCrypt.HashPassword(member.Password);
-                member.Role = "member"; 
+                member.Role = "member";
                 _db.Add(member);
                 var result = await _db.SaveChangesAsync();
                 if (result > 0)
@@ -113,7 +131,7 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                     response.Data = member;
                 }
             }
-            catch(MySqlException mex)
+            catch (MySqlException mex)
             {
                 response.Success = false;
                 response.Message = mex.Message;
@@ -128,6 +146,50 @@ namespace QuanLyThuQuan.Web.Services.AuthService
             return response;
         }
 
+        public async Task<bool> IsEmailExists(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email))
+                {
+                    return true;
+                }
+
+                var IsResult = _db.Members.FirstOrDefaultAsync(m => m.Email.ToLower().Equals(email.ToLower()));
+                if (IsResult != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        public async Task<bool> IsPhoneNumberExists(string phoneNumber)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(phoneNumber))
+                {
+                    return true;
+                }
+
+                var IsResult = _db.Members.FirstOrDefaultAsync(m => m.PhoneNumber.ToLower().Equals(phoneNumber.ToLower()));
+                if (IsResult != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
         public async Task<Response<Member>> UpdatePassword(ChangePasswordDTO changePasswordDTO, string memberId)
         {
             Response<Member> response = new();
@@ -136,14 +198,15 @@ namespace QuanLyThuQuan.Web.Services.AuthService
                 var member = await _db.Members.Where(m => m.MemberId.ToString() == memberId).FirstOrDefaultAsync();
                 if (member != null)
                 {
-                    if(!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password)){
+                    if (!BCrypt.Net.BCrypt.Verify(changePasswordDTO.Password, member.Password))
+                    {
                         response.Success = false;
                         response.Message = "Mật khẩu cũ không đúng. Xin vui lòng nhập lại!";
                         return response;
                     }
                     member.Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDTO.NewPassword);
                     _db.Members.Update(member);
-                    if(await _db.SaveChangesAsync() > 0)
+                    if (await _db.SaveChangesAsync() > 0)
                     {
                         response.Success = true;
                         response.Message = "Cập nhật mật khẩu thành công!";
