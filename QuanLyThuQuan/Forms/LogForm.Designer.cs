@@ -259,6 +259,7 @@ namespace QuanLyThuQuan.Forms
             // 
             // cboSearchCategory
             // 
+            this.cboSearchCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSearchCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSearchCategory.FormattingEnabled = true;
             this.cboSearchCategory.Location = new System.Drawing.Point(650, 18);
