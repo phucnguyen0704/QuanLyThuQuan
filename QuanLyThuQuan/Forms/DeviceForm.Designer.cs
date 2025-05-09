@@ -70,9 +70,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 100);
+            this.panel1.Size = new System.Drawing.Size(1049, 100);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // lblDisDeviceInLib
             // 
@@ -114,15 +113,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1184, 200);
+            this.panel2.Size = new System.Drawing.Size(1049, 200);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // picPreview
             // 
             this.picPreview.BackColor = System.Drawing.Color.WhiteSmoke;
             this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPreview.Location = new System.Drawing.Point(1022, 25);
+            this.picPreview.Location = new System.Drawing.Point(834, 33);
             this.picPreview.Name = "picPreview";
             this.picPreview.Size = new System.Drawing.Size(150, 150);
             this.picPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -131,11 +129,11 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnBrowse.FlatAppearance.BorderSize = 0;
-            this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.ForeColor = System.Drawing.Color.White;
+            this.btnBrowse.BackColor = System.Drawing.SystemColors.Control;
+            this.btnBrowse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnBrowse.FlatAppearance.BorderSize = 2;
+            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnBrowse.Location = new System.Drawing.Point(710, 152);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(100, 30);
@@ -146,6 +144,7 @@
             // 
             // txtImage
             // 
+            this.txtImage.Enabled = false;
             this.txtImage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtImage.Location = new System.Drawing.Point(200, 152);
             this.txtImage.Name = "txtImage";
@@ -165,13 +164,13 @@
             // 
             // dtpCreatedAt
             // 
+            this.dtpCreatedAt.Enabled = false;
             this.dtpCreatedAt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpCreatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpCreatedAt.Location = new System.Drawing.Point(200, 110);
             this.dtpCreatedAt.Name = "dtpCreatedAt";
             this.dtpCreatedAt.Size = new System.Drawing.Size(200, 29);
             this.dtpCreatedAt.TabIndex = 7;
-            this.dtpCreatedAt.ValueChanged += new System.EventHandler(this.dtpCreatedAt_ValueChanged);
             // 
             // cboStatus
             // 
@@ -193,6 +192,7 @@
             // 
             // txtDeviceID
             // 
+            this.txtDeviceID.Enabled = false;
             this.txtDeviceID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDeviceID.Location = new System.Drawing.Point(200, 30);
             this.txtDeviceID.Name = "txtDeviceID";
@@ -255,9 +255,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 300);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1184, 60);
+            this.panel3.Size = new System.Drawing.Size(1049, 60);
             this.panel3.TabIndex = 2;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // cboSearchCategory
             // 
@@ -286,7 +285,7 @@
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.Location = new System.Drawing.Point(460, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 35);
@@ -384,18 +383,19 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 360);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1184, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(1049, 267);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // DeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(1049, 627);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
