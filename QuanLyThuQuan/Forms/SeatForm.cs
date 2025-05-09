@@ -85,8 +85,8 @@ namespace QuanLyThuQuan.Forms
             cboSearchCategory.Items.AddRange(new string[]
             {
                 "Tất cả",
-                "Mã ghế",
-                "Tên ghế",
+                "Mã chỗ ngồi",
+                "Tên chỗ ngồi",
                 "Trạng thái"
             });
             cboSearchCategory.SelectedIndex = 0;
@@ -99,7 +99,7 @@ namespace QuanLyThuQuan.Forms
                 seatList = seatBLL.getAllSeat();
                 if (seatList == null)
                 {
-                    MessageBox.Show("Không thể tải dữ liệu ghế.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không thể tải dữ liệu chỗ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -109,14 +109,14 @@ namespace QuanLyThuQuan.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải dữ liệu ghế: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải dữ liệu chỗ: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ConfigureDataGridViewColumns()
         {
-            dataGridViewSeat.Columns["seatId"].HeaderText = "Mã ghế";
-            dataGridViewSeat.Columns["seatName"].HeaderText = "Tên ghế";
+            dataGridViewSeat.Columns["seatId"].HeaderText = "Mã chỗ ngồi";
+            dataGridViewSeat.Columns["seatName"].HeaderText = "Tên chỗ ngồi";
             dataGridViewSeat.Columns["status"].HeaderText = "Trạng thái";
         }
 
@@ -244,7 +244,7 @@ namespace QuanLyThuQuan.Forms
         {
             if (string.IsNullOrEmpty(txtSeatID.Text))
             {
-                MessageBox.Show("Vui lòng chọn ghế cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn chỗ ngồi cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -281,7 +281,7 @@ namespace QuanLyThuQuan.Forms
                     result = seatBLL.update(seatId, name);
                     if (result == null)
                     {
-                        MessageBox.Show("Cập nhật ghế thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadSeats();
                         ClearForm();
                         SetButtonsForViewMode();
@@ -296,7 +296,7 @@ namespace QuanLyThuQuan.Forms
                     result = seatBLL.create(name);
                     if (result == null)
                     {
-                        MessageBox.Show("Thêm ghế thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Thêm chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadSeats();
                         ClearForm();
                         SetButtonsForViewMode();
@@ -317,15 +317,15 @@ namespace QuanLyThuQuan.Forms
         {
             if (string.IsNullOrEmpty(txtSeatName.Text.Trim()))
             {
-                MessageBox.Show("Vui lòng nhập tên ghế!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập tên chỗ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSeatName.Focus();
                 return false;
             }
 
-            //// Kiểm tra tên ghế chỉ chứa chữ cái và số
+            //// Kiểm tra tên chỗ chỉ chứa chữ cái và số
             //if (!Regex.IsMatch(txtSeatName.Text.Trim(), @"^[A-Za-z0-9]+$"))
             //{
-            //    MessageBox.Show("Tên ghế chỉ gồm chữ cái và số, vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    MessageBox.Show("Tên chỗ chỉ gồm chữ cái và số, vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //    txtSeatName.Focus();
             //    return false;
             //}
@@ -339,7 +339,7 @@ namespace QuanLyThuQuan.Forms
             {
                 if (string.IsNullOrEmpty(txtSeatID.Text))
                 {
-                    MessageBox.Show("Vui lòng chọn ghế cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn chỗ cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -347,7 +347,7 @@ namespace QuanLyThuQuan.Forms
                 string seatName = txtSeatName.Text;
 
                 DialogResult dialogResult = MessageBox.Show(
-                    $"Bạn có chắc muốn xóa ghế {seatName} khỏi danh sách chứ?",
+                    $"Bạn có chắc muốn xóa chỗ {seatName} khỏi danh sách chứ?",
                     "Xác nhận xóa",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -358,7 +358,7 @@ namespace QuanLyThuQuan.Forms
                     string result = seatBLL.delete(seatId);
                     if (result == null)
                     {
-                        MessageBox.Show("Xóa ghế thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xóa chỗ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadSeats();
                         ClearForm();
                     }
@@ -424,12 +424,12 @@ namespace QuanLyThuQuan.Forms
                         GetStatusText(seat.status).ToLower().Contains(searchText)
                     ).ToList();
 
-                case 1: // Mã ghế
+                case 1: // Mã chỗ
                     return seatList.Where(seat =>
                         seat.seatId.ToString().Contains(searchText)
                     ).ToList();
 
-                case 2: // Tên ghế
+                case 2: // Tên chỗ
                     return seatList.Where(seat =>
                         seat.seatName.ToLower().Contains(searchText)
                     ).ToList();

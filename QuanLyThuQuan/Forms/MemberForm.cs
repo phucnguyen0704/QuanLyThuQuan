@@ -349,6 +349,7 @@ namespace QuanLyThuQuan.Forms
                     if (member.Role == "admin") 
                     {
                         MessageBox.Show("Không thể sửa admin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     result = memberBLL.update(member);

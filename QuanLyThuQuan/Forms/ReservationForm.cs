@@ -556,7 +556,7 @@ namespace QuanLyThuQuan.Forms
                 return false;
             }
 
-            if (dtpReservationTime.Value < DateTime.Today) 
+            if (dtpReservationTime.Value < DateTime.Today && isEditing == false) 
             {
                 MessageBox.Show("Thời gian đặt phải từ thời điểm hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpReservationTime.Focus();

@@ -73,9 +73,9 @@
             this.lblDisSeatInLib.ForeColor = System.Drawing.Color.White;
             this.lblDisSeatInLib.Location = new System.Drawing.Point(12, 58);
             this.lblDisSeatInLib.Name = "lblDisSeatInLib";
-            this.lblDisSeatInLib.Size = new System.Drawing.Size(305, 30);
+            this.lblDisSeatInLib.Size = new System.Drawing.Size(369, 30);
             this.lblDisSeatInLib.TabIndex = 1;
-            this.lblDisSeatInLib.Text = "DANH SÁCH GHẾ THƯ QUÁN";
+            this.lblDisSeatInLib.Text = "DANH SÁCH CHỖ NGỒI THƯ QUÁN";
             // 
             // label1
             // 
@@ -84,9 +84,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 40);
+            this.label1.Size = new System.Drawing.Size(296, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "QUẢN LÝ GHẾ";
+            this.label1.Text = "QUẢN LÝ CHỖ NGỒI";
             // 
             // panel2
             // 
@@ -150,9 +150,9 @@
             this.lblSeatName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatName.Location = new System.Drawing.Point(50, 73);
             this.lblSeatName.Name = "lblSeatName";
-            this.lblSeatName.Size = new System.Drawing.Size(66, 21);
+            this.lblSeatName.Size = new System.Drawing.Size(100, 21);
             this.lblSeatName.TabIndex = 1;
-            this.lblSeatName.Text = "Tên ghế:";
+            this.lblSeatName.Text = "Tên chỗ ngồi:";
             // 
             // lblSeatID
             // 
@@ -160,9 +160,9 @@
             this.lblSeatID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeatID.Location = new System.Drawing.Point(50, 33);
             this.lblSeatID.Name = "lblSeatID";
-            this.lblSeatID.Size = new System.Drawing.Size(65, 21);
+            this.lblSeatID.Size = new System.Drawing.Size(99, 21);
             this.lblSeatID.TabIndex = 0;
-            this.lblSeatID.Text = "Mã ghế:";
+            this.lblSeatID.Text = "Mã chỗ ngồi:";
             // 
             // panel3
             // 
