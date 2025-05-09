@@ -120,7 +120,7 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.pnRight);
-            this.splitContainer.Size = new System.Drawing.Size(1471, 663);
+            this.splitContainer.Size = new System.Drawing.Size(1386, 663);
             this.splitContainer.SplitterDistance = 490;
             this.splitContainer.SplitterWidth = 7;
             this.splitContainer.TabIndex = 3;
@@ -437,13 +437,15 @@
             // 
             // pnRight
             // 
+            this.pnRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnRight.Controls.Add(this.flpnTimKiem);
             this.pnRight.Controls.Add(this.dataGridView);
-            this.pnRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnRight.Location = new System.Drawing.Point(0, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(974, 663);
+            this.pnRight.Size = new System.Drawing.Size(869, 658);
             this.pnRight.TabIndex = 0;
             // 
             // flpnTimKiem
@@ -457,7 +459,7 @@
             this.flpnTimKiem.Location = new System.Drawing.Point(0, 0);
             this.flpnTimKiem.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.flpnTimKiem.Name = "flpnTimKiem";
-            this.flpnTimKiem.Size = new System.Drawing.Size(972, 51);
+            this.flpnTimKiem.Size = new System.Drawing.Size(867, 51);
             this.flpnTimKiem.TabIndex = 2;
             // 
             // btnLamMoi
@@ -468,7 +470,7 @@
             this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLamMoi.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.White;
-            this.btnLamMoi.Location = new System.Drawing.Point(848, 6);
+            this.btnLamMoi.Location = new System.Drawing.Point(743, 6);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(121, 34);
             this.btnLamMoi.TabIndex = 6;
@@ -480,7 +482,7 @@
             // 
             this.txtTimKiem.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtTimKiem.BackColor = System.Drawing.Color.White;
-            this.txtTimKiem.Location = new System.Drawing.Point(634, 11);
+            this.txtTimKiem.Location = new System.Drawing.Point(529, 11);
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(206, 29);
@@ -490,10 +492,10 @@
             // lblTimKiem
             // 
             this.lblTimKiem.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTimKiem.Location = new System.Drawing.Point(18, 3);
+            this.lblTimKiem.Location = new System.Drawing.Point(45, 3);
             this.lblTimKiem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.lblTimKiem.Name = "lblTimKiem";
-            this.lblTimKiem.Size = new System.Drawing.Size(611, 43);
+            this.lblTimKiem.Size = new System.Drawing.Size(479, 43);
             this.lblTimKiem.TabIndex = 0;
             this.lblTimKiem.Text = "Tìm kiếm theo tên:";
             this.lblTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -525,7 +527,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.RowTemplate.Height = 30;
-            this.dataGridView.Size = new System.Drawing.Size(972, 606);
+            this.dataGridView.Size = new System.Drawing.Size(867, 601);
             this.dataGridView.TabIndex = 3;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
