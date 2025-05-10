@@ -156,21 +156,20 @@ namespace QuanLyThuQuan.Web.Services.AuthService
         {
             try
             {
-                if (string.IsNullOrEmpty(email))
+                if (string.IsNullOrWhiteSpace(email))
                 {
-                    return true;
+                    return false; // Email rỗng không nên xem là tồn tại
                 }
 
-                var IsResult = _db.Members.FirstOrDefaultAsync(m => m.Email.ToLower().Equals(email.ToLower()));
-                if (IsResult != null)
-                {
-                    return true;
-                }
-                return false;
+                var member = await _db.Members
+                    .FirstOrDefaultAsync(m => m.Email.ToLower() == email.ToLower());
+
+                return member != null;
             }
             catch
             {
-                return true;
+                // Tùy logic, có thể log lỗi rồi throw lại, hoặc trả về false
+                return false;
             }
         }
 
@@ -178,21 +177,20 @@ namespace QuanLyThuQuan.Web.Services.AuthService
         {
             try
             {
-                if (string.IsNullOrEmpty(phoneNumber))
+                if (string.IsNullOrWhiteSpace(phoneNumber))
                 {
-                    return true;
+                    return false; // Số rỗng thì xem như không tồn tại
                 }
 
-                var IsResult = _db.Members.FirstOrDefaultAsync(m => m.PhoneNumber.ToLower().Equals(phoneNumber.ToLower()));
-                if (IsResult != null)
-                {
-                    return true;
-                }
-                return false;
+                var member = await _db.Members
+                    .FirstOrDefaultAsync(m => m.PhoneNumber == phoneNumber);
+
+                return member != null;
             }
             catch
             {
-                return true;
+                // Có thể ghi log và trả về false hoặc throw nếu cần
+                return false;
             }
         }
 
