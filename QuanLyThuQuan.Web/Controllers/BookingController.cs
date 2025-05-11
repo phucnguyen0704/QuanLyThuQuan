@@ -83,6 +83,11 @@ namespace QuanLyThuQuan.Web.Controllers
                 TempData["success"] = "Đặt chỗ thành công";
                 return RedirectToAction("ViewSeat");
             }
+            else if(response.Data.Reservation.Member.Status == 3)
+            {
+                TempData["err"] = response.Message;
+                return RedirectToAction("Logout", "Auth");
+            }
             TempData["err"] = response.Message;
             return RedirectToAction("Booking");
 

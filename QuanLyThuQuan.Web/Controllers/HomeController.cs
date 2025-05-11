@@ -40,6 +40,11 @@ namespace QuanLyThuQuan.Web.Controllers
             }
             else
             {
+                if(response.Data.Status == 3)
+                {
+                    TempData["err"] = response.Message;
+                    return RedirectToAction("Logout", "Auth");
+                }
                 TempData["err"] = response.Message;
                 return RedirectToAction(nameof(Index2));
             }
@@ -57,6 +62,11 @@ namespace QuanLyThuQuan.Web.Controllers
             }
             else
             {
+                if (response.Data.Status == 3)
+                {
+                    TempData["err"] = response.Message;
+                    return RedirectToAction("Logout", "Auth");
+                }
                 TempData["err"] = response.Message;
             }
             return RedirectToAction(nameof(Index));
@@ -91,6 +101,11 @@ namespace QuanLyThuQuan.Web.Controllers
             }
             else
             {
+                if (response.Data.Status == 3)
+                {
+                    TempData["err"] = response.Message;
+                    return RedirectToAction("Logout", "Auth");
+                }
                 TempData["err"] = response.Message;
             }
             return RedirectToAction(nameof(ChangePassword));

@@ -18,6 +18,21 @@ namespace QuanLyThuQuan.Web.Services.BookingService
         public async Task<Response<ReservationDTO>> CreateBooking(ReservationDTO reservationDTO, List<uint> deviceIds)
         {
             Response<ReservationDTO> response = new();
+            var user = await _db.Members.FirstOrDefaultAsync(m => m.MemberId == reservationDTO.Reservation.MemberId);
+            if (user.Status == 3)
+            {
+                response.Success = false;
+                response.Message = "Ohhh!No. Tài khoản của bạn đã bị khóa!Hẹn không gặp lại bạn!";
+                response.Data = new ReservationDTO
+                {
+                    Reservation = new Reservation
+                    {
+                        Member = user
+                    }
+                };
+                return response;
+
+            }
             using (var transaction = await _db.Database.BeginTransactionAsync())
             {
                 try

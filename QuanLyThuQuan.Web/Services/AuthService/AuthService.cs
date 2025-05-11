@@ -202,6 +202,14 @@ namespace QuanLyThuQuan.Web.Services.AuthService
             try
             {
                 var member = await _db.Members.Where(m => m.MemberId.ToString() == memberId).FirstOrDefaultAsync();
+                if (member.Status == 3)
+                {
+                    response.Success = false;
+                    response.Message = "Ohhh!No. Tài khoản của bạn đã bị khóa!Hẹn không gặp lại bạn!";
+                    response.Data = member;
+                    return response;
+
+                }
                 if (member != null)
                 {
                     if (IsWhiteSpace(changePasswordDTO.Password) || IsWhiteSpace(changePasswordDTO.NewPassword) || IsWhiteSpace(changePasswordDTO.ConfirmPassword))
@@ -257,6 +265,15 @@ namespace QuanLyThuQuan.Web.Services.AuthService
             try
             {
                 var obj = await _db.Members.Where(m => m.MemberId == member.MemberId).FirstOrDefaultAsync();
+               
+                if (obj.Status == 3)
+                {
+                    response.Success = false;
+                    response.Message = "Ohhh!No. Tài khoản của bạn đã bị khóa!Hẹn không gặp lại bạn!";
+                    response.Data = obj;
+                    return response;
+
+                }
                 if (obj != null)
                 {
                     obj.PhoneNumber = member.PhoneNumber;
