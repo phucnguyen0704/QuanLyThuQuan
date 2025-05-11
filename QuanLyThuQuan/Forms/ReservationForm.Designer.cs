@@ -556,17 +556,17 @@ namespace QuanLyThuQuan.Forms
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtSearch.Location = new System.Drawing.Point(107, 10);
+            this.txtSearch.Location = new System.Drawing.Point(166, 10);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(6, 10, 6, 5);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(525, 29);
+            this.txtSearch.Size = new System.Drawing.Size(466, 29);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label10.Location = new System.Drawing.Point(771, 58);
+            this.label10.Location = new System.Drawing.Point(49, 8);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 8, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(105, 34);

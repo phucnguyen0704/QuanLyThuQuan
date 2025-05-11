@@ -44,6 +44,20 @@ namespace QuanLyThuQuan.Forms
             SwitchToViewMode();
         }
 
+        private void setCbStatus(int status)
+        {
+            cboStatus.Items.Clear();
+            cboStatus.Items.AddRange(new string[] { "Còn", "Bảo trì" });
+
+            // Chọn trạng thái phù hợp
+            if (status == STATUS_AVAILABLE)
+                cboStatus.SelectedIndex = 0;
+            else if (status == STATUS_MAINTENANCE)
+                cboStatus.SelectedIndex = 1;
+            else
+                cboStatus.SelectedIndex = 0; // Mặc định là "Còn"
+        }
+
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Status" && e.Value != null)
@@ -57,7 +71,7 @@ namespace QuanLyThuQuan.Forms
                         e.CellStyle.BackColor = StatusAvailableColor;
                         e.CellStyle.ForeColor = Color.White;
                         break;
-                    case "Đã mượn":
+                    case "Đang mượn":
                         e.CellStyle.BackColor = StatusBorrowedColor;
                         e.CellStyle.ForeColor = Color.Black;
                         break;
@@ -82,7 +96,7 @@ namespace QuanLyThuQuan.Forms
         private void SetupStatusComboBox()
         {
             cboStatus.Items.Clear();
-            cboStatus.Items.AddRange(new string[] { "Còn", "Đã mượn", "Bảo trì" });
+            cboStatus.Items.AddRange(new string[] { "Còn", "Bảo trì" });
             cboStatus.SelectedIndex = 0;
         }
 
@@ -155,7 +169,7 @@ namespace QuanLyThuQuan.Forms
             switch (status)
             {
                 case STATUS_AVAILABLE: return "Còn";
-                case STATUS_BORROWED: return "Đã mượn";
+                case STATUS_BORROWED: return "Đang mượn";
                 case STATUS_MAINTENANCE: return "Bảo trì";
                 default: return "Không xác định";
             }
@@ -166,7 +180,7 @@ namespace QuanLyThuQuan.Forms
             switch (statusText)
             {
                 case "Còn": return STATUS_AVAILABLE;
-                case "Đã mượn": return STATUS_BORROWED;
+                case "Đang mượn": return STATUS_BORROWED;
                 case "Bảo trì": return STATUS_MAINTENANCE;
                 default: return STATUS_AVAILABLE;
             }
@@ -270,7 +284,21 @@ namespace QuanLyThuQuan.Forms
         {
             txtDeviceID.Text = device.DeviceID.ToString();
             txtName.Text = device.Name;
-            cboStatus.SelectedIndex = device.Status - 1;
+
+            // Xử lý hiển thị trạng thái
+            if (device.Status == STATUS_BORROWED)
+            {
+                // Nếu thiết bị đang ở trạng thái "Đang mượn", hiển thị thông tin này nhưng không cho phép chọn
+                cboStatus.Items.Clear();
+                cboStatus.Items.Add("Đang mượn");
+                cboStatus.SelectedIndex = 0;
+            }
+            else
+            {
+                // Nếu không phải "Đang mượn", hiển thị các trạng thái có thể chọn
+                setCbStatus(device.Status);
+            }
+
             dtpCreatedAt.Value = device.CreatedAt;
             txtImage.Text = device.Image;
 
@@ -323,9 +351,11 @@ namespace QuanLyThuQuan.Forms
             btnDelete.Visible = false;
 
             txtName.Enabled = true;
-            cboStatus.SelectedIndex = 0;
-            cboStatus.Enabled = false;
+            cboStatus.Enabled = true;
             btnBrowse.Enabled = true;
+
+            // Đảm bảo chỉ hiển thị "Còn" và "Bảo trì" khi thêm mới
+            SetupStatusComboBox();
         }
 
         private void SwitchToEditMode()
@@ -336,8 +366,19 @@ namespace QuanLyThuQuan.Forms
             btnDelete.Visible = false;
 
             txtName.Enabled = true;
-            cboStatus.Enabled = true;
             btnBrowse.Enabled = true;
+
+            // Nếu thiết bị đang ở trạng thái "Đang mượn", không cho phép thay đổi trạng thái
+            if (cboStatus.Text == "Đang mượn")
+            {
+                cboStatus.Enabled = false;
+            }
+            else
+            {
+                cboStatus.Enabled = true;
+                // Đảm bảo chỉ hiển thị "Còn" và "Bảo trì"
+                setCbStatus(GetStatusValue(cboStatus.Text));
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -457,7 +498,21 @@ namespace QuanLyThuQuan.Forms
         private DeviceDTO CreateDeviceFromForm(string imagePath)
         {
             int deviceID = isEditing ? int.Parse(txtDeviceID.Text) : 0;
-            int status = cboStatus.SelectedIndex + 1;
+            int status;
+
+            // Xử lý trạng thái
+            if (cboStatus.Text == "Đang mượn")
+            {
+                status = STATUS_BORROWED;
+            }
+            else if (cboStatus.Text == "Bảo trì")
+            {
+                status = STATUS_MAINTENANCE;
+            }
+            else
+            {
+                status = STATUS_AVAILABLE;
+            }
 
             return new DeviceDTO(
                 deviceID,
@@ -548,7 +603,7 @@ namespace QuanLyThuQuan.Forms
         {
             txtDeviceID.Text = "";
             txtName.Text = "";
-            cboStatus.SelectedIndex = 0;
+            SetupStatusComboBox(); // Đảm bảo chỉ hiển thị "Còn" và "Bảo trì" khi xóa form
             dtpCreatedAt.Value = DateTime.Now;
             txtImage.Text = "";
             if (picPreview.Image != null)

@@ -107,12 +107,15 @@ namespace QuanLyThuQuan.Forms
                 {
                     case "Đang mượn":
                         e.CellStyle.BackColor = StatusBorrowingColor;
+                        e.CellStyle.ForeColor = Color.Black;
                         break;
                     case "Đã trả":
                         e.CellStyle.BackColor = StatusReturnedColor;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                     case "Vi phạm":
                         e.CellStyle.BackColor = StatusViolationColor;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                 }
             }
