@@ -32,20 +32,16 @@ namespace QuanLyThuQuan.Forms
 
         public DeviceForm()
         {
-            InitializeComponent();
             deviceBLL = new DeviceBLL();
 
-            // Đăng ký sự kiện CellFormatting để tô màu trạng thái ngay từ đầu
-            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
-
-            // Khởi tạo các ComboBox trước khi tải dữ liệu
+            InitializeComponent();
             InitializeComboBoxes();
 
-            // Tải dữ liệu
             LoadDevices();
 
-            // Ẩn nút Lưu khi khởi động form
-            btnSave.Visible = false;
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+
+            SwitchToViewMode();
         }
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -59,12 +55,19 @@ namespace QuanLyThuQuan.Forms
                 {
                     case "Còn":
                         e.CellStyle.BackColor = StatusAvailableColor;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                     case "Đã mượn":
                         e.CellStyle.BackColor = StatusBorrowedColor;
+                        e.CellStyle.ForeColor = Color.Black;
                         break;
                     case "Bảo trì":
                         e.CellStyle.BackColor = StatusMaintenanceColor;
+                        e.CellStyle.ForeColor = Color.White;
+                        break;
+                    default:
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Black;
                         break;
                 }
             }
@@ -195,24 +198,39 @@ namespace QuanLyThuQuan.Forms
             }
         }
 
+
         private void LoadImagesForRows()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 string imagePath = row.Cells["Image"].Value?.ToString();
-                if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+
+                if (!string.IsNullOrWhiteSpace(imagePath) && !Path.IsPathRooted(imagePath))
                 {
-                    try
+                    string fullPath = Path.Combine(Application.StartupPath, imagePath);
+
+                    if (File.Exists(fullPath))
                     {
-                        using (Image img = Image.FromFile(imagePath))
+                        try
                         {
-                            row.Cells["ImagePreview"].Value = new Bitmap(img);
+                            using (var fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
+                            {
+                                row.Cells["ImagePreview"].Value = Image.FromStream(fs);
+                            }
+                        }
+                        catch
+                        {
+                            row.Cells["ImagePreview"].Value = null;
                         }
                     }
-                    catch
+                    else
                     {
                         row.Cells["ImagePreview"].Value = null;
                     }
+                }
+                else
+                {
+                    row.Cells["ImagePreview"].Value = null;
                 }
             }
         }
@@ -244,7 +262,7 @@ namespace QuanLyThuQuan.Forms
             if (selectedDevice != null)
             {
                 PopulateFormFields(selectedDevice);
-                SetButtonsForViewMode();
+                SwitchToViewMode();
             }
         }
 
@@ -260,13 +278,19 @@ namespace QuanLyThuQuan.Forms
             imagePath = "";
         }
 
-        private void LoadImagePreview(string path)
+        private void LoadImagePreview(string relativePath)
         {
-            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+            picPreview.Image = null;
+
+            if (string.IsNullOrWhiteSpace(relativePath)) return;
+
+            string absolutePath = Path.Combine(Application.StartupPath, relativePath);
+
+            if (File.Exists(absolutePath))
             {
                 try
                 {
-                    using (Image img = Image.FromFile(path))
+                    using (Image img = Image.FromFile(absolutePath))
                     {
                         picPreview.Image = new Bitmap(img);
                     }
@@ -276,32 +300,52 @@ namespace QuanLyThuQuan.Forms
                     picPreview.Image = null;
                 }
             }
-            else
-            {
-                picPreview.Image = null;
-            }
         }
 
-        private void SetButtonsForViewMode()
+        private void SwitchToViewMode()
         {
+            btnAdd.Visible = true;
             btnEdit.Visible = true;
             btnDelete.Visible = true;
             btnSave.Visible = false;
             isEditing = false;
+
+            txtName.Enabled = false;
+            cboStatus.Enabled = false;
+            btnBrowse.Enabled = false;
         }
 
-        private void SetButtonsForEditMode()
+        private void SwitchToAddMode()
         {
+            btnAdd.Visible = false;
             btnSave.Visible = true;
             btnEdit.Visible = false;
             btnDelete.Visible = false;
+
+            txtName.Enabled = true;
+            cboStatus.SelectedIndex = 0;
+            cboStatus.Enabled = false;
+            btnBrowse.Enabled = true;
+        }
+
+        private void SwitchToEditMode()
+        {
+            btnAdd.Visible = false;
+            btnSave.Visible = true;
+            btnEdit.Visible = false;
+            btnDelete.Visible = false;
+
+            txtName.Enabled = true;
+            cboStatus.Enabled = true;
+            btnBrowse.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ClearForm();
             isEditing = false;
-            SetButtonsForEditMode();
+            SwitchToAddMode();
+
             txtName.Focus();
         }
 
@@ -314,7 +358,7 @@ namespace QuanLyThuQuan.Forms
             }
 
             isEditing = true;
-            SetButtonsForEditMode();
+            SwitchToEditMode();
             txtName.Focus();
         }
 
@@ -331,9 +375,39 @@ namespace QuanLyThuQuan.Forms
 
                 if (result)
                 {
+
                     LoadDevices();
                     ClearForm();
-                    SetButtonsForViewMode();
+                    SwitchToViewMode();
+
+                    int selectedDeviceID = device.DeviceID;
+                    if (selectedDeviceID != 0)
+                    {
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if (!row.IsNewRow && row.Cells["DeviceID"].Value != null &&
+                                (int)row.Cells["DeviceID"].Value == selectedDeviceID)
+                            {
+                                row.Selected = true;
+                                dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (dataGridView1.Rows.Count > 0)
+                        {
+                            int lastIndex = dataGridView1.Rows.Count - 1;
+                            if (!dataGridView1.Rows[lastIndex].IsNewRow)
+                            {
+                                dataGridView1.Rows[lastIndex].Selected = true;
+                                dataGridView1.FirstDisplayedScrollingRowIndex = lastIndex;
+                            }
+                        }
+                    }
+
+                    loadFormFromSelectRow();
                 }
             }
             catch (Exception ex)
@@ -362,12 +436,14 @@ namespace QuanLyThuQuan.Forms
                 try
                 {
                     string fileName = Path.GetFileName(imagePath);
-                    string imagesFolder = Path.Combine(Application.StartupPath, "Images");
-                    string destPath = Path.Combine(imagesFolder, fileName);
+                    string relativeFolder = Path.Combine("Resources", "Images");
+                    string absoluteFolder = Path.Combine(Application.StartupPath, relativeFolder);
+                    string destPath = Path.Combine(absoluteFolder, fileName);
 
-                    Directory.CreateDirectory(imagesFolder);
+                    Directory.CreateDirectory(absoluteFolder);
                     File.Copy(imagePath, destPath, true);
-                    finalImagePath = destPath;
+
+                    finalImagePath = Path.Combine(relativeFolder, fileName).Replace("\\", "/");
                 }
                 catch (Exception ex)
                 {
@@ -463,8 +539,9 @@ namespace QuanLyThuQuan.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             LoadDevices();
-            ClearForm();
-            SetButtonsForViewMode();
+            //ClearForm();
+            SwitchToViewMode();
+            loadFormFromSelectRow();
         }
 
         private void ClearForm()
@@ -542,20 +619,29 @@ namespace QuanLyThuQuan.Forms
             txtSearch_TextChanged(sender, e);
         }
 
-        // Xóa các phương thức không sử dụng
-        private void DeviceForm_Load(object sender, EventArgs e) { }
-        private void panel1_Paint(object sender, PaintEventArgs e) { }
-        private void panel1_Paint_1(object sender, PaintEventArgs e) { }
-        private void panel2_Paint(object sender, PaintEventArgs e) { }
-
-        private void dtpCreatedAt_ValueChanged(object sender, EventArgs e)
+        private void loadFormFromSelectRow()
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int deviceID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["DeviceID"].Value);
+                DeviceDTO selectedDevice = deviceList.FirstOrDefault(d => d.DeviceID == deviceID);
 
+                if (selectedDevice != null)
+                {
+                    PopulateFormFields(selectedDevice);
+                }
+            }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            loadFormFromSelectRow();
+            SwitchToViewMode();
+        }
 
+        private void DeviceForm_Load(object sender, EventArgs e)
+        {
+            LoadImagesForRows();
         }
     }
 }
